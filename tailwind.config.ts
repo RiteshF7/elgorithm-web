@@ -1,20 +1,44 @@
-import type { Config } from "tailwindcss";
+import type {Config} from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+    content: [
+        "./app/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    theme: {
+        extend: {
+            colors: {
+                primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                tertiary: 'rgb(var(--color-tertiary) / <alpha-value>)',
+                foreground: 'rgb(var(--color-foreground) / <alpha-value>)',
+                content: {
+                    light: 'rgb(var(--color-content-light) / <alpha-value>)',
+                    DEFAULT: 'rgb(var(--color-content) / <alpha-value>)',
+                    contrast: 'rgb(var(--color-content-contrast) / <alpha-value>)'
+                }
+            },
+            backgroundImage: {
+                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+                "gradient-conic":
+                    "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            },
+            boxShadow: {
+                bottom: '0 2px 4px rgba(0,0,0,0.1)'
+            },
+            fontSize: {
+                xs: '0.75rem',
+                sm: '0.8rem',
+                base: '1rem',
+                md: '1.125rem',
+                xl: '1.25rem',
+                '2xl': '1.563rem',
+                '3xl': '1.953rem',
+                '4xl': '2.441rem',
+                '5xl': '3.052rem',
+            }
+        },
     },
-  },
-  plugins: [],
+    plugins: [],
 };
 export default config;
