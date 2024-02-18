@@ -23,8 +23,15 @@
 }
 
 body {
-    /*font-size: 16px;*/
-    /*@apply flex flex-col overflow-auto*/
+}
+
+/*Typography*/
+.h1 {
+    @apply text-5xl font-bold leading-tight;
+}
+
+* {
+    margin: 0;
 }
 
 @layer utilities {

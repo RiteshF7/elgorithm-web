@@ -8,6 +8,8 @@ export const Logo: FC<{ className?: string }> = ({className}) => {
     return (
         <Image src={LOGO_URL} alt={'logo'}
                width={96} height={24}
-               className={clsx(className || 'w-24 h-auto')}/>
+               priority
+               className={clsx(className, 'h-6 object-contain')}
+        />
     )
 }
