@@ -1,10 +1,6 @@
-
-export default function turnLed(state){
-    if (state=='1'){
-        document.getElementById('led').style.backgroundColor = 'green'
-    }
-    else{
-        document.getElementById('led').style.backgroundColor = 'white'
-    }
-
+export default function turnLed(state) {
+    window['_elg_pg_comm_channel'].sendMessage('LED', {
+        active: !!state,
+        color: 'red'
+    });
 }

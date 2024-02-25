@@ -1,6 +1,10 @@
 import {createContext, FC, PropsWithChildren, useContext, useState} from "react";
 import {Playground} from "@/utils/playground/playground";
 import {Toolboxes} from "@/utils/playground/workspace/toolbox/toolboxes";
+import {
+    GlobalPGCommChannel,
+    PlaygroundCommunicationChannel, RegisterPlaygroundComponent
+} from "@/utils/pg-comm-channel.util";
 
 interface PlaygroundContextProps {
     playground: Playground | null;
@@ -8,6 +12,7 @@ interface PlaygroundContextProps {
     runCode: () => void;
     connect: () => void;
     jsCodeString: string;
+    registerComponent: RegisterPlaygroundComponent;
 }
 
 const PlaygroundContext = createContext<PlaygroundContextProps>({
@@ -15,7 +20,8 @@ const PlaygroundContext = createContext<PlaygroundContextProps>({
     initPlayground: () => null,
     runCode: () => null,
     connect: () => null,
-    jsCodeString: ''
+    jsCodeString: '',
+    registerComponent: () => null
 });
 
 export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
@@ -29,12 +35,17 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
 
     const runCode = () => {
         if (playgroundInstance) {
-            setJsCodeString(playgroundInstance.getJSCode());
+            playgroundInstance.generateExecJsCode();
         }
     }
 
     const connect = () => {
         console.log('Connect');
+    }
+
+    const registerComponent: RegisterPlaygroundComponent = (key, callback: (data: any) => void) => {
+        // @ts-ignore
+        (window[GlobalPGCommChannel] as PlaygroundCommunicationChannel).registerComponent(key, callback);
     }
 
     return (
@@ -43,7 +54,8 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
             initPlayground,
             runCode,
             connect,
-            jsCodeString
+            jsCodeString,
+            registerComponent
         }}>
             {children}
         </PlaygroundContext.Provider>

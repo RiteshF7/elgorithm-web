@@ -7,12 +7,14 @@ import {save, load} from './workspace/serialization'
 import {blocks} from "./workspace/blocks/blocks";
 import theme from './workspace/elgotheme'
 import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
+import {initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
 
 
 initBlockly()
 
 export class Playground {
     constructor(div, toolbox) {
+        initPlaygroundCommunication();
         this.workspace = Blockly.inject(div, {toolbox: toolbox, theme: theme})
         load(this.workspace);
     }
