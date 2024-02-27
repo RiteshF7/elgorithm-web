@@ -1,3 +1,5 @@
+"use client";
+
 import {FC, useEffect} from 'react';
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {Led} from "@/modules/playground/components/simulated-hardwares/Led";

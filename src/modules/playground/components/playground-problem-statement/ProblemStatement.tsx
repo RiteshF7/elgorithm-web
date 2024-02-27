@@ -8,13 +8,12 @@ export interface ProblemStatementProps {
 
 export const ProblemStatement: FC<ProblemStatementProps> = ({problem, description})=>{
     return (
-        <div className={clsx('flex flex-col gap-4 flex-grow text-center items-center' )}>
-            <h3 className={'h3'}>
-                {problem}
-            </h3>
-            <p className={'text-content-light text-lg max-w-2xl'}>
-                {description}
-            </p>
+        <div className={clsx('flex flex-col gap-4 flex-grow text-left items-start')}>
+
+            <p className="text-2xl text-gray-900 dark:text-black">{problem}</p>
+            <p className="text-lg text-content-light ">{description}</p>
+
+
         </div>
     );
 }
