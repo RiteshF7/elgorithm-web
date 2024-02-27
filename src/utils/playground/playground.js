@@ -15,7 +15,11 @@ initBlockly()
 export class Playground {
     constructor(div, toolbox) {
         initPlaygroundCommunication();
-        this.workspace = Blockly.inject(div, {toolbox: toolbox, theme: theme})
+        this.workspace = Blockly.inject(div, {
+            toolbox: toolbox, theme: theme,
+            toolboxPosition: 'end',
+            horizontalLayout: true,
+        })
         load(this.workspace);
     }
 
