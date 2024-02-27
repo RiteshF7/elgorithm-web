@@ -21,3 +21,10 @@ def gpio_set(pin,value):
     return 'gpio_set(' + value_pin + ', ' + dropdown_led_state + ')\n';
     // return `gpio_set(${value_pin}, ${dropdown_led_state})\n`;
 };
+
+forPyBlock['delay_ms'] = function(block,generator) {
+    const value_time = generator.valueToCode(block, 'time', generator.ORDER_ATOMIC);
+    generator.definitions_['import_time'] = 'import time';
+    const code = 'time.sleep_ms(' + value_time + ')\n';
+    return code;
+};

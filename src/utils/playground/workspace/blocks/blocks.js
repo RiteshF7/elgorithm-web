@@ -28,3 +28,16 @@ Blockly.Blocks['change_led_state'] = {
     }
 };
 
+Blockly.Blocks['delay_ms'] = {
+    init: function() {
+        this.appendValueInput("time")
+            .setCheck("Number")
+            .appendField("delay Seconds");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour('#FF0000');
+        this.setTooltip("Delay processing in milliseconds");
+        this.setHelpUrl("http://www.bipes.net.br/");
+    }
+};
+
