@@ -10,13 +10,10 @@ export const PlaygroundRunner: FC = () => {
     }, [])
 
     return (
-        <div className={'basis-4/12 bg-gray-500 rounded-lg flex flex-col h-96'}>
-            <h3>Runner</h3>
+        <div className={'basis-4/12 bg-gray-500  rounded-lg flex justify-center items-center h-96'}>
 
             <Led/>
-            <code>
-                {jsCodeString}
-            </code>
+
         </div>
     )
 }

@@ -19,6 +19,18 @@ export class Playground {
             toolbox: toolbox, theme: theme,
             toolboxPosition: 'end',
             horizontalLayout: true,
+            scrollbars: true,
+            css: true,
+            rtl: false,
+            zoom: {
+                controls: false,                wheel: true,
+                startScale: .8,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.2
+            },
+            trashcan: false,
+
         })
         load(this.workspace);
     }

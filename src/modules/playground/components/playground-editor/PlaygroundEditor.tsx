@@ -19,6 +19,6 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = () => {
         }
     }, []);
     return (
-        <div ref={editorRef} className={'basis-8/12 h-96 bg-gray-300'}/>
+        <div ref={editorRef} className={'w-[700px]  bg-gray-300 rounded-lg'}/>
     )
 }

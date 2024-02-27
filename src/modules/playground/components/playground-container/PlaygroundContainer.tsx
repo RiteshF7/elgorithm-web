@@ -9,11 +9,12 @@ export const PlayGroundContainer: FC = () => {
     return (
         <PlaygroundProvider>
             <div className={'flex flex-col gap-4'}>
-                <PlaygroundActions/>
                 <div className={'flex gap-4 border-1 border-gray-500 rounded-lg'}>
                     <PlaygroundEditor/>
                     <PlaygroundRunner/>
                 </div>
+                <PlaygroundActions/>
+
             </div>
         </PlaygroundProvider>
     )
