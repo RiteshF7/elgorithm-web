@@ -5,8 +5,7 @@ import {PlaygroundRunner} from "@/modules/playground/components/playground-runne
 const PlayGroundPage: FC = () => {
     return (
         <div className={'p-4'}>
-            {/*<PlayGroundContainer  PlaygroundRunner={<PlaygroundRunner/>}/>*/}
-            <PlaygroundRunner/>
+            <PlayGroundContainer  PlaygroundRunner={<PlaygroundRunner/>}/>
         </div>
     )
 }

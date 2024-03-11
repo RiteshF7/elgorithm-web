@@ -1,38 +1,40 @@
-import React, {FC, useState} from "react";
-import {Canvas, useFrame} from "@react-three/fiber";
-import {Button} from "@/modules/common/components/button/Button";
+import React, {FC, useEffect, useRef, useState} from "react";
 
-export const Cube:FC = ()=>{
-
-    return(
-        <div>
-            <Canvas>
-
-                <ambientLight intensity={0.1} />
-                <Button  uiType={'primary'} onClick={()=>{
-
-                }}/>
-                <directionalLight color="red" position={[0, 0, 5]} />
-                <Anim/>
-
-            </Canvas>
-        </div>
-    )
+interface CubeStateType {
+    left: number;
+    right: number;
+    forward: number;
+    backward: number;
 }
 
-const Anim:FC = ()=>{
-    const [cubePos,setCubePos] = useState(0)
-    const cubeMesh = React.useRef()
-    useFrame(({ clock }) => {
-        console.log(cubePos)
-        // @ts-ignore
-        cubeMesh.current.position.set(cubePos,0,0)
+export const Cube: FC = () => {
+    const cubeRef = useRef();
 
-    })
+    const [state, setState] = useState<CubeStateType>({
+        left: 0,
+        right: 0,
+        forward: 0,
+        backward: 0,
+    });
+
+    useEffect(() => {
+        const speed = 0.1;
+        const rotationSpeed = 0.02;
+         // @ts-ignore
+        cubeRef.current.position.z -= speed;
+        // @ts-ignore
+         cubeRef.current.position.z += speed;
+        // @ts-ignore
+        cubeRef.current.rotation.y += rotationSpeed;
+        // @ts-ignore
+        cubeRef.current.rotation.y -= rotationSpeed;
+    }, []);
+
     return (
-        <mesh ref={cubeMesh}>
-            <boxGeometry/>
-            <meshBasicMaterial color="red"/>
+        <mesh ref={cubeRef}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color="blue" />
         </mesh>
-    )
+    );
+
 }

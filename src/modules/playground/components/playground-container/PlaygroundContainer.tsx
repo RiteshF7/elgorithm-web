@@ -13,7 +13,8 @@ export interface PlayGroundContainerProps {
 export const PlayGroundContainer: FC<PlayGroundContainerProps> = ({PlaygroundRunner}) => {
     return (
         <PlaygroundProvider>
-            <div className={'flex flex-col gap-4  items-center'}>
+            <div className={'flex flex-row gap-4  items-center'}>
+                {PlaygroundRunner}
                 <div className={'flex flex-col gap-4 flex-grow'}>
                     <ProblemStatement problem={"some ques"} description={"some ques description"}/>
                     <PlaygroundEditor/>
