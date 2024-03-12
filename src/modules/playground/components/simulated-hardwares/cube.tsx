@@ -1,39 +1,58 @@
 import React, {FC, useEffect, useRef, useState} from "react";
+import {usePlayground} from "@/modules/playground/providers/playground.provider";
+import {useFrame} from "@react-three/fiber";
 
 interface CubeStateType {
-    left: number;
-    right: number;
-    forward: number;
-    backward: number;
+    motion?: string;
 }
+
+const COMPONENT_KEY = 'CUBE';
 
 export const Cube: FC = () => {
     const cubeRef = useRef();
 
     const [state, setState] = useState<CubeStateType>({
-        left: 0,
-        right: 0,
-        forward: 0,
-        backward: 0,
+        motion: 'idle'
     });
+    const {registerComponent} = usePlayground();
 
-    useEffect(() => {
+    useFrame(() => {
         const speed = 0.1;
         const rotationSpeed = 0.02;
-         // @ts-ignore
-        cubeRef.current.position.z -= speed;
-        // @ts-ignore
-         cubeRef.current.position.z += speed;
-        // @ts-ignore
-        cubeRef.current.rotation.y += rotationSpeed;
-        // @ts-ignore
-        cubeRef.current.rotation.y -= rotationSpeed;
+        switch (state.motion) {
+            case 'idle':
+                break;
+            case 'FORWARD':
+                // @ts-ignore
+                cubeRef.current.position.x += speed;
+                setState({motion: 'idle'})
+                break;
+            case 'backward':
+                // @ts-ignore
+                cubeRef.current.position.z -= speed;
+                break;
+            case 'rotate':
+                // @ts-ignore
+                cubeRef.current.rotation.y += rotationSpeed;
+                break;
+        }
+
+    })
+
+
+    useEffect(() => {
+
+        registerComponent(COMPONENT_KEY, (data) => {
+            setState((state) => ({...state, ...data}))
+        })
+
+
     }, []);
 
     return (
         <mesh ref={cubeRef}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color="blue" />
+            <boxGeometry args={[1, 1, 1]}/>
+            <meshStandardMaterial color="black"/>
         </mesh>
     );
 

@@ -23,6 +23,10 @@ export const Toolboxes = {
             },
             {
                 'kind': 'block',
+                'type': 'move_forward'
+            },
+            {
+                'kind': 'block',
                 'type': 'delay_ms',
                 'inputs': {
                     'time': {

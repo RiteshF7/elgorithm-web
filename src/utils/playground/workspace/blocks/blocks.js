@@ -41,3 +41,15 @@ Blockly.Blocks['delay_ms'] = {
     }
 };
 
+Blockly.Blocks['move_forward'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Move forward");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+

@@ -3,6 +3,5 @@ export default function turnLed(state) {
         active: !!state,
         color: 'red'
     });
-
 }
 

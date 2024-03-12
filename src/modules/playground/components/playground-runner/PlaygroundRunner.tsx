@@ -21,7 +21,7 @@ export const PlaygroundRunner: FC = () => {
             <Canvas>
                 <ambientLight />
                 <pointLight position={[10, 10, 10]} />
-                <Car />
+                <Cube />
             </Canvas>
         </div>
     )
