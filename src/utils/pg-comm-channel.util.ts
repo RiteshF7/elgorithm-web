@@ -34,6 +34,7 @@ export class PlaygroundCommunicationChannel {
             }
             this.registeredComponents[lastMessage.componentKey](lastMessage.data);
         }
+
     }
 
     private enqueueMessage(componentKey: string, data?: any) {

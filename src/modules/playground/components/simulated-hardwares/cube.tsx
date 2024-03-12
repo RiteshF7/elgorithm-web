@@ -32,9 +32,9 @@ export const Cube: FC = () => {
                 break;
             case 'FORWARD':
                 // @ts-ignore
-                cubeRef.current.position.x += speed;
+                // cubeRef.current.position.x += speed;
                 // @ts-ignore
-                // cubeRef.current.rotation.y += rotationSpeed;
+                cubeRef.current.rotation.y += rotationSpeed;
                 setState({motion: 'idle'})
                 break;
             case 'backward':
