@@ -21,6 +21,24 @@ export const Toolboxes = {
                 'kind': 'block',
                 'type': 'change_led_state'
             },
+            {
+                'kind': 'block',
+                'type': 'move_forward'
+            },
+            {
+                'kind': 'block',
+                'type': 'delay_ms',
+                'inputs': {
+                    'time': {
+                        'shadow': {
+                            'type': 'math_number',
+                            'fields': {
+                                'NUM': 10,
+                            },
+                        },
+                    },
+                },
+            },
         ]
 
 

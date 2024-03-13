@@ -1,6 +1,7 @@
 'use client';
-import {FC, useEffect, useRef} from "react";
+import React, {FC, useEffect, useRef} from "react";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
+import {PlaygroundActions} from "@/modules/playground/components/playground-actions/PlaygroundActions";
 
 interface PlaygroundEditorProps {
 
@@ -19,6 +20,8 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = () => {
         }
     }, []);
     return (
-        <div ref={editorRef} className={'basis-8/12 h-96 bg-gray-300'}/>
+            <div ref={editorRef} className={'w-[500px] h-96  bg-gray-300 rounded-lg'}/>
+
+
     )
 }

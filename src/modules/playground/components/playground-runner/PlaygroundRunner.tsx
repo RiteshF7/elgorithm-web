@@ -1,6 +1,9 @@
+"use client";
+
 import {FC, useEffect} from 'react';
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
-import {Led} from "@/modules/playground/components/simulated-hardwares/Led";
+import {Cube} from "@/modules/playground/components/simulated-hardwares/cube";
+import {Canvas} from "@react-three/fiber";
 
 export const PlaygroundRunner: FC = () => {
     const {jsCodeString} = usePlayground();
@@ -10,13 +13,13 @@ export const PlaygroundRunner: FC = () => {
     }, [])
 
     return (
-        <div className={'basis-4/12 bg-gray-500 rounded-lg flex flex-col h-96'}>
-            <h3>Runner</h3>
+        <div className={'basis-4/12 bg-white  rounded-lg flex justify-center items-center h-96'}>
 
-            <Led/>
-            <code>
-                {jsCodeString}
-            </code>
+            <Canvas>
+                <ambientLight/>
+                <pointLight position={[10, 10, 10]}/>
+                <Cube/>
+            </Canvas>
         </div>
     )
 }

@@ -21,19 +21,20 @@ export class PlaygroundCommunicationChannel {
     }
 
     private dequeueMessages() {
-        if (!this.queuePaused) {
-            const lastMessage = this.messageQueue.pop();
-            if (lastMessage?.componentKey === 'delay') {
+
+        while (!this.queuePaused && this.messageQueue.length > 0) {
+            const lastMessage = this.messageQueue.pop() || {componentKey: 'none'};
+            if (lastMessage.componentKey === 'delay') {
                 setTimeout(() => {
                     this.queuePaused = false;
                     this.dequeueMessages();
                 }, lastMessage.data.time || 1000);
                 this.queuePaused = true;
-            } else if (lastMessage && this.registeredComponents[lastMessage.componentKey]) {
-                this.registeredComponents[lastMessage.componentKey](lastMessage.data);
-                this.dequeueMessages();
+                break;
             }
+            this.registeredComponents[lastMessage.componentKey](lastMessage.data);
         }
+
     }
 
     private enqueueMessage(componentKey: string, data?: any) {

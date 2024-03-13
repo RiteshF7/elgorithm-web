@@ -1,19 +1,26 @@
 'use client';
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {PlaygroundActions} from "@/modules/playground/components/playground-actions/PlaygroundActions";
 import {PlaygroundEditor} from "@/modules/playground/components/playground-editor/PlaygroundEditor";
-import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {PlaygroundProvider} from "@/modules/playground/providers/playground.provider";
+import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
+import {PlaygrountContent} from "@/content/banner-main/playgrount-content";
 
-export const PlayGroundContainer: FC = () => {
+export interface PlayGroundContainerProps {
+    PlaygroundRunner: React.ReactNode;
+}
+
+export const PlayGroundContainer: FC<PlayGroundContainerProps> = ({PlaygroundRunner}) => {
     return (
         <PlaygroundProvider>
-            <div className={'flex flex-col gap-4'}>
-                <PlaygroundActions/>
-                <div className={'flex gap-4 border-1 border-gray-500 rounded-lg'}>
+            <div className={'flex flex-row gap-4  items-center'}>
+                {PlaygroundRunner}
+                <div className={'flex flex-col gap-4 flex-grow'}>
+                    <ProblemStatement problem={"some ques"} description={"some ques description"}/>
                     <PlaygroundEditor/>
-                    <PlaygroundRunner/>
+                    <PlaygroundActions/>
                 </div>
+
             </div>
         </PlaygroundProvider>
     )
