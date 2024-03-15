@@ -23,7 +23,7 @@ export class Playground {
             css: true,
             rtl: false,
             zoom: {
-                controls: false, wheel: true,
+                controls: false,                wheel: true,
                 startScale: .8,
                 maxScale: 3,
                 minScale: 0.3,
@@ -43,31 +43,11 @@ export class Playground {
         return javascriptGenerator.workspaceToCode(this.workspace);
     }
 
-
     generateExecJsCode() {
         const code = javascriptGenerator.workspaceToCode(this.workspace);
         console.log('code', code);
         eval(code)
-
     }
-
-    // checkCode(code) {
-    //     this.config.code.comparison.forEach((solution) => {
-    //         if (code === solution.code) {
-    //             window['_elg_pg_comm_channel'].sendMessage('CUBE', {
-    //                 completed: solution.isCorrect, message: solution.message
-    //             });
-    //         }
-    //     })
-    //     window['_elg_pg_comm_channel'].sendMessage('CUBE', {
-    //         completed: false, message: 'Code not correct'
-    //     });
-    //
-    //     //check if code exist in potential solutions or incorrect code
-    //     //if code exist in potential solutions, send message to backend
-    //     //if code exist in incorrect code, send message to backend
-    //     //show appropriate message on UI
-    // }
 
     generateExecPyCode() {
         const code = pythonGenerator.workspaceToCode(this.workspace);

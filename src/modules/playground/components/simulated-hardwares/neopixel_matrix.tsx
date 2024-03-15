@@ -5,16 +5,16 @@ import {usePlayground} from "@/modules/playground/providers/playground.provider"
 import '@wokwi/elements';
 
 
-interface LedStateType {
+interface NeoPixelMatrixStateType {
     active?: boolean;
     color?: string;
 }
 
-const COMPONENT_KEY = 'LED';
+const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
-export const Led: FC = () => {
+export const NeoPixelMatrix: FC = () => {
 
-    const [state, setState] = useState<LedStateType>({
+    const [state, setState] = useState<NeoPixelMatrixStateType>({
         active: false,color: 'red'
     });
 
@@ -23,13 +23,15 @@ export const Led: FC = () => {
     useEffect(() => {
 
         registerComponent(COMPONENT_KEY, (data) => {
-            console.log('Updated LED data', data);
+            console.log('Updated NeoPixelMatrix data', data);
             setState((state) => ({...state, ...data}))
         })
     }, []);
     return (
-        // <div className={'rounded-full h-12 w-12'} style={{backgroundColor: state.active ? state.color : 'lightgray'}}/>
-        // @ts-ignore
-        <wokwi-led color={state.color} value={state.active ?  true:''}></wokwi-led>
-    )
+
+        <div className={'flex flex-row gap-4  items-center bg-black p-4'}>
+            {//@ts-ignore
+            <wokwi-neopixel-matrix rows="16" cols="16"></wokwi-neopixel-matrix>
+            }
+        </div>)
 }
