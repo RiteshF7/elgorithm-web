@@ -4,59 +4,19 @@ import {PlaygroundActions} from "@/modules/playground/components/playground-acti
 import {PlaygroundEditor} from "@/modules/playground/components/playground-editor/PlaygroundEditor";
 import {PlaygroundProvider} from "@/modules/playground/providers/playground.provider";
 import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
-import {PlaygrountContent} from "@/content/banner-main/playgrount-content";
+import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 
 
-export interface PlayGroundContainerProps {
-    PlaygroundRunner: React.ReactNode;
-    problemQuestion: string
-    problemDescription: string
-    problemAnimations: string[]
-    problemImages: string[]
-    problemVideos: string[]
-    isProcodeNeeded: boolean
-    nextProblemId: string
-    prevProblemId: string
-    isCompleted: boolean
-    skippable: boolean
-    workspace: Workspace
-    code: Code
-}
-
-export interface Workspace {
-    blocksArray: string[]
-    enableScroll: boolean
-    enableZoom: boolean
-    width: number
-    height: number
-    toolboxOrientation: string
-}
-
-export interface Code {
-    comparison: Comparison[]
-    hint: Hint
-}
-
-export interface Comparison {
-    code: string
-    message: string
-    isCorrect: boolean
-}
-
-export interface Hint {
-    heading: string
-    description: string
-    imageUrls: string[]
-    videoUrls: string[]
-    animationUrls: string[]
-}
 
 
-export const PlayGroundContainer: FC<PlayGroundContainerProps> = ({PlaygroundRunner}) => {
+
+
+
+export const PlayGroundContainer: FC = () => {
     return (
         <PlaygroundProvider>
             <div className={'flex flex-row gap-4  items-center'}>
-                {PlaygroundRunner}
+                <PlaygroundRunner/>
                 <div className={'flex flex-col gap-4 flex-grow'}>
                     <ProblemStatement problem={"some ques"} description={"some ques description"}/>
                     <PlaygroundEditor/>
