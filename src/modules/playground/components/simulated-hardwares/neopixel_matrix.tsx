@@ -10,7 +10,6 @@ import {NeopixelMatrixElement} from "@wokwi/elements/dist/esm/neopixel-matrix-el
 interface NeoPixelMatrixStateType {
     row: number;
     column: number;
-    rgb: RGB;
 }
 
 const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
@@ -21,7 +20,6 @@ export const NeoPixelMatrix: FC = () => {
 
     const [state, setState] = useState<NeoPixelMatrixStateType>({
         row: 0, column: 0,
-        rgb: {r: 0, g: 0, b: 0},
 
     });
 
@@ -34,7 +32,7 @@ export const NeoPixelMatrix: FC = () => {
         registerComponent(COMPONENT_KEY, (data) => {
             console.log('Updated NeoPixelMatrix data', data);
             setState((state) => ({...state, ...data}))
-            neoPixelDisplayRef.current?.setPixel(state.row, state.column, state.rgb);
+            neoPixelDisplayRef.current?.setPixel(state.row, state.column, {r: 225, g: 0, b: 0});
         })
     }, []);
 
@@ -47,8 +45,6 @@ export const NeoPixelMatrix: FC = () => {
             }
             <button className={'bg-amber-400 w-10 h-10'} onClick={() => {
                 neoPixelDisplayRef.current?.setPixel(2, 3, {r: 225, g: 0, b: 0})
-                console.log('Updated NeoPixelMatrix data');
-
             }}></button>
 
         </div>);
