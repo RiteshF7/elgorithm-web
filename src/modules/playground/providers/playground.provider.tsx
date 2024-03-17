@@ -5,7 +5,6 @@ import {
     GlobalPGCommChannel,
     PlaygroundCommunicationChannel, RegisterPlaygroundComponent
 } from "@/utils/pg-comm-channel.util";
-import {PlaygrountContent} from "@/content/banner-main/playgrount-content";
 
 interface PlaygroundContextProps {
     playground: Playground | null;
@@ -31,7 +30,7 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
     const [jsCodeString, setJsCodeString] = useState<string>('');
 
     const initPlayground = (element: HTMLDivElement) => {
-        setPlaygroundInstance(new Playground(element, Toolboxes.turnOnLed,PlaygrountContent));
+        setPlaygroundInstance(new Playground(element, Toolboxes.turnOnLed));
     }
 
     const runCode = () => {

@@ -1,25 +1,17 @@
-"use client";
+import React, {FC} from 'react';
+import {Led} from "@/modules/playground/components/simulated-hardwares/Led";
 
-import {FC, useEffect} from 'react';
-import {usePlayground} from "@/modules/playground/providers/playground.provider";
-import {Cube} from "@/modules/playground/components/simulated-hardwares/cube";
-import {Canvas} from "@react-three/fiber";
+interface PlaygroundRunnerProps {
+    simulatedHardware: React.ReactNode;
+}
 
-export const PlaygroundRunner: FC = () => {
-    const {jsCodeString} = usePlayground();
-
-    useEffect(() => {
-
-    }, [])
+export const PlaygroundRunner: FC<PlaygroundRunnerProps> = ({
+                                                                simulatedHardware,
+                                                            }) => {
 
     return (
         <div className={'basis-4/12 bg-white  rounded-lg flex justify-center items-center h-96'}>
-
-            <Canvas>
-                <ambientLight/>
-                <pointLight position={[10, 10, 10]}/>
-                <Cube/>
-            </Canvas>
+            {simulatedHardware}
         </div>
     )
 }
