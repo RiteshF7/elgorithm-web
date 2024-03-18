@@ -9,11 +9,6 @@ import {Led} from "@/modules/playground/components/simulated-hardwares/Led";
 import {NeoPixelMatrix} from "@/modules/playground/components/simulated-hardwares/neopixel_matrix";
 
 
-
-
-
-
-
 export const PlayGroundContainer: FC = () => {
     return (
         <PlaygroundProvider>
@@ -23,7 +18,8 @@ export const PlayGroundContainer: FC = () => {
                     <PlaygroundEditor/>
                     <PlaygroundActions/>
                 </div>
-                <PlaygroundRunner simulatedHardware={<NeoPixelMatrix/>}/>
+                <PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}
+                                                                     DestinationPosition={{row: 10, column: 10}}/>}/>
 
             </div>
         </PlaygroundProvider>
