@@ -6,7 +6,7 @@ import {PlaygroundProvider} from "@/modules/playground/providers/playground.prov
 import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Led} from "@/modules/playground/components/simulated-hardwares/Led";
-import {NeoPixelMatrix} from "@/modules/playground/components/simulated-hardwares/neopixel_matrix";
+import {NeoPixelMatrix} from "@/modules/playground/components/simulated-hardwares/neopixel-display/NeoPixelMatrix";
 
 
 export const PlayGroundContainer: FC = () => {
