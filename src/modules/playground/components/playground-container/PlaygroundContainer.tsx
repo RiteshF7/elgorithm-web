@@ -19,7 +19,7 @@ export const PlayGroundContainer: FC = () => {
                     <PlaygroundActions/>
                 </div>
                 <PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}
-                                                                     DestinationPosition={{row: 10, column: 10}}/>}/>
+                                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>
 
             </div>
         </PlaygroundProvider>

@@ -13,7 +13,8 @@ interface NeoPixelMatrixStateType {
 
 interface NeoPixelMatrixProps {
     startingPosition: Position;
-    DestinationPosition: Position;
+    destinationPosition: Position;
+    matrixSize: number;
 }
 
 interface Position {
@@ -26,6 +27,10 @@ enum Direction {
     Down = 'Down',
     Left = 'Left',
     Right = 'Right',
+    TopLeft = 'TopLeft',
+    TopRight = 'TopRight',
+    BottomLeft = 'BottomLeft',
+    BottomRight = 'BottomRight',
     Stop = 'Stop',
 }
 
@@ -34,13 +39,12 @@ const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
 
 export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
-    startingPosition,
-    DestinationPosition,
+                                                            startingPosition,
+                                                            destinationPosition,
+                                                            matrixSize,
                                                         }) => {
 
-    const position = {
-        row: startingPosition.row, column: startingPosition.column,
-    }
+    const position = {...startingPosition}
 
 
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
@@ -65,62 +69,95 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
     function setInitialPixel() {
         setNextPixel()
     }
+
     function setDestinationPixel() {
-        setPixel(DestinationPosition.row, DestinationPosition.column);
+        console.log('setDestinationPixel', destinationPosition);
+        setPixel(destinationPosition);
     }
 
 
     function move(Direction: Direction) {
-        console.log('move', Direction);
         switch (Direction) {
             case 'Up':
+                if (position.row === 0) return;
                 position.row -= 1;
                 break;
             case 'Down':
+                if (position.row === matrixSize - 1) return;
                 position.row += 1;
                 break;
             case 'Left':
+                if (position.column === 0) return;
                 position.column -= 1;
                 break;
             case 'Right':
+                if (position.column === matrixSize - 1) return;
                 position.column += 1;
                 break;
+            case 'TopLeft':
+                if (position.row === 0 || position.column === 0) return;
+                position.row -= 1;
+                position.column -= 1;
+                console.log('TopLeft', position);
+                break;
+            case 'TopRight':
+                if (position.row === 0 || position.column === matrixSize - 1) return;
+                position.row -= 1;
+                position.column += 1;
+                break;
+            case 'BottomLeft':
+                if (position.row === matrixSize - 1 || position.column === 0) return;
+                position.row += 1;
+                position.column -= 1;
+                break;
+            case 'BottomRight':
+                if (position.row === matrixSize - 1 || position.column === matrixSize - 1) return;
+                position.row += 1;
+                position.column += 1;
+                break;
+            case 'Stop':
+                break;
         }
+        console.log('move', position);
         setNextPixel();
     }
 
     function setNextPixel() {
-        setPixel(position.row, position.column);
+        setPixel(position);
     }
 
-    function setPixel(row: number, column: number) {
-        neoPixelDisplayRef.current?.setPixel(row, column, {r: 225, g: 0, b: 0});
+    function setPixel(position: Position) {
+        neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 225, g: 0, b: 0});
     }
+
+    // Check if the position is within the matrix bounds
+
 
 
     return (
 
         <div className={' bg-black flex flex-col gap-4 p-2'}>
-            <wokwi-neopixel-matrix ref={neoPixelDisplayRef} rows={11} cols={11} blurLight={true}></wokwi-neopixel-matrix>
+            <wokwi-neopixel-matrix ref={neoPixelDisplayRef} rows={matrixSize} cols={matrixSize}
+                                   blurLight={true}></wokwi-neopixel-matrix>
             <div className={'flex flex-row gap-2 justify-center'}>
                 <button className={'bg-amber-400 w-10 h-10'} onClick={() => {
-                    move(Direction.Up)
-                }}>Up
+                    move(Direction.TopLeft)
+                }}>TL
                 </button>
 
                 <button className={'bg-amber-400 w-10 h-10'} onClick={() => {
-                    move(Direction.Down)
-                }}>Down
+                    move(Direction.TopRight)
+                }}>TR
                 </button>
 
                 <button className={'bg-amber-400 w-10 h-10'} onClick={() => {
-                    move(Direction.Right)
-                }}>Right
+                    move(Direction.BottomLeft)
+                }}>BL
                 </button>
 
                 <button className={'bg-amber-400 w-10 h-10'} onClick={() => {
-                    move(Direction.Left)
-                }}>Left
+                    move(Direction.BottomRight)
+                }}>BR
                 </button>
 
 
