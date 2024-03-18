@@ -44,17 +44,14 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
                                                             matrixSize,
                                                         }) => {
 
-    const position = {...startingPosition}
-
-
+    const {registerComponent} = usePlayground();
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
-
     const [state, setState] = useState<NeoPixelMatrixStateType>({
         Direction: Direction.Stop,
     });
 
+    const position = {...startingPosition}
 
-    const {registerComponent} = usePlayground();
 
     useEffect(() => {
         setInitialPixel()
@@ -71,56 +68,49 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
     }
 
     function setDestinationPixel() {
-        console.log('setDestinationPixel', destinationPosition);
         setPixel(destinationPosition);
     }
 
 
-    function move(Direction: Direction) {
-        switch (Direction) {
-            case 'Up':
-                if (position.row === 0) return;
-                position.row -= 1;
-                break;
-            case 'Down':
-                if (position.row === matrixSize - 1) return;
-                position.row += 1;
-                break;
-            case 'Left':
-                if (position.column === 0) return;
-                position.column -= 1;
-                break;
-            case 'Right':
-                if (position.column === matrixSize - 1) return;
-                position.column += 1;
-                break;
-            case 'TopLeft':
-                if (position.row === 0 || position.column === 0) return;
-                position.row -= 1;
-                position.column -= 1;
-                console.log('TopLeft', position);
-                break;
-            case 'TopRight':
-                if (position.row === 0 || position.column === matrixSize - 1) return;
-                position.row -= 1;
-                position.column += 1;
-                break;
-            case 'BottomLeft':
-                if (position.row === matrixSize - 1 || position.column === 0) return;
-                position.row += 1;
-                position.column -= 1;
-                break;
-            case 'BottomRight':
-                if (position.row === matrixSize - 1 || position.column === matrixSize - 1) return;
-                position.row += 1;
-                position.column += 1;
-                break;
-            case 'Stop':
-                break;
+    function move(direction: Direction): Position {
+        const newRow = position.row + getVerticalOffset(direction);
+        const newColumn = position.column + getHorizontalOffset(direction);
+
+        if (isValidPosition(newRow, newColumn, matrixSize)) {
+            position.row = newRow;
+            position.column = newColumn;
         }
-        console.log('move', position);
+
         setNextPixel();
+        return position;
     }
+
+    function getVerticalOffset(direction: Direction): number {
+        switch (direction) {
+            case Direction.Up || Direction.TopLeft || Direction.TopRight:
+                return -1;
+            case Direction.Down || Direction.BottomLeft || Direction.BottomRight:
+                return 1;
+            default:
+                return 0;
+        }
+    }
+
+    function getHorizontalOffset(direction: Direction): number {
+        switch (direction) {
+            case Direction.Left || Direction.TopLeft || Direction.BottomLeft:
+                return -1;
+            case Direction.Right || Direction.TopRight || Direction.BottomRight:
+                return 1;
+            default:
+                return 0;
+        }
+    }
+
+    function isValidPosition(row: number, column: number, matrixSize: number): boolean {
+        return row >= 0 && row < matrixSize && column >= 0 && column < matrixSize;
+    }
+
 
     function setNextPixel() {
         setPixel(position);
@@ -129,9 +119,6 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
     function setPixel(position: Position) {
         neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 225, g: 0, b: 0});
     }
-
-    // Check if the position is within the matrix bounds
-
 
 
     return (
