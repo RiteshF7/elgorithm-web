@@ -20,3 +20,6 @@ function getDirectionMessage(payload: Direction) {
 }
 
 export default NeoPixelController;
+
+
+

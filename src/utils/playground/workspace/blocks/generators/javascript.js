@@ -2,6 +2,7 @@ import turnLed from "../../uicontroller/turnonled";
 import {delay} from "../../uicontroller/uiutils";
 import {moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
 import NeoPixelController from '@/modules/playground/components/simulated-hardwares/neopixel-display/neoPixelBlockController'
+import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 export const forJsBlock = Object.create(null);
 
@@ -24,4 +25,11 @@ forJsBlock['move_forward'] = function(block, generator) {
     return `\nmoveForward()\n`
 };
 
-forJsBlock['move_up'] = (blocks,generator)=> NeoPixelController.moveUp()
+forJsBlock[blockKeys.moveUp] = (blocks,generator)=> NeoPixelController.moveUp()
+forJsBlock[blockKeys.moveDown] = (blocks,generator)=> NeoPixelController.moveDown()
+forJsBlock[blockKeys.moveLeft] = (blocks,generator)=> NeoPixelController.moveLeft()
+forJsBlock[blockKeys.moveRight] = (blocks,generator)=> NeoPixelController.moveRight()
+forJsBlock[blockKeys.moveTopRight] = (blocks,generator)=> NeoPixelController.moveTopRight()
+forJsBlock[blockKeys.moveTopLeft] = (blocks,generator)=> NeoPixelController.moveTopLeft()
+forJsBlock[blockKeys.moveBottomLeft] = (blocks,generator)=> NeoPixelController.moveBottomLeft()
+forJsBlock[blockKeys.moveBottomRight] = (blocks,generator)=> NeoPixelController.moveBottomRight()

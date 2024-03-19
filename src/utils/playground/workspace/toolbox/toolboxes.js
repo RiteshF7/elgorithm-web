@@ -1,3 +1,5 @@
+import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
+
 export const Toolboxes = {
     turnOnLed: {
         'kind': 'flyoutToolbox',
@@ -19,15 +21,35 @@ export const Toolboxes = {
             },
             {
                 'kind': 'block',
-                'type': 'change_led_state'
+                'type': blockKeys.moveUp
             },
             {
                 'kind': 'block',
-                'type': 'move_forward'
+                'type': blockKeys.moveDown
             },
             {
                 'kind': 'block',
-                'type': 'move_up'
+                'type': blockKeys.moveRight
+            },
+            {
+                'kind': 'block',
+                'type': blockKeys.moveLeft
+            },
+            {
+                'kind': 'block',
+                'type': blockKeys.moveTopRight
+            },
+            {
+                'kind': 'block',
+                'type': blockKeys.moveTopLeft
+            },
+            {
+                'kind': 'block',
+                'type': blockKeys.moveBottomRight
+            },
+            {
+                'kind': 'block',
+                'type': blockKeys.moveBottomLeft
             },
             {
                 'kind': 'block',

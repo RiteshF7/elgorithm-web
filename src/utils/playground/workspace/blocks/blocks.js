@@ -1,4 +1,6 @@
 import * as Blockly from 'blockly/core';
+import neoPixelBlockDefinations from "@/utils/playground/workspace/blocks/definations/neoPixelBlockDefinations";
+import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 
 const testBlock = {
@@ -10,15 +12,14 @@ const testBlock = {
 };
 
 
-
- export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(
-    [testBlock]);
+export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(
+    [testBlock, ...neoPixelBlockDefinations,]);
 
 Blockly.Blocks['change_led_state'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField("Turn Led")
-            .appendField(new Blockly.FieldDropdown([["On","1"], ["Off","0"]]), "LED_STATE");
+            .appendField(new Blockly.FieldDropdown([["On", "1"], ["Off", "0"]]), "LED_STATE");
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -29,7 +30,7 @@ Blockly.Blocks['change_led_state'] = {
 };
 
 Blockly.Blocks['delay_ms'] = {
-    init: function() {
+    init: function () {
         this.appendValueInput("time")
             .setCheck("Number")
             .appendField("delay Seconds");
@@ -42,7 +43,7 @@ Blockly.Blocks['delay_ms'] = {
 };
 
 Blockly.Blocks['move_forward'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField("Move forward");
         this.setPreviousStatement(true, null);
@@ -53,14 +54,4 @@ Blockly.Blocks['move_forward'] = {
     }
 };
 
-Blockly.Blocks['move_up'] = {
-    init: function() {
-        this.appendDummyInput()
-            .appendField("Move UP");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(230);
-        this.setTooltip("");
-        this.setHelpUrl("");
-    }
-};
+

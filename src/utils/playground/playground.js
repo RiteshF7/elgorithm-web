@@ -17,8 +17,8 @@ export class Playground {
         initPlaygroundCommunication();
         this.workspace = Blockly.inject(div, {
             toolbox: toolbox, theme: theme,
-            toolboxPosition: 'end',
-            horizontalLayout: true,
+            toolboxPosition: 'start',
+            horizontalLayout: false,
             scrollbars: true,
             css: true,
             rtl: false,
