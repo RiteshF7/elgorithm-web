@@ -62,9 +62,9 @@ export function getChannelMessage(componentKey: string, payload: any) {
     return `\nwindow['${GlobalPGCommChannel}'].sendMessage('${componentKey}', ${JSON.stringify(payload)});\n`
 }
 
-export function getChannelMessageWithDelay(componentKey: string, payload: any,delayTime: number = 50) {
+export function getChannelMessageWithDelay(componentKey: string, payload: any,delayTime: number = 200) {
     const delayMessage = `\n window['${GlobalPGCommChannel}'].sendMessage('delay', {time: ${delayTime.toString()}})\n`;
-    return getChannelMessage(componentKey, payload) + delayMessage;
+    return delayMessage +getChannelMessage(componentKey, payload) + delayMessage;
 }
 
 

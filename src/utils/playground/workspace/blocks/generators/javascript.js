@@ -1,7 +1,7 @@
 import turnLed from "../../uicontroller/turnonled";
 import {delay} from "../../uicontroller/uiutils";
 import {moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
-import NeoPixelController from '@/modules/playground/components/simulated-hardwares/neopixel-display/neoPixelBlockCode'
+import NeoPixelController from '@/modules/playground/components/simulated-hardwares/neopixel-display/neoPixelBlockController'
 
 export const forJsBlock = Object.create(null);
 

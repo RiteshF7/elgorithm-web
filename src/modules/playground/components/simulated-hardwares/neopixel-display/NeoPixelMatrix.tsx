@@ -12,41 +12,26 @@ interface NeoPixelMatrixProps {
     matrixSize: number;
 }
 
-interface NeoPixelMatrixStateType {
-    Direction: Direction;
-}
 
 export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
-export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
-                                                            startingPosition,
-                                                            destinationPosition,
-                                                            matrixSize,
-                                                        }) => {
+export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, destinationPosition, matrixSize,}) => {
+
+
     const {registerComponent} = usePlayground();
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
-    const [state, setState] = useState<NeoPixelMatrixStateType>({
-        Direction: Direction.Stop,
-    });
-
     const position = {...startingPosition};
 
     useEffect(() => {
-        setInitialPixel();
-        setDestinationPixel();
+
+        setPixel(startingPosition);
+        setPixel(destinationPosition);
+
         registerComponent(COMPONENT_KEY, (data) => {
-            setState((state) => ({...state, ...data}));
             move(data.Direction);
         });
     }, []);
 
-    function setInitialPixel() {
-        setNextPixel();
-    }
-
-    function setDestinationPixel() {
-        setPixel(destinationPosition);
-    }
 
     function move(direction: Direction): void {
         const newPosition = calculateMove(direction, position);
@@ -54,17 +39,15 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
         if (isValidPosition(newPosition.row, newPosition.column, matrixSize)) {
             position.row = newPosition.row;
             position.column = newPosition.column;
-            setNextPixel();
-        }
-    }
+            setPixel(position);
 
-    function setNextPixel() {
-        setPixel(position);
+        }
     }
 
     function setPixel(position: Position) {
         neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 225, g: 0, b: 0});
     }
+
 
     return (
         <div className={' bg-black flex flex-col gap-4 p-2'}>
