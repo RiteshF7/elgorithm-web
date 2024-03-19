@@ -52,12 +52,6 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
         <div className={' bg-black flex flex-col gap-4 p-2'}>
             <wokwi-neopixel-matrix ref={neoPixelDisplayRef} rows={matrixSize} cols={matrixSize}
                                    blurLight={true}></wokwi-neopixel-matrix>
-            <div className={'flex flex-row gap-2 justify-center'}>
-                <button className={'bg-amber-400 w-10 h-10'} onClick={() => move(Direction.TopLeft)}>TL</button>
-                <button className={'bg-amber-400 w-10 h-10'} onClick={() => move(Direction.TopRight)}>TR</button>
-                <button className={'bg-amber-400 w-10 h-10'} onClick={() => move(Direction.BottomLeft)}>BL</button>
-                <button className={'bg-amber-400 w-10 h-10'} onClick={() => move(Direction.BottomRight)}>BR</button>
-            </div>
         </div>
     );
 };
