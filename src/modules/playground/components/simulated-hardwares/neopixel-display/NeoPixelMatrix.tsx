@@ -40,7 +40,6 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
             position.row = newPosition.row;
             position.column = newPosition.column;
             setPixel(position);
-
         }
     }
 
