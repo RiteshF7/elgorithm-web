@@ -21,7 +21,7 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
 
     const {registerComponent} = usePlayground();
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
-    const position = {...startingPosition};
+    let position = {...startingPosition};
 
     useEffect(() => {
 
@@ -54,14 +54,18 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
     function processResult() {
         if (destinationPosition.row === position.row && destinationPosition.column === position.column) {
             console.log('success');
+            alert('Completed successfully!');
+            position = {...startingPosition}
             neoPixelDisplayRef.current?.reset()
             setAnimation(true);
         } else {
+            alert('Something went wrong!');
             initDisplay()
         }
     }
 
     function initDisplay() {
+        position = {...startingPosition}
         neoPixelDisplayRef.current?.reset()
         setPixel(startingPosition);
         setPixel(destinationPosition);

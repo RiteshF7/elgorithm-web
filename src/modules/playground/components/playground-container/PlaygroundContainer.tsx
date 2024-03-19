@@ -14,7 +14,7 @@ export const PlayGroundContainer: FC = () => {
         <PlaygroundProvider>
             <div className={'flex flex-row gap-4  items-center'}>
                 <div className={'flex flex-col gap-4 flex-grow'}>
-                    <ProblemStatement problem={"some ques"} description={"some ques description"}/>
+                    <ProblemStatement problem={"Connect two pixels "} description={"Connect two pixels as shown in the image below."}/>
                     <PlaygroundEditor/>
                     <PlaygroundActions/>
                 </div>
