@@ -58,7 +58,10 @@ export function initPlaygroundCommunication() {
     window[GlobalPGCommChannel] = new PlaygroundCommunicationChannel();
 }
 
+var currentComponentKey = ''
+
 export function getChannelMessage(componentKey: string, payload: any) {
+    currentComponentKey = componentKey;
     return `\nwindow['${GlobalPGCommChannel}'].sendMessage('${componentKey}', ${JSON.stringify(payload)});\n`
 }
 
@@ -66,6 +69,12 @@ export function getChannelMessageWithDelay(componentKey: string, payload: any,de
     const delayMessage = `\n window['${GlobalPGCommChannel}'].sendMessage('delay', {time: ${delayTime.toString()}})\n`;
     return delayMessage +getChannelMessage(componentKey, payload) + delayMessage;
 }
+
+export function getCodeCompletionCallback() {
+    return getChannelMessage(currentComponentKey,{'completed':true});
+}
+
+
 
 
 

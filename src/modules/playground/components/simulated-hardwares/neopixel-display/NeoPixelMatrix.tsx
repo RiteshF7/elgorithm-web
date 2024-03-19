@@ -17,6 +17,7 @@ export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
 export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, destinationPosition, matrixSize,}) => {
 
+    const [animation, setAnimation] = useState<boolean>(false);
 
     const {registerComponent} = usePlayground();
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
@@ -24,11 +25,14 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
 
     useEffect(() => {
 
-        setPixel(startingPosition);
-        setPixel(destinationPosition);
-
+        initDisplay()
         registerComponent(COMPONENT_KEY, (data) => {
-            move(data.Direction);
+            if (data.hasOwnProperty('completed')) {
+                processResult()
+            } else {
+                move(data.Direction);
+            }
+
         });
     }, []);
 
@@ -47,11 +51,27 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
         neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 225, g: 0, b: 0});
     }
 
+    function processResult() {
+        if (destinationPosition.row === position.row && destinationPosition.column === position.column) {
+            console.log('success');
+            neoPixelDisplayRef.current?.reset()
+            setAnimation(true);
+        } else {
+            initDisplay()
+        }
+    }
+
+    function initDisplay() {
+        neoPixelDisplayRef.current?.reset()
+        setPixel(startingPosition);
+        setPixel(destinationPosition);
+    }
+
 
     return (
         <div className={' bg-black flex flex-col gap-4 p-2'}>
             <wokwi-neopixel-matrix ref={neoPixelDisplayRef} rows={matrixSize} cols={matrixSize}
-                                   blurLight={true}></wokwi-neopixel-matrix>
+                                   blurLight={true} animation={animation ? true : undefined}></wokwi-neopixel-matrix>
         </div>
     );
 };

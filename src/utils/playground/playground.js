@@ -7,7 +7,12 @@ import {save, load} from './workspace/serialization'
 import {blocks} from "./workspace/blocks/blocks";
 import theme from './workspace/elgotheme'
 import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
-import {initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
+import {
+    getCodeCompletionCallback,
+    GlobalPGCommChannel,
+    initPlaygroundCommunication,
+    PlaygroundCommunicationChannel
+} from "@/utils/pg-comm-channel.util";
 
 
 initBlockly()
@@ -23,7 +28,8 @@ export class Playground {
             css: true,
             rtl: false,
             zoom: {
-                controls: false,                wheel: true,
+                controls: false,
+                wheel: true,
                 startScale: .8,
                 maxScale: 3,
                 minScale: 0.3,
@@ -44,8 +50,9 @@ export class Playground {
     }
 
     generateExecJsCode() {
-        const code = javascriptGenerator.workspaceToCode(this.workspace);
+        let code = javascriptGenerator.workspaceToCode(this.workspace);
         console.log('code', code);
+        code += `\n ${getCodeCompletionCallback()}`
         eval(code)
     }
 
