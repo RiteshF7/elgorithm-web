@@ -1,6 +1,7 @@
 import turnLed from "../../uicontroller/turnonled";
 import {delay} from "../../uicontroller/uiutils";
 import {moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
+import NeoPixelController from '@/modules/playground/components/simulated-hardwares/neopixel-display/neoPixelBlockCode'
 
 export const forJsBlock = Object.create(null);
 
@@ -22,3 +23,5 @@ forJsBlock['move_forward'] = function(block, generator) {
     generator.definitions_['move_forward'] = moveForward.toString();
     return `\nmoveForward()\n`
 };
+
+forJsBlock['move_up'] = (blocks,generator)=> NeoPixelController.moveUp()

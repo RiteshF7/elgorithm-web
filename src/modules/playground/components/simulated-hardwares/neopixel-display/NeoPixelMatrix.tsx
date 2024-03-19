@@ -16,7 +16,7 @@ interface NeoPixelMatrixStateType {
     Direction: Direction;
 }
 
-const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
+export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
 export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({
                                                             startingPosition,

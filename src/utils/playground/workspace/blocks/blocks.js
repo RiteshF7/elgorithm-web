@@ -53,3 +53,14 @@ Blockly.Blocks['move_forward'] = {
     }
 };
 
+Blockly.Blocks['move_up'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Move UP");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
