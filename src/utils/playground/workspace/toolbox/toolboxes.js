@@ -25,6 +25,19 @@ export const Toolboxes = {
             },
             {
                 'kind': 'block',
+                'type': blockKeys.turnOnLed
+            },
+            {
+                'kind': 'block',
+                'type': blockKeys.turnOffLed
+            },
+            {
+                'kind': 'block',
+                'type': blockKeys.blinkLed
+            },
+
+            {
+                'kind': 'block',
                 'type': blockKeys.moveDown
             },
             {

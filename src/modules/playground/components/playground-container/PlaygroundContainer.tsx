@@ -5,7 +5,7 @@ import {PlaygroundEditor} from "@/modules/playground/components/playground-edito
 import {PlaygroundProvider} from "@/modules/playground/providers/playground.provider";
 import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
-import {Led} from "@/modules/playground/components/simulated-hardwares/Led";
+import {Led} from "@/modules/playground/components/simulated-hardwares/led/Led";
 import {NeoPixelMatrix} from "@/modules/playground/components/simulated-hardwares/neopixel-display/NeoPixelMatrix";
 
 
@@ -20,6 +20,7 @@ export const PlayGroundContainer: FC = () => {
                 </div>
                 <PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}
                                                                      destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>
+                <PlaygroundRunner simulatedHardware={<Led/>}/>
 
             </div>
         </PlaygroundProvider>

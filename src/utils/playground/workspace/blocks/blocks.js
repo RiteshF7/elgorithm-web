@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core';
 import neoPixelBlockDefinations from "@/utils/playground/workspace/blocks/definations/neoPixelBlockDefinations";
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
+import ledBlockDefinations from "@/utils/playground/workspace/blocks/definations/ledBlockDefinations";
 
 
 const testBlock = {
@@ -13,7 +14,7 @@ const testBlock = {
 
 
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(
-    [testBlock, ...neoPixelBlockDefinations,]);
+    [testBlock, ...neoPixelBlockDefinations,...ledBlockDefinations]);
 
 Blockly.Blocks['change_led_state'] = {
     init: function () {

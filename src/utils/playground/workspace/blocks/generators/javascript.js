@@ -3,6 +3,7 @@ import {delay} from "../../uicontroller/uiutils";
 import {moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
 import NeoPixelController from '@/modules/playground/components/simulated-hardwares/neopixel-display/neoPixelBlockController'
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
+import LedController from "@/modules/playground/components/simulated-hardwares/led/ledController";
 
 export const forJsBlock = Object.create(null);
 
@@ -33,3 +34,6 @@ forJsBlock[blockKeys.moveTopRight] = (blocks,generator)=> NeoPixelController.mov
 forJsBlock[blockKeys.moveTopLeft] = (blocks,generator)=> NeoPixelController.moveTopLeft()
 forJsBlock[blockKeys.moveBottomLeft] = (blocks,generator)=> NeoPixelController.moveBottomLeft()
 forJsBlock[blockKeys.moveBottomRight] = (blocks,generator)=> NeoPixelController.moveBottomRight()
+forJsBlock[blockKeys.turnOnLed] = (blocks,generator)=> LedController.turnOn()
+forJsBlock[blockKeys.turnOffLed] = (blocks,generator)=> LedController.turnOff()
+forJsBlock[blockKeys.blinkLed] = (blocks,generator)=> LedController.blink()

@@ -1,4 +1,5 @@
 const blockKeys = {
+    //neo-pixel-matrix
     moveUp: 'move_up',
     moveDown: 'move_down',
     moveRight: 'move_right',
@@ -7,6 +8,10 @@ const blockKeys = {
     moveTopRight: 'move_top_right',
     moveBottomLeft: 'move_bottom_left',
     moveBottomRight: 'move_bottom_right',
+    //Led
+    turnOnLed: 'turn_on_led',
+    turnOffLed: 'turn_off_led',
+    blinkLed: 'blink_led',
 }
 
 export default blockKeys;
