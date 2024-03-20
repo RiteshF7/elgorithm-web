@@ -5,6 +5,8 @@ import '@wokwi/elements';
 import {Position, Direction} from "./types";
 import {calculateMove, isValidPosition} from "./NeoPixelUtils";
 import {NeopixelMatrixElement} from "@wokwi/elements";
+import {resetMessageQueue} from "@/utils/pg-comm-channel.util";
+import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
 
 interface NeoPixelMatrixProps {
     startingPosition: Position;
@@ -27,12 +29,8 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
 
         initDisplay()
         registerComponent(COMPONENT_KEY, (data) => {
-            if (data.hasOwnProperty('completed')) {
-                processResult()
-            } else {
-                move(data.Direction);
-            }
-
+            if (data.hasOwnProperty('completed')) processResult()
+            else move(data.Direction);
         });
     }, []);
 
@@ -40,44 +38,68 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
     function move(direction: Direction): void {
         const newPosition = calculateMove(direction, position);
 
-        if (isValidPosition(newPosition.row, newPosition.column, matrixSize)) {
-            position.row = newPosition.row;
-            position.column = newPosition.column;
-            setPixel(position);
+        if (!isValidPosition(newPosition.row, newPosition.column, matrixSize)) {
+            processFailure('out of bounds')
+            return;
         }
+
+        position.row = newPosition.row;
+        position.column = newPosition.column;
+        if (isPixelOnDestination()) {
+            processSuccess();
+            return;
+        }
+        setPixel(position);
+        return;
     }
 
     function setPixel(position: Position) {
-        neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 225, g: 0, b: 0});
+        neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 117, g: 195, b: 141});
+    }
+
+    function setPixelWithColor(position: Position, color: RGB) {
+        neoPixelDisplayRef.current?.setPixel(position.row, position.column, color);
     }
 
 
     function processResult() {
-        if (destinationPosition.row === position.row && destinationPosition.column === position.column) {
+        if (isPixelOnDestination()) {
             processSuccess();
         } else {
-            processFailure();
+            processFailure('not on destination!');
         }
     }
 
     function processSuccess() {
-        console.log('success');
-        alert('Completed successfully!');
-        position = {...startingPosition}
-        neoPixelDisplayRef.current?.reset()
+        resetMessageQueue()
+        displayMessage('Completed!');
+        resetDisplay()
         setAnimation(true);
     }
 
-    function processFailure() {
-        alert('Something went wrong!');
+    function processFailure(reason: string) {
+        resetMessageQueue();
+        displayMessage("something went wrong! " + reason);
         initDisplay()
     }
 
+    function displayMessage(message: String) {
+        alert(message);
+    }
+
+    function isPixelOnDestination() {
+        return (destinationPosition.row === position.row && destinationPosition.column === position.column)
+    }
+
     function initDisplay() {
+        resetDisplay()
+        setPixel(startingPosition);
+        setPixelWithColor(destinationPosition, {r: 188, g: 106, b: 102});
+    }
+
+    function resetDisplay() {
         position = {...startingPosition}
         neoPixelDisplayRef.current?.reset()
-        setPixel(startingPosition);
-        setPixel(destinationPosition);
     }
 
 

@@ -45,6 +45,10 @@ export class PlaygroundCommunicationChannel {
         this.enqueueMessage(componentKey, data);
         this.dequeueMessages();
     }
+
+    resetQueue() {
+        this.messageQueue = [];
+    }
 }
 
 export function globalSendPlaygroundMessage(componentKey: string, data?: any) {
@@ -73,6 +77,13 @@ export function getChannelMessageWithDelay(componentKey: string, payload: any,de
 export function getCodeCompletionCallback() {
     return getChannelMessage(currentComponentKey,{'completed':true});
 }
+
+export function resetMessageQueue() {
+    // @ts-ignore
+    window[GlobalPGCommChannel]?.resetQueue();
+}
+
+
 
 
 
