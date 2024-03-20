@@ -1,6 +1,6 @@
 import {createContext, FC, PropsWithChildren, useContext, useState} from "react";
 import {Playground} from "@/utils/playground/playground";
-import {Toolboxes} from "@/utils/playground/workspace/toolbox/toolboxes";
+import {ToolboxContainer} from "@/utils/playground/workspace/toolbox/toolboxContainer";
 import {
     GlobalPGCommChannel,
     PlaygroundCommunicationChannel, RegisterPlaygroundComponent
@@ -30,7 +30,7 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
     const [jsCodeString, setJsCodeString] = useState<string>('');
 
     const initPlayground = (element: HTMLDivElement) => {
-        setPlaygroundInstance(new Playground(element, Toolboxes.turnOnLed));
+        setPlaygroundInstance(new Playground(element, ToolboxContainer.turnOnLed));
     }
 
     const runCode = () => {
