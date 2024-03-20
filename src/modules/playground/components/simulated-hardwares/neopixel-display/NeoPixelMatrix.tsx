@@ -51,17 +51,26 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
         neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 225, g: 0, b: 0});
     }
 
+
     function processResult() {
         if (destinationPosition.row === position.row && destinationPosition.column === position.column) {
-            console.log('success');
-            alert('Completed successfully!');
-            position = {...startingPosition}
-            neoPixelDisplayRef.current?.reset()
-            setAnimation(true);
+            processSuccess();
         } else {
-            alert('Something went wrong!');
-            initDisplay()
+            processFailure();
         }
+    }
+
+    function processSuccess() {
+        console.log('success');
+        alert('Completed successfully!');
+        position = {...startingPosition}
+        neoPixelDisplayRef.current?.reset()
+        setAnimation(true);
+    }
+
+    function processFailure() {
+        alert('Something went wrong!');
+        initDisplay()
     }
 
     function initDisplay() {
