@@ -18,3 +18,7 @@ export abstract class HwResultHandler{
 
 
 }
+
+const commonFun = {
+     resetDisplay:()=>{}
+}
