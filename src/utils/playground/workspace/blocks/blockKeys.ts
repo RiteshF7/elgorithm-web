@@ -12,6 +12,9 @@ const blockKeys = {
     turnOnLed: 'turn_on_led',
     turnOffLed: 'turn_off_led',
     blinkLed: 'blink_led',
+
+    //servo
+    
 }
 
 export default blockKeys;

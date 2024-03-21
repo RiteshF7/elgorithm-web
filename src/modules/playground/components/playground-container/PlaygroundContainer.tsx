@@ -7,6 +7,7 @@ import {ProblemStatement} from "@/modules/playground/components/playground-probl
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Led} from "@/modules/playground/components/simulated-hardwares/led/Led";
 import {NeoPixelMatrix} from "@/modules/playground/components/simulated-hardwares/neopixel-display/NeoPixelMatrix";
+import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/servo-motor/ServoMotor";
 
 
 export const PlayGroundContainer: FC = () => {
@@ -21,6 +22,7 @@ export const PlayGroundContainer: FC = () => {
                 <PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}
                                                                      destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>
                 <PlaygroundRunner simulatedHardware={<Led/>}/>
+                <PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={0} destinationPosition={120}/>}/>
 
             </div>
         </PlaygroundProvider>

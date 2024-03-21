@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core';
-import neoPixelBlockDefinations from "@/utils/playground/workspace/blocks/definations/neoPixelBlockDefinations";
+import neoPixelBlockDefinations from "@/utils/playground/workspace/blocks/definitions/neoPixelBlockDefinations";
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import ledBlockDefinations from "@/utils/playground/workspace/blocks/definations/ledBlockDefinations";
+import ledBlockDefinations from "@/utils/playground/workspace/blocks/definitions/ledBlockDefinations";
 
 
 const testBlock = {
