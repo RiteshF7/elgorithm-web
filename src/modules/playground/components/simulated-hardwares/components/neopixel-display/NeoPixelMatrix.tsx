@@ -30,7 +30,7 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
         initDisplay()
         registerComponent(COMPONENT_KEY, (data) => {
             if (data.hasOwnProperty('completed')) processResult()
-            else move(data.Direction);
+            else move(data.direction);
         });
     }, []);
 
