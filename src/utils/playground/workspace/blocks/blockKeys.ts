@@ -12,9 +12,12 @@ const blockKeys = {
     turnOnLed: 'turn_on_led',
     turnOffLed: 'turn_off_led',
     blinkLed: 'blink_led',
+    //servo motor
+    turnServoLeft: 'turn_servo_left',
+    turnServoRight: 'turn_servo_right',
 
     //servo
-    
+
 }
 
 export default blockKeys;

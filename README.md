@@ -43,7 +43,8 @@ make a component file that will include wokwi element
 make a component controller that will include all action functions and payload
 
 //define keys for all required blocks
-create all block keys that is required by component 
+create all block keys that is required by component
+
 
 //making blocks ui in json related to respected element
 make a component block definition file in src/utils/playground/workspace/blocks/definitions
@@ -52,6 +53,8 @@ define all block ui json config in an array
 //make a function that will generate code for blocks 
 make a generator function inside file src/utils/playground/workspace/blocks/generators/javascript.js
 define block key and call controller methods of element for fetching code
+
+//define blocks ref contecxt in src/utils/playground/workspace/blocks/blocks.js for blockly to process block json
 
 //making a toolbox for component
 make a file in src/utils/playground/workspace/toolbox/component_toolboxes of your component name

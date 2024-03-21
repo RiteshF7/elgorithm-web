@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Led} from "@/modules/playground/components/simulated-hardwares/led/Led";
+import {Led} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
 
 interface PlaygroundRunnerProps {
     simulatedHardware: React.ReactNode;

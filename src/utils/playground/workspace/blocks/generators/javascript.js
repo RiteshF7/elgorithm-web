@@ -1,9 +1,10 @@
 import turnLed from "../../uicontroller/turnonled";
 import {delay} from "../../uicontroller/uiutils";
 import {moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
-import NeoPixelController from '@/modules/playground/components/simulated-hardwares/neopixel-display/neoPixelBlockController'
+import neoPixelController from '@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockController'
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import LedController from "@/modules/playground/components/simulated-hardwares/led/ledController";
+import ledController from "@/modules/playground/components/simulated-hardwares/components/led/ledController";
+import servoMotorController from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorController";
 
 export const forJsBlock = Object.create(null);
 
@@ -26,14 +27,16 @@ forJsBlock['move_forward'] = function(block, generator) {
     return `\nmoveForward()\n`
 };
 
-forJsBlock[blockKeys.moveUp] = (blocks,generator)=> NeoPixelController.moveUp()
-forJsBlock[blockKeys.moveDown] = (blocks,generator)=> NeoPixelController.moveDown()
-forJsBlock[blockKeys.moveLeft] = (blocks,generator)=> NeoPixelController.moveLeft()
-forJsBlock[blockKeys.moveRight] = (blocks,generator)=> NeoPixelController.moveRight()
-forJsBlock[blockKeys.moveTopRight] = (blocks,generator)=> NeoPixelController.moveTopRight()
-forJsBlock[blockKeys.moveTopLeft] = (blocks,generator)=> NeoPixelController.moveTopLeft()
-forJsBlock[blockKeys.moveBottomLeft] = (blocks,generator)=> NeoPixelController.moveBottomLeft()
-forJsBlock[blockKeys.moveBottomRight] = (blocks,generator)=> NeoPixelController.moveBottomRight()
-forJsBlock[blockKeys.turnOnLed] = (blocks,generator)=> LedController.turnOn()
-forJsBlock[blockKeys.turnOffLed] = (blocks,generator)=> LedController.turnOff()
-forJsBlock[blockKeys.blinkLed] = (blocks,generator)=> LedController.blink()
+forJsBlock[blockKeys.moveUp] = (blocks,generator)=> neoPixelController.moveUp()
+forJsBlock[blockKeys.moveDown] = (blocks,generator)=> neoPixelController.moveDown()
+forJsBlock[blockKeys.moveLeft] = (blocks,generator)=> neoPixelController.moveLeft()
+forJsBlock[blockKeys.moveRight] = (blocks,generator)=> neoPixelController.moveRight()
+forJsBlock[blockKeys.moveTopRight] = (blocks,generator)=> neoPixelController.moveTopRight()
+forJsBlock[blockKeys.moveTopLeft] = (blocks,generator)=> neoPixelController.moveTopLeft()
+forJsBlock[blockKeys.moveBottomLeft] = (blocks,generator)=> neoPixelController.moveBottomLeft()
+forJsBlock[blockKeys.moveBottomRight] = (blocks,generator)=> neoPixelController.moveBottomRight()
+forJsBlock[blockKeys.turnOnLed] = (blocks,generator)=> ledController.turnOn()
+forJsBlock[blockKeys.turnOffLed] = (blocks,generator)=> ledController.turnOff()
+forJsBlock[blockKeys.blinkLed] = (blocks,generator)=> ledController.blink()
+forJsBlock[blockKeys.turnServoRight] = (blocks,generator)=> servoMotorController.turnRight()
+forJsBlock[blockKeys.turnServoLeft] = (blocks,generator)=> servoMotorController.turnLeft()

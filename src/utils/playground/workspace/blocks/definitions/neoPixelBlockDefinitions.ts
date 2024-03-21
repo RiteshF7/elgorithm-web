@@ -30,7 +30,7 @@ const neoPixelBlocks = [
     },
     {
         "type": blockKeys.moveLeft,
-        "message0": "Move right",
+        "message0": "Move left",
         "previousStatement": null,
         "nextStatement": null,
         "colour": 230,

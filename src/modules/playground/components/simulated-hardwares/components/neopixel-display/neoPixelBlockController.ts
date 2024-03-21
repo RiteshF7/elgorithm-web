@@ -1,9 +1,9 @@
-import {COMPONENT_KEY} from "@/modules/playground/components/simulated-hardwares/neopixel-display/NeoPixelMatrix";
+import {COMPONENT_KEY} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelMatrix";
 import {getChannelMessageWithDelay} from "@/utils/pg-comm-channel.util";
-import {Direction} from "@/modules/playground/components/simulated-hardwares/neopixel-display/types";
+import {Direction} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
 
 
-const NeoPixelController = {
+const neoPixelController = {
     moveUp: () => getDirectionMessage( Direction.Up ),
     moveDown: () => getDirectionMessage(Direction.Down ),
     moveLeft: () => getDirectionMessage( Direction.Left ),
@@ -16,10 +16,10 @@ const NeoPixelController = {
 };
 
 function getDirectionMessage(payload: Direction) {
-    return getChannelMessageWithDelay(COMPONENT_KEY, { Direction: payload });
+    return getChannelMessageWithDelay(COMPONENT_KEY, { direction: payload });
 }
 
-export default NeoPixelController;
+export default neoPixelController;
 
 
 
