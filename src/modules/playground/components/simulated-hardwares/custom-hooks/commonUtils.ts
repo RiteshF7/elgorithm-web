@@ -12,7 +12,13 @@ export default class SHCUtils {
         this.componentKey = componentKey;
     }
 
-    registerComponent(handler: (data: any) => void) {
+    initComponent(successHandler: () => void, failureHandler: () => void, payloadHandler: (data: any) => void) {
+        this.registerComponent((data) => {
+            this.processResult(data, successHandler, failureHandler, payloadHandler);
+        })
+    }
+
+    private registerComponent(handler: (data: any) => void) {
         this.playgroundContext.registerComponent(this.componentKey, handler)
     }
 
@@ -25,7 +31,7 @@ export default class SHCUtils {
         return this.compareObjects(data, this.desiredState)
     }
 
-    processResult(data: any, successHandler: () => void, failureHandler: () => void, payloadHandler: (data: any) => void) {
+    private processResult(data: any, successHandler: () => void, failureHandler: () => void, payloadHandler: (data: any) => void) {
         if (this.isOnDesiredState(data)) {
             this.success(successHandler);
             return;

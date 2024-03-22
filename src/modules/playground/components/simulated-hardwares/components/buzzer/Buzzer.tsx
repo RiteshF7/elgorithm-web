@@ -19,23 +19,20 @@ export const Buzzer: FC<BuzzerProps> = ({initialState, desiredState}) => {
     const shcUtils = new SHCUtils(COMPONENT_KEY, desiredState);
 
     useEffect(() => {
-        initComponent()
+        resetComponent()
+        shcUtils.initComponent(handleSuccess,handleFailure,handlePayload)
+
     }, []);
 
 
-    function initComponent() {
-        setState(initialState)
-        shcUtils.registerComponent((data) => {
-            console.log(data)
-            shcUtils.processResult(data, handleSuccess, handleFailure, handlePayload);
-        });
-    }
+
 
     function handlePayload(data: any) {
         setState(data)
     }
 
     function handleSuccess() {
+        setState({state:true})
         resetComponent()
     }
 
@@ -49,11 +46,11 @@ export const Buzzer: FC<BuzzerProps> = ({initialState, desiredState}) => {
 
 
     return <div className={'flex flex-col p-2'}>
-        <wokwi-buzzer hasSignal={state ? true : undefined}></wokwi-buzzer>
+        <wokwi-buzzer hasSignal={state.state ? true : undefined}></wokwi-buzzer>
     </div>
 }
 
 export const buzzerController = {
-    turnBuzzerOn: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: true}, 200),
-    turnBuzzerOff: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: false}, 200)
+    turnBuzzerOn: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: true}, 500),
+    turnBuzzerOff: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: false}, 500)
 }
