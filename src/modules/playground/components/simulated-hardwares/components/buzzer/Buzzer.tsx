@@ -1,7 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import {getChannelMessageWithDelay, resetMessageQueue} from "@/utils/pg-comm-channel.util";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
-import SHCUtils from "@/modules/playground/components/simulated-hardwares/custom-hooks/commonUtils";
+import SHCUtils from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 
 const COMPONENT_KEY = "BUZZER"
 
@@ -33,7 +33,7 @@ export const Buzzer: FC<BuzzerProps> = ({initialState, desiredState}) => {
 
     function handleSuccess() {
         setState({state:true})
-        resetComponent()
+
     }
 
     function handleFailure() {
@@ -51,6 +51,6 @@ export const Buzzer: FC<BuzzerProps> = ({initialState, desiredState}) => {
 }
 
 export const buzzerController = {
-    turnBuzzerOn: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: true}, 500),
-    turnBuzzerOff: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: false}, 500)
+    turnBuzzerOn: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: true}, 200),
+    turnBuzzerOff: () => getChannelMessageWithDelay(COMPONENT_KEY, {state: false}, 200)
 }

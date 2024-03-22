@@ -1,6 +1,6 @@
-import LedToolbox from "@/utils/playground/workspace/toolbox/componet_toolboxes/ledToolbox";
+import LedToolbox from "@/modules/playground/components/simulated-hardwares/components/led/ledToolbox";
 import {forLoop} from "@/utils/playground/workspace/toolbox/core/loopsToolbox";
-import servoMotorToolbox from "@/utils/playground/workspace/toolbox/componet_toolboxes/servoMotorToolbox";
+import servoMotorToolbox from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorToolbox";
 import buzzerToolbox from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerToolbox";
 
 export const ToolboxContainer = {

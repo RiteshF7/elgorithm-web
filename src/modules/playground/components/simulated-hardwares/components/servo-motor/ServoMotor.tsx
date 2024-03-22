@@ -3,7 +3,7 @@ import {Button} from "@/modules/common/components/button/Button";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {setState} from "blockly/core/utils/aria";
 import {resetMessageQueue} from "@/utils/pg-comm-channel.util";
-import {ComponentLogic} from "@/modules/playground/components/simulated-hardwares/custom-hooks/componentLogic";
+import {ComponentLogic} from "@/modules/playground/components/simulated-hardwares/utils/componentLogic";
 
 interface ServoMotorProps {
     initialPosition: number;

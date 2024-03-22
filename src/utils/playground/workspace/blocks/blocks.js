@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly/core';
-import neoPixelBlockDefinitions from "@/utils/playground/workspace/blocks/definitions/neoPixelBlockDefinitions";
+import neoPixelBlockDefinitions from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockDefinitions";
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import ledBlockDefinitions from "@/utils/playground/workspace/blocks/definitions/ledBlockDefinitions";
-import servoMotorBlockDefinitions from "@/utils/playground/workspace/blocks/definitions/servoMotorBlockDefinitions";
+import ledBlockDefinitions from "@/modules/playground/components/simulated-hardwares/components/led/ledBlockDefinitions";
+import servoMotorBlockDefinitions from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorBlockDefinitions";
 import buzzerBlockDefinitions
     from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerBlockDefinitions";
 

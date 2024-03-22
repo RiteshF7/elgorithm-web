@@ -50,15 +50,15 @@ export default class SHCUtils {
 
     private failure(failureHandler: () => void) {
         resetMessageQueue()
-        this.showFailureMessage('failure');
         failureHandler();
+        this.showFailureMessage('failure');
 
     }
 
     private success(successHandler: () => void) {
         resetMessageQueue()
-        this.showSuccessMessage('success');
         successHandler();
+        this.showSuccessMessage('success');
     }
 
     private showFailureMessage(message: String) {
