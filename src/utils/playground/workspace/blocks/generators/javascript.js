@@ -5,6 +5,7 @@ import neoPixelController from '@/modules/playground/components/simulated-hardwa
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import ledController from "@/modules/playground/components/simulated-hardwares/components/led/ledController";
 import servoMotorController from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorController";
+import {buzzerController} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 
 export const forJsBlock = Object.create(null);
 
@@ -40,3 +41,5 @@ forJsBlock[blockKeys.turnOffLed] = (blocks,generator)=> ledController.turnOff()
 forJsBlock[blockKeys.blinkLed] = (blocks,generator)=> ledController.blink()
 forJsBlock[blockKeys.turnServoRight] = (blocks,generator)=> servoMotorController.turnRight()
 forJsBlock[blockKeys.turnServoLeft] = (blocks,generator)=> servoMotorController.turnLeft()
+forJsBlock[blockKeys.turnOnBuzzer] = (blocks,generator)=> buzzerController.turnBuzzerOn()
+forJsBlock[blockKeys.turnOffBuzzer] = (blocks,generator)=> buzzerController.turnBuzzerOff()

@@ -73,7 +73,7 @@ export const ServoMotor: FC<ServoMotorProps> = ({initialPosition, destinationPos
                 componentLogic.processFailure('not on destination!');
             }
         },
-        isOnDestination : initialPosition === destinationPosition,
+        isOnDestination : angle === destinationPosition,
         processSuccess: () => {
             resetMessageQueue()
             componentLogic.displaySuccessMessage('Completed!');

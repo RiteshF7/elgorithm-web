@@ -3,6 +3,8 @@ import neoPixelBlockDefinitions from "@/utils/playground/workspace/blocks/defini
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import ledBlockDefinitions from "@/utils/playground/workspace/blocks/definitions/ledBlockDefinitions";
 import servoMotorBlockDefinitions from "@/utils/playground/workspace/blocks/definitions/servoMotorBlockDefinitions";
+import buzzerBlockDefinitions
+    from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerBlockDefinitions";
 
 
 const testBlock = {
@@ -15,7 +17,7 @@ const testBlock = {
 
 
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(
-    [testBlock, ...neoPixelBlockDefinitions,...ledBlockDefinitions,...servoMotorBlockDefinitions]);
+    [testBlock, ...neoPixelBlockDefinitions,...ledBlockDefinitions,...servoMotorBlockDefinitions, ...buzzerBlockDefinitions]);
 
 Blockly.Blocks['change_led_state'] = {
     init: function () {

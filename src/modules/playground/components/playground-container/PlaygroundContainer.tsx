@@ -8,7 +8,8 @@ import {PlaygroundRunner} from "@/modules/playground/components/playground-runne
 import {Led} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
 import {NeoPixelMatrix} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelMatrix";
 import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoMotor";
-import {LightSensor} from "@/modules/playground/components/simulated-hardwares/light-sensor/LightSensor";
+import {LightSensor} from "@/modules/playground/components/simulated-hardwares/components/light-sensor/LightSensor";
+import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 
 
 export const PlayGroundContainer: FC = () => {
@@ -24,7 +25,8 @@ export const PlayGroundContainer: FC = () => {
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
                 {/*<PlaygroundRunner simulatedHardware={<Led/>}/>*/}
                 {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={0} destinationPosition={120}/>}/>*/}
-                <PlaygroundRunner simulatedHardware={<LightSensor/>}/>
+                {/*<PlaygroundRunner simulatedHardware={<LightSensor/>}/>*/}
+                <PlaygroundRunner simulatedHardware={<Buzzer initialState={{state:false}} desiredState={{state:true}}/>}/>
 
             </div>
         </PlaygroundProvider>

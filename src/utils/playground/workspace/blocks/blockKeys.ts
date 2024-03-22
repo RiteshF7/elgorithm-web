@@ -16,8 +16,9 @@ const blockKeys = {
     turnServoLeft: 'turn_servo_left',
     turnServoRight: 'turn_servo_right',
 
-    //servo
-
+    //buzzer
+    turnOnBuzzer:'turn_on_buzzer',
+    turnOffBuzzer:'turn_off_buzzer'
 }
 
 export default blockKeys;
