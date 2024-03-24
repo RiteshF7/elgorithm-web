@@ -1,21 +1,53 @@
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {resetMessageQueue} from "@/utils/pg-comm-channel.util";
 
+
 export default class SHCUtils {
 
     private readonly desiredState: any;
+    private currentState: any;
     private readonly componentKey: string;
     private playgroundContext = usePlayground();
+    successHandler: () => void;
+    failureHandler: () => void;
 
-    constructor(componentKey: string, desiredState: any) {
+    constructor(componentKey: string, initialState: any, desiredState: any, successHandler: () => void, failureHandler: () => void) {
         this.desiredState = desiredState;
         this.componentKey = componentKey;
+        this.currentState = initialState;
+        this.successHandler = successHandler;
+        this.failureHandler = failureHandler;
+
     }
 
-    initComponent(successHandler: () => void, failureHandler: () => void, payloadHandler: (data: any) => void) {
+    initComponent(payloadHandler: (data: any) => void) {
         this.registerComponent((data) => {
-            this.processResult(data, successHandler, failureHandler, payloadHandler);
+            if (this.isCodeCompleted(data)) {
+               this.processResult()
+            } else {
+                payloadHandler(data);
+            }
+
         })
+    }
+
+    private processResult(){
+        if (this.isOnDesiredState()) {
+            this.success(this.successHandler);
+            return true
+        }
+        this.failure('not as expected!', this.failureHandler)
+        return false;
+    }
+
+
+    updateAndValidateCurrentState(updatedState: any) {
+        this.currentState = updatedState;
+        if (this.isOnDesiredState()) {
+            this.success(this.successHandler);
+            return true;
+        }
+        return false;
     }
 
     private registerComponent(handler: (data: any) => void) {
@@ -27,38 +59,22 @@ export default class SHCUtils {
         return data.hasOwnProperty('completed')
     }
 
-    private isOnDesiredState(data: any) {
-        return this.compareObjects(data, this.desiredState)
+    isOnDesiredState() {
+        return this.compareObjects(this.currentState, this.desiredState)
     }
 
-    private processResult(data: any, successHandler: () => void, failureHandler: () => void, payloadHandler: (data: any) => void) {
-        if (this.isOnDesiredState(data)) {
-            this.success(successHandler);
-            return;
-        }
-        if (this.isCodeCompleted(data)) {
-            if (this.isOnDesiredState(data)) {
-                this.success(successHandler)
-                return
-            }
-            this.failure(failureHandler);
-            return;
-        }
-        payloadHandler(data);
 
-    }
-
-    private failure(failureHandler: () => void) {
+    failure(message: string, failureHandler: () => void) {
         resetMessageQueue()
         failureHandler();
-        this.showFailureMessage('failure');
+        this.showFailureMessage(message);
 
     }
 
-    private success(successHandler: () => void) {
+    success(successHandler: () => void) {
         resetMessageQueue()
         successHandler();
-        this.showSuccessMessage('success');
+        this.showSuccessMessage('success!');
     }
 
     private showFailureMessage(message: String) {

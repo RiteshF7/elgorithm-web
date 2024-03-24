@@ -16,24 +16,20 @@ interface BuzzerProps {
 
 export const Buzzer: FC<BuzzerProps> = ({initialState, desiredState}) => {
     const [state, setState] = useState<BuzzerState>({state: false})
-    const shcUtils = new SHCUtils(COMPONENT_KEY, desiredState);
+    const shcUtils = new SHCUtils(COMPONENT_KEY, initialState,desiredState,handleSuccess,handleFailure);
 
     useEffect(() => {
         resetComponent()
-        shcUtils.initComponent(handleSuccess,handleFailure,handlePayload)
-
+        shcUtils.initComponent(handlePayload)
     }, []);
 
 
-
-
     function handlePayload(data: any) {
-        setState(data)
+      updateState(data)
     }
 
     function handleSuccess() {
-        setState({state:true})
-
+        updateState({state:true})
     }
 
     function handleFailure() {
@@ -41,7 +37,12 @@ export const Buzzer: FC<BuzzerProps> = ({initialState, desiredState}) => {
     }
 
     function resetComponent() {
-        setState(initialState)
+        updateState(initialState)
+    }
+
+    function updateState(data:any){
+        setState(data)
+        shcUtils.updateAndValidateCurrentState(state)
     }
 
 
