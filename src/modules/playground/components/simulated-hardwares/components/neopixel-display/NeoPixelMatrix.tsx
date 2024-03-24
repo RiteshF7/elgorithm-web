@@ -34,6 +34,7 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
     }, []);
 
     function initDisplay() {
+        neoPixelDisplayRef.current?.reset()
         position = {...startingPosition}
         setPixel(startingPosition);
         setPixelWithColor(destinationPosition, {r: 188, g: 106, b: 102});
@@ -52,10 +53,7 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
         initDisplay()
     }
 
-    function resetComponent() {
-        neoPixelDisplayRef.current?.reset()
-        updateState(startingPosition)
-    }
+
 
     function updateState(updatedState: any) {
         position = {...updatedState}

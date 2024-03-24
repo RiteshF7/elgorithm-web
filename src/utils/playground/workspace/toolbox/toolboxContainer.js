@@ -9,7 +9,7 @@ export const ToolboxContainer = {
     turnOnLed: {
         'kind': 'flyoutToolbox',
         'contents': [
-            ...LedToolbox, forLoop, ...servoMotorToolbox
+            ...LedToolbox, forLoop, ...neoPixelToolbox
         ]
     }
 }
