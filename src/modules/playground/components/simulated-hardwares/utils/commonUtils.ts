@@ -41,14 +41,10 @@ export default class SHCUtils {
     }
 
 
-    updateAndValidateCurrentState(updatedState: any) {
+    updateState(updatedState: any){
         this.currentState = updatedState;
-        if (this.isOnDesiredState()) {
-            this.success(this.successHandler);
-            return true;
-        }
-        return false;
     }
+
 
     private registerComponent(handler: (data: any) => void) {
         this.playgroundContext.registerComponent(this.componentKey, handler)

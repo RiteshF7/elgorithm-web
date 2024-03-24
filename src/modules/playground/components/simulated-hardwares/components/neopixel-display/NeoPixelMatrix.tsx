@@ -21,7 +21,6 @@ export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, destinationPosition, matrixSize,}) => {
 
     const [animation, setAnimation] = useState<boolean>(false);
-    const {registerComponent} = usePlayground();
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
     let position = {...startingPosition};
     const shcUtils = new SHCUtils(COMPONENT_KEY, startingPosition, destinationPosition, handleSuccess, handleFailure)
@@ -35,7 +34,7 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
     }, []);
 
     function initDisplay() {
-        resetComponent()
+        position = {...startingPosition}
         setPixel(startingPosition);
         setPixelWithColor(destinationPosition, {r: 188, g: 106, b: 102});
     }
@@ -60,7 +59,7 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
 
     function updateState(updatedState: any) {
         position = {...updatedState}
-        shcUtils.updateAndValidateCurrentState(position)
+        shcUtils.updateState(position)
     }
 
     function move(direction: Direction): void {
@@ -73,9 +72,9 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
 
         position.row = newPosition.row;
         position.column = newPosition.column;
-        if(!shcUtils.updateAndValidateCurrentState(position)){
-            setPixel(position);
-        }
+        shcUtils.updateState(position)
+        setPixel(position);
+
         return;
     }
 

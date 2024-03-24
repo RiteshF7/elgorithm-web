@@ -21,10 +21,10 @@ export const PlayGroundContainer: FC = () => {
                     <PlaygroundEditor/>
                     <PlaygroundActions/>
                 </div>
-                <PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}
-                                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>
+                {/*<PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}*/}
+                {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
                 {/*<PlaygroundRunner simulatedHardware={<Led/>}/>*/}
-                {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={0} destinationPosition={120}/>}/>*/}
+                <PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={{degree:0}} destinationPosition={{degree:90}}/>}/>
                 {/*<PlaygroundRunner simulatedHardware={<LightSensor/>}/>*/}
                 {/*<PlaygroundRunner simulatedHardware={<Buzzer initialState={{state:false}} desiredState={{state:true}}/>}/>*/}
 

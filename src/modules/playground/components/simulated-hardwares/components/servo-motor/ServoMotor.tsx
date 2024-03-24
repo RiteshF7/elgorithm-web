@@ -4,10 +4,16 @@ import {usePlayground} from "@/modules/playground/providers/playground.provider"
 import {setState} from "blockly/core/utils/aria";
 import {resetMessageQueue} from "@/utils/pg-comm-channel.util";
 import {ComponentLogic} from "@/modules/playground/components/simulated-hardwares/utils/componentLogic";
+import SHCUtils from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
+import {toDegrees} from "blockly/core/utils/math";
 
 interface ServoMotorProps {
-    initialPosition: number;
-    destinationPosition: number;
+    initialPosition: Angle;
+    destinationPosition: Angle;
+}
+
+interface Angle {
+    degree: number
 }
 
 export enum ServoDirections {
@@ -17,15 +23,33 @@ export enum ServoDirections {
 
 export const COMPONENT_KEY = 'SERVO_MOTOR'
 export const ServoMotor: FC<ServoMotorProps> = ({initialPosition, destinationPosition}) => {
-    const [angle, setAngle] = useState<number>(0)
+    const [angle, setAngle] = useState<Angle>({ degree: 0 });
 
     const registerComponent = usePlayground()
+    const shcUtils = new SHCUtils(COMPONENT_KEY, initialPosition, destinationPosition, handleSuccess, handleFailure)
 
 
     useEffect(() => {
-        componentLogic.initComponent()
-        componentLogic.registerComponent()
+        shcUtils.initComponent(handlePayload)
     }, []);
+
+
+    function handleSuccess() {
+        resetComponent()
+    }
+
+    function handleFailure() {
+        resetComponent()
+    }
+
+    function handlePayload(data: any) {
+        turn(data.direction);
+    }
+
+    function resetComponent() {
+        setAngle(initialPosition)
+    }
+
 
 
     //process motion
@@ -40,65 +64,27 @@ export const ServoMotor: FC<ServoMotorProps> = ({initialPosition, destinationPos
         }
     }
 
+
     function turnRight() {
-        setAngle(angle => (angle + 45) % 360);
+        setAngle(prevAngle => {
+            const updatedAngle = {degree: (prevAngle.degree + 45) % 360}
+            shcUtils.updateState(updatedAngle)
+            return {...prevAngle, ...updatedAngle}
+        })
+
     }
 
     function turnLeft() {
-        setAngle(angle => (angle - 45) % 360);
+        setAngle(prevAngle => {
+            const updatedAngle = {degree: (prevAngle.degree - 45) % 360}
+            shcUtils.updateState(updatedAngle)
+            return {...prevAngle, ...updatedAngle}        })
     }
-
-
-    const componentLogic: ComponentLogic = {
-        initComponent: () => {
-            resetMessageQueue()
-            setAngle(initialPosition)
-        },
-        registerComponent: () => {
-            registerComponent.registerComponent(COMPONENT_KEY, (data) => {
-                if (data.hasOwnProperty('completed')) {
-                    componentLogic.processResult()
-                    return;
-                }
-                turn(data.direction);
-            })
-        },
-        resetComponent: () => {
-            setAngle(initialPosition)
-        },
-        processResult: () => {
-            if (componentLogic.isOnDestination) {
-                componentLogic.processSuccess();
-            } else {
-                componentLogic.processFailure('not on destination!');
-            }
-        },
-        isOnDestination : angle === destinationPosition,
-        processSuccess: () => {
-            resetMessageQueue()
-            componentLogic.displaySuccessMessage('Completed!');
-            componentLogic.resetComponent()
-        },
-        processFailure: () => {
-            resetMessageQueue()
-            componentLogic.displayFailureMessage('Failed!');
-            componentLogic.resetComponent()
-        },
-        displayFailureMessage: (message: string) => {
-            alert(message)
-        },
-        displaySuccessMessage: (message: string) => {
-            alert(message)
-        },
-        isCodeCompleted: (data: any) => {
-            return data.hasOwnProperty("completed");
-        },
-    };
 
 
     return (
         <div className={'flex flex-col items-center p-2 m-2'}>
-            <wokwi-servo horn="single" angle={angle}></wokwi-servo>
+            <wokwi-servo horn="single" angle={angle.degree}></wokwi-servo>
         </div>
     )
 }
