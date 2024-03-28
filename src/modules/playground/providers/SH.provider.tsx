@@ -4,12 +4,12 @@ import {
     RegisterPlaygroundComponent, resetMessageQueue
 } from "@/utils/pg-comm-channel.util";
 import {createContext, FC, PropsWithChildren, useContext, useState} from "react";
-import {bool} from "prop-types";
-import boolean from "leva/src/components/Boolean";
+
 
 
 interface SHContextProps {
     registerComponent: RegisterPlaygroundComponent;
+    currentState:any;
     updateCurrentState: (currentState: string) => void;
     checkCompletionStatus: (data: any, successCallback: () => void, failureCallback: () => void) => boolean;
 
@@ -22,6 +22,7 @@ interface ComponentConfigProp {
 
 const ShContext = createContext<SHContextProps>({
     registerComponent: () => null,
+    currentState:null,
     updateCurrentState: () => null,
     checkCompletionStatus: () => false,
 });
@@ -83,7 +84,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialS
 
 
     return (
-        <ShContext.Provider value={{registerComponent, updateCurrentState, checkCompletionStatus}}>
+        <ShContext.Provider value={{registerComponent,currentState, updateCurrentState, checkCompletionStatus}}>
             {children}
         </ShContext.Provider>
     )
