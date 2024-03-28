@@ -1,7 +1,6 @@
 export const GlobalPGCommChannel = '_elg_pg_comm_channel';
 
 export type RegisterPlaygroundComponent = (componentKey: string, callback: (data: any) => void) => void;
-export type SendPlaygroundMessage = (componentKey: string, data?: any) => void;
 
 // [led off, delay 3000, led on]
 

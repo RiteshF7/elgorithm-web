@@ -69,7 +69,6 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
         position.column = newPosition.column;
         shcUtils.updateState(position)
         setPixel(position);
-
         return;
     }
 

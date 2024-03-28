@@ -5,32 +5,32 @@ import {
     GlobalPGCommChannel,
     PlaygroundCommunicationChannel, RegisterPlaygroundComponent
 } from "@/utils/pg-comm-channel.util";
+import {any} from "prop-types";
 
 interface PlaygroundContextProps {
     playground: Playground | null;
     initPlayground: (element: HTMLDivElement) => void;
     runCode: () => void;
     connect: () => void;
-    jsCodeString: string;
     registerComponent: RegisterPlaygroundComponent;
 }
+
+
 
 const PlaygroundContext = createContext<PlaygroundContextProps>({
     playground: null,
     initPlayground: () => null,
     runCode: () => null,
     connect: () => null,
-    jsCodeString: '',
-    registerComponent: () => null
+    registerComponent: () => null,
 });
 
 export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
 
     const [playgroundInstance, setPlaygroundInstance] = useState<Playground | null>(null);
-    const [jsCodeString, setJsCodeString] = useState<string>('');
-
+    const [componentState, setComponentState]  =useState({initialState:null,destinationState:null})
     const initPlayground = (element: HTMLDivElement) => {
-        setPlaygroundInstance(new Playground(element, ToolboxContainer.turnOnLed));
+        setPlaygroundInstance(new Playground(element, ToolboxContainer));
     }
 
     const runCode = () => {
@@ -54,7 +54,6 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
             initPlayground,
             runCode,
             connect,
-            jsCodeString,
             registerComponent
         }}>
             {children}

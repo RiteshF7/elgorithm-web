@@ -3,6 +3,7 @@
 import {FC, useEffect, useState} from "react";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import '@wokwi/elements';
+import {useShContext} from "@/modules/playground/providers/SH.provider";
 
 
 interface LedStateType {
@@ -18,12 +19,21 @@ export const Led: FC = () => {
         active: false, color: 'red'
     });
 
-    const {registerComponent} = usePlayground();
+    const {registerComponent,updateCurrentState,checkCompletionStatus} = useShContext();
 
     useEffect(() => {
 
         registerComponent(COMPONENT_KEY, (data) => {
-            setState((state) => ({...state, ...data}))
+            const isCompleted = checkCompletionStatus(data,()=>{
+              alert('success')
+            },()=>{
+                alert('failed')
+            })
+            if(!isCompleted){
+                setState((state) => ({...state, ...data}))
+                updateCurrentState(data)
+            }
+
         })
     }, []);
     return (
