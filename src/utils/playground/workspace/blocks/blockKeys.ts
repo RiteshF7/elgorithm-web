@@ -18,7 +18,10 @@ const blockKeys = {
 
     //buzzer
     turnOnBuzzer:'turn_on_buzzer',
-    turnOffBuzzer:'turn_off_buzzer'
+    turnOffBuzzer:'turn_off_buzzer',
+
+    //light-buzzer
+    lightBuzzerOnStart : 'light_buzzer_on_start',
 }
 
 export default blockKeys;

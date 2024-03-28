@@ -5,11 +5,11 @@ import SHCUtils from "@/modules/playground/components/simulated-hardwares/utils/
 
 const COMPONENT_KEY = "BUZZER"
 
-interface BuzzerState {
+export interface BuzzerState {
     state: boolean;
 }
 
-interface BuzzerProps {
+export interface BuzzerProps {
     initialState: BuzzerState;
     desiredState: BuzzerState;
 }
@@ -42,7 +42,7 @@ export const Buzzer: FC<BuzzerProps> = ({initialState, desiredState}) => {
 
     function updateState(data:any){
         setState(data)
-        shcUtils.updateAndValidateCurrentState(state)
+        shcUtils.updateState(data)
     }
 
 

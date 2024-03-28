@@ -1,8 +1,12 @@
 import React, {FC, useState} from "react";
 import '@wokwi/elements';
+import RangeInput from "@/modules/common/components/range-input/RangeInput";
 
+interface LightSensorProps{
+    onChange: (value: number) => void;
+}
 
-export const LightSensor:FC = ()=>{
+export const LightSensor:FC<LightSensorProps> = ({onChange})=>{
     const [sliderValue, setSliderValue] = useState<number>(0);
 
     const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,18 +20,13 @@ export const LightSensor:FC = ()=>{
             <input
                 type="range"
                 min="0"
-                max="100"
+                max="80"
                 step="1"
                 value={sliderValue}
                 onChange={handleSliderChange}
                 className="slider-thumb appearance-none bg-red-500 h-3 rounded-full w-full"
             />
-            <input
-                type="text"
-                value={sliderValue+'°C'}
-                readOnly
-                className="border border-gray-300 px-3 py-2 rounded-md text-center"
-            />
+            <RangeInput min={0} max={80} value={0} onChange={onChange}/>
         </div>
     )
 }

@@ -55,10 +55,7 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
 
 
 
-    function updateState(updatedState: any) {
-        position = {...updatedState}
-        shcUtils.updateState(position)
-    }
+
 
     function move(direction: Direction): void {
         const newPosition = calculateMove(direction, position);
