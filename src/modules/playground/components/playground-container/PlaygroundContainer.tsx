@@ -33,7 +33,7 @@ export const PlayGroundContainer: FC = () => {
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
 
                 <PlaygroundRunner
-                runnerConfig={PlaygroundRunnerContent}
+                runnerConfig={PlaygroundRunnerContent[1]}
                 simulatedHardware={<LedWrapper/>}
                 />
                 {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={{degree:0}} destinationPosition={{degree:90}}/>}/>*/}

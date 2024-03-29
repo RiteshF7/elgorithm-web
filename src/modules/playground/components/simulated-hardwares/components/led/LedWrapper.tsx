@@ -15,13 +15,13 @@ export const LedWrapper: FC = () => {
                 alert('success')
 
             }, () => {
+                console.log(currentState,'some')
                 setState((state) => ({...state, ...initialState}))
                 alert('failed')
             })
             if (!isCompleted) {
                 currentState.led.active = data.active;
-                currentState.led.color = data.color
-                currentState.lightSensor.value = 80
+                currentState.led.color = data.color;
                 setState((state) => ({...state, ...currentState.led}))
 
             }
