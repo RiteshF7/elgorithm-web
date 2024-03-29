@@ -12,9 +12,14 @@ import {
 import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoMotor";
 import {LightSensor} from "@/modules/playground/components/simulated-hardwares/components/light-sensor/LightSensor";
 import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
+import {LedWrapper} from "@/modules/playground/components/simulated-hardwares/components/led/LedWrapper";
+import {PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
 
 
-export const PlayGroundContainer: FC = () => {
+
+
+export const PlayGroundContainer: FC = ({}) => {
+
     return (
         <PlaygroundProvider>
             <div className={'flex flex-row gap-4  items-center'}>
@@ -27,15 +32,9 @@ export const PlayGroundContainer: FC = () => {
                 {/*<PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}*/}
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
 
-                <PlaygroundRunner intialState={{
-                    active: false, color: 'red'
-                }}
-                desiredState={{
-                    active: true, color: 'green'
-                }}
-
-                simulatedHardware={<Led/>}
-
+                <PlaygroundRunner
+                runnerConfig={PlaygroundRunnerContent}
+                simulatedHardware={<LedWrapper/>}
                 />
                 {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={{degree:0}} destinationPosition={{degree:90}}/>}/>*/}
                 {/*<PlaygroundRunner simulatedHardware={<LightSensor/>}/>*/}

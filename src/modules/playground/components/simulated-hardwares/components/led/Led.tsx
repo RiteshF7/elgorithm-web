@@ -14,40 +14,16 @@ interface LedStateType {
 
 export const COMPONENT_KEY = 'LED';
 
-export const Led: FC = () => {
+export interface LedConfig {
+    color: string,
+    active: boolean
+}
+interface LedProps{
+    config:LedConfig
+}
 
-
-    const {registerComponent, currentState, updateCurrentState, checkCompletionStatus} = useShContext();
-    const [state, setState] = useState(currentState)
-
-    useEffect(() => {
-
-        registerComponent(COMPONENT_KEY, (data) => {
-            const isCompleted = checkCompletionStatus(data, () => {
-                alert('success')
-            }, () => {
-                alert('failed')
-            })
-            if (!isCompleted) {
-                currentState.active = data.active;
-                currentState.color = data.color
-                setState((state: any) => ({...state, ...currentState}))
-                //TODO
-                //Check if updateCurrentState function is needed in provider
-                //if not remove this and
-                //implement failed and success and reset message queue on completion
-                //check if message queue can be rested on one place in provider
-                // write code to reset component
-
-                // setState(currentState)
-                // updateCurrentState(data)
-
-            }
-
-        })
-    }, []);
+export const Led: FC<LedProps> = ({config}) => {
     return (
-
-        <wokwi-led color={state.color} value={state.active ? true : undefined}></wokwi-led>
+        <wokwi-led color={config.color} value={config.active ? true : undefined}></wokwi-led>
     )
 }
