@@ -37,11 +37,11 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialS
 
         if (isCodeCompleted(data)) {
             if (isOnDesiredState(currentState, desiredState)) {
-                resetMessageQueue()
+                stopCode()
                 successCallback()
                 return true
             }
-            resetMessageQueue()
+            stopCode()
             failureCallback()
             return true;
         }

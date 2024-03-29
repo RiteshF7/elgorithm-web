@@ -18,7 +18,7 @@ import {PlaygroundRunnerContent} from "@/content/banner-main/playground-containe
 
 
 
-export const PlayGroundContainer: FC = ({}) => {
+export const PlayGroundContainer: FC = () => {
 
     return (
         <PlaygroundProvider>

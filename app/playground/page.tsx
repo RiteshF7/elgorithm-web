@@ -6,7 +6,7 @@ import {PlaygroundContainerContent} from "@/content/banner-main/playground-conta
 const PlayGroundPage: FC = () => {
     return (
         <div className={'p-4'}>
-            <PlayGroundContainer playgroundContent={PlaygroundContainerContent[0]}/>
+            <PlayGroundContainer/>
 
         </div>
     )
