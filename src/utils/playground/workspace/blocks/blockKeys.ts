@@ -22,6 +22,7 @@ const blockKeys = {
 
     //light-buzzer
     lightBuzzerOnStart : 'light_buzzer_on_start',
+
 }
 
 export default blockKeys;

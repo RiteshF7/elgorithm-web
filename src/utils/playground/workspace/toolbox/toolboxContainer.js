@@ -5,12 +5,14 @@ import servoMotorToolbox
 import buzzerToolbox from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerToolbox";
 import neoPixelToolbox
     from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelToolbox";
+import lightBuzzerToolbox
+    from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerToolbox";
+import {variableToolbox} from "@/utils/playground/workspace/toolbox/core/variablesToolbox";
 
 export const ToolboxContainer = {
 
     'kind': 'flyoutToolbox',
     'contents': [
-        ...LedToolbox, forLoop, ...neoPixelToolbox
-    ]
+        ...variableToolbox,...LedToolbox, forLoop, ...lightBuzzerToolbox]
 
 }

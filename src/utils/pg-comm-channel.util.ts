@@ -31,6 +31,7 @@ export class PlaygroundCommunicationChannel {
                 this.queuePaused = true;
                 break;
             }
+            if(lastMessage.componentKey !='')
             this.registeredComponents[lastMessage.componentKey](lastMessage.data);
         }
 

@@ -9,6 +9,7 @@ import {createContext, FC, PropsWithChildren, useContext} from "react";
 
 interface SHContextProps {
     registerComponent: RegisterPlaygroundComponent;
+    initCode:(data:any)=>boolean;
     currentState: any;
     updateCurrentState: (currentState: string) => void;
     checkCompletionStatus: (data: any, successCallback: () => void, failureCallback: () => void) => boolean;
@@ -26,7 +27,8 @@ const ShContext = createContext<SHContextProps>({
     currentState: null,
     updateCurrentState: () => null,
     checkCompletionStatus: () => false,
-    stopCode: () => null
+    stopCode: () => null,
+    initCode:()=>true
 });
 
 export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialState, desiredState, children}) => {
@@ -51,6 +53,13 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialS
     function updateCurrentState(updatedCurrentState: any) {
         currentState = updatedCurrentState;
     }
+
+    function initCode(data:any):boolean{
+        return data.hasOwnProperty('init')
+
+    }
+
+
 
     function isOnDesiredState(currentState: any, desiredState: any): boolean {
         return compareObjects(currentState, desiredState);
@@ -101,7 +110,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialS
 
     return (
         <ShContext.Provider
-            value={{registerComponent, currentState, updateCurrentState, checkCompletionStatus, stopCode}}>
+            value={{registerComponent, currentState, updateCurrentState, checkCompletionStatus, stopCode,initCode}}>
             {children}
         </ShContext.Provider>
     )

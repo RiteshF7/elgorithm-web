@@ -1,10 +1,15 @@
 import * as Blockly from 'blockly/core';
-import neoPixelBlockDefinitions from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockDefinitions";
+import neoPixelBlockDefinitions
+    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockDefinitions";
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import ledBlockDefinitions from "@/modules/playground/components/simulated-hardwares/components/led/ledBlockDefinitions";
-import servoMotorBlockDefinitions from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorBlockDefinitions";
+import ledBlockDefinitions
+    from "@/modules/playground/components/simulated-hardwares/components/led/ledBlockDefinitions";
+import servoMotorBlockDefinitions
+    from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorBlockDefinitions";
 import buzzerBlockDefinitions
     from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerBlockDefinitions";
+import lightBuzzerBlockDefinitation
+    from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerBlockDefinitation";
 
 
 const testBlock = {
@@ -17,7 +22,7 @@ const testBlock = {
 
 
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(
-    [testBlock, ...neoPixelBlockDefinitions,...ledBlockDefinitions,...servoMotorBlockDefinitions, ...buzzerBlockDefinitions]);
+    [testBlock, ...neoPixelBlockDefinitions, ...ledBlockDefinitions, ...servoMotorBlockDefinitions, ...buzzerBlockDefinitions, ...lightBuzzerBlockDefinitation]);
 
 Blockly.Blocks['change_led_state'] = {
     init: function () {

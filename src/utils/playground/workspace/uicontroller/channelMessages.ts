@@ -15,5 +15,9 @@ export function moveForward() {
     });
 }
 
+export function initializeLightBuzzer(){
+    console.log('some')
+}
+
 
 

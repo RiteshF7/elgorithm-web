@@ -1,11 +1,13 @@
 import turnLed from "../../uicontroller/turnonled";
 import {delay} from "../../uicontroller/uiutils";
-import {moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
+import {initializeLightBuzzer, moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
 import neoPixelController from '@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockController'
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import ledController from "@/modules/playground/components/simulated-hardwares/components/led/ledController";
 import servoMotorController from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorController";
 import {buzzerController} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
+import lightBuzzerController
+    from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerController";
 
 export const forJsBlock = Object.create(null);
 
@@ -28,6 +30,13 @@ forJsBlock['move_forward'] = function(block, generator) {
     return `\nmoveForward()\n`
 };
 
+forJsBlock[blockKeys.lightBuzzerOnStart] = function(block, generator) {
+    generator.definitions_['init_code'] = initializeLightBuzzer.toString();
+    return `\ninitializeLightBuzzer()\n`
+};
+
+
+
 forJsBlock[blockKeys.moveUp] = (blocks,generator)=> neoPixelController.moveUp()
 forJsBlock[blockKeys.moveDown] = (blocks,generator)=> neoPixelController.moveDown()
 forJsBlock[blockKeys.moveLeft] = (blocks,generator)=> neoPixelController.moveLeft()
@@ -43,3 +52,4 @@ forJsBlock[blockKeys.turnServoRight] = (blocks,generator)=> servoMotorController
 forJsBlock[blockKeys.turnServoLeft] = (blocks,generator)=> servoMotorController.turnLeft()
 forJsBlock[blockKeys.turnOnBuzzer] = (blocks,generator)=> buzzerController.turnBuzzerOn()
 forJsBlock[blockKeys.turnOffBuzzer] = (blocks,generator)=> buzzerController.turnBuzzerOff()
+// forJsBlock[blockKeys.lightBuzzerOnStart] = (blocks,generator)=> lightBuzzerController.onStart()

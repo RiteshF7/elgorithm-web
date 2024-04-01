@@ -7,7 +7,7 @@ const ledController = {
     turnOff: () => getChannelMessageWithDelay(COMPONENT_KEY, {active: false ,color:'green'}, 200),
     blink: () => {
         return getChannelMessageWithDelay(COMPONENT_KEY, {active: true ,color:'green'}, 200)+
-            getChannelMessageWithDelay(COMPONENT_KEY, {active: false ,color:'green'}, 200)
+        getChannelMessageWithDelay(COMPONENT_KEY, {active: false ,color:'green'}, 200)
     },
 };
 
