@@ -5,14 +5,13 @@ import {
     resetMessageQueue
 } from "@/utils/pg-comm-channel.util";
 import {createContext, FC, PropsWithChildren, useContext} from "react";
-import {any} from "prop-types";
 
 
 interface SHContextProps {
     registerComponent: RegisterPlaygroundComponent;
     initCode: (data: any) => boolean;
-    currentUiState: any;
-    updateCurrentState: (currentState: string) => void;
+    initialUiState:any,
+    updateUiState: (componentKey:string,updatedUiState: any) => void;
     checkCompletionStatus: (data: any, successCallback: () => void, failureCallback: () => void) => boolean;
     stopCode: () => void
 
@@ -25,8 +24,8 @@ interface ComponentConfigProp {
 
 const ShContext = createContext<SHContextProps>({
     registerComponent: () => null,
-    currentUiState: null,
-    updateCurrentState: () => null,
+    initialUiState:null,
+    updateUiState: () => null,
     checkCompletionStatus: () => false,
     stopCode: () => null,
     initCode: () => true
@@ -34,12 +33,12 @@ const ShContext = createContext<SHContextProps>({
 
 export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialUiState, desiredUiState, children}) => {
 
-    let currentUiState = {...initialUiState};
+    let uiState = {...initialUiState};
 
     function checkCompletionStatus(data: any, successCallback: () => void, failureCallback: () => void): boolean {
 
         if (isCodeCompleted(data)) {
-            if (isOnDesiredState(currentUiState, desiredUiState)) {
+            if (isOnDesiredState(uiState, desiredUiState)) {
                 stopCode()
                 successCallback()
                 return true
@@ -51,8 +50,8 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
         return false;
     }
 
-    function updateCurrentState(updatedCurrentState: any) {
-        currentUiState = updatedCurrentState;
+    function updateUiState(componentKey:string,updatedUiState: any) {
+        uiState = {...initialUiState, ...{[componentKey]: updatedUiState}};
     }
 
     function initCode(data: any): boolean {
@@ -110,7 +109,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
 
     return (
         <ShContext.Provider
-            value={{registerComponent, currentUiState, updateCurrentState, checkCompletionStatus, stopCode, initCode}}>
+            value={{registerComponent,initialUiState, updateUiState, checkCompletionStatus, stopCode, initCode}}>
             {children}
         </ShContext.Provider>
     )

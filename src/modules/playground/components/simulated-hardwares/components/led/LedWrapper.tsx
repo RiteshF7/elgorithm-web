@@ -4,27 +4,29 @@ import {COMPONENT_KEY, Led, LedConfig} from "@/modules/playground/components/sim
 import {AutoRangeInput} from "@/modules/common/components/range-input/RangeInput";
 
 export const LedWrapper: FC = () => {
-    const {registerComponent, currentUiState, checkCompletionStatus,initCode} = useShContext();
-    const initialState = {...currentUiState.led};
-    const [ledState, setState] = useState<LedConfig>(initialState)
+    const {registerComponent,initialUiState, updateUiState,checkCompletionStatus} = useShContext();
+    const ledInitialState = {...initialUiState.LED};
+    const ledUiState = {...ledInitialState}
+    const [ledState, setState] = useState<LedConfig>(ledInitialState)
 
     useEffect(() => {
 
         registerComponent(COMPONENT_KEY, (data) => {
             const isCompleted = checkCompletionStatus(data, () => {
-                setState((state) => ({...state, ...initialState}))
+                setState((state) => ({...state, ...ledInitialState}))
                 // alert('success')
                 console.log('success!')
 
             }, () => {
-                setState((state) => ({...state, ...initialState}))
+                setState((state) => ({...state, ...ledInitialState}))
                 // alert('failed')
                 console.log('failed!')
             })
             if (!isCompleted) {
-                currentUiState.led.active = data.active;
-                currentUiState.led.color = data.color;
-                setState((state) => ({...state, ...currentUiState.led}))
+                ledUiState.active = data.active;
+                ledUiState.color = data.color;
+                updateUiState(COMPONENT_KEY,ledUiState)
+                setState((state) => ({...state, ...ledUiState}))
             }
 
         })

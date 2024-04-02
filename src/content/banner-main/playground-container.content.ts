@@ -39,13 +39,13 @@ export const PlaygroundRunnerContent =  [
     },
     {
         initialState: {
-             led: {
+             LED: {
                 active: false,
                 color: 'green'
             },
         },
         desiredState: {
-            led: {
+            LED: {
                 active: true,
                 color: 'green'
             },
