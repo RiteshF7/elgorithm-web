@@ -5,6 +5,8 @@ import {
     resetMessageQueue
 } from "@/utils/pg-comm-channel.util";
 import {createContext, FC, PropsWithChildren, useContext} from "react";
+import _ from 'lodash';
+
 
 
 interface SHContextProps {
@@ -34,11 +36,13 @@ const ShContext = createContext<SHContextProps>({
 export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialUiState, desiredUiState, children}) => {
 
     let uiState = {...initialUiState};
+    const codeProgress:any = []
+
 
     function checkCompletionStatus(data: any, successCallback: () => void, failureCallback: () => void): boolean {
 
         if (isCodeCompleted(data)) {
-            if (isOnDesiredState(uiState, desiredUiState)) {
+            if (isOnDesiredState()) {
                 stopCode()
                 successCallback()
                 return true
@@ -51,7 +55,20 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
     }
 
     function updateUiState(componentKey:string,updatedUiState: any) {
-        uiState = {...initialUiState, ...{[componentKey]: updatedUiState}};
+        console.log(updatedUiState)
+        // const newState = {
+        //     ...initialUiState,
+        //     LED: {
+        //         ...initialUiState.LED,
+        //         active: true, // Update active value
+        //         color: 'blue' // Update color value
+        //     }
+        // };
+        uiState = {...initialUiState, ...{[componentKey]: { ...initialUiState[componentKey],...updatedUiState}}};
+        console.log('update triggered!',uiState)
+        console.log(codeProgress)
+        codeProgress.push(uiState)
+        console.log(codeProgress)
     }
 
     function initCode(data: any): boolean {
@@ -60,8 +77,9 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
     }
 
 
-    function isOnDesiredState(currentState: any, desiredState: any): boolean {
-        return compareObjects(currentState, desiredState);
+    function isOnDesiredState(): boolean {
+         return  _.isEqual(desiredUiState, codeProgress);
+
     }
 
     function isCodeCompleted(data: any): boolean {
@@ -72,33 +90,6 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
         resetMessageQueue()
     }
 
-    function compareObjects<T extends Record<string, any>>(obj1: T, obj2: T): boolean {
-        if (typeof obj1 === 'object' && typeof obj2 === 'object') {
-            // Get keys of both objects
-            const keys1 = Object.keys(obj1);
-            const keys2 = Object.keys(obj2);
-
-            // Check if number of keys are same
-            if (keys1.length !== keys2.length) {
-                return false;
-            }
-
-            // Iterate over keys
-            for (let key of keys1) {
-                // Recursively compare nested objects or arrays
-                if (!compareObjects(obj1[key], obj2[key])) {
-                    return false;
-                }
-            }
-
-            // If all key-value pairs are identical
-            return true;
-        } else {
-            // If not objects, perform simple value comparison
-            return obj1 === obj2;
-        }
-
-    }
 
 
     const registerComponent: RegisterPlaygroundComponent = (key, callback: (data: any) => void) => {

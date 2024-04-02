@@ -1,9 +1,21 @@
-export const PlaygroundContainerContent = [
+export const PlaygroundContainerContent = []
 
+/*
+//objects are nested because can contain multiple component state at one time
+{
+                LED: {
+                    active: true,
+                    color: 'green'
+                },
+                Buzzer: {
+                    active: true,
+                    color: 'green'
+                }
+            },
 
-]
+            */
 
-export const PlaygroundRunnerContent =  [
+export const PlaygroundRunnerContent = [
     {
         initialState: {
             lightSensor: {
@@ -39,7 +51,7 @@ export const PlaygroundRunnerContent =  [
     },
     {
         initialState: {
-             LED: {
+            LED: {
                 active: false,
                 color: 'green'
             },
@@ -50,6 +62,29 @@ export const PlaygroundRunnerContent =  [
                 color: 'green'
             },
         },
+
+    },
+    {
+        initialState: {
+            LED: {
+                active: false,
+                color: 'green'
+            },
+        },
+        desiredState: [
+            {
+                LED: {
+                    active: true,
+                    color: 'green'
+                }
+            },
+            {
+                LED: {
+                    active: false,
+                    color: 'green'
+                }
+            }
+        ]
 
     }
 ]
