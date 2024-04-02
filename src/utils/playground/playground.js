@@ -13,6 +13,8 @@ import {
     initPlaygroundCommunication,
     PlaygroundCommunicationChannel
 } from "@/utils/pg-comm-channel.util";
+import number from "leva/src/components/Number";
+import {int} from "three/nodes";
 
 
 initBlockly()

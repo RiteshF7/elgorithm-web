@@ -14,15 +14,28 @@ export const PlaygroundRunnerContent =  [
                 color: 'green'
             },
         },
-        desiredState: {
-            lightSensor: {
-                value: 80
+        desiredState: [
+            {
+                lightSensor: {
+                    value: 40
+                },
+                led: {
+                    active: true,
+                    color: 'green'
+                },
+
             },
-            led: {
-                active: true,
-                color: 'green'
+            {
+                lightSensor: {
+                    value: 40
+                },
+                led: {
+                    active: false,
+                    color: 'green'
+                },
+
             },
-        },
+        ],
 
     },
     {

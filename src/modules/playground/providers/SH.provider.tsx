@@ -5,11 +5,12 @@ import {
     resetMessageQueue
 } from "@/utils/pg-comm-channel.util";
 import {createContext, FC, PropsWithChildren, useContext} from "react";
+import {any} from "prop-types";
 
 
 interface SHContextProps {
     registerComponent: RegisterPlaygroundComponent;
-    initCode:(data:any)=>boolean;
+    initCode: (data: any) => boolean;
     currentState: any;
     updateCurrentState: (currentState: string) => void;
     checkCompletionStatus: (data: any, successCallback: () => void, failureCallback: () => void) => boolean;
@@ -28,7 +29,7 @@ const ShContext = createContext<SHContextProps>({
     updateCurrentState: () => null,
     checkCompletionStatus: () => false,
     stopCode: () => null,
-    initCode:()=>true
+    initCode: () => true
 });
 
 export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialState, desiredState, children}) => {
@@ -110,7 +111,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialS
 
     return (
         <ShContext.Provider
-            value={{registerComponent, currentState, updateCurrentState, checkCompletionStatus, stopCode,initCode}}>
+            value={{registerComponent, currentState, updateCurrentState, checkCompletionStatus, stopCode, initCode}}>
             {children}
         </ShContext.Provider>
     )

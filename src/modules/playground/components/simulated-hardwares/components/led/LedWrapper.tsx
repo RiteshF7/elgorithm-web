@@ -12,17 +12,15 @@ export const LedWrapper: FC = () => {
     useEffect(() => {
 
         registerComponent(COMPONENT_KEY, (data) => {
-            if(initCode(data)){
-
-                return;
-            }
             const isCompleted = checkCompletionStatus(data, () => {
                 setState((state) => ({...state, ...initialState}))
-                alert('success')
+                // alert('success')
+                console.log('success!')
 
             }, () => {
                 setState((state) => ({...state, ...initialState}))
-                alert('failed')
+                // alert('failed')
+                console.log('failed!')
             })
             if (!isCompleted) {
                 currentState.led.active = data.active;
@@ -37,8 +35,8 @@ export const LedWrapper: FC = () => {
     return (
         <div className={'flex flex-col items-center '}>
             <Led config={ledState}/>
-            <AutoRangeInput min={0} max={100} delay={1000} value={value} onChange={setValue} />
-            <p>Value: {value}</p>
+            {/*<AutoRangeInput min={0} max={100} delay={1000} value={value} onChange={setValue} />*/}
+            {/*<p>Value: {value}</p>*/}
         </div>
     )
 }
