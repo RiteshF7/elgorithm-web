@@ -10,7 +10,7 @@ interface PlaygroundRunnerProps {
 export const PlaygroundRunner: FC<PlaygroundRunnerProps> = ({simulatedHardware, runnerConfig}) => {
 
     return (
-        <SHProvider initialState={runnerConfig.initialState} desiredState={runnerConfig.desiredState}>
+        <SHProvider initialUiState={runnerConfig.initialState} desiredUiState={runnerConfig.desiredState}>
             <div className={'basis-4/12 bg-white  rounded-lg flex justify-center items-center h-96'}>
                 {simulatedHardware}
             </div>

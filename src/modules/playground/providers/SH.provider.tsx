@@ -11,7 +11,7 @@ import {any} from "prop-types";
 interface SHContextProps {
     registerComponent: RegisterPlaygroundComponent;
     initCode: (data: any) => boolean;
-    currentState: any;
+    currentUiState: any;
     updateCurrentState: (currentState: string) => void;
     checkCompletionStatus: (data: any, successCallback: () => void, failureCallback: () => void) => boolean;
     stopCode: () => void
@@ -19,27 +19,27 @@ interface SHContextProps {
 }
 
 interface ComponentConfigProp {
-    initialState: any;
-    desiredState: any;
+    initialUiState: any;
+    desiredUiState: any;
 }
 
 const ShContext = createContext<SHContextProps>({
     registerComponent: () => null,
-    currentState: null,
+    currentUiState: null,
     updateCurrentState: () => null,
     checkCompletionStatus: () => false,
     stopCode: () => null,
     initCode: () => true
 });
 
-export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialState, desiredState, children}) => {
+export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialUiState, desiredUiState, children}) => {
 
-    let currentState =  {...initialState};
+    let currentUiState = {...initialUiState};
 
     function checkCompletionStatus(data: any, successCallback: () => void, failureCallback: () => void): boolean {
 
         if (isCodeCompleted(data)) {
-            if (isOnDesiredState(currentState, desiredState)) {
+            if (isOnDesiredState(currentUiState, desiredUiState)) {
                 stopCode()
                 successCallback()
                 return true
@@ -52,14 +52,13 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialS
     }
 
     function updateCurrentState(updatedCurrentState: any) {
-        currentState = updatedCurrentState;
+        currentUiState = updatedCurrentState;
     }
 
-    function initCode(data:any):boolean{
+    function initCode(data: any): boolean {
         return data.hasOwnProperty('init')
 
     }
-
 
 
     function isOnDesiredState(currentState: any, desiredState: any): boolean {
@@ -111,7 +110,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialS
 
     return (
         <ShContext.Provider
-            value={{registerComponent, currentState, updateCurrentState, checkCompletionStatus, stopCode, initCode}}>
+            value={{registerComponent, currentUiState, updateCurrentState, checkCompletionStatus, stopCode, initCode}}>
             {children}
         </ShContext.Provider>
     )

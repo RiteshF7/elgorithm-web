@@ -4,10 +4,9 @@ import {COMPONENT_KEY, Led, LedConfig} from "@/modules/playground/components/sim
 import {AutoRangeInput} from "@/modules/common/components/range-input/RangeInput";
 
 export const LedWrapper: FC = () => {
-    const {registerComponent, currentState, checkCompletionStatus,initCode} = useShContext();
-    const initialState = {...currentState.led};
+    const {registerComponent, currentUiState, checkCompletionStatus,initCode} = useShContext();
+    const initialState = {...currentUiState.led};
     const [ledState, setState] = useState<LedConfig>(initialState)
-    const [value, setValue] = useState(0);
 
     useEffect(() => {
 
@@ -23,10 +22,9 @@ export const LedWrapper: FC = () => {
                 console.log('failed!')
             })
             if (!isCompleted) {
-                currentState.led.active = data.active;
-                currentState.led.color = data.color;
-                setState((state) => ({...state, ...currentState.led}))
-
+                currentUiState.led.active = data.active;
+                currentUiState.led.color = data.color;
+                setState((state) => ({...state, ...currentUiState.led}))
             }
 
         })
