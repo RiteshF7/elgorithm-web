@@ -37,6 +37,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
 
     let uiState = {...initialUiState};
     const codeProgress:any = []
+    let codeStep = 0;
 
 
     function checkCompletionStatus(data: any, successCallback: () => void, failureCallback: () => void): boolean {
@@ -54,21 +55,17 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
         return false;
     }
 
+    function checkStep(){
+        //do something like this
+        //double check array.push() type is fifo or lifo
+        //implement double ui check using eval var const theory
+        _.isEqual(codeProgress[codeStep],desiredUiState[codeStep])
+    }
+
     function updateUiState(componentKey:string,updatedUiState: any) {
-        console.log(updatedUiState)
-        // const newState = {
-        //     ...initialUiState,
-        //     LED: {
-        //         ...initialUiState.LED,
-        //         active: true, // Update active value
-        //         color: 'blue' // Update color value
-        //     }
-        // };
         uiState = {...initialUiState, ...{[componentKey]: { ...initialUiState[componentKey],...updatedUiState}}};
-        console.log('update triggered!',uiState)
-        console.log(codeProgress)
+        codeStep++
         codeProgress.push(uiState)
-        console.log(codeProgress)
     }
 
     function initCode(data: any): boolean {
@@ -87,6 +84,8 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
     }
 
     function stopCode() {
+        codeStep=0;
+        codeProgress.empty()
         resetMessageQueue()
     }
 
