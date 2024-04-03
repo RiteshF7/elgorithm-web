@@ -85,7 +85,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
 
     function stopCode() {
         codeStep=0;
-        codeProgress.empty()
+        codeProgress.length = 0
         resetMessageQueue()
     }
 

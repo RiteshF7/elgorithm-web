@@ -23,10 +23,11 @@ export const LedWrapper: FC = () => {
                 console.log('failed!')
             })
             if (!isCompleted) {
-                ledUiState.active = data.active;
-                ledUiState.color = data.color;
-                updateUiState(COMPONENT_KEY,ledUiState)
-                setState((state) => ({...state, ...ledUiState}))
+                //check if possible in neopixel
+                // ledUiState.active = data.active;
+                // ledUiState.color = data.color;
+                updateUiState(COMPONENT_KEY,data)
+                setState((state) => ({...state, ...data}))
             }
 
         })

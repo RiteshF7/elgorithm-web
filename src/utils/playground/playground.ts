@@ -3,24 +3,18 @@ import {pythonGenerator} from 'blockly/python';
 import {javascriptGenerator} from 'blockly/javascript';
 import {forPyBlock} from './workspace/blocks/generators/python';
 import {forJsBlock} from './workspace/blocks/generators/javascript';
-import {save, load} from './workspace/serialization'
+import {save, load} from './workspace/serialization';
 import {blocks} from "./workspace/blocks/blocks";
-import theme from './workspace/elgotheme'
+import theme from './workspace/elgotheme';
 import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
-import {
-    getCodeCompletionCallback,
-    GlobalPGCommChannel,
-    initPlaygroundCommunication,
-    PlaygroundCommunicationChannel
-} from "@/utils/pg-comm-channel.util";
-import number from "leva/src/components/Number";
-import {int} from "three/nodes";
+import {getCodeCompletionCallback, initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
 
-
-initBlockly()
+initBlockly();
 
 export class Playground {
-    constructor(div, toolbox) {
+    private workspace: Blockly.WorkspaceSvg;
+
+    constructor(div: HTMLElement, toolbox: Element | any) {
         initPlaygroundCommunication();
         this.workspace = Blockly.inject(div, {
             toolbox: toolbox, theme: theme,
@@ -38,36 +32,34 @@ export class Playground {
                 scaleSpeed: 1.2
             },
             trashcan: false,
-
-        })
+        });
         load(this.workspace);
     }
 
-    connectToDevice() {
-        connectSerial().then(r => console.log(`device connected :: ${r}`)).catch(e => console.log(`device not connected :: ${e}`))
+    connectToDevice(): void {
+        connectSerial().then(r => console.log(`device connected :: ${r}`)).catch(e => console.log(`device not connected :: ${e}`));
     }
 
-    getJSCode() {
-        return javascriptGenerator.workspaceToCode(this.workspace);
-    }
-
-    generateExecJsCode() {
+    async generateExecJsCode(playgroundConfig: any): Promise<void> {
+        //then check promise and orignal code exec with testcase config...
         let code = javascriptGenerator.workspaceToCode(this.workspace);
-        console.log('code', code);
         code += `\n ${getCodeCompletionCallback()}`
+        console.log(playgroundConfig.testCasePrams)
         eval(code)
     }
 
-    generateExecPyCode() {
-        const code = pythonGenerator.workspaceToCode(this.workspace);
-        sendCodeToDevice(code)
+    exec(arg1 = 0, arg2 = 0, arg3 = 0, arg4 = 0, arg5 = 0): number {
+        const something = new Function('arg1', 'arg2', 'arg3', 'arg4', 'arg5', 'return arg1 + arg2 + arg3');
+        return something(arg1, arg2, arg3, arg4, arg5);
     }
 
-
+    generateExecPyCode(): void {
+        const code = pythonGenerator.workspaceToCode(this.workspace);
+        sendCodeToDevice(code);
+    }
 }
 
-
-function initBlockly() {
+function initBlockly(): void {
     Blockly.common.defineBlocks(blocks);
     Object.assign(pythonGenerator.forBlock, forPyBlock);
     Object.assign(javascriptGenerator.forBlock, forJsBlock);

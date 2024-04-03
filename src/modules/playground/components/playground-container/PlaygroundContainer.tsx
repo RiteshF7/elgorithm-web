@@ -14,6 +14,7 @@ import {LightSensor} from "@/modules/playground/components/simulated-hardwares/c
 import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 import {LedWrapper} from "@/modules/playground/components/simulated-hardwares/components/led/LedWrapper";
 import {PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
+import {PlaygroundActionsContent} from "@/content/banner-main/playground-actions.content";
 
 
 
@@ -27,7 +28,7 @@ export const PlayGroundContainer: FC = () => {
                     <ProblemStatement problem={"Connect two pixels "}
                                       description={"Connect two pixels as shown in the image below."}/>
                     <PlaygroundEditor/>
-                    <PlaygroundActions/>
+                    <PlaygroundActions testCasePrams={PlaygroundActionsContent[0]}/>
                 </div>
                 {/*<PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}*/}
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}

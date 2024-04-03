@@ -10,7 +10,7 @@ import {any} from "prop-types";
 interface PlaygroundContextProps {
     playground: Playground | null;
     initPlayground: (element: HTMLDivElement) => void;
-    runCode: () => void;
+    runCode: (playgroundConfig:string[]) => void;
     connect: () => void;
     registerComponent: RegisterPlaygroundComponent;
 }
@@ -28,14 +28,13 @@ const PlaygroundContext = createContext<PlaygroundContextProps>({
 export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
 
     const [playgroundInstance, setPlaygroundInstance] = useState<Playground | null>(null);
-    const [componentState, setComponentState]  =useState({initialState:null,destinationState:null})
     const initPlayground = (element: HTMLDivElement) => {
         setPlaygroundInstance(new Playground(element, ToolboxContainer));
     }
 
-    const runCode = () => {
+    const runCode = (playgroundConfig:string[] = []) => {
         if (playgroundInstance) {
-            playgroundInstance.generateExecJsCode();
+            playgroundInstance.generateExecJsCode(playgroundConfig).then(r => console.log('completed!'));
         }
     }
 
