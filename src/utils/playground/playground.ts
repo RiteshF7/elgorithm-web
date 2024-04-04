@@ -40,9 +40,10 @@ export class Playground {
         connectSerial().then(r => console.log(`device connected :: ${r}`)).catch(e => console.log(`device not connected :: ${e}`));
     }
 
-    generateExecJsCode(playgroundConfig: any) {
+    generateExecJsCode() {
         let code = javascriptGenerator.workspaceToCode(this.workspace);
         code += `\n ${getCodeCompletionCallback()}`
+        console.log(code)
         // eval(code)
         this.executeJsCode(code)
 

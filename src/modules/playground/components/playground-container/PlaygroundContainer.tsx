@@ -12,10 +12,11 @@ import {LightSensor} from "@/modules/playground/components/simulated-hardwares/c
 import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 import {LedWrapper} from "@/modules/playground/components/simulated-hardwares/components/led/LedWrapper";
 import {PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
-import {PlaygroundActionsContent} from "@/content/banner-main/playground-actions.content";
 
 
+export default interface playgroundContainerProps{
 
+}
 
 export const PlayGroundContainer: FC = () => {
 
@@ -36,7 +37,7 @@ export const PlayGroundContainer: FC = () => {
                         runnerConfig={PlaygroundRunnerContent[2]}
                         simulatedHardware={<LedWrapper/>}
                     />
-                    <PlaygroundActions testCasePrams={PlaygroundActionsContent[0]}/>
+                    <PlaygroundActions/>
 
                 </div>
                     {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={{degree:0}} destinationPosition={{degree:90}}/>}/>*/}

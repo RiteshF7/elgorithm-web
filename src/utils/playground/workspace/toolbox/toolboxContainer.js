@@ -8,6 +8,7 @@ import neoPixelToolbox
 import lightBuzzerToolbox
     from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerToolbox";
 import {variableToolbox} from "@/utils/playground/workspace/toolbox/core/variablesToolbox";
+import {ifElseToolbox} from "@/utils/playground/workspace/toolbox/core/ifElse";
 
 export const ToolboxContainer = {
 

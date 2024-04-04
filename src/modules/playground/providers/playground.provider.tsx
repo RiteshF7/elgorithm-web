@@ -10,7 +10,7 @@ import {any} from "prop-types";
 interface PlaygroundContextProps {
     playground: Playground | null;
     initPlayground: (element: HTMLDivElement) => void;
-    runCode: (playgroundConfig: string[]) => void;
+    runCode: () => void;
     connect: () => void;
     registerComponent: RegisterPlaygroundComponent;
     moveToNextLevel:(levelId:string)=>void;
@@ -35,9 +35,9 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
         setPlaygroundInstance(new Playground(element, ToolboxContainer));
     }
 
-    const runCode = (playgroundConfig: string[] = []) => {
+    const runCode = () => {
         if (playgroundInstance) {
-            playgroundInstance.generateExecJsCode(playgroundConfig);
+            playgroundInstance.generateExecJsCode();
         }
     }
 
