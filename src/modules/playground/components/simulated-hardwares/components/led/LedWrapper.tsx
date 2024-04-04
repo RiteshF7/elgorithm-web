@@ -2,9 +2,11 @@ import {FC, useEffect, useState} from "react";
 import {useShContext} from "@/modules/playground/providers/SH.provider";
 import {COMPONENT_KEY, Led, LedConfig} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
 import {AutoRangeInput} from "@/modules/common/components/range-input/RangeInput";
+import {usePlayground} from "@/modules/playground/providers/playground.provider";
 
 export const LedWrapper: FC = () => {
-    const {registerComponent,initialUiState, updateUiState,checkCompletionStatus} = useShContext();
+    const {registerComponent, initialUiState, updateUiState, checkCompletionStatus} = useShContext();
+    const {moveToNextLevel} = usePlayground()
     const ledInitialState = {...initialUiState.LED};
     const ledUiState = {...ledInitialState}
     const [ledState, setState] = useState<LedConfig>(ledInitialState)
@@ -12,21 +14,27 @@ export const LedWrapper: FC = () => {
     useEffect(() => {
 
         registerComponent(COMPONENT_KEY, (data) => {
-            const isCompleted = checkCompletionStatus(data, () => {
-                setState((state) => ({...state, ...ledInitialState}))
-                // alert('success')
-                console.log('success!')
+            const isCompleted = checkCompletionStatus(data,
 
-            }, () => {
-                setState((state) => ({...state, ...ledInitialState}))
-                // alert('failed')
-                console.log('failed!')
-            })
+                () => {
+                    setState((state) => ({...state, ...ledInitialState}))
+                    // alert('success')
+                    console.log('success!')
+                    moveToNextLevel('002')
+
+                },
+
+                () => {
+                    setState((state) => ({...state, ...ledInitialState}))
+                    // alert('failed')
+                    console.log('failed!')
+                })
+
             if (!isCompleted) {
                 //check if possible in neopixel
                 // ledUiState.active = data.active;
                 // ledUiState.color = data.color;
-                updateUiState(COMPONENT_KEY,data)
+                updateUiState(COMPONENT_KEY, data)
                 setState((state) => ({...state, ...data}))
             }
 

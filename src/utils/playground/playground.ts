@@ -40,16 +40,16 @@ export class Playground {
         connectSerial().then(r => console.log(`device connected :: ${r}`)).catch(e => console.log(`device not connected :: ${e}`));
     }
 
-    async generateExecJsCode(playgroundConfig: any): Promise<void> {
-        //then check promise and orignal code exec with testcase config...
+    generateExecJsCode(playgroundConfig: any) {
         let code = javascriptGenerator.workspaceToCode(this.workspace);
         code += `\n ${getCodeCompletionCallback()}`
-        console.log(playgroundConfig.testCasePrams)
-        eval(code)
+        // eval(code)
+        this.executeJsCode(code)
+
     }
 
-    exec(arg1 = 0, arg2 = 0, arg3 = 0, arg4 = 0, arg5 = 0): number {
-        const something = new Function('arg1', 'arg2', 'arg3', 'arg4', 'arg5', 'return arg1 + arg2 + arg3');
+     executeJsCode(code:string,arg1 = 0, arg2 = 0, arg3 = 0, arg4 = 0, arg5 = 0): number {
+        const something = new Function('arg1', 'arg2', 'arg3', 'arg4', 'arg5', code);
         return something(arg1, arg2, arg3, arg4, arg5);
     }
 

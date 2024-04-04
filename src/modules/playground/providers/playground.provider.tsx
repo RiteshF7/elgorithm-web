@@ -10,11 +10,11 @@ import {any} from "prop-types";
 interface PlaygroundContextProps {
     playground: Playground | null;
     initPlayground: (element: HTMLDivElement) => void;
-    runCode: (playgroundConfig:string[]) => void;
+    runCode: (playgroundConfig: string[]) => void;
     connect: () => void;
     registerComponent: RegisterPlaygroundComponent;
+    moveToNextLevel:(levelId:string)=>void;
 }
-
 
 
 const PlaygroundContext = createContext<PlaygroundContextProps>({
@@ -23,24 +23,31 @@ const PlaygroundContext = createContext<PlaygroundContextProps>({
     runCode: () => null,
     connect: () => null,
     registerComponent: () => null,
+    moveToNextLevel:()=>null
 });
 
 export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
+
+
 
     const [playgroundInstance, setPlaygroundInstance] = useState<Playground | null>(null);
     const initPlayground = (element: HTMLDivElement) => {
         setPlaygroundInstance(new Playground(element, ToolboxContainer));
     }
 
-    const runCode = (playgroundConfig:string[] = []) => {
+    const runCode = (playgroundConfig: string[] = []) => {
         if (playgroundInstance) {
-            playgroundInstance.generateExecJsCode(playgroundConfig).then(r => console.log('completed!'));
+            playgroundInstance.generateExecJsCode(playgroundConfig);
         }
     }
 
     const connect = () => {
         console.log('Connect');
     }
+    const moveToNextLevel = () => {
+        console.log('Next level enabled!');
+    }
+
 
     const registerComponent: RegisterPlaygroundComponent = (key, callback: (data: any) => void) => {
         // @ts-ignore
@@ -53,7 +60,8 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
             initPlayground,
             runCode,
             connect,
-            registerComponent
+            registerComponent,
+            moveToNextLevel
         }}>
             {children}
         </PlaygroundContext.Provider>
