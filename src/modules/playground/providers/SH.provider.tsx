@@ -8,12 +8,11 @@ import {createContext, FC, PropsWithChildren, useContext} from "react";
 import _ from 'lodash';
 
 
-
 interface SHContextProps {
     registerComponent: RegisterPlaygroundComponent;
     initCode: (data: any) => boolean;
-    initialUiState:any,
-    updateUiState: (componentKey:string,updatedUiState: any) => void;
+    initialUiState: any,
+    updateUiState: (componentKey: string, updatedUiState: any) => void;
     checkCompletionStatus: (data: any, successCallback: () => void, failureCallback: () => void) => boolean;
     stopCode: () => void
 
@@ -26,7 +25,7 @@ interface ComponentConfigProp {
 
 const ShContext = createContext<SHContextProps>({
     registerComponent: () => null,
-    initialUiState:null,
+    initialUiState: null,
     updateUiState: () => null,
     checkCompletionStatus: () => false,
     stopCode: () => null,
@@ -36,35 +35,41 @@ const ShContext = createContext<SHContextProps>({
 export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialUiState, desiredUiState, children}) => {
 
     let uiState = {...initialUiState};
-    const codeProgress:any = []
-    let codeStep = 0;
+    const codeProgress: any = []
+    let step = -1
 
 
     function checkCompletionStatus(data: any, successCallback: () => void, failureCallback: () => void): boolean {
-
+        step++
         if (isCodeCompleted(data)) {
-            if (isOnDesiredState()) {
-                stopCode()
-                successCallback()
-                return true
-            }
+            stopCode()
+            successCallback()
+            return true
+        }
+        if(!isStepValid(data)){
             stopCode()
             failureCallback()
             return true;
         }
+
         return false;
     }
 
-    function checkStep(){
-        //do something like this
-        //double check array.push() type is fifo or lifo
-        //implement double ui check using eval var const theory
-        _.isEqual(codeProgress[codeStep],desiredUiState[codeStep])
+    function isStepValid(currentStep: any): boolean {
+        let potentialSteps = desiredUiState[step];
+        for (let potentialStepIndex = 0; potentialStepIndex < potentialSteps.length; potentialStepIndex++) {
+            let potentialStep = potentialSteps[potentialStepIndex];
+            console.log(potentialStep,"::",currentStep)
+            if (_.isEqual(currentStep, potentialStep)) {
+                return true
+            }
+        }
+        return false;
     }
 
-    function updateUiState(componentKey:string,updatedUiState: any) {
-        uiState = {...initialUiState, ...{[componentKey]: { ...initialUiState[componentKey],...updatedUiState}}};
-        codeStep++
+
+    function updateUiState(componentKey: string, updatedUiState: any) {
+        uiState = {...initialUiState, ...{[componentKey]: {...initialUiState[componentKey], ...updatedUiState}}};
         codeProgress.push(uiState)
     }
 
@@ -75,7 +80,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
 
 
     function isOnDesiredState(): boolean {
-         return  _.isEqual(desiredUiState, codeProgress);
+        return _.isEqual(desiredUiState, codeProgress);
 
     }
 
@@ -84,11 +89,10 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
     }
 
     function stopCode() {
-        codeStep=0;
+        step=-1
         codeProgress.length = 0
         resetMessageQueue()
     }
-
 
 
     const registerComponent: RegisterPlaygroundComponent = (key, callback: (data: any) => void) => {
@@ -99,7 +103,7 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
 
     return (
         <ShContext.Provider
-            value={{registerComponent,initialUiState, updateUiState, checkCompletionStatus, stopCode, initCode}}>
+            value={{registerComponent, initialUiState, updateUiState, checkCompletionStatus, stopCode, initCode}}>
             {children}
         </ShContext.Provider>
     )

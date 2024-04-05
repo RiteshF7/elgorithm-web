@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 import '@wokwi/elements';
-import RangeInput from "@/modules/common/components/range-input/RangeInput";
+import {AutoRangeInput} from "@/modules/common/components/range-input/RangeInput";
 
 interface LightSensorProps{
     onChange: (value: number) => void;
@@ -26,7 +26,7 @@ export const LightSensor:FC<LightSensorProps> = ({onChange})=>{
                 onChange={handleSliderChange}
                 className="slider-thumb appearance-none bg-red-500 h-3 rounded-full w-full"
             />
-            <RangeInput min={0} max={80} value={0} onChange={onChange}/>
+            {/*<AutoRangeInput min={0} max={80} value={0} onChange={onChange}/>*/}
         </div>
     )
 }
