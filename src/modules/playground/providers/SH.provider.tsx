@@ -59,7 +59,6 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
         let potentialSteps = desiredUiState[step];
         for (let potentialStepIndex = 0; potentialStepIndex < potentialSteps.length; potentialStepIndex++) {
             let potentialStep = potentialSteps[potentialStepIndex];
-            console.log(potentialStep,"::",currentStep)
             if (_.isEqual(currentStep, potentialStep)) {
                 return true
             }
@@ -68,11 +67,15 @@ export const SHProvider: FC<PropsWithChildren<ComponentConfigProp>> = ({initialU
     }
 
 
+    //TODO
+    //remove this and check
     function updateUiState(componentKey: string, updatedUiState: any) {
         uiState = {...initialUiState, ...{[componentKey]: {...initialUiState[componentKey], ...updatedUiState}}};
         codeProgress.push(uiState)
     }
 
+    //TODO
+    //check if any program need init
     function initCode(data: any): boolean {
         return data.hasOwnProperty('init')
 
