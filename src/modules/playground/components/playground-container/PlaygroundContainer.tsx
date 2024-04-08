@@ -6,16 +6,21 @@ import {PlaygroundProvider} from "@/modules/playground/providers/playground.prov
 import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Led} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
-import {NeoPixelMatrix} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelMatrix";
+import {
+    NeoPixelMatrix
+} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelMatrix";
 import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoMotor";
 import {LightSensor} from "@/modules/playground/components/simulated-hardwares/components/light-sensor/LightSensor";
 import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 import {LedWrapper} from "@/modules/playground/components/simulated-hardwares/components/led/LedWrapper";
 import {PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
 import {Test} from "@/modules/playground/components/simulated-hardwares/components/test/test";
+import {
+    NeoPixelDirect
+} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
 
 
-export default interface playgroundContainerProps{
+export default interface playgroundContainerProps {
 
 }
 
@@ -31,22 +36,24 @@ export const PlayGroundContainer: FC = () => {
                 </div>
                 {/*<PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}*/}
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
+                <PlaygroundRunner runnerConfig={PlaygroundRunnerContent[0]}
+                                  simulatedHardware={<NeoPixelDirect matrixSize={11} initialPositions={[{row:0,column:0},{row:1,column:1},]}/>}/>
 
                 <div className={'flex flex-col gap-4 items-center flex-grow'}>
 
-                    <PlaygroundRunner
-                        runnerConfig={PlaygroundRunnerContent[2]}
-                        simulatedHardware={<LedWrapper/>}
-                    />
-                    <PlaygroundActions/>
+                    {/*<PlaygroundRunner*/}
+                    {/*    runnerConfig={PlaygroundRunnerContent[2]}*/}
+                    {/*    simulatedHardware={<LedWrapper/>}*/}
+                    {/*/>*/}
+                    {/*<PlaygroundActions/>*/}
 
                 </div>
-                    {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={{degree:0}} destinationPosition={{degree:90}}/>}/>*/}
-                    <PlaygroundRunner                          runnerConfig={PlaygroundRunnerContent[2]}
-                                                               simulatedHardware={<Test/>}/>
-                    {/*<PlaygroundRunner runnerConfig={PlaygroundRunnerContent[0]} simulatedHardware={<Buzzer  initialState={{state:false}} desiredState={{state:true}}/>}/>*/}
+                {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={{degree:0}} destinationPosition={{degree:90}}/>}/>*/}
+                {/*<PlaygroundRunner                          runnerConfig={PlaygroundRunnerContent[2]}*/}
+                {/*                                           simulatedHardware={<Test/>}/>*/}
+                {/*/!*<PlaygroundRunner runnerConfig={PlaygroundRunnerContent[0]} simulatedHardware={<Buzzer  initialState={{state:false}} desiredState={{state:true}}/>}/>*!/*/}
 
-                </div>
+            </div>
         </PlaygroundProvider>
-)
+    )
 }

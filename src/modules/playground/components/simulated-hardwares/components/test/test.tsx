@@ -8,37 +8,61 @@ export const Test: FC = () => {
     /*problem statement
     if >50 turn of led
     if <50 turn on led
+
+        every module will have its own state
+        then it will be able to handle multiple components
+        state may include component key as base value
+
+        //make a Neopixel matrix component
+
     */
 
-    const [ledState, setLedState] = useState<LedConfig>({active:false,color:'red'})
 
+
+    const [ledState, setLedState] = useState<LedConfig>({active: false, color: 'red'})
+
+    //add error message
     const testCases = [
-        {input:55,output:{active:false,color:'red'}},
-        {input:40,output:{active:true,color:'red'}},
+        {input: 55, output: {active: false, color: 'red'}},
+        {input: 40, output: {active: true, color: 'red'}},
     ]
 
     const codePrefix = `
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\n
+    
+    const changeLedState = async (state)=>{
+        await delay(1000);
+        setLedState(state);
+        return state
+    }
+    
     const executeTimeouts = async () => {\n`
 
     const codePostfix = ` };\nreturn executeTimeouts();`
 
 
-    const blockCode =  `
+    const blockCode= `
 
      if(input>50){
-            await delay(1000);
-            setLedState({ active: false, color: 'red' });
-            return { active: false, color: 'red' }
+            return await changeLedState({ active: false, color: 'red' });
         }
 
         if(input<50){
-            await delay(1000);
-            setLedState({ active: true, color: 'red' });
-            return { active: true, color: 'red' }
+            return await changeLedState({ active: true, color: 'red' });
         }
     `
-    const executableCode = codePrefix+blockCode+codePostfix
+    const executableCode = codePrefix + blockCode + codePostfix
+
+
+    // @ts-ignore
+    const changeLedState = async (delay: (ms) => Promise<unknown>, state: any) => {
+        await delay(1000);
+        setLedState(state);
+        return state
+    }
+
+
+
 
     async function onClick() {
         const func = new Function('setLedState', 'input', executableCode)
@@ -46,19 +70,21 @@ export const Test: FC = () => {
             const actualOutput = await func(setLedState, testCase.input)
             console.log(actualOutput)
             if (_.isEqual(actualOutput, testCase.output)) {
+                //sendSuccessCallback()
                 console.log('test case passed!')
             } else {
+                //sendFailureCallback with testcase error message
                 console.log('test case failed!')
             }
         }
 
     }
 
-    return(
+    return (
         <div className={'flex flex-col p-3 items-center'}>
-        <Led config={ledState}/>
-        <Button onClick={onClick} uiType={'primary'}/>
+            <Led config={ledState}/>
+            <Button onClick={onClick} uiType={'primary'}/>
         </div>
 
-)
+    )
 }
