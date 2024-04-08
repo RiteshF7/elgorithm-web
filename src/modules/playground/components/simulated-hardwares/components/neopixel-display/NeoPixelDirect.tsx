@@ -41,18 +41,21 @@ enum MatrixType {
 export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matrixSize}) => {
 
     let step = 0;
-    const testCaseOne = {
+
+    const one = {
         input: [[5, 5]],
         expectedOutput: [[5, 6]],
         pixelMatrixType: MatrixType.UNI_DIRECTIONAL
     }
 
-    const testCaseTwo = {
+    const Two = {
+        pixelMatrixType: MatrixType.UNI_DIRECTIONAL,
         input: [[5, 5]],
         expectedOutput: [[5, 6], [5, 7], [5, 8]]
     }
 
-    const testCaseThree = {
+    const Three = {
+        pixelMatrixType: MatrixType.BI_DIRECTIONAL,
         input: [[5, 5], [10, 10]],
         expectedOutput: [
             {
@@ -65,8 +68,11 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matri
         ]
     }
 
+    let testCase =Two
 
-    const startingPosition = {row: testCaseOne.input[0][0], column: testCaseOne.input[0][1]}
+
+
+    const startingPosition = {row: testCase.input[0][0], column: testCase.input[0][1]}
     const [animation, setAnimation] = useState<boolean>(false);
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
     let position = {...startingPosition};
@@ -79,7 +85,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matri
     function initDisplay() {
         neoPixelDisplayRef.current?.reset()
         position = {...startingPosition}
-        testCaseOne.input.forEach((position: number[]) => {
+        testCase.input.forEach((position: number[]) => {
             setPixel({row: position[0], column: position[1]})
         })
     }
@@ -91,6 +97,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matri
     }
 
     function handleFailure() {
+        console.log("failure!")
         initDisplay()
     }
 
@@ -109,19 +116,19 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matri
         position.column = newPosition.column;
         if (isValidStep([position.row, position.column])) {
             setPixel(position);
-            if(step === testCaseOne.expectedOutput.length){
-                console.log("Test case passed !")
+            if(step === testCase.expectedOutput.length){
+                handleSuccess()
                 return;
             }
             return;
         }
-        console.log('failure callback!')
+        handleFailure()
     }
 
     function isValidStep(actualPosition: number[]): boolean {
-        switch (testCaseOne.pixelMatrixType) {
+        switch (testCase.pixelMatrixType) {
             case MatrixType.UNI_DIRECTIONAL:
-                let expectedPixelPosition = testCaseOne.expectedOutput[step++]
+                let expectedPixelPosition = testCase.expectedOutput[step++]
                 return isPixelPositionEqual(actualPosition,expectedPixelPosition)
 
             case MatrixType.BI_DIRECTIONAL:
