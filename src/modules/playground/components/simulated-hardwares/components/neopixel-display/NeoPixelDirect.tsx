@@ -19,8 +19,8 @@ import {Button} from "@/modules/common/components/button/Button";
 
 
 interface NeoPixelMatrixProps {
-    initialPositions: Position[];
     matrixSize: number;
+    matrixType: MatrixType;
 }
 
 //matrix can be of type
@@ -33,43 +33,38 @@ interface NeoPixelMatrixProps {
 
 export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
-enum MatrixType {
+export enum MatrixType {
     UNI_DIRECTIONAL,
     BI_DIRECTIONAL
 }
 
-export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matrixSize}) => {
+export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, matrixSize}) => {
 
     let step = 0;
 
     const one = {
         input: [[5, 5]],
         expectedOutput: [[5, 6]],
-        pixelMatrixType: MatrixType.UNI_DIRECTIONAL
     }
 
     const Two = {
-        pixelMatrixType: MatrixType.UNI_DIRECTIONAL,
         input: [[5, 5]],
         expectedOutput: [[5, 6], [5, 7], [5, 8]]
     }
 
     const Three = {
-        pixelMatrixType: MatrixType.BI_DIRECTIONAL,
         input: [[5, 5], [10, 10]],
         expectedOutput: [
-            {
-                biDirectionInitialPixel: [[6, 5], [5, 6]],
-                uniDirectionalPaths: [
-                    [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10],
-                    [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]
-                ]
-            }
+            [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
+            [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
         ]
+
+
     }
 
-    let testCase =Two
+    let testCase = Three
 
+    let expectedPixelPath: any[] = []
 
 
     const startingPosition = {row: testCase.input[0][0], column: testCase.input[0][1]}
@@ -114,9 +109,10 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matri
 
         position.row = newPosition.row;
         position.column = newPosition.column;
+
         if (isValidStep([position.row, position.column])) {
             setPixel(position);
-            if(step === testCase.expectedOutput.length){
+            if (step === expectedPixelPath.length) {
                 handleSuccess()
                 return;
             }
@@ -125,20 +121,35 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matri
         handleFailure()
     }
 
-    function isValidStep(actualPosition: number[]): boolean {
-        switch (testCase.pixelMatrixType) {
-            case MatrixType.UNI_DIRECTIONAL:
-                let expectedPixelPosition = testCase.expectedOutput[step++]
-                return isPixelPositionEqual(actualPosition,expectedPixelPosition)
+    function setExpectedPath(actualPosition: number[]) {
+        if (step === 0) {
+            switch (matrixType) {
+                case MatrixType.BI_DIRECTIONAL:
+                    let allPaths = testCase.expectedOutput
+                    for (let i = 0; i < allPaths.length; i++) {
+                        if (isPixelEqual(actualPosition, allPaths[i][0])) {
+                            expectedPixelPath = allPaths[i]
+                        }
+                    }
 
-            case MatrixType.BI_DIRECTIONAL:
-                break;
+                    break
+
+
+                case MatrixType.UNI_DIRECTIONAL:
+                    expectedPixelPath = testCase.expectedOutput
+            }
         }
-
-        return false
     }
 
-    function isPixelPositionEqual(actualPosition: number[], expectedPosition: number[]) {
+    function isValidStep(actualPosition: number[]): boolean {
+        setExpectedPath(actualPosition)
+        console.log(expectedPixelPath)
+        if (expectedPixelPath.length == 0) return false
+        let expectedPixelPosition = expectedPixelPath[step++]
+        return isPixelEqual(actualPosition, expectedPixelPosition)
+    }
+
+    function isPixelEqual(actualPosition: number[], expectedPosition: any) {
         return actualPosition.every((value, index) => value === expectedPosition[index]);
     }
 
@@ -161,8 +172,11 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({initialPositions, matri
                                        animation={animation ? true : undefined}></wokwi-neopixel-matrix>
             </div>
 
-            <Button uiType={'primary'} onClick={() => {
+            <Button uiType={'primary'} title={'right'} onClick={() => {
                 move(Direction.Right)
+            }}/>
+            <Button uiType={'primary'} title={'down'} onClick={() => {
+                move(Direction.Down)
             }}/>
 
         </div>

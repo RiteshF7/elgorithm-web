@@ -1,21 +1,12 @@
 'use client';
 import React, {FC} from 'react';
-import {PlaygroundActions} from "@/modules/playground/components/playground-actions/PlaygroundActions";
 import {PlaygroundEditor} from "@/modules/playground/components/playground-editor/PlaygroundEditor";
 import {PlaygroundProvider} from "@/modules/playground/providers/playground.provider";
 import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
-import {Led} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
-import {
-    NeoPixelMatrix
-} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelMatrix";
-import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoMotor";
-import {LightSensor} from "@/modules/playground/components/simulated-hardwares/components/light-sensor/LightSensor";
-import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
-import {LedWrapper} from "@/modules/playground/components/simulated-hardwares/components/led/LedWrapper";
 import {PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
-import {Test} from "@/modules/playground/components/simulated-hardwares/components/test/test";
 import {
+    MatrixType,
     NeoPixelDirect
 } from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
 
@@ -37,7 +28,7 @@ export const PlayGroundContainer: FC = () => {
                 {/*<PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}*/}
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
                 <PlaygroundRunner runnerConfig={PlaygroundRunnerContent[0]}
-                                  simulatedHardware={<NeoPixelDirect matrixSize={11} initialPositions={[{row:0,column:0},{row:1,column:1},]}/>}/>
+                                  simulatedHardware={<NeoPixelDirect matrixType={MatrixType.BI_DIRECTIONAL} matrixSize={11} />}/>
 
                 <div className={'flex flex-col gap-4 items-center flex-grow'}>
 
