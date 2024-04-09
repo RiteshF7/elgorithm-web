@@ -1,7 +1,7 @@
 // NeoPixelMatrix.tsx
 import React, {FC, useEffect, useRef, useState} from "react";
 import '@wokwi/elements';
-import {Direction, MatrixType, Position, TestCase} from "./types";
+import {ControllerType, Direction, MatrixType, TestCase} from "./types";
 import {calculateMove, isValidPosition} from "./NeoPixelUtils";
 import {NeopixelMatrixElement} from "@wokwi/elements";
 import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
@@ -22,13 +22,14 @@ interface NeoPixelMatrixProps {
     matrixSize: number;
     matrixType: MatrixType;
     testCase: TestCase;
+    controllerType:ControllerType
 }
 
 
 export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
 
-export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, matrixSize}) => {
+export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, matrixSize,controllerType}) => {
 
     const row = 0, column = 1;
     const input = testCase.input[0];
@@ -43,7 +44,34 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
 
     useEffect(() => {
         initDisplay()
+
+        window.addEventListener('keydown', handleKeyboardEvents);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyboardEvents);
+        };
     }, []);
+
+    function handleKeyboardEvents(event:KeyboardEvent) {
+        switch (event.key) {
+            case 'ArrowUp':
+                move(Direction.Up)
+                break;
+            case 'ArrowDown':
+                move(Direction.Down)
+
+                break;
+            case 'ArrowLeft':
+                move(Direction.Left)
+                break;
+            case 'ArrowRight':
+                move(Direction.Right)
+
+                break;
+            default:
+                break;
+        }
+    }
 
     function initDisplay() {
         neoPixelDisplayRef.current?.reset()

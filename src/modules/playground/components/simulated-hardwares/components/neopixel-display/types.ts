@@ -25,3 +25,8 @@ export enum MatrixType {
     UNI_DIRECTIONAL,
     BI_DIRECTIONAL
 }
+
+export enum ControllerType{
+    keyboard,
+    blocks
+}

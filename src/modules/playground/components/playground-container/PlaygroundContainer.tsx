@@ -9,6 +9,7 @@ import {
     NeoPixelDirect
 } from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
 import {
+    ControllerType,
     MatrixType,
     TestCase
 } from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
@@ -53,7 +54,7 @@ export const PlayGroundContainer: FC = () => {
                 {/*<PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}*/}
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
                 <PlaygroundRunner runnerConfig={PlaygroundRunnerContent[0]}
-                                  simulatedHardware={<NeoPixelDirect testCase={Three} matrixType={MatrixType.BI_DIRECTIONAL} matrixSize={11} />}/>
+                                  simulatedHardware={<NeoPixelDirect controllerType={ControllerType.blocks} testCase={Three} matrixType={MatrixType.BI_DIRECTIONAL} matrixSize={11} />}/>
 
                 <div className={'flex flex-col gap-4 items-center flex-grow'}>
 
