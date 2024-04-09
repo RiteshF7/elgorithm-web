@@ -15,3 +15,13 @@ export enum Direction {
     BottomRight = 'BottomRight',
     Stop = 'Stop',
 }
+
+export interface TestCase {
+    input: number[][];
+    expectedOutput: number[][] | number[][][];
+}
+
+export enum MatrixType {
+    UNI_DIRECTIONAL,
+    BI_DIRECTIONAL
+}

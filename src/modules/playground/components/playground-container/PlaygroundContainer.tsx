@@ -6,9 +6,12 @@ import {ProblemStatement} from "@/modules/playground/components/playground-probl
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
 import {
-    MatrixType,
     NeoPixelDirect
 } from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
+import {
+    MatrixType,
+    TestCase
+} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
 
 
 export default interface playgroundContainerProps {
@@ -16,6 +19,28 @@ export default interface playgroundContainerProps {
 }
 
 export const PlayGroundContainer: FC = () => {
+
+
+
+    const one = {
+        input: [[5, 5]],
+        expectedOutput: [[5, 6]],
+    }
+
+    const Two = {
+        input: [[5, 5]],
+        expectedOutput: [[5, 6], [5, 7], [5, 8]]
+    }
+
+    const Three:TestCase = {
+        input: [[5, 5], [10, 10]],
+        expectedOutput: [
+            [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
+            [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
+        ]
+
+
+    }
 
     return (
         <PlaygroundProvider>
@@ -28,7 +53,7 @@ export const PlayGroundContainer: FC = () => {
                 {/*<PlaygroundRunner simulatedHardware={<NeoPixelMatrix startingPosition={{row: 5, column: 5}}*/}
                 {/*                                                     destinationPosition={{row: 10, column: 10}} matrixSize={11}/>}/>*/}
                 <PlaygroundRunner runnerConfig={PlaygroundRunnerContent[0]}
-                                  simulatedHardware={<NeoPixelDirect matrixType={MatrixType.BI_DIRECTIONAL} matrixSize={11} />}/>
+                                  simulatedHardware={<NeoPixelDirect testCase={Three} matrixType={MatrixType.BI_DIRECTIONAL} matrixSize={11} />}/>
 
                 <div className={'flex flex-col gap-4 items-center flex-grow'}>
 

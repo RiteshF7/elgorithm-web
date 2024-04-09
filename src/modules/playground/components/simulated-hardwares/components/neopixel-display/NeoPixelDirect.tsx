@@ -1,7 +1,7 @@
 // NeoPixelMatrix.tsx
 import React, {FC, useEffect, useRef, useState} from "react";
 import '@wokwi/elements';
-import {Direction, Position} from "./types";
+import {Direction, MatrixType, Position, TestCase} from "./types";
 import {calculateMove, isValidPosition} from "./NeoPixelUtils";
 import {NeopixelMatrixElement} from "@wokwi/elements";
 import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
@@ -21,57 +21,25 @@ import {Button} from "@/modules/common/components/button/Button";
 interface NeoPixelMatrixProps {
     matrixSize: number;
     matrixType: MatrixType;
+    testCase: TestCase;
 }
-
-//matrix can be of type
-//Uni-directional
-//Bi-directional
-//every Bi-directional matrix will become uni-directional after step one
-//because there is no going back or reverse
-//distance should be shortest as possible
 
 
 export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
-export enum MatrixType {
-    UNI_DIRECTIONAL,
-    BI_DIRECTIONAL
-}
 
-export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, matrixSize}) => {
+export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, matrixSize}) => {
+
+    const row = 0, column = 1;
+    const input = testCase.input[0];
+    const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
+    const startingPosition = [input[row], input[column]]
+    const [animation, setAnimation] = useState<boolean>(false);
+    let position = [...startingPosition];
+
 
     let step = 0;
-
-    const one = {
-        input: [[5, 5]],
-        expectedOutput: [[5, 6]],
-    }
-
-    const Two = {
-        input: [[5, 5]],
-        expectedOutput: [[5, 6], [5, 7], [5, 8]]
-    }
-
-    const Three = {
-        input: [[5, 5], [10, 10]],
-        expectedOutput: [
-            [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
-            [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
-        ]
-
-
-    }
-
-    let testCase = Three
-
     let expectedPixelPath: any[] = []
-
-
-    const startingPosition = {row: testCase.input[0][0], column: testCase.input[0][1]}
-    const [animation, setAnimation] = useState<boolean>(false);
-    const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
-    let position = {...startingPosition};
-
 
     useEffect(() => {
         initDisplay()
@@ -79,9 +47,9 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, matrixSize}
 
     function initDisplay() {
         neoPixelDisplayRef.current?.reset()
-        position = {...startingPosition}
+        position = [...startingPosition]
         testCase.input.forEach((position: number[]) => {
-            setPixel({row: position[0], column: position[1]})
+            setPixelWithColor(position,getRandomColor())
         })
     }
 
@@ -100,17 +68,17 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, matrixSize}
     function move(direction: Direction): void {
         const newPosition = calculateMove(direction, position);
 
-        if (!isValidPosition(newPosition.row, newPosition.column, matrixSize)) {
+        if (!isValidPosition(newPosition[row], newPosition[column], matrixSize)) {
             // shcUtils.failure('pixel out of bound!',handleFailure)
             console.log('invalid move!')
             return;
         }
 
 
-        position.row = newPosition.row;
-        position.column = newPosition.column;
+        position[row] = newPosition[row];
+        position[column] = newPosition[column];
 
-        if (isValidStep([position.row, position.column])) {
+        if (isValidStep(position)) {
             setPixel(position);
             if (step === expectedPixelPath.length) {
                 handleSuccess()
@@ -125,41 +93,57 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, matrixSize}
         if (step === 0) {
             switch (matrixType) {
                 case MatrixType.BI_DIRECTIONAL:
-                    let allPaths = testCase.expectedOutput
-                    for (let i = 0; i < allPaths.length; i++) {
-                        if (isPixelEqual(actualPosition, allPaths[i][0])) {
-                            expectedPixelPath = allPaths[i]
-                        }
-                    }
-
-                    break
-
+                    const matchingPath = testCase.expectedOutput.find(path => isPixelEqual(actualPosition, path[0]));
+                    if (matchingPath) expectedPixelPath = matchingPath;
+                    break;
 
                 case MatrixType.UNI_DIRECTIONAL:
-                    expectedPixelPath = testCase.expectedOutput
+                    expectedPixelPath = testCase.expectedOutput;
+                    break;
+
+                default:
+                    break;
             }
         }
     }
 
+
     function isValidStep(actualPosition: number[]): boolean {
-        setExpectedPath(actualPosition)
-        console.log(expectedPixelPath)
-        if (expectedPixelPath.length == 0) return false
-        let expectedPixelPosition = expectedPixelPath[step++]
-        return isPixelEqual(actualPosition, expectedPixelPosition)
+        setExpectedPath(actualPosition);
+        const expectedPixelPosition = expectedPixelPath[step];
+        if (!expectedPixelPosition) return false;
+        step++;
+        return isPixelEqual(actualPosition, expectedPixelPosition);
     }
+
 
     function isPixelEqual(actualPosition: number[], expectedPosition: any) {
         return actualPosition.every((value, index) => value === expectedPosition[index]);
     }
 
 
-    function setPixel(position: Position) {
-        neoPixelDisplayRef.current?.setPixel(position.row, position.column, {r: 117, g: 195, b: 141});
+    function setPixel(position: number[]) {
+        neoPixelDisplayRef.current?.setPixel(position[row], position[column], {r: 117, g: 195, b: 141});
     }
 
-    function setPixelWithColor(position: Position, color: RGB) {
-        neoPixelDisplayRef.current?.setPixel(position.row, position.column, color);
+    const colors: RGB[] = [
+        { r: 188, g: 106, b: 102 },
+        { r: 190, g: 104, b: 170 },
+        { r: 117, g: 195, b: 141 },
+        { r: 106, g: 168, b: 194 },
+        { r: 131, g: 115, b: 195 }
+    ];
+
+    function getRandomColor(): RGB {
+
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        console.log(randomIndex)
+        return colors[randomIndex];
+    }
+
+
+    function setPixelWithColor(position: number[], color: RGB) {
+        neoPixelDisplayRef.current?.setPixel(position[row], position[column], color);
     }
 
     return (

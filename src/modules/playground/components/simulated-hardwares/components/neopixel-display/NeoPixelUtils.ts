@@ -1,13 +1,13 @@
 import {Direction, Position} from './types';
 
-export function calculateMove(direction: Direction, position: Position): Position {
+export function calculateMove(direction: Direction, position: number[]): number[] {
     const verticalOffset = getVerticalOffset(direction);
     const horizontalOffset = getHorizontalOffset(direction);
 
-    const newRow = position.row + verticalOffset;
-    const newColumn = position.column + horizontalOffset;
+    const newRow = position[0] + verticalOffset;
+    const newColumn = position[1] + horizontalOffset;
 
-    return { row: newRow, column: newColumn };
+    return [newRow,newColumn]
 }
 
 export function isValidPosition(row: number, column: number, matrixSize: number): boolean {
