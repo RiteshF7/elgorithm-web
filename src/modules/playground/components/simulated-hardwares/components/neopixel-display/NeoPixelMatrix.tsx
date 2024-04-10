@@ -58,18 +58,18 @@ export const NeoPixelMatrix: FC<NeoPixelMatrixProps> = ({startingPosition, desti
 
 
     function move(direction: Direction): void {
-        const newPosition = calculateMove(direction, position);
-
-        if (!isValidPosition(newPosition.row, newPosition.column, matrixSize)) {
-            shcUtils.failure('pixel out of bound!',handleFailure)
-            return;
-        }
-
-        position.row = newPosition.row;
-        position.column = newPosition.column;
-        shcUtils.updateState(position)
-        setPixel(position);
-        return;
+        // const newPosition = calculateMove(direction, position);
+        //
+        // if (!isValidPosition(newPosition.row, newPosition.column, matrixSize)) {
+        //     shcUtils.failure('pixel out of bound!',handleFailure)
+        //     return;
+        // }
+        //
+        // position.row = newPosition.row;
+        // position.column = newPosition.column;
+        // shcUtils.updateState(position)
+        // setPixel(position);
+        // return;
     }
 
     function setPixel(position: Position) {

@@ -1,13 +1,13 @@
 const blockKeys = {
     //neo-pixel-matrix
-    moveUp: 'move_up',
-    moveDown: 'move_down',
-    moveRight: 'move_right',
-    moveLeft: 'move_left',
-    moveTopLeft: 'move_top_left',
-    moveTopRight: 'move_top_right',
-    moveBottomLeft: 'move_bottom_left',
-    moveBottomRight: 'move_bottom_right',
+    moveUp: 'moveUp',
+    moveDown: 'moveDown',
+    moveRight: 'moveRight',
+    moveLeft: 'moveLeft',
+    moveTopLeft: 'moveTopLeft',
+    moveTopRight: 'moveTopRight',
+    moveBottomLeft: 'moveBottomLeft',
+    moveBottomRight: 'moveBottomRight',
     //Led
     turnOnLed: 'turn_on_led',
     turnOffLed: 'turn_off_led',

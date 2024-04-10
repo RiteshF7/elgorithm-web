@@ -10,57 +10,35 @@ import buzzerBlockDefinitions
     from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerBlockDefinitions";
 import lightBuzzerBlockDefinitation
     from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerBlockDefinitation";
+import neopixelBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
+import neoPixelController
+    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockController";
 
 
-const testBlock = {
-    'type': 'test_block',
-    'message0': 'example block',
-    'colour': 160,
-    'tooltip': '',
-    'helpUrl': '',
-};
+const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
+const blockDefinitionsArray = [testBlock]
 
 
-export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(
-    [testBlock, ...neoPixelBlockDefinitions, ...ledBlockDefinitions, ...servoMotorBlockDefinitions, ...buzzerBlockDefinitions, ...lightBuzzerBlockDefinitation]);
+export const blockConfigs = [neopixelBlockConfig]
 
-Blockly.Blocks['change_led_state'] = {
-    init: function () {
-        this.appendDummyInput()
-            .appendField("Turn Led")
-            .appendField(new Blockly.FieldDropdown([["On", "1"], ["Off", "0"]]), "LED_STATE");
-        this.setInputsInline(true);
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour('#FF0000');
-        this.setTooltip("You can change led state!");
-        this.setHelpUrl("");
+export const forJsBlock = Object.create(null);
+
+for (let key in blockKeys) {
+    if (blockKeys.hasOwnProperty(key)) {
+        console.log(key + ': ' + blockKeys[key]);
+        blockConfigs.forEach((blockConfig) => {
+            console.log(blockConfig['blockDefinitions'],key,'ss')
+            if (blockConfig['blockDefinitions'].hasOwnProperty(key)) {
+                blockDefinitionsArray.push(blockConfig['blockDefinitions'][key])
+                forJsBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key]();
+            }
+        })
     }
-};
+}
 
-Blockly.Blocks['delay_ms'] = {
-    init: function () {
-        this.appendValueInput("time")
-            .setCheck("Number")
-            .appendField("delay Seconds");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour('#FF0000');
-        this.setTooltip("Delay processing in milliseconds");
-        this.setHelpUrl("http://www.bipes.net.br/");
-    }
-};
-
-Blockly.Blocks['move_forward'] = {
-    init: function () {
-        this.appendDummyInput()
-            .appendField("Move forward");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(230);
-        this.setTooltip("");
-        this.setHelpUrl("");
-    }
-};
-
+console.log(blockDefinitionsArray)
+export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(blockDefinitionsArray);
+// export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray(
+//     [testBlock, ...neoPixelBlockDefinitions, ...ledBlockDefinitions, ...servoMotorBlockDefinitions, ...buzzerBlockDefinitions, ...lightBuzzerBlockDefinitation]);
 
