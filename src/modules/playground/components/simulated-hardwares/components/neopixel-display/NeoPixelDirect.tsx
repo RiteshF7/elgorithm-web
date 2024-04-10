@@ -1,10 +1,7 @@
 // NeoPixelMatrix.tsx
-import React, {FC, useEffect, useRef, useState} from "react";
+import React, {FC} from "react";
 import '@wokwi/elements';
-import {ControllerType, Direction, MatrixType, TestCase} from "./types";
-import {calculateMove, isValidPosition} from "./NeoPixelUtils";
-import {NeopixelMatrixElement} from "@wokwi/elements";
-import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
+import {ControllerType, MatrixType, TestCase} from "./types";
 import {Button} from "@/modules/common/components/button/Button";
 import {
     useNeoPixelViewModel
@@ -33,11 +30,13 @@ export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
 
 export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, matrixSize, controllerType}) => {
+    const buttonVisibilityClass = controllerType === ControllerType.blocks ? "block" : "hidden";
 
-    const {neoPixelDisplayRef, animation,executeBlockCode} = useNeoPixelViewModel({
+    const {neoPixelDisplayRef, animation, executeBlockCode} = useNeoPixelViewModel({
         matrixType,
         testCase,
         matrixSize,
+        controllerType
     });
     return (
 
@@ -48,7 +47,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
                                        blurLight={true}
                                        animation={animation ? true : undefined}></wokwi-neopixel-matrix>
             </div>
-            <Button uiType={'primary'} onClick={executeBlockCode}></Button>
+            <Button className={`button ${buttonVisibilityClass}`} uiType={'primary'} onClick={executeBlockCode}></Button>
 
 
         </div>

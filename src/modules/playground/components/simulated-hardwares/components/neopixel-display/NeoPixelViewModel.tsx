@@ -1,7 +1,7 @@
 // NeoPixelViewModel.tsx
 import {useEffect, useRef, useState} from "react";
 import {calculateMove, isValidPosition} from "./NeoPixelUtils";
-import {Direction, MatrixType, TestCase} from "./types";
+import {ControllerType, Direction, MatrixType, TestCase} from "./types";
 import {NeopixelMatrixElement} from "@wokwi/elements";
 import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
@@ -9,10 +9,11 @@ import {usePlayground} from "@/modules/playground/providers/playground.provider"
 interface NeoPixelViewModelProps {
     matrixSize: number;
     matrixType: MatrixType;
+    controllerType: ControllerType;
     testCase: TestCase;
 }
 
-export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,}: NeoPixelViewModelProps) => {
+export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controllerType}: NeoPixelViewModelProps) => {
     const {getJsCode} = usePlayground();
     const row = 0, column = 1;
     const input = testCase.input[0];
@@ -25,7 +26,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,}: NeoPix
 
     useEffect(() => {
         initDisplay();
-        window.addEventListener("keydown", handleKeyboardEvents);
+        if(controllerType === ControllerType.keyboard)  window.addEventListener("keydown", handleKeyboardEvents);
         return () => {
             window.removeEventListener("keydown", handleKeyboardEvents);
         };
@@ -51,21 +52,14 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,}: NeoPix
     }
 
     function executeCode(code: string) {
-        //right block code
-        // move('right')
         const execute = new Function('move',code)
         execute(move);
     }
 
     function executeBlockCode(){
         let code  = getJsCode()
-        if (code) {
-            executeCode(code)
-        }
-        else{
-            console.log("no code")
-        }
-
+        if (code) executeCode(code)
+        else console.log("no code")
     }
 
 
@@ -73,6 +67,8 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,}: NeoPix
     function initDisplay() {
         neoPixelDisplayRef.current?.reset();
         position = [...startingPosition];
+        step = 0;
+        expectedPixelPath = [];
         testCase.input.forEach((position: number[]) => {
             setPixelWithColor(position, getRandomColor());
         });
