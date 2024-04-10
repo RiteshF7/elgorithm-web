@@ -2,21 +2,20 @@ import {COMPONENT_KEY} from "@/modules/playground/components/simulated-hardwares
 import {getChannelMessageWithDelay} from "@/utils/pg-comm-channel.util";
 import {Direction} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
 
-
 const neoPixelController = {
-    moveUp: () => getDirectionMessage( Direction.Up ),
-    moveDown: () => getDirectionMessage(Direction.Down ),
-    moveLeft: () => getDirectionMessage( Direction.Left ),
-    moveRight: () => getDirectionMessage(Direction.Right ),
-    moveTopLeft: () => getDirectionMessage(Direction.TopLeft ),
-    moveTopRight: () => getDirectionMessage(Direction.TopRight ),
-    moveBottomLeft: () => getDirectionMessage(Direction.BottomLeft ),
-    moveBottomRight: () => getDirectionMessage(Direction.BottomRight ),
-    stop: () => getDirectionMessage(Direction.Stop ),
+    moveUp: () => getBlockCode( Direction.Up ),
+    moveDown: () => getBlockCode(Direction.Down ),
+    moveLeft: () => getBlockCode( Direction.Left ),
+    moveRight: () => getBlockCode(Direction.Right ),
+    moveTopLeft: () => getBlockCode(Direction.TopLeft ),
+    moveTopRight: () => getBlockCode(Direction.TopRight ),
+    moveBottomLeft: () => getBlockCode(Direction.BottomLeft ),
+    moveBottomRight: () => getBlockCode(Direction.BottomRight ),
+    stop: () => getBlockCode(Direction.Stop ),
 };
 
-function getDirectionMessage(payload: Direction) {
-    return getChannelMessageWithDelay(COMPONENT_KEY, { direction: payload });
+function getBlockCode(payload: Direction) {
+    return `await delay(200);\nmove('${payload}');\n`
 }
 
 export default neoPixelController;

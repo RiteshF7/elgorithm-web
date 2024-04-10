@@ -34,7 +34,7 @@ export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
 
 export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, matrixSize, controllerType}) => {
 
-    const {neoPixelDisplayRef, animation} = useNeoPixelViewModel({
+    const {neoPixelDisplayRef, animation,executeBlockCode} = useNeoPixelViewModel({
         matrixType,
         testCase,
         matrixSize,
@@ -48,6 +48,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
                                        blurLight={true}
                                        animation={animation ? true : undefined}></wokwi-neopixel-matrix>
             </div>
+            <Button uiType={'primary'} onClick={executeBlockCode}></Button>
 
 
         </div>

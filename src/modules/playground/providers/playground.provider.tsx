@@ -11,6 +11,7 @@ interface PlaygroundContextProps {
     playground: Playground | null;
     initPlayground: (element: HTMLDivElement) => void;
     runCode: () => void;
+    getJsCode: () => string;
     connect: () => void;
     registerComponent: RegisterPlaygroundComponent;
     moveToNextLevel:(levelId:string)=>void;
@@ -21,6 +22,7 @@ const PlaygroundContext = createContext<PlaygroundContextProps>({
     playground: null,
     initPlayground: () => null,
     runCode: () => null,
+    getJsCode: () => '',
     connect: () => null,
     registerComponent: () => null,
     moveToNextLevel:()=>null
@@ -33,6 +35,13 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
     const [playgroundInstance, setPlaygroundInstance] = useState<Playground | null>(null);
     const initPlayground = (element: HTMLDivElement) => {
         setPlaygroundInstance(new Playground(element, ToolboxContainer));
+    }
+
+    function getJsCode():string{
+        if (playgroundInstance) {
+            return playgroundInstance.getJsCode();
+        }
+        return ''
     }
 
     const runCode = () => {
@@ -59,6 +68,7 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
             playground: playgroundInstance,
             initPlayground,
             runCode,
+            getJsCode,
             connect,
             registerComponent,
             moveToNextLevel

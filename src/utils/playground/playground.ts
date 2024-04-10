@@ -8,6 +8,7 @@ import {blocks} from "./workspace/blocks/blocks";
 import theme from './workspace/elgotheme';
 import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
 import {getCodeCompletionCallback, initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
+import {Direction} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
 
 initBlockly();
 
@@ -36,20 +37,38 @@ export class Playground {
         load(this.workspace);
     }
 
+    getAsyncCodeWithPredefinedFunctions(blockCode: string): string {
+        const codePrefix = `
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\n
+    
+    const executeTimeouts = async () => {\n`
+
+        const codePostfix = ` };\nreturn executeTimeouts();`
+
+        let code = codePrefix + blockCode + codePostfix
+        console.log(code)
+        return code;
+
+    }
+
     connectToDevice(): void {
         connectSerial().then(r => console.log(`device connected :: ${r}`)).catch(e => console.log(`device not connected :: ${e}`));
     }
 
-    generateExecJsCode() {
+
+    getJsCode(): string {
         let code = javascriptGenerator.workspaceToCode(this.workspace);
-        code += `\n ${getCodeCompletionCallback()}`
-        console.log(code)
+        code = this.getAsyncCodeWithPredefinedFunctions(code);
+        return code
+    }
+
+    generateExecJsCode() {
         // eval(code)
-        this.executeJsCode(code)
+        this.executeJsCode(this.getJsCode())
 
     }
 
-     executeJsCode(code:string,arg1 = 0, arg2 = 0, arg3 = 0, arg4 = 0, arg5 = 0): number {
+    executeJsCode(code: string, arg1 = 0, arg2 = 0, arg3 = 0, arg4 = 0, arg5 = 0): number {
         const something = new Function('arg1', 'arg2', 'arg3', 'arg4', 'arg5', code);
         return something(arg1, arg2, arg3, arg4, arg5);
     }

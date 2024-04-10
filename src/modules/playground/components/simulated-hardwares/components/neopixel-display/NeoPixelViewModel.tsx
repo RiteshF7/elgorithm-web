@@ -4,6 +4,7 @@ import {calculateMove, isValidPosition} from "./NeoPixelUtils";
 import {Direction, MatrixType, TestCase} from "./types";
 import {NeopixelMatrixElement} from "@wokwi/elements";
 import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
+import {usePlayground} from "@/modules/playground/providers/playground.provider";
 
 interface NeoPixelViewModelProps {
     matrixSize: number;
@@ -12,6 +13,7 @@ interface NeoPixelViewModelProps {
 }
 
 export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,}: NeoPixelViewModelProps) => {
+    const {getJsCode} = usePlayground();
     const row = 0, column = 1;
     const input = testCase.input[0];
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
@@ -47,6 +49,26 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,}: NeoPix
                 break;
         }
     }
+
+    function executeCode(code: string) {
+        //right block code
+        // move('right')
+        const execute = new Function('move',code)
+        execute(move);
+    }
+
+    function executeBlockCode(){
+        let code  = getJsCode()
+        if (code) {
+            executeCode(code)
+        }
+        else{
+            console.log("no code")
+        }
+
+    }
+
+
 
     function initDisplay() {
         neoPixelDisplayRef.current?.reset();
@@ -146,5 +168,5 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,}: NeoPix
         );
     }
 
-    return {neoPixelDisplayRef, animation};
+    return {neoPixelDisplayRef, animation,executeBlockCode};
 };

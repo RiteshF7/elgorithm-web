@@ -15,6 +15,6 @@ export const ToolboxContainer = {
 
     'kind': 'flyoutToolbox',
     'contents': [
-        forLoop,...ledToolbox]
+        forLoop,...ledToolbox,...neoPixelToolbox]
 
 }
