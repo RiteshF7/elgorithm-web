@@ -32,14 +32,16 @@ export const PlaygroundContainerContent = [
         description: 'move pixel right 5 times',
         blockKeys: [BlockKeys.moveRight, BlockKeys.moveLeft],
         runnerConfig: {
-            module:NeoPixelDirect,
-            matrixSize: 11,
-            matrixType: MatrixType.UNI_DIRECTIONAL,
-            testCase: {
-                input: [[5, 5]],
-                expectedOutput: [[5, 6], [5, 7], [5, 8]]
-            },
-            controllerType: ControllerType.blocks
+            moduleName:Modules.NeoPixelModule,
+            moduleConfig:{
+                matrixSize: 11,
+                matrixType: MatrixType.UNI_DIRECTIONAL,
+                testCase: {
+                    input: [[5, 5]],
+                    expectedOutput: [[5, 6], [5, 7], [5, 8]]
+                },
+                controllerType: ControllerType.blocks
+            }
         }
     },
     {
@@ -47,17 +49,19 @@ export const PlaygroundContainerContent = [
         description: 'move pixel right 5 times',
         blockKeys: [BlockKeys.moveRight, BlockKeys.moveLeft],
         runnerConfig: {
-            module:NeoPixelDirect,
-            matrixSize: 11,
-            matrixType: MatrixType.BI_DIRECTIONAL,
-            testCase:{
-                input: [[5, 5], [10, 10]],
-                expectedOutput: [
-                    [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
-                    [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
-                ]
-            },
-            controllerType: ControllerType.blocks
+            moduleName:Modules.NeoPixelModule,
+            moduleConfig:{
+                matrixSize: 11,
+                matrixType: MatrixType.BI_DIRECTIONAL,
+                testCase:{
+                    input: [[5, 5], [10, 10]],
+                    expectedOutput: [
+                        [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
+                        [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
+                    ]
+                },
+                controllerType: ControllerType.blocks
+            }
         }
     },
 ]

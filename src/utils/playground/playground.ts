@@ -38,12 +38,12 @@ export class Playground {
 
     getAsyncCodeWithPredefinedFunctions(blockCode: string): string {
         const codePrefix = `
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\n
-    
-    const executeTimeouts = async () => {\n`
-
-        const codePostfix = `\nawait delay(1000);\nhandleCodeCompletion();\n };\nreturn executeTimeouts();`
-
+        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\n
+        const executeTimeouts = async () => {\n`
+        const codePostfix = `\n
+        await delay(1000);\n
+        handleCodeCompletion();\n }; \n
+        return executeTimeouts();`
         let code = codePrefix + blockCode + codePostfix
         console.log(code)
         return code;

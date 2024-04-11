@@ -5,22 +5,17 @@ import {ControllerType, Direction, MatrixType, TestCase} from "./types";
 import {NeopixelMatrixElement} from "@wokwi/elements";
 import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
+import _ from 'lodash'
 import neopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
 
 
-
-
-interface NeoPixelViewModelProps  {
+interface NeoPixelViewModelProps {
     matrixSize: number;
     matrixType: MatrixType;
     controllerType: ControllerType;
     testCase: TestCase;
 }
-
-
-
-
 
 
 export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controllerType}: NeoPixelViewModelProps) => {
@@ -32,10 +27,10 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     const startingPosition = [input[row], input[column]];
     const [animation, setAnimation] = useState<boolean>(false);
     let position = [...startingPosition];
-    let step = 0;
-    let expectedPixelPath: any[] = [];
+    let actualPixelPath: any[] = [];
 
     useEffect(() => {
+
         initDisplay();
         if (controllerType === ControllerType.keyboard) window.addEventListener("keydown", handleKeyboardEvents);
         return () => {
@@ -64,29 +59,15 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     }
 
     function executeCode(code: string) {
-        const execute = new Function('move','handleCodeCompletion', code)
-        execute(move,handleCodeCompletion);
+        const execute = new Function('move', 'handleCodeCompletion', code)
+        execute(move, handleCodeCompletion);
     }
 
     function handleCodeCompletion() {
-        console.log("code completed",step,expectedPixelPath);
-
-        //no steps performed
-        if(step === 0){
-            handleFailure();
-            return;
-        }
-
-        if (step === expectedPixelPath.length) {
-            handleSuccess();
-            return;
-        }
-
-        //less step performed
-        if(step < expectedPixelPath.length ){
-            handleFailure()
-            return;
-        }
+        let expectedPixelPath = getExpectedPath()
+        if (actualPixelPath.length === 0 || expectedPixelPath.length === 0 || actualPixelPath.length != expectedPixelPath.length) return handleFailure()
+        if (_.isEqual(actualPixelPath, expectedPixelPath)) return handleSuccess()
+        else return handleFailure()
 
     }
 
@@ -100,8 +81,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     function initDisplay() {
         neoPixelDisplayRef.current?.reset();
         position = [...startingPosition];
-        step = 0;
-        expectedPixelPath = [];
+        actualPixelPath = []
         testCase.input.forEach((position: number[]) => {
             setPixelWithColor(position, getRandomColor());
         });
@@ -119,6 +99,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     }
 
     function move(direction: Direction): void {
+
         const newPosition = calculateMove(direction, position);
         if (!isValidPosition(newPosition[row], newPosition[column], matrixSize)) {
             console.log("invalid move!");
@@ -127,38 +108,27 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
         }
         position[row] = newPosition[row];
         position[column] = newPosition[column];
-        if (isValidStep(position)) {
-            setPixel(position);
-            return;
-        }
-        handleFailure();
+        actualPixelPath.push([...position])
+        setPixel(position);
     }
 
-    function setExpectedPath(actualPosition: number[]) {
-        if (step === 0) {
-            switch (matrixType) {
-                case MatrixType.BI_DIRECTIONAL:
-                    const matchingPath = testCase.expectedOutput.find((path) =>
-                        isPixelEqual(actualPosition, path[0])
-                    );
-                    if (matchingPath) expectedPixelPath = matchingPath;
-                    break;
-                case MatrixType.UNI_DIRECTIONAL:
-                    expectedPixelPath = testCase.expectedOutput;
-                    break;
-                default:
-                    break;
-            }
+    function getExpectedPath(): any[] {
+
+        switch (matrixType) {
+            case MatrixType.BI_DIRECTIONAL:
+                const matchingPath = testCase.expectedOutput.find((path) =>
+                    isPixelEqual(actualPixelPath[0], path[0])
+                );
+                if (matchingPath) return matchingPath;
+                return [];
+            case MatrixType.UNI_DIRECTIONAL:
+                return testCase.expectedOutput;
+            default:
+                break;
         }
+        return [];
     }
 
-    function isValidStep(actualPosition: number[]): boolean {
-        setExpectedPath(actualPosition);
-        const expectedPixelPosition = expectedPixelPath[step];
-        if (!expectedPixelPosition) return false;
-        step++;
-        return isPixelEqual(actualPosition, expectedPixelPosition);
-    }
 
     function isPixelEqual(actualPosition: number[], expectedPosition: any) {
         return actualPosition.every(
