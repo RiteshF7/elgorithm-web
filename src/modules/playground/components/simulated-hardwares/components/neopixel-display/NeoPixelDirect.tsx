@@ -1,4 +1,3 @@
-// NeoPixelMatrix.tsx
 import React, {FC} from "react";
 import '@wokwi/elements';
 import {ControllerType, MatrixType, TestCase} from "./types";

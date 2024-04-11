@@ -101,10 +101,10 @@ function getToolboxBlock(blockKey: string): any {
 }
 
 const straightToolbox = [
-    getToolboxBlock(blockKeys.moveBottomLeft),
-    getToolboxBlock(blockKeys.moveBottomRight),
-    getToolboxBlock(blockKeys.moveTopLeft),
-    getToolboxBlock(blockKeys.moveTopRight),
+    getToolboxBlock(blockKeys.moveDown),
+    getToolboxBlock(blockKeys.moveRight),
+    getToolboxBlock(blockKeys.moveUp),
+    getToolboxBlock(blockKeys.moveLeft),
 ]
 const verticalToolbox = [
     getToolboxBlock(blockKeys.moveBottomLeft),

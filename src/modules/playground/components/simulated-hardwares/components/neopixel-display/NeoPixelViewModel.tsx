@@ -14,7 +14,8 @@ interface NeoPixelViewModelProps {
 }
 
 export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controllerType}: NeoPixelViewModelProps) => {
-    const {getJsCode} = usePlayground();
+
+    const {getJsCode,moveToNextLevel} = usePlayground();
     const row = 0, column = 1;
     const input = testCase.input[0];
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
@@ -33,6 +34,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controlle
     }, []);
 
     function handleKeyboardEvents(event: KeyboardEvent) {
+        event.preventDefault()
         switch (event.key) {
             case "ArrowUp":
                 move(Direction.Up);
@@ -76,6 +78,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controlle
 
     function handleSuccess() {
         initDisplay();
+        moveToNextLevel('next level id')
         setAnimation(true);
     }
 
@@ -88,6 +91,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controlle
         const newPosition = calculateMove(direction, position);
         if (!isValidPosition(newPosition[row], newPosition[column], matrixSize)) {
             console.log("invalid move!");
+            handleFailure()
             return;
         }
         position[row] = newPosition[row];
