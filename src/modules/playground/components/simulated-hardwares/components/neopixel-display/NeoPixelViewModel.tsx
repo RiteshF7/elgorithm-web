@@ -5,17 +5,27 @@ import {ControllerType, Direction, MatrixType, TestCase} from "./types";
 import {NeopixelMatrixElement} from "@wokwi/elements";
 import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
+import neopixelBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
 
-interface NeoPixelViewModelProps {
+
+
+
+interface NeoPixelViewModelProps  {
     matrixSize: number;
     matrixType: MatrixType;
     controllerType: ControllerType;
     testCase: TestCase;
 }
 
-export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controllerType}: NeoPixelViewModelProps) => {
 
-    const {getJsCode,moveToNextLevel} = usePlayground();
+
+
+
+
+export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controllerType}: NeoPixelViewModelProps) => {
+
+    const {getJsCode, moveToNextLevel} = usePlayground();
     const row = 0, column = 1;
     const input = testCase.input[0];
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
@@ -27,7 +37,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controlle
 
     useEffect(() => {
         initDisplay();
-        if(controllerType === ControllerType.keyboard)  window.addEventListener("keydown", handleKeyboardEvents);
+        if (controllerType === ControllerType.keyboard) window.addEventListener("keydown", handleKeyboardEvents);
         return () => {
             window.removeEventListener("keydown", handleKeyboardEvents);
         };
@@ -54,16 +64,15 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controlle
     }
 
     function executeCode(code: string) {
-        const execute = new Function('move',code)
+        const execute = new Function('move', code)
         execute(move);
     }
 
-    function executeBlockCode(){
-        let code  = getJsCode()
+    function executeBlockCode() {
+        let code = getJsCode()
         if (code) executeCode(code)
         else console.log("no code")
     }
-
 
 
     function initDisplay() {
@@ -168,5 +177,5 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase,controlle
         );
     }
 
-    return {neoPixelDisplayRef, animation,executeBlockCode};
+    return {neoPixelDisplayRef, animation, executeBlockCode};
 };

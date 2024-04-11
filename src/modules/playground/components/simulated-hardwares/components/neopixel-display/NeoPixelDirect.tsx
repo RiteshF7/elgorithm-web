@@ -24,19 +24,20 @@ interface NeoPixelMatrixProps {
     controllerType: ControllerType
 }
 
+export const COMPONENT_KEY = 'NEO_PIXEL_DIRECT';
 
-export const COMPONENT_KEY = 'NEO_PIXEL_MATRIX';
+
 
 
 export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, matrixSize, controllerType}) => {
+
     const buttonVisibilityClass = controllerType === ControllerType.blocks ? "block" : "hidden";
 
     const {neoPixelDisplayRef, animation, executeBlockCode} = useNeoPixelViewModel({
         matrixType,
         testCase,
         matrixSize,
-        controllerType
-    });
+        controllerType,});
     return (
 
         <div className={'flex-col items-center'}>
@@ -46,6 +47,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
                                        blurLight={true}
                                        animation={animation ? true : undefined}></wokwi-neopixel-matrix>
             </div>
+
             <Button className={`button ${buttonVisibilityClass}`} uiType={'primary'} onClick={executeBlockCode}></Button>
 
 
