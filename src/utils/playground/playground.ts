@@ -42,7 +42,7 @@ export class Playground {
     
     const executeTimeouts = async () => {\n`
 
-        const codePostfix = ` };\nreturn executeTimeouts();`
+        const codePostfix = `\nawait delay(1000);\nhandleCodeCompletion();\n };\nreturn executeTimeouts();`
 
         let code = codePrefix + blockCode + codePostfix
         console.log(code)

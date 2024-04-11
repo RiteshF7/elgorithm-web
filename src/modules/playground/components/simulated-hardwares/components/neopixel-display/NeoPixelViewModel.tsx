@@ -64,8 +64,30 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     }
 
     function executeCode(code: string) {
-        const execute = new Function('move', code)
-        execute(move);
+        const execute = new Function('move','handleCodeCompletion', code)
+        execute(move,handleCodeCompletion);
+    }
+
+    function handleCodeCompletion() {
+        console.log("code completed",step,expectedPixelPath);
+
+        //no steps performed
+        if(step === 0){
+            handleFailure();
+            return;
+        }
+
+        if (step === expectedPixelPath.length) {
+            handleSuccess();
+            return;
+        }
+
+        //less step performed
+        if(step < expectedPixelPath.length ){
+            handleFailure()
+            return;
+        }
+
     }
 
     function executeBlockCode() {
@@ -88,7 +110,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     function handleSuccess() {
         initDisplay();
         moveToNextLevel('next level id')
-        setAnimation(true);
+        // setAnimation(true);
     }
 
     function handleFailure() {
@@ -107,10 +129,6 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
         position[column] = newPosition[column];
         if (isValidStep(position)) {
             setPixel(position);
-            if (step === expectedPixelPath.length) {
-                handleSuccess();
-                return;
-            }
             return;
         }
         handleFailure();
