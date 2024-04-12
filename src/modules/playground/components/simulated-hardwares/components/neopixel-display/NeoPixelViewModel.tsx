@@ -90,11 +90,9 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     function handleSuccess() {
         initDisplay();
         moveToNextLevel('next level id')
-        // setAnimation(true);
     }
 
     function handleFailure() {
-        console.log("failure!");
         initDisplay();
     }
 

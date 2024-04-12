@@ -8,12 +8,30 @@ import {
     NeoPixelDirect
 } from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
 import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import NeopixelBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
+import {loopsToolbox} from "@/utils/playground/workspace/toolbox/core/loopsToolbox";
 
 export const PlaygroundContainerContent = [
     {
-        question: 'move pixel right',
-        description: 'move pixel right',
-        blockKeys: [BlockKeys.moveRight, BlockKeys.moveLeft],
+        chapterId:0,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "turn pixel right",
+            description: "turn pixel right",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...NeopixelBlockConfig.toolBox,...loopsToolbox],
+        },
         runnerConfig: {
             moduleName:Modules.NeoPixelModule,
             moduleConfig:{
@@ -28,9 +46,24 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        question: 'move pixel right 5 times',
-        description: 'move pixel right 5 times',
-        blockKeys: [BlockKeys.moveRight, BlockKeys.moveLeft],
+        chapterId:0,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "move pixel right 3 times",
+            description: "turn pixel right 3 times",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...NeopixelBlockConfig.toolBox,...loopsToolbox],
+        },
         runnerConfig: {
             moduleName:Modules.NeoPixelModule,
             moduleConfig:{
@@ -45,10 +78,24 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        question: 'Connect two pixels in the shortest distance',
-        description: 'move pixel right 5 times',
-        blockKeys: [BlockKeys.moveRight, BlockKeys.moveLeft],
-        runnerConfig: {
+        chapterId:0,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "join two pixels",
+            description: "join two right",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...NeopixelBlockConfig.toolBox,...loopsToolbox],
+        },        runnerConfig: {
             moduleName:Modules.NeoPixelModule,
             moduleConfig:{
                 matrixSize: 11,

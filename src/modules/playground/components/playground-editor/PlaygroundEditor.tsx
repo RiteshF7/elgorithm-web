@@ -2,20 +2,25 @@
 import React, {FC, useEffect, useRef} from "react";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {PlaygroundActions} from "@/modules/playground/components/playground-actions/PlaygroundActions";
+import NeopixelBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
 
 interface PlaygroundEditorProps {
-
+editorConfig:any;
 }
 
-export const PlaygroundEditor: FC<PlaygroundEditorProps> = () => {
+export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
     const editorRef = useRef<HTMLDivElement>(null);
     const initializedEditor = useRef(false);
-
+    const toolboxContainer = {
+        'kind': editorConfig.toolboxType,
+        'contents':[...editorConfig.toolboxContent]
+    }
     const {initPlayground} = usePlayground();
 
     useEffect(() => {
         if (editorRef.current && !initializedEditor.current) {
-            initPlayground(editorRef.current);
+            initPlayground(editorRef.current,toolboxContainer);
             initializedEditor.current = true;
         }
     }, []);
