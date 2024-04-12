@@ -8,6 +8,7 @@ import {usePlayground} from "@/modules/playground/providers/playground.provider"
 import _ from 'lodash'
 import neopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
+import {useModuleBaseViewModel} from "@/modules/playground/components/simulated-hardwares/utils/ModuleBaseViewModel";
 
 
 interface NeoPixelViewModelProps {
@@ -28,6 +29,8 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     const [animation, setAnimation] = useState<boolean>(false);
     let position = [...startingPosition];
     let actualPixelPath: any[] = [];
+
+    const {executeCode,getCompletionStatus} = useModuleBaseViewModel()
 
     useEffect(() => {
 
@@ -58,23 +61,18 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
         }
     }
 
-    function executeCode(code: string) {
-        const execute = new Function('move', 'handleCodeCompletion', code)
-        execute(move, handleCodeCompletion);
-    }
+
 
     function handleCodeCompletion() {
+        if(actualPixelPath.length===0) return handleFailure()
         let expectedPixelPath = getExpectedPath()
-        if (actualPixelPath.length === 0 || expectedPixelPath.length === 0 || actualPixelPath.length != expectedPixelPath.length) return handleFailure()
-        if (_.isEqual(actualPixelPath, expectedPixelPath)) return handleSuccess()
-        else return handleFailure()
-
+        const result = getCompletionStatus(expectedPixelPath,actualPixelPath)
+        if(result.status) handleSuccess()
+        else handleFailure()
     }
 
     function executeBlockCode() {
-        let code = getJsCode()
-        if (code) executeCode(code)
-        else console.log("no code")
+        executeCode([move],['move'],handleCodeCompletion)
     }
 
 

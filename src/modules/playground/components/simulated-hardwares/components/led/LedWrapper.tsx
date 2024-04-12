@@ -1,51 +1,79 @@
 import {FC, useEffect, useState} from "react";
-import {useShContext} from "@/modules/playground/providers/SH.provider";
-import {COMPONENT_KEY, Led, LedConfig} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
-import {AutoRangeInput} from "@/modules/common/components/range-input/RangeInput";
-import {usePlayground} from "@/modules/playground/providers/playground.provider";
+import {Led, LedConfig} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
+import {Button} from "@/modules/common/components/button/Button";
+import _ from 'lodash'
 
-export const LedWrapper: FC = () => {
-    const {registerComponent, initialUiState, updateUiState, checkCompletionStatus} = useShContext();
-    const {moveToNextLevel} = usePlayground()
-    const ledInitialState = {...initialUiState.LED};
-    const ledUiState = {...ledInitialState}
-    const [ledState, setState] = useState<LedConfig>(ledInitialState)
+export const LedModule: FC = () => {
 
-    useEffect(() => {
 
-        registerComponent(COMPONENT_KEY, (data) => {
-            const isCompleted = checkCompletionStatus(data,
 
-                () => {
-                    setState((state) => ({...state, ...ledInitialState}))
-                    // alert('success')
-                    console.log('success!')
-                    moveToNextLevel('002')
 
-                },
+    const [ledState, setLedState] = useState<LedConfig>({active: false, color: 'red'})
 
-                () => {
-                    setState((state) => ({...state, ...ledInitialState}))
-                    // alert('failed')
-                    console.log('failed!')
-                })
+    //add error message
+    const testCases = [
+        {input: 55, output: {active: false, color: 'red'}},
+        {input: 40, output: {active: true, color: 'red'}},
+    ]
 
-            if (!isCompleted) {
-                //check if possible in neopixel
-                // ledUiState.active = data.active;
-                // ledUiState.color = data.color;
-                updateUiState(COMPONENT_KEY, data)
-                setState((state) => ({...state, ...data}))
+    const codePrefix = `
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\n
+    
+    const changeLedState = async (state)=>{
+        await delay(1000);
+        setLedState(state);
+        return state
+    }
+    
+    const executeTimeouts = async () => {\n`
+
+    const codePostfix = ` };\nreturn executeTimeouts();`
+
+
+    const blockCode= `
+
+     if(input>50){
+            return await changeLedState({ active: false, color: 'red' });
+        }
+
+        if(input<50){
+            return await changeLedState({ active: true, color: 'red' });
+        }
+    `
+    const executableCode = codePrefix + blockCode + codePostfix
+
+
+    // @ts-ignore
+    const changeLedState = async (delay: (ms) => Promise<unknown>, state: any) => {
+        await delay(1000);
+        setLedState(state);
+        return state
+    }
+
+
+
+
+    async function onClick() {
+        const func = new Function('setLedState', 'input', executableCode)
+        for (const testCase of testCases) {
+            const actualOutput = await func(setLedState, testCase.input)
+            console.log(actualOutput)
+            if (_.isEqual(actualOutput, testCase.output)) {
+                //sendSuccessCallback()
+                console.log('test case passed!')
+            } else {
+                //sendFailureCallback with testcase error message
+                console.log('test case failed!')
             }
+        }
 
-        })
-    }, []);
+    }
 
     return (
-        <div className={'flex flex-col items-center '}>
+        <div className={'flex flex-col p-3 items-center'}>
             <Led config={ledState}/>
-            {/*<AutoRangeInput min={0} max={100} delay={1000} value={value} onChange={setValue} />*/}
-            {/*<p>Value: {value}</p>*/}
+            <Button onClick={onClick} uiType={'primary'}/>
         </div>
+
     )
 }
