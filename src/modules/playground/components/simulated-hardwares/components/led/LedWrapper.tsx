@@ -2,71 +2,36 @@ import {FC, useEffect, useState} from "react";
 import {Led, LedConfig} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
 import {Button} from "@/modules/common/components/button/Button";
 import _ from 'lodash'
+import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/led/LedViewModel";
+import {TestCase} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
 
-export const LedModule: FC = () => {
+export interface LedModuleProps {
+    testCase: LedTestCase;
+}
 
+interface LedTestCase{
+    input: LedConfig[],
+    expectedOutput: LedConfig[]
+}
 
+export const LedModule: FC<LedModuleProps> = ({testCase}) => {
 
-
-    const [ledState, setLedState] = useState<LedConfig>({active: false, color: 'red'})
-
-    //add error message
-    const testCases = [
-        {input: 55, output: {active: false, color: 'red'}},
-        {input: 40, output: {active: true, color: 'red'}},
-    ]
-
-    const codePrefix = `
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\n
-    
-    const changeLedState = async (state)=>{
-        await delay(1000);
-        setLedState(state);
-        return state
-    }
-    
-    const executeTimeouts = async () => {\n`
-
-    const codePostfix = ` };\nreturn executeTimeouts();`
-
-
-    const blockCode= `
-
-     if(input>50){
-            return await changeLedState({ active: false, color: 'red' });
-        }
-
-        if(input<50){
-            return await changeLedState({ active: true, color: 'red' });
-        }
-    `
-    const executableCode = codePrefix + blockCode + codePostfix
-
+    const {input,expectedOutput } = testCase
+    const initialState = input[0]
+    const [ledState, setLedState] = useState<LedConfig>(initialState);
+    const {runCode,actualState} = useSimpleStateViewModel(expectedOutput,resetModule);
 
     // @ts-ignore
-    const changeLedState = async (delay: (ms) => Promise<unknown>, state: any) => {
-        await delay(1000);
+    const changeLedState = async (state:LedConfig) => {
+        actualState.push(state)
         setLedState(state);
-        return state
     }
 
-
-
-
+    function resetModule(){
+        setLedState(initialState)
+    }
     async function onClick() {
-        const func = new Function('setLedState', 'input', executableCode)
-        for (const testCase of testCases) {
-            const actualOutput = await func(setLedState, testCase.input)
-            console.log(actualOutput)
-            if (_.isEqual(actualOutput, testCase.output)) {
-                //sendSuccessCallback()
-                console.log('test case passed!')
-            } else {
-                //sendFailureCallback with testcase error message
-                console.log('test case failed!')
-            }
-        }
-
+        runCode([changeLedState],['changeLedState'])
     }
 
     return (

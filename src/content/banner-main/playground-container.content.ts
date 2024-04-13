@@ -11,6 +11,9 @@ import {Modules} from "@/modules/playground/components/simulated-hardwares/modul
 import NeopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
 import {loopsToolbox} from "@/utils/playground/workspace/toolbox/core/loopsToolbox";
+import LedToolbox from "@/modules/playground/components/simulated-hardwares/components/led/ledToolbox";
+import LedModuleBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/led/ledModuleBlockConfig";
 
 export const PlaygroundContainerContent = [
     {
@@ -116,8 +119,8 @@ export const PlaygroundContainerContent = [
         type:'content',
         content: {
             contentId: 0,
-            title: "join two pixels",
-            description: "join two right",
+            title: "turn on led",
+            description: "turn on led",
             media: [
                 {
                     type: "video",
@@ -128,21 +131,15 @@ export const PlaygroundContainerContent = [
         },
         editorConfig:{
             toolboxType:'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox,...loopsToolbox],
+            toolboxContent: [...LedModuleBlockConfig.toolBox],
         },
         runnerConfig: {
-            moduleName:Modules.NeoPixelModule,
+            moduleName:Modules.LedModule,
             moduleConfig:{
-                matrixSize: 11,
-                matrixType: MatrixType.BI_DIRECTIONAL,
                 testCase:{
-                    input: [[5, 5], [10, 10]],
-                    expectedOutput: [
-                        [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
-                        [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
-                    ]
+                    input: [{state:false,color:'red'}],
+                    expectedOutput: [{active:true,color:'red'}]
                 },
-                controllerType: ControllerType.blocks
             }
         }
     },

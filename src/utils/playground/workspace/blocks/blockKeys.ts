@@ -9,9 +9,9 @@ const blockKeys = {
     moveBottomLeft: 'moveBottomLeft',
     moveBottomRight: 'moveBottomRight',
     //Led
-    turnOnLed: 'turn_on_led',
-    turnOffLed: 'turn_off_led',
-    blinkLed: 'blink_led',
+    turnOnLed: 'turnOnLed',
+    turnOffLed: 'turnOffLed',
+    blinkLed: 'blinkLed',
     //servo motor
     turnServoLeft: 'turn_servo_left',
     turnServoRight: 'turn_servo_right',

@@ -11,6 +11,8 @@ import lightBuzzerBlockDefinitation
     from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerBlockDefinitation";
 import neopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
+import ledModuleBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/led/ledModuleBlockConfig";
 
 
 const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
@@ -18,7 +20,7 @@ const blockDefinitionsArray = [testBlock]
 const toolBoxBlocks = []
 
 
-export const blockConfigs = [neopixelBlockConfig]
+export const blockConfigs = [neopixelBlockConfig,ledModuleBlockConfig]
 
 export const forJsBlock = Object.create(null);
 
