@@ -143,6 +143,35 @@ export const PlaygroundContainerContent = [
             }
         }
     },
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "blink led 3 times",
+            description: "turn on led then turn off 3 times",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...LedModuleBlockConfig.toolBox,...loopsToolbox],
+        },
+        runnerConfig: {
+            moduleName:Modules.LedModule,
+            moduleConfig:{
+                testCase:{
+                    input: [{state:false,color:'red'}],
+                    expectedOutput: [{active:true,color:'red'},{active:false,color:'red'},{active:true,color:'red'},{active:false,color:'red'},{active:true,color:'red'},{active:false,color:'red'},]
+                },
+            }
+        }
+    },
 ]
 
 interface NeoPixelMatrixProps {
