@@ -4,7 +4,7 @@ import _ from "lodash";
 
 
 
-export const useSimpleStateViewModel = (expectedPixelPath: any[],resetCallback = () => {}) => {
+export const useSimpleStateViewModel  = <StateType extends {}>(expectedStates: any[],resetCallback = () => {}) => {
     let actualState: any[] = []
     const {executeCode} = useModuleBaseViewModel()
     const {moveToNextLevel} = usePlayground()
@@ -19,10 +19,10 @@ export const useSimpleStateViewModel = (expectedPixelPath: any[],resetCallback =
 
         if (actualState.length === 0) return handleFailure()
 
-        if (expectedPixelPath.length === 0 || actualState.length != expectedPixelPath.length) return handleFailure()
+        if (expectedStates.length === 0 || actualState.length != expectedStates.length) return handleFailure()
         console.log('actual',actualState)
-        console.log('expected', expectedPixelPath)
-        if (_.isEqual(actualState, expectedPixelPath)) return handleSuccess()
+        console.log('expected', expectedStates)
+        if (_.isEqual(actualState, expectedStates)) return handleSuccess()
         else return handleFailure();
     }
 

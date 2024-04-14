@@ -11,9 +11,10 @@ import {Modules} from "@/modules/playground/components/simulated-hardwares/modul
 import NeopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
 import {loopsToolbox} from "@/utils/playground/workspace/toolbox/core/loopsToolbox";
-import LedToolbox from "@/modules/playground/components/simulated-hardwares/components/led/ledToolbox";
 import LedModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/led/ledModuleBlockConfig";
+import BuzzerModuleBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerModuleBlockConfig";
 
 export const PlaygroundContainerContent = [
     {
@@ -172,6 +173,36 @@ export const PlaygroundContainerContent = [
             }
         }
     },
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "blink led 3 times",
+            description: "turn on led then turn off 3 times",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...BuzzerModuleBlockConfig.toolBox,...loopsToolbox],
+        },
+        runnerConfig: {
+            moduleName:Modules.BuzzerModule,
+            moduleConfig:{
+                testCase:{
+                    input: [{state:false}],
+                    expectedOutput: [{state:true}]
+                },
+            }
+        }
+    },
+
 ]
 
 interface NeoPixelMatrixProps {

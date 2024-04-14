@@ -17,8 +17,8 @@ const blockKeys = {
     turnServoRight: 'turn_servo_right',
 
     //buzzer
-    turnOnBuzzer:'turn_on_buzzer',
-    turnOffBuzzer:'turn_off_buzzer',
+    turnOnBuzzer:'turnOnBuzzer',
+    turnOffBuzzer:'turnOffBuzzer',
 
     //light-buzzer
     lightBuzzerOnStart : 'light_buzzer_on_start',

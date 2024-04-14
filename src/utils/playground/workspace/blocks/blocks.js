@@ -1,8 +1,7 @@
 import * as Blockly from 'blockly/core';
 
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import ledBlockDefinitions
-    from "@/modules/playground/components/simulated-hardwares/components/led/ledBlockDefinitions";
+
 import servoMotorBlockDefinitions
     from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorBlockDefinitions";
 import buzzerBlockDefinitions
@@ -13,6 +12,8 @@ import neopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
 import ledModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/led/ledModuleBlockConfig";
+import buzzerBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerModuleBlockConfig";
 
 
 const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
@@ -20,7 +21,7 @@ const blockDefinitionsArray = [testBlock]
 const toolBoxBlocks = []
 
 
-export const blockConfigs = [neopixelBlockConfig,ledModuleBlockConfig]
+export const blockConfigs = [neopixelBlockConfig,ledModuleBlockConfig,buzzerBlockConfig]
 
 export const forJsBlock = Object.create(null);
 
@@ -41,6 +42,15 @@ for (let key in blockKeys) {
     }
 }
 
+
+export function getSimpleToolboxBlock(blockKey) {
+
+    return {
+        'kind': 'block',
+        'type': blockKey
+    }
+
+}
 
 
 console.log(blockDefinitionsArray)
