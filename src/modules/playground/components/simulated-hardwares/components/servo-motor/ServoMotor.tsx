@@ -6,85 +6,27 @@ import {resetMessageQueue} from "@/utils/pg-comm-channel.util";
 import {ComponentLogic} from "@/modules/playground/components/simulated-hardwares/utils/componentLogic";
 import SHCUtils from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 import {toDegrees} from "blockly/core/utils/math";
+import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/led/LedViewModel";
 
-interface ServoMotorProps {
-    initialPosition: Angle;
-    destinationPosition: Angle;
+interface ServoModuleProps {
+    testCase: servoMotorTestCase;
 }
 
-interface Angle {
-    degree: number
-}
-
-export enum ServoDirections {
-    RIGHT = 'Right',
-    LEFT = 'Left'
+interface servoMotorTestCase {
+    input: number[];
+    expectedOutput: number[];
 }
 
 export const COMPONENT_KEY = 'SERVO_MOTOR'
-export const ServoMotor: FC<ServoMotorProps> = ({initialPosition, destinationPosition}) => {
-    const [angle, setAngle] = useState<Angle>({ degree: 0 });
-
-    const registerComponent = usePlayground()
-    const shcUtils = new SHCUtils(COMPONENT_KEY, initialPosition, destinationPosition, handleSuccess, handleFailure)
-
-
-    useEffect(() => {
-        shcUtils.initComponent(handlePayload)
-    }, []);
-
-
-    function handleSuccess() {
-        resetComponent()
-    }
-
-    function handleFailure() {
-        resetComponent()
-    }
-
-    function handlePayload(data: any) {
-        turn(data.direction);
-    }
-
-    function resetComponent() {
-        setAngle(initialPosition)
-    }
-
-
-
-    //process motion
-    function turn(direction: ServoDirections) {
-        switch (direction) {
-            case ServoDirections.RIGHT:
-                turnRight()
-                break;
-            case ServoDirections.LEFT:
-                turnLeft()
-                break;
-        }
-    }
-
-
-    function turnRight() {
-        setAngle(prevAngle => {
-            const updatedAngle = {degree: (prevAngle.degree + 45) % 360}
-            shcUtils.updateState(updatedAngle)
-            return {...prevAngle, ...updatedAngle}
-        })
-
-    }
-
-    function turnLeft() {
-        setAngle(prevAngle => {
-            const updatedAngle = {degree: (prevAngle.degree - 45) % 360}
-            shcUtils.updateState(updatedAngle)
-            return {...prevAngle, ...updatedAngle}        })
-    }
-
+export const ServoMotor: FC<ServoModuleProps> = ({testCase}) => {
+   const {runCode,state} = useSimpleStateViewModel<number>(testCase);
+   let 
 
     return (
         <div className={'flex flex-col items-center p-2 m-2'}>
-            <wokwi-servo horn="single" angle={angle.degree}></wokwi-servo>
+            <wokwi-servo horn="single" angle={state}></wokwi-servo>
+            <Button onClick={()=>{runCode([])}} uiType={'primary'}/>
+
         </div>
     )
 }

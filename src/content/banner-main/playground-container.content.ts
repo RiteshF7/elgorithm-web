@@ -15,6 +15,8 @@ import LedModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/led/ledModuleBlockConfig";
 import BuzzerModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerModuleBlockConfig";
+import servoModuleBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoModuleBlockConfig";
 
 export const PlaygroundContainerContent = [
     {
@@ -191,6 +193,35 @@ export const PlaygroundContainerContent = [
         editorConfig:{
             toolboxType:'flyoutToolbox',
             toolboxContent: [...BuzzerModuleBlockConfig.toolBox,...loopsToolbox],
+        },
+        runnerConfig: {
+            moduleName:Modules.BuzzerModule,
+            moduleConfig:{
+                testCase:{
+                    input: [{state:false}],
+                    expectedOutput: [{state:true}]
+                },
+            }
+        }
+    },
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "servo led 3 times",
+            description: "turn on led then turn off 3 times",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...servoModuleBlockConfig.toolBox,...loopsToolbox],
         },
         runnerConfig: {
             moduleName:Modules.BuzzerModule,

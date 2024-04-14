@@ -13,8 +13,8 @@ const blockKeys = {
     turnOffLed: 'turnOffLed',
     blinkLed: 'blinkLed',
     //servo motor
-    turnServoLeft: 'turn_servo_left',
-    turnServoRight: 'turn_servo_right',
+    turnServoLeft: 'turnServoLeft',
+    turnServoRight: 'turnServoRight',
 
     //buzzer
     turnOnBuzzer:'turnOnBuzzer',

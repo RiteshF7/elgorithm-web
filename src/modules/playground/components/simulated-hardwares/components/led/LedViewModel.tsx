@@ -39,7 +39,7 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
     const functionArgsString: string[] = [changeState.name]
 
 
-    function runCode(additionalExecCodeArgs:Function[]= []) {
+    function runCode(additionalExecCodeArgs: Function[] = []) {
 
         additionalExecCodeArgs.forEach((arg: Function) => {
             functionalArgs.push(arg)

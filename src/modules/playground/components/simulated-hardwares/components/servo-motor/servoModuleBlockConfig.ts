@@ -1,17 +1,13 @@
-
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
-import {BuzzerState} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
-
 
 //block definitions
 const blockDefinitions = {
 
-    [BlockKeys.turnOnBuzzer]: {
-        "type": blockKeys.turnOnBuzzer,
+    [BlockKeys.turnServoRight]: {
+        "type": blockKeys.turnServoRight,
         "message0": "Turn on Buzzer",
         "previousStatement": null,
         "nextStatement": null,
@@ -19,8 +15,8 @@ const blockDefinitions = {
         "tooltip": "",
         "helpUrl": ""
     },
-    [BlockKeys.turnOffBuzzer]: {
-        "type": blockKeys.turnOffBuzzer,
+    [BlockKeys.turnServoLeft]: {
+        "type": blockKeys.turnServoLeft,
         "message0": "Turn off Buzzer",
         "previousStatement": null,
         "nextStatement": null,
@@ -32,35 +28,40 @@ const blockDefinitions = {
 
 }
 
-
 //toolbox blocks
 
 
 
 const toolbox = [
-    getSimpleToolboxBlock(blockKeys.turnOnBuzzer),
-    getSimpleToolboxBlock(blockKeys.turnOffBuzzer),
+    getSimpleToolboxBlock(blockKeys.turnServoLeft),
+    getSimpleToolboxBlock(blockKeys.turnServoRight),
 ]
 
 
 //code generator
 const codeGenerator = {
-    [blockKeys.turnOnBuzzer]: () => getBuzzerBlockCode({state:true}),
-    [blockKeys.turnOffBuzzer]: () => getBuzzerBlockCode({state:false}),
+    [blockKeys.turnServoRight]: () => getServoRightBlockCode(),
+    [blockKeys.turnServoLeft]: () => getServoLeftBlockCode(),
 };
 
 
 
-function getBuzzerBlockCode(payload: BuzzerState) {
-    let payloadString = JSON.stringify(payload);
-    return `await delay(200);\nawait changeState(${payloadString});\n`
+function getServoLeftBlockCode() {
+    return `await delay(200);
+    degree = (degree - 45) % 360
+    \nawait changeState(degree);\n`
+}
+function getServoRightBlockCode() {
+    return `await delay(200);
+    degree = (degree + 45) % 360
+    \nawait changeState(degree);\n`
 }
 
-const buzzerBlockConfig = {
+const servoBlockConfig = {
     blockDefinitions: blockDefinitions,
     toolBox: toolbox,
     codeGenerator: codeGenerator
 }
 
-export default buzzerBlockConfig
+export default servoBlockConfig
 

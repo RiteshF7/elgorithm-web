@@ -4,8 +4,7 @@ import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 import servoMotorBlockDefinitions
     from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorBlockDefinitions";
-import buzzerBlockDefinitions
-    from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerBlockDefinitions";
+
 import lightBuzzerBlockDefinitation
     from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerBlockDefinitation";
 import neopixelBlockConfig
@@ -14,6 +13,8 @@ import ledModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/led/ledModuleBlockConfig";
 import buzzerBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerModuleBlockConfig";
+import servoBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoModuleBlockConfig";
 
 
 const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
@@ -21,7 +22,7 @@ const blockDefinitionsArray = [testBlock]
 const toolBoxBlocks = []
 
 
-export const blockConfigs = [neopixelBlockConfig,ledModuleBlockConfig,buzzerBlockConfig]
+export const blockConfigs = [neopixelBlockConfig,ledModuleBlockConfig,buzzerBlockConfig,servoBlockConfig]
 
 export const forJsBlock = Object.create(null);
 

@@ -1,6 +1,5 @@
 import servoMotorToolbox
     from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorToolbox";
-import buzzerToolbox from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerToolbox";
 import lightBuzzerToolbox
     from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerToolbox";
 import {variableToolbox} from "@/utils/playground/workspace/toolbox/core/variablesToolbox";
