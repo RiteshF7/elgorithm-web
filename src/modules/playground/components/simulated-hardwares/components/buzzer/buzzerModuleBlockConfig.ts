@@ -52,7 +52,7 @@ const codeGenerator = {
 
 function getLedBlockCode(payload: BuzzerState) {
     let payloadString = JSON.stringify(payload);
-    return `await delay(200);\nawait changeBuzzerState(${payloadString});\n`
+    return `await delay(200);\nawait changeState(${payloadString});\n`
 }
 
 const buzzerBlockConfig = {

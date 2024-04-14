@@ -60,7 +60,7 @@ const codeGenerator = {
 
 function getLedBlockCode(payload: LedConfig) {
     let payloadString = JSON.stringify(payload);
-    return `await delay(200);\nawait changeLedState(${payloadString});\n`
+    return `await delay(200);\nawait changeState(${payloadString});\n`
 }
 
 const ledBlockConfig = {

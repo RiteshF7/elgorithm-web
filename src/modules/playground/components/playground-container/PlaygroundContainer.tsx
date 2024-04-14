@@ -9,7 +9,7 @@ import {getModule} from "@/modules/playground/components/simulated-hardwares/mod
 
 export const PlayGroundContainer: FC = () => {
 
-    const playgroundContainerConfig = PlaygroundContainerContent[5]
+    const playgroundContainerConfig = PlaygroundContainerContent[4]
 
 
     return (

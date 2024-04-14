@@ -20,31 +20,14 @@ interface BuzzerTestCase{
     expectedOutput:BuzzerState[];
 }
 
+
+
 export const Buzzer: FC<BuzzerProps> = ({testCase}) => {
-    const initialState = testCase.input[0]
-    const [state, setState] = useState<BuzzerState>(initialState)
 
-    const {actualState,runCode} = useSimpleStateViewModel(testCase.expectedOutput,resetComponent);
-
-    const execute = ()=>{
-        runCode([changeBuzzerState],['changeBuzzerState'])
-    }
-
-
-
-    function resetComponent() {
-        changeBuzzerState(initialState)
-    }
-
-    function changeBuzzerState(data:any){
-        actualState.push(data)
-        setState(data)
-    }
-
+    const {runCode,state} = useSimpleStateViewModel<BuzzerState>(testCase);
 
     return <div className={'flex flex-col p-2'}>
         <wokwi-buzzer hasSignal={state.state ? true : undefined}></wokwi-buzzer>
-        <Button onClick={execute} uiType={'primary'}/>
-
+        <Button onClick={()=>{runCode()}} uiType={'primary'}/>
     </div>
 }

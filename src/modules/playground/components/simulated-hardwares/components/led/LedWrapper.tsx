@@ -16,28 +16,14 @@ interface LedTestCase{
 
 export const LedModule: FC<LedModuleProps> = ({testCase}) => {
 
-    const {input,expectedOutput } = testCase
-    const initialState = input[0]
-    const [ledState, setLedState] = useState<LedConfig>(initialState);
-    const {runCode,actualState} = useSimpleStateViewModel(expectedOutput,resetModule);
+    const {runCode,state} = useSimpleStateViewModel<LedConfig>(testCase);
 
-    // @ts-ignore
-    const changeLedState = async (state:LedConfig) => {
-        actualState.push(state)
-        setLedState(state);
-    }
 
-    function resetModule(){
-        setLedState(initialState)
-    }
-    async function onClick() {
-        runCode([changeLedState],['changeLedState'])
-    }
 
     return (
         <div className={'flex flex-col p-3 items-center'}>
-            <Led config={ledState}/>
-            <Button onClick={onClick} uiType={'primary'}/>
+            <Led config={state}/>
+            <Button onClick={()=>{runCode()}} uiType={'primary'}/>
         </div>
 
     )
