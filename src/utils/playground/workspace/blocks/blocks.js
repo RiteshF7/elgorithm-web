@@ -2,8 +2,6 @@ import * as Blockly from 'blockly/core';
 
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
-import servoMotorBlockDefinitions
-    from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorBlockDefinitions";
 
 import lightBuzzerBlockDefinitation
     from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerBlockDefinitation";

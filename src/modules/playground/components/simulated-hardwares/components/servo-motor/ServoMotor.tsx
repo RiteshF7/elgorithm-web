@@ -6,7 +6,7 @@ import {resetMessageQueue} from "@/utils/pg-comm-channel.util";
 import {ComponentLogic} from "@/modules/playground/components/simulated-hardwares/utils/componentLogic";
 import SHCUtils from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 import {toDegrees} from "blockly/core/utils/math";
-import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/led/LedViewModel";
+import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/simpleStateViewModel";
 
 interface ServoModuleProps {
     testCase: servoMotorTestCase;

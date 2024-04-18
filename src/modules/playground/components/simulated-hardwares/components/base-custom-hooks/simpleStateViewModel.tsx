@@ -3,6 +3,10 @@ import {useModuleBaseViewModel} from "@/modules/playground/components/simulated-
 import _ from "lodash";
 import {Dispatch, SetStateAction, useState} from "react";
 import {BuzzerState} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
+import {
+    useCodeExecuter
+} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeExecuter";
+import arg from "arg";
 
 
 interface CodeExecCallbacks {
@@ -33,20 +37,15 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
     const initialState = testCase.input[0]
     const [state, setState] = useState<StateType>(initialState)
     let actualState: any[] = []
-    const {executeCode} = useModuleBaseViewModel()
     const {moveToNextLevel} = usePlayground()
-    const functionalArgs: any[] = [changeState]
-    const functionArgsString: string[] = [changeState.name]
+    const {execCode}  = useCodeExecuter(handleCodeCompletion)
 
 
-    function runCode(additionalExecCodeArgs: any = {}) {
-        for (let key in additionalExecCodeArgs) {
-            functionalArgs.push(additionalExecCodeArgs[key])
-            functionArgsString.push(key)
-        }
-        executeCode(functionalArgs, functionArgsString, handleCodeCompletion)
+
+    function runCode(additionalArgs:any) {
+        let args = {'changeState': changeState, ...additionalArgs}
+        execCode(args)
     }
-
 
     async function changeState(state: StateType) {
         actualState.push(state)

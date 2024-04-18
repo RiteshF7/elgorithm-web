@@ -2,7 +2,7 @@ import {FC, useEffect, useState} from "react";
 import {getChannelMessageWithDelay, resetMessageQueue} from "@/utils/pg-comm-channel.util";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import SHCUtils from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
-import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/led/LedViewModel";
+import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/simpleStateViewModel";
 import {Button} from "@/modules/common/components/button/Button";
 
 const COMPONENT_KEY = "BUZZER"
