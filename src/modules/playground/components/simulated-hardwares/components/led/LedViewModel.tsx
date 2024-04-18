@@ -39,24 +39,13 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
     const functionArgsString: string[] = [changeState.name]
 
 
-
-    function runCode(additionalExecCodeArgs: any[] = []) {
-        additionalExecCodeArgs.forEach((arg: any) => {
-            if(typeof arg === "function"){
-                functionalArgs.push(arg)
-                functionArgsString.push(arg.name)
-            }
-
-            if(typeof arg === 'object'){
-               for(let key in arg){
-                   functionArgsString.push(key)
-                   functionalArgs.push(arg[key])
-               }
-            }
-        })
+    function runCode(additionalExecCodeArgs: any = {}) {
+        for (let key in additionalExecCodeArgs) {
+            functionalArgs.push(additionalExecCodeArgs[key])
+            functionArgsString.push(key)
+        }
         executeCode(functionalArgs, functionArgsString, handleCodeCompletion)
     }
-
 
 
     async function changeState(state: StateType) {

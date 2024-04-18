@@ -25,7 +25,7 @@ export const ServoMotor: FC<ServoModuleProps> = ({testCase}) => {
     return (
         <div className={'flex flex-col items-center p-2 m-2'}>
             <wokwi-servo horn="single" angle={state}></wokwi-servo>
-            <Button onClick={()=>{runCode([{degree}])}} uiType={'primary'}/>
+            <Button onClick={()=>{runCode({degree})}} uiType={'primary'}/>
 
         </div>
     )
