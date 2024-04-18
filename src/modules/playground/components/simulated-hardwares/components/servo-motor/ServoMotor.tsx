@@ -13,7 +13,7 @@ interface ServoModuleProps {
 }
 
 interface servoMotorTestCase {
-    input: number[];
+    initialState: number[];
     expectedOutput: number[];
 }
 

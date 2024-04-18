@@ -10,7 +10,7 @@ export interface LedModuleProps {
 }
 
 interface LedTestCase{
-    input: LedConfig[],
+    initialState: LedConfig[],
     expectedOutput: LedConfig[]
 }
 

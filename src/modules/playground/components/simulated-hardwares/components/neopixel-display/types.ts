@@ -17,7 +17,7 @@ export enum Direction {
 }
 
 export interface TestCase {
-    input: number[][];
+    initialState: number[][];
     expectedOutput: number[][] | number[][][];
 }
 

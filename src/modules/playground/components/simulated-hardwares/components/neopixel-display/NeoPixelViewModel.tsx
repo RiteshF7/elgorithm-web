@@ -23,9 +23,9 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
 
     const {getJsCode, moveToNextLevel} = usePlayground();
     const row = 0, column = 1;
-    const input = testCase.input[0];
+    const initialState = testCase.initialState[0];
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
-    const startingPosition = [input[row], input[column]];
+    const startingPosition = [initialState[row], initialState[column]];
     const [animation, setAnimation] = useState<boolean>(false);
     let position = [...startingPosition];
     let actualPixelPath: any[] = [];
@@ -80,7 +80,7 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
         neoPixelDisplayRef.current?.reset();
         position = [...startingPosition];
         actualPixelPath = []
-        testCase.input.forEach((position: number[]) => {
+        testCase.initialState.forEach((position: number[]) => {
             setPixelWithColor(position, getRandomColor());
         });
     }

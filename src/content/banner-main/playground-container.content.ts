@@ -44,7 +44,7 @@ export const PlaygroundContainerContent = [
                 matrixSize: 11,
                 matrixType: MatrixType.UNI_DIRECTIONAL,
                 testCase: {
-                    input: [[5, 5]],
+                    initialState: [[5, 5]],
                     expectedOutput: [[5, 6]],
                 },
                 controllerType: ControllerType.blocks
@@ -76,7 +76,7 @@ export const PlaygroundContainerContent = [
                 matrixSize: 11,
                 matrixType: MatrixType.UNI_DIRECTIONAL,
                 testCase: {
-                    input: [[5, 5]],
+                    initialState: [[5, 5]],
                     expectedOutput: [[5, 6], [5, 7], [5, 8]]
                 },
                 controllerType: ControllerType.blocks
@@ -107,7 +107,7 @@ export const PlaygroundContainerContent = [
                 matrixSize: 11,
                 matrixType: MatrixType.BI_DIRECTIONAL,
                 testCase:{
-                    input: [[5, 5], [10, 10]],
+                    initialState: [[5, 5], [10, 10]],
                     expectedOutput: [
                         [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
                         [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
@@ -140,7 +140,7 @@ export const PlaygroundContainerContent = [
             moduleName:Modules.LedModule,
             moduleConfig:{
                 testCase:{
-                    input: [{state:false,color:'red'}],
+                    initialState: [{state:false,color:'red'}],
                     expectedOutput: [{active:true,color:'red'}]
                 },
             }
@@ -169,7 +169,7 @@ export const PlaygroundContainerContent = [
             moduleName:Modules.LedModule,
             moduleConfig:{
                 testCase:{
-                    input: [{state:false,color:'red'}],
+                    initialState: [{state:false,color:'red'}],
                     expectedOutput: [{active:true,color:'red'},{active:false,color:'red'},{active:true,color:'red'},{active:false,color:'red'},{active:true,color:'red'},{active:false,color:'red'},]
                 },
             }
@@ -198,7 +198,7 @@ export const PlaygroundContainerContent = [
             moduleName:Modules.BuzzerModule,
             moduleConfig:{
                 testCase:{
-                    input: [{state:false}],
+                    initialState: [{state:false}],
                     expectedOutput: [{state:true}]
                 },
             }
@@ -227,7 +227,7 @@ export const PlaygroundContainerContent = [
             moduleName:Modules.ServoModule,
             moduleConfig:{
                 testCase:{
-                    input: [0],
+                    initialState: [0],
                     expectedOutput: [45,90]
                 },
             }

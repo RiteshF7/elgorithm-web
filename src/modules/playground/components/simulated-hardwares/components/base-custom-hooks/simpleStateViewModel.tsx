@@ -32,12 +32,12 @@ const defaultCallback = {
 
 
 export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
-                                                                  input: StateType[],
+                                                                  initialState: StateType[],
                                                                   expectedOutput: StateType[]
                                                               },
                                                               callbacks: CodeExecCallbacks = defaultCallback) => {
     const expectedStates: StateType[] = _.cloneDeep(testCase.expectedOutput)
-    const initialState = testCase.input[0]
+    const initialState = testCase.initialState[0]
     const [state, setState] = useState<StateType>(initialState)
     let actualState: any[] = []
     const {moveToNextLevel} = usePlayground()
@@ -46,7 +46,7 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
 
 
 
-    function runCode(additionalArgs:any) {
+    function runCode(additionalArgs:any={}) {
         let args = {'changeState': changeState, ...additionalArgs}
         execCode(args)
     }

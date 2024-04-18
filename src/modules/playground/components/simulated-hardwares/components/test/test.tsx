@@ -23,8 +23,8 @@ export const Test: FC = () => {
 
     //add error message
     const testCases = [
-        {input: 55, output: {active: false, color: 'red'}},
-        {input: 40, output: {active: true, color: 'red'}},
+        {initialState: 55, output: {active: false, color: 'red'}},
+        {initialState: 40, output: {active: true, color: 'red'}},
     ]
 
     const codePrefix = `
@@ -65,18 +65,18 @@ export const Test: FC = () => {
 
 
     async function onClick() {
-        const func = new Function('setLedState', 'input', executableCode)
-        for (const testCase of testCases) {
-            const actualOutput = await func(setLedState, testCase.input)
-            console.log(actualOutput)
-            if (_.isEqual(actualOutput, testCase.output)) {
-                //sendSuccessCallback()
-                console.log('test case passed!')
-            } else {
-                //sendFailureCallback with testcase error message
-                console.log('test case failed!')
-            }
-        }
+        // const func = new Function('setLedState', 'input', executableCode)
+        // for (const testCase of testCases) {
+        //     const actualOutput = await func(setLedState, testCase.input)
+        //     console.log(actualOutput)
+        //     if (_.isEqual(actualOutput, testCase.output)) {
+        //         //sendSuccessCallback()
+        //         console.log('test case passed!')
+        //     } else {
+        //         //sendFailureCallback with testcase error message
+        //         console.log('test case failed!')
+        //     }
+        // }
 
     }
 

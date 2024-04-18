@@ -16,7 +16,7 @@ export interface BuzzerProps {
 }
 
 interface BuzzerTestCase{
-    input:BuzzerState[];
+    initialState:BuzzerState[];
     expectedOutput:BuzzerState[];
 }
 

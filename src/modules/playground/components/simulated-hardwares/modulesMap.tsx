@@ -1,7 +1,7 @@
 import {
     NeoPixelDirect
 } from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
-import {LedModule} from "@/modules/playground/components/simulated-hardwares/components/led/LedWrapper";
+import {LedModule} from "@/modules/playground/components/simulated-hardwares/components/led/LedModule";
 import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoMotor";
 
