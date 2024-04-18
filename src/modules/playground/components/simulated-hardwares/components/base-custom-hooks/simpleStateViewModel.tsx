@@ -7,6 +7,9 @@ import {
     useCodeExecuter
 } from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeExecuter";
 import arg from "arg";
+import {
+    useCodeCompletionHandler
+} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeCompletionHandler";
 
 
 interface CodeExecCallbacks {
@@ -39,6 +42,7 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
     let actualState: any[] = []
     const {moveToNextLevel} = usePlayground()
     const {execCode}  = useCodeExecuter(handleCodeCompletion)
+    const {processResult} = useCodeCompletionHandler(actualState, expectedStates);
 
 
 
@@ -52,13 +56,9 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
         setState(state)
     }
 
-
     function handleCodeCompletion() {
         callbacks.onCompletion(actualState, expectedStates);
-        if (actualState.length === 0) return handleFailure('No code to execute!')
-        if (expectedStates.length === 0 || actualState.length != expectedStates.length) return handleFailure('Steps are not equal!')
-        if (_.isEqual(actualState, expectedStates)) return handleSuccess()
-        else return handleFailure('Step mismatched!');
+        processResult(handleSuccess, handleFailure)
     }
 
     function handleSuccess(message: string = 'Success') {
