@@ -8,7 +8,7 @@ const blockDefinitions = {
 
     [BlockKeys.turnServoRight]: {
         "type": blockKeys.turnServoRight,
-        "message0": "Turn on Buzzer",
+        "message0": "Turn servo right",
         "previousStatement": null,
         "nextStatement": null,
         "colour": 230,
@@ -17,7 +17,7 @@ const blockDefinitions = {
     },
     [BlockKeys.turnServoLeft]: {
         "type": blockKeys.turnServoLeft,
-        "message0": "Turn off Buzzer",
+        "message0": "Turn servo left",
         "previousStatement": null,
         "nextStatement": null,
         "colour": 230,

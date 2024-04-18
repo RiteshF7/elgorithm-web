@@ -224,11 +224,11 @@ export const PlaygroundContainerContent = [
             toolboxContent: [...servoModuleBlockConfig.toolBox,...loopsToolbox],
         },
         runnerConfig: {
-            moduleName:Modules.BuzzerModule,
+            moduleName:Modules.ServoModule,
             moduleConfig:{
                 testCase:{
-                    input: [{state:false}],
-                    expectedOutput: [{state:true}]
+                    input: [0],
+                    expectedOutput: [45,90]
                 },
             }
         }

@@ -35,18 +35,29 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
     let actualState: any[] = []
     const {executeCode} = useModuleBaseViewModel()
     const {moveToNextLevel} = usePlayground()
-    const functionalArgs: Function[] = [changeState]
+    const functionalArgs: any[] = [changeState]
     const functionArgsString: string[] = [changeState.name]
 
 
-    function runCode(additionalExecCodeArgs: Function[] = []) {
 
-        additionalExecCodeArgs.forEach((arg: Function) => {
-            functionalArgs.push(arg)
-            functionArgsString.push(arg.name)
+    function runCode(additionalExecCodeArgs: any[] = []) {
+        additionalExecCodeArgs.forEach((arg: any) => {
+            if(typeof arg === "function"){
+                functionalArgs.push(arg)
+                functionArgsString.push(arg.name)
+            }
+
+            if(typeof arg === 'object'){
+               for(let key in arg){
+                   functionArgsString.push(key)
+                   functionalArgs.push(arg[key])
+               }
+            }
         })
         executeCode(functionalArgs, functionArgsString, handleCodeCompletion)
     }
+
+
 
     async function changeState(state: StateType) {
         actualState.push(state)

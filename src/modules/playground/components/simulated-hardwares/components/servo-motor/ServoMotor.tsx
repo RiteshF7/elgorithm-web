@@ -20,12 +20,12 @@ interface servoMotorTestCase {
 export const COMPONENT_KEY = 'SERVO_MOTOR'
 export const ServoMotor: FC<ServoModuleProps> = ({testCase}) => {
    const {runCode,state} = useSimpleStateViewModel<number>(testCase);
-   let 
+    let degree = 0;
 
     return (
         <div className={'flex flex-col items-center p-2 m-2'}>
             <wokwi-servo horn="single" angle={state}></wokwi-servo>
-            <Button onClick={()=>{runCode([])}} uiType={'primary'}/>
+            <Button onClick={()=>{runCode([{degree}])}} uiType={'primary'}/>
 
         </div>
     )
