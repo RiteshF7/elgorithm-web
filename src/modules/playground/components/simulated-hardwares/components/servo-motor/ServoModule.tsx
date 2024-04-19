@@ -18,8 +18,6 @@ interface servoMotorTestCase {
 
 export const ServoModule: FC<ServoModuleProps> = ({testCases}) => {
     const {getJsCode} = usePlayground();
-
-
     const [state, setState] = useState(0);
 
     function runCode() {

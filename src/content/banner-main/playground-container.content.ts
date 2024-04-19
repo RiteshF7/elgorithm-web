@@ -139,10 +139,19 @@ export const PlaygroundContainerContent = [
         runnerConfig: {
             moduleName:Modules.LedModule,
             moduleConfig:{
-                testCase:{
-                    initialState: [{state:false,color:'red'}],
-                    expectedOutput: [{active:true,color:'red'}]
-                },
+                testCases:[
+                    {
+                        inputs: {},
+                        initialState: {state:false,color:'red'},
+                        expectedOutput: [{active:true,color:'red'}]
+                    },
+                    {
+                        inputs: {},
+                        initialState: {state:true,color:'red'},
+                        expectedOutput: [{active:false,color:'red'}]
+                    },
+                ]
+
             }
         }
     },
