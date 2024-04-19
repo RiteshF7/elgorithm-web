@@ -30,19 +30,6 @@ export async function runTestCases(additionalArgs: object = {}, code: string, te
     let actualState: any[] = []
     let completedTestCases = 0;
     let isFailed = false;
-    // const code = `console.log('testing');`;
-    // const testCases = [
-    //     {
-    //         inputs: {lightValue: 30},
-    //         initialState: {active: false, color: 'red'},
-    //         expectedOutput: [{active: true, color: 'red'}]
-    //     },
-    //     {
-    //         inputs: {lightValue: 80},
-    //         initialState: {active: true, color: 'red'},
-    //         expectedOutput: [{active: false, color: 'red'}]
-    //     },
-    // ]
 
 
     for (let testcase of testCases) {

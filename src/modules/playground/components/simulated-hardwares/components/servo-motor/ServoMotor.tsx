@@ -11,32 +11,20 @@ import {
 } from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeProcessor";
 
 interface ServoModuleProps {
-    testCase: servoMotorTestCase;
+    testCases: servoMotorTestCase[];
 }
 
 interface servoMotorTestCase {
+    inputs: any;
     initialState: number[];
     expectedOutput: number[];
 }
 
-export const COMPONENT_KEY = 'SERVO_MOTOR'
-export const ServoMotor: FC<ServoModuleProps> = ({testCase}) => {
-   const {getJsCode} = usePlayground();
-    // const {runCode,state} = useSimpleStateViewModel<number>(testCase);
-   //  let degree = 0;
-    const testCases = [
-        {
-            inputs: {degree: 0},
-            initialState: [0],
-            expectedOutput: [45,90]
-        },
-        {
-            inputs: {degree: 45},
-            initialState: [45],
-            expectedOutput: [90,135]
-        },
 
-    ]
+export const COMPONENT_KEY = 'SERVO_MOTOR'
+export const ServoMotor: FC<ServoModuleProps> = ({testCases}) => {
+   const {getJsCode} = usePlayground();
+
 
     const [state, setState] = useState(0);
     function runCode(){

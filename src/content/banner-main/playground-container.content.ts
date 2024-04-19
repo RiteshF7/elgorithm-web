@@ -226,10 +226,19 @@ export const PlaygroundContainerContent = [
         runnerConfig: {
             moduleName:Modules.ServoModule,
             moduleConfig:{
-                testCase:{
-                    initialState: [0],
-                    expectedOutput: [45,90]
-                },
+                testCases: [
+                    {
+                        inputs: {degree: 0},
+                        initialState: [0],
+                        expectedOutput: [45,90]
+                    },
+                    {
+                        inputs: {degree: 45},
+                        initialState: [45],
+                        expectedOutput: [90,135]
+                    },
+
+                ],
             }
         }
     },
