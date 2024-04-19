@@ -1,39 +1,61 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useState} from "react";
 import {Led, LedConfig} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
 import {Button} from "@/modules/common/components/button/Button";
-import _ from 'lodash'
-import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/simpleStateViewModel";
-import {TestCase} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {
     runTestCases
 } from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeProcessor";
+import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {
+    ServoMotor,
+    ServoMotorProps
+} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoModule";
 
 export interface LedModuleProps {
     testCases: LedTestCase[];
 }
 
-interface LedTestCase{
+interface LedTestCase {
     inputs: any,
-    initialState: LedConfig,
-    expectedOutput: LedConfig[]
+    initialState: lightServoState,
+    expectedOutput: lightServoState[]
+}
+
+interface lightServoState {
+    [Modules.LedModule]: LedConfig,
+    [Modules.ServoModule]: ServoMotorProps
 }
 
 export const LedModule: FC<LedModuleProps> = ({testCases}) => {
 
     const {getJsCode} = usePlayground();
-    const [state, setState] = useState(testCases[0].initialState);
+    const [moduleState, setModuleState] = useState(testCases[0].initialState)
 
-    function runCode() {
-        runTestCases({}, getJsCode(), testCases, setState).then(r => console.log(r))
+    function updateState(state: any) {
+        console.log(JSON.stringify(state),'kfmejkf')
+        console.log(JSON.stringify(moduleState),'kfmejkf')
+        setModuleState(prevState => {
+            return {
+                ...prevState,
+                ...state
+            };
+        });
+
+        // setModuleState(prevState => ({...prevState, ...state}))
     }
 
+    function runCode() {
+        runTestCases({}, getJsCode(), testCases, updateState).then(r => console.log(r))
+    }
 
 
     return (
         <div className={'flex flex-col p-3 items-center'}>
-            <Led config={state}/>
-            <Button onClick={()=>{runCode()}} uiType={'primary'}/>
+            <Led config={moduleState[Modules.LedModule]}/>
+            <ServoMotor angle={moduleState[Modules.ServoModule].angle}/>
+            <Button onClick={() => {
+                runCode()
+            }} uiType={'primary'}/>
         </div>
 
     )

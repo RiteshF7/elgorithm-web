@@ -36,7 +36,7 @@ export const ServoModule: FC<ServoModuleProps> = ({testCases}) => {
     )
 }
 
-interface ServoMotorProps {
+export interface ServoMotorProps {
     angle: number;
 }
 

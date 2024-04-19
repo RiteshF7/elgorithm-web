@@ -3,10 +3,10 @@ import '@wokwi/elements';
 import {AutoRangeInput} from "@/modules/common/components/range-input/RangeInput";
 
 interface LightSensorProps{
-    onChange: (value: number) => void;
+
 }
 
-export const LightSensor:FC<LightSensorProps> = ({onChange})=>{
+export const LightSensor:FC<LightSensorProps> = ({})=>{
     const [sliderValue, setSliderValue] = useState<number>(0);
 
     const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {

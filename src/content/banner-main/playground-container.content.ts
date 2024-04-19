@@ -17,6 +17,8 @@ import BuzzerModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerModuleBlockConfig";
 import servoModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoModuleBlockConfig";
+import ServoModuleBlockConfig
+    from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoModuleBlockConfig";
 
 export const PlaygroundContainerContent = [
     {
@@ -134,21 +136,16 @@ export const PlaygroundContainerContent = [
         },
         editorConfig:{
             toolboxType:'flyoutToolbox',
-            toolboxContent: [...LedModuleBlockConfig.toolBox],
+            toolboxContent: [...LedModuleBlockConfig.toolBox,...ServoModuleBlockConfig.toolBox],
         },
         runnerConfig: {
             moduleName:Modules.LedModule,
             moduleConfig:{
                 testCases:[
                     {
-                        inputs: {},
-                        initialState: {state:false,color:'red'},
-                        expectedOutput: [{active:true,color:'red'}]
-                    },
-                    {
-                        inputs: {},
-                        initialState: {state:true,color:'red'},
-                        expectedOutput: [{active:false,color:'red'}]
+                        inputs: {degree: 0},
+                        initialState: {[Modules.LedModule]:{active:false,color:'red'},[Modules.ServoModule]:{angle:0}},
+                        expectedOutput: [{[Modules.LedModule]:{active:true,color:'red'}},{[Modules.ServoModule]:{angle:45}}]
                     },
                 ]
 

@@ -2,6 +2,7 @@ import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
+import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
 
 //block definitions
 const blockDefinitions = {
@@ -49,12 +50,12 @@ const codeGenerator = {
 function getServoLeftBlockCode() {
     return `await delay(500);
     degree = (degree - 45) % 360
-    \nawait changeState(degree);\n`
+    \nawait changeState({'${Modules.ServoModule}':{'angle':degree}});\n`
 }
 function getServoRightBlockCode() {
     return `await delay(500);
     degree = (degree + 45) % 360
-    \nawait changeState(degree);\n`
+    \nawait changeState({'${Modules.ServoModule}':{'angle':degree}});\n`
 }
 
 const servoBlockConfig = {
