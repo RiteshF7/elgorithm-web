@@ -47,12 +47,12 @@ const codeGenerator = {
 
 
 function getServoLeftBlockCode() {
-    return `await delay(200);
+    return `await delay(500);
     degree = (degree - 45) % 360
     \nawait changeState(degree);\n`
 }
 function getServoRightBlockCode() {
-    return `await delay(200);
+    return `await delay(500);
     degree = (degree + 45) % 360
     \nawait changeState(degree);\n`
 }

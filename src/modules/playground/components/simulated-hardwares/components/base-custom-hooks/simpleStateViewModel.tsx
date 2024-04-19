@@ -10,6 +10,9 @@ import arg from "arg";
 import {
     useCodeCompletionHandler
 } from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeCompletionHandler";
+import {
+    executeCode, processResult
+} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeProcessor";
 
 
 interface CodeExecCallbacks {
@@ -40,15 +43,13 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
     const initialState = testCase.initialState[0]
     const [state, setState] = useState<StateType>(initialState)
     let actualState: any[] = []
-    const {moveToNextLevel} = usePlayground()
-    const {execCode}  = useCodeExecuter(handleCodeCompletion)
-    const {processResult} = useCodeCompletionHandler(actualState, expectedStates);
+    const {moveToNextLevel,getJsCode} = usePlayground()
 
 
 
     function runCode(additionalArgs:any={}) {
         let args = {'changeState': changeState, ...additionalArgs}
-        execCode(args)
+        executeCode(args,getJsCode(),handleCodeCompletion)
     }
 
     async function changeState(state: StateType) {
@@ -58,7 +59,7 @@ export const useSimpleStateViewModel = <StateType extends {}>(testCase: {
 
     function handleCodeCompletion() {
         callbacks.onCompletion(actualState, expectedStates);
-        processResult(handleSuccess, handleFailure)
+        processResult(actualState,expectedStates,handleSuccess, handleFailure)
     }
 
     function handleSuccess(message: string = 'Success') {

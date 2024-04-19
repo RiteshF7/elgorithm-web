@@ -39,9 +39,11 @@ export class Playground {
     getAsyncCodeWithPredefinedFunctions(blockCode: string): string {
         const codePrefix = `
         const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\n
-        const executeTimeouts = async () => {\n`
+        const executeTimeouts = async () => {
+        await delay(500);
+        \n`
         const codePostfix = `\n
-        await delay(1000);\n
+        await delay(500);\n
         handleCodeCompletion();\n }; \n
         return executeTimeouts();`
         let code = codePrefix + blockCode + codePostfix

@@ -233,6 +233,43 @@ export const PlaygroundContainerContent = [
             }
         }
     },
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "servo led 3 times",
+            description: "turn on led then turn off 3 times",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...servoModuleBlockConfig.toolBox,...loopsToolbox],
+        },
+        runnerConfig: {
+            moduleName:Modules.ServoModule,
+            moduleConfig:{
+                testCases:[
+                    {
+                        inputs: {lightValue:30},
+                        initialState: {active:false,color:'red'},
+                        expectedOutput: [{active:true,color:'red'}]
+                    },
+                    {
+                        inputs: {lightValue:80},
+                        initialState: {active: true, color: 'red'},
+                        expectedOutput: [{active: false, color: 'red'}]
+                    },
+                ],
+            }
+        }
+    },
 
 ]
 
