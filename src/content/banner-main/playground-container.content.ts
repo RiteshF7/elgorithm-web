@@ -139,7 +139,7 @@ export const PlaygroundContainerContent = [
             toolboxContent: [...LedModuleBlockConfig.toolBox,...ServoModuleBlockConfig.toolBox],
         },
         runnerConfig: {
-            moduleName:Modules.LedModule,
+            moduleNames:[Modules.LedModule,Modules.ServoModule],
             moduleConfig:{
                 testCases:[
                     {

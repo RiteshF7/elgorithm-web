@@ -7,9 +7,15 @@ import {
 } from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeProcessor";
 import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
 import {
-    ServoMotor,
-    ServoMotorProps
+    ServoMotor, ServoMotorProps
 } from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoModule";
+
+
+
+//refactor this to a separate file
+//check for more test cases like multiple modules support
+//make base moduele and seprate structure for each module
+//migrate all modules to this structure
 
 export interface LedModuleProps {
     testCases: LedTestCase[];
@@ -52,10 +58,6 @@ export const LedModule: FC<LedModuleProps> = ({testCases}) => {
     return (
         <div className={'flex flex-col p-3 items-center'}>
             <Led config={moduleState[Modules.LedModule]}/>
-            <ServoMotor angle={moduleState[Modules.ServoModule].angle}/>
-            <Button onClick={() => {
-                runCode()
-            }} uiType={'primary'}/>
         </div>
 
     )

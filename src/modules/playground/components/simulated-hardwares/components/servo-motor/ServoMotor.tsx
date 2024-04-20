@@ -1,16 +1,7 @@
 import {FC, useEffect, useState} from "react";
-import {Button} from "@/modules/common/components/button/Button";
-import {usePlayground} from "@/modules/playground/providers/playground.provider";
-import {setState} from "blockly/core/utils/aria";
-import {resetMessageQueue} from "@/utils/pg-comm-channel.util";
-import {ComponentLogic} from "@/modules/playground/components/simulated-hardwares/utils/componentLogic";
-import {toDegrees} from "blockly/core/utils/math";
-import {useSimpleStateViewModel} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/simpleStateViewModel";
-import {
-    runTestCases
-} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeProcessor";
 
-interface ServoModuleProps {
+
+export interface ServoModuleProps {
     testCases: servoMotorTestCase[];
 }
 

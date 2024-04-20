@@ -4,7 +4,7 @@ import {PlaygroundEditor} from "@/modules/playground/components/playground-edito
 import {PlaygroundProvider} from "@/modules/playground/providers/playground.provider";
 import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
 import {PlaygroundContainerContent, PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
-import {getModule} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {getModule, Module} from "@/modules/playground/components/simulated-hardwares/modulesMap";
 
 
 export const PlayGroundContainer: FC = () => {
@@ -21,7 +21,9 @@ export const PlayGroundContainer: FC = () => {
                     <PlaygroundEditor editorConfig={playgroundContainerConfig.editorConfig}/>
                 </div>
 
-                {getModule(playgroundContainerConfig.runnerConfig.moduleName, playgroundContainerConfig.runnerConfig.moduleConfig)}
+                {/*{getModule(playgroundContainerConfig.runnerConfig.moduleName, playgroundContainerConfig.runnerConfig.moduleConfig)}*/}
+
+                <Module runnerConfig={playgroundContainerConfig.runnerConfig}/>
 
                 <div className={'flex flex-col gap-4 items-center flex-grow'}>
 

@@ -11,16 +11,14 @@ import {LEDElement, NeopixelMatrixElement} from "@wokwi/elements";
 
 export const COMPONENT_KEY = 'LED';
 
-export interface LedConfig {
+export interface LedState {
     color: string,
     active: boolean
 }
-interface LedProps{
-    config:LedConfig
-}
 
-export const Led: FC<LedProps> = ({config}) => {
+
+export const Led: FC<LedState> = ({color,active}) => {
     return (
-        <wokwi-led color={config.color} value={config.active ? true : undefined}></wokwi-led>
+        <wokwi-led color={color} value={active ? true : undefined}></wokwi-led>
     )
 }
