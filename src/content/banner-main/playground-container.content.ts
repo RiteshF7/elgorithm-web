@@ -185,6 +185,7 @@ export const PlaygroundContainerContent = [
             }
         }
     },
+
     {
         chapterId:1,
         type:'content',
@@ -212,6 +213,39 @@ export const PlaygroundContainerContent = [
                         inputs: {degree: 0},
                         initialState: {[Modules.ServoModule]:{angle:0}},
                         expectedOutput: [{[Modules.ServoModule]:{angle:45}},{[Modules.ServoModule]:{angle:90}}]
+                    },
+                ]
+
+            }
+        }
+    },
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "Turn buzzer on",
+            description: "Turn buzzer on",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...BuzzerModuleBlockConfig.toolBox],
+        },
+        runnerConfig: {
+            moduleNames:[Modules.BuzzerModule],
+            moduleConfig:{
+                testCases:[
+                    {
+                        inputs: {},
+                        initialState: {[Modules.BuzzerModule]:{buzz:false}},
+                        expectedOutput: [{[Modules.BuzzerModule]:{buzz:true}},]
                     },
                 ]
 

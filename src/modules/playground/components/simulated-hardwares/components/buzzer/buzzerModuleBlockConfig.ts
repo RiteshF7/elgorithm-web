@@ -45,8 +45,8 @@ const toolbox = [
 
 //code generator
 const codeGenerator = {
-    [blockKeys.turnOnBuzzer]: () => getBuzzerBlockCode({state: true}),
-    [blockKeys.turnOffBuzzer]: () => getBuzzerBlockCode({state: false}),
+    [blockKeys.turnOnBuzzer]: () => getBuzzerBlockCode({buzz: true}),
+    [blockKeys.turnOffBuzzer]: () => getBuzzerBlockCode({buzz: false}),
 };
 
 
