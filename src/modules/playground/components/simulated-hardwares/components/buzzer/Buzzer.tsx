@@ -10,10 +10,12 @@ export interface BuzzerState {
 export const Buzzer: FC<BuzzerState> = ({buzz}) => {
 
     useEffect(() => {
-        console.log(buzz,'use')
+        const beep = new Audio('/beep.mp3');
+        if (buzz) beep.play()
+        else beep.pause()
     }, [buzz]);
 
     return <div className={'flex flex-col p-2'}>
-        <wokwi-buzzer hasSignal={buzz?true:undefined}></wokwi-buzzer>
+        <wokwi-buzzer hasSignal={buzz ? true : undefined}></wokwi-buzzer>
     </div>
 }

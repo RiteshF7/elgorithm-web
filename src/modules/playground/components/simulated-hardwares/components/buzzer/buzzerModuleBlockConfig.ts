@@ -51,7 +51,7 @@ const codeGenerator = {
 
 
 function getBuzzerBlockCode(payload: BuzzerState) {
-    return `await delay(400);\nawait changeState(${getModuleState(Modules.BuzzerModule, payload)});\n`
+    return `await delay(500);\nawait changeState(${getModuleState(Modules.BuzzerModule, payload)});\n`
 }
 
 const buzzerBlockConfig = {
