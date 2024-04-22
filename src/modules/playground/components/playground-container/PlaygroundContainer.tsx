@@ -9,7 +9,7 @@ import {getModule, Module} from "@/modules/playground/components/simulated-hardw
 
 export const PlayGroundContainer: FC = () => {
 
-    const playgroundContainerConfig = PlaygroundContainerContent[3]
+    const playgroundContainerConfig = PlaygroundContainerContent[4]
 
 
     return (
@@ -21,23 +21,7 @@ export const PlayGroundContainer: FC = () => {
                     <PlaygroundEditor editorConfig={playgroundContainerConfig.editorConfig}/>
                 </div>
 
-                {/*{getModule(playgroundContainerConfig.runnerConfig.moduleName, playgroundContainerConfig.runnerConfig.moduleConfig)}*/}
-
                 <Module runnerConfig={playgroundContainerConfig.runnerConfig}/>
-
-                <div className={'flex flex-col gap-4 items-center flex-grow'}>
-
-                    {/*<PlaygroundRunner*/}
-                    {/*    runnerConfig={PlaygroundRunnerContent[2]}*/}
-                    {/*    simulatedHardware={<LedWrapper/>}*/}
-                    {/*/>*/}
-                    {/*<PlaygroundActions/>*/}
-
-                </div>
-                {/*<PlaygroundRunner simulatedHardware={<ServoMotor initialPosition={{degree:0}} destinationPosition={{degree:90}}/>}/>*/}
-                {/*<PlaygroundRunner                          runnerConfig={PlaygroundRunnerContent[2]}*/}
-                {/*                                           simulatedHardware={<Test/>}/>*/}
-                {/*/!*<PlaygroundRunner runnerConfig={PlaygroundRunnerContent[0]} simulatedHardware={<Buzzer  initialState={{state:false}} desiredState={{state:true}}/>}/>*!/*/}
 
             </div>
         </PlaygroundProvider>

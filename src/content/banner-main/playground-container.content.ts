@@ -124,6 +124,72 @@ export const PlaygroundContainerContent = [
         type:'content',
         content: {
             contentId: 0,
+            title: "turn on led generic",
+            description: "turn on led",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...LedModuleBlockConfig.toolBox],
+        },
+        runnerConfig: {
+            moduleNames:[Modules.LedModule],
+            moduleConfig:{
+                testCases:[
+                    {
+                        inputs: {},
+                        initialState: {[Modules.LedModule]:{active:false,color:'red'}},
+                        expectedOutput: [{[Modules.LedModule]:{active:true,color:'red'}}]
+                    },
+                ]
+
+            }
+        }
+    },
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
+            title: "blink led 2 times",
+            description: "blink led 2 times",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...LedModuleBlockConfig.toolBox],
+        },
+        runnerConfig: {
+            moduleNames:[Modules.LedModule],
+            moduleConfig:{
+                testCases:[
+                    {
+                        inputs: {},
+                        initialState: {[Modules.LedModule]:{active:false,color:'green'}},
+                        expectedOutput: [{[Modules.LedModule]:{active:true,color:'red'}},{[Modules.LedModule]:{active:false,color:'red'}},{[Modules.LedModule]:{active:true,color:'red'}},{[Modules.LedModule]:{active:false,color:'red'}},]
+                    },
+                ]
+
+            }
+        }
+    },
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
             title: "turn on led",
             description: "turn on led",
             media: [

@@ -6,11 +6,6 @@ import '@wokwi/elements';
 import {useShContext} from "@/modules/playground/providers/SH.provider";
 import {LEDElement, NeopixelMatrixElement} from "@wokwi/elements";
 
-
-
-
-export const COMPONENT_KEY = 'LED';
-
 export interface LedState {
     color: string,
     active: boolean

@@ -1,6 +1,6 @@
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import {LedConfig} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
+import {LedState} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
 import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
@@ -59,7 +59,7 @@ const codeGenerator = {
 
 
 
-function getLedBlockCode(payload: LedConfig) {
+function getLedBlockCode(payload: LedState) {
     let payloadString = JSON.stringify(payload);
     return `await delay(200);\nawait changeState({'${Modules.LedModule}':${payloadString}});\n`
 }
