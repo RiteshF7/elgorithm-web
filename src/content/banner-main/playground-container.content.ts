@@ -224,8 +224,8 @@ export const PlaygroundContainerContent = [
         type:'content',
         content: {
             contentId: 0,
-            title: "turn on led",
-            description: "turn on led",
+            title: "turn lef on then turn servo right",
+            description: "Do it in one go",
             media: [
                 {
                     type: "video",
