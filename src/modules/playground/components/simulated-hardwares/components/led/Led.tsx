@@ -1,10 +1,9 @@
 'use client';
 
-import {FC, useEffect, useRef, useState} from "react";
-import {usePlayground} from "@/modules/playground/providers/playground.provider";
+import {FC} from "react";
 import '@wokwi/elements';
-import {useShContext} from "@/modules/playground/providers/SH.provider";
-import {LEDElement, NeopixelMatrixElement} from "@wokwi/elements";
+
+
 
 export interface LedState {
     color: string,

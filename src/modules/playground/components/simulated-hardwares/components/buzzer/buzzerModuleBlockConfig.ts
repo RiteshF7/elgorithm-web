@@ -1,10 +1,11 @@
-
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
 import {BuzzerState} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
+import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
+import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
 
 
 //block definitions
@@ -36,7 +37,6 @@ const blockDefinitions = {
 //toolbox blocks
 
 
-
 const toolbox = [
     getSimpleToolboxBlock(blockKeys.turnOnBuzzer),
     getSimpleToolboxBlock(blockKeys.turnOffBuzzer),
@@ -45,15 +45,13 @@ const toolbox = [
 
 //code generator
 const codeGenerator = {
-    [blockKeys.turnOnBuzzer]: () => getBuzzerBlockCode({state:true}),
-    [blockKeys.turnOffBuzzer]: () => getBuzzerBlockCode({state:false}),
+    [blockKeys.turnOnBuzzer]: () => getBuzzerBlockCode({state: true}),
+    [blockKeys.turnOffBuzzer]: () => getBuzzerBlockCode({state: false}),
 };
 
 
-
 function getBuzzerBlockCode(payload: BuzzerState) {
-    let payloadString = JSON.stringify(payload);
-    return `await delay(200);\nawait changeState(${payloadString});\n`
+    return `await delay(400);\nawait changeState(${getModuleState(Modules.BuzzerModule, payload)});\n`
 }
 
 const buzzerBlockConfig = {

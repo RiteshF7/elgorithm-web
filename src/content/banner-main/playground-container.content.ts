@@ -190,6 +190,40 @@ export const PlaygroundContainerContent = [
         type:'content',
         content: {
             contentId: 0,
+            title: "Turn servo right two times",
+            description: "turn servo right two times",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig:{
+            toolboxType:'flyoutToolbox',
+            toolboxContent: [...ServoModuleBlockConfig.toolBox],
+        },
+        runnerConfig: {
+            moduleNames:[Modules.ServoModule],
+            moduleConfig:{
+                testCases:[
+                    {
+                        inputs: {degree: 0},
+                        initialState: {[Modules.ServoModule]:{angle:0}},
+                        expectedOutput: [{[Modules.ServoModule]:{angle:45}},{[Modules.ServoModule]:{angle:90}}]
+                    },
+                ]
+
+            }
+        }
+    },
+
+    {
+        chapterId:1,
+        type:'content',
+        content: {
+            contentId: 0,
             title: "turn on led",
             description: "turn on led",
             media: [

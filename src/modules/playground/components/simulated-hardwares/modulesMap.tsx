@@ -3,16 +3,13 @@ import {
 } from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
 import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 import React, {FC, useState} from "react";
-import {
-    ServoModule,
-    ServoMotor
-} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoModule";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {
     runTestCases
 } from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeProcessor";
 import {Button} from "@/modules/common/components/button/Button";
 import {Led} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
+import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoMotor";
 
 export enum Modules {
     NeoPixelModule = 'neo-pixel-module',

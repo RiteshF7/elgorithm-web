@@ -1,25 +1,14 @@
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 
 
-export interface ServoModuleProps {
-    testCases: servoMotorTestCase[];
+export interface ServoState{
+    angle:number;
 }
 
-interface servoMotorTestCase {
-    inputs: any;
-    initialState: number[];
-    expectedOutput: number[];
-}
-
-
-export const ServoMotor: FC<ServoModuleProps> = ({testCases}) => {
-
-
-    const [state, setState] = useState(0);
-
+export const ServoMotor: FC<ServoState> = ({angle}) => {
     return (
         <div className={'flex flex-col items-center p-2 m-2'}>
-            <wokwi-servo horn="single" angle={state}></wokwi-servo>
+            <wokwi-servo horn="single" angle={angle}></wokwi-servo>
         </div>
     )
 }

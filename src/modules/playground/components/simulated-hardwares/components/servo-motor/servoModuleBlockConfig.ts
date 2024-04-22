@@ -3,6 +3,7 @@ import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
 import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 
 //block definitions
 const blockDefinitions = {
@@ -30,9 +31,6 @@ const blockDefinitions = {
 }
 
 //toolbox blocks
-
-
-
 const toolbox = [
     getSimpleToolboxBlock(blockKeys.turnServoLeft),
     getSimpleToolboxBlock(blockKeys.turnServoRight),
@@ -41,21 +39,31 @@ const toolbox = [
 
 //code generator
 const codeGenerator = {
-    [blockKeys.turnServoRight]: () => getServoRightBlockCode(),
-    [blockKeys.turnServoLeft]: () => getServoLeftBlockCode(),
+    [blockKeys.turnServoRight]: () => turnServo(ServoDirection.Right),
+    [blockKeys.turnServoLeft]: () => turnServo(ServoDirection.Left),
 };
 
 
 
-function getServoLeftBlockCode() {
-    return `await delay(500);
-    degree = (degree - 45) % 360
-    \nawait changeState({'${Modules.ServoModule}':{'angle':degree}});\n`
+
+enum ServoDirection {
+    Right,
+    Left
 }
-function getServoRightBlockCode() {
+
+function turnServo(direction:ServoDirection){
+    switch (direction){
+        case ServoDirection.Right:
+            return getServoBlockCode('+');
+        case ServoDirection.Left:
+            return getServoBlockCode('-')
+    }
+}
+
+function getServoBlockCode(operator:string){
     return `await delay(500);
-    degree = (degree + 45) % 360
-    \nawait changeState({'${Modules.ServoModule}':{'angle':degree}});\n`
+    degree = (degree ${operator} 45) % 360
+    \nawait changeState(${getModuleState(Modules.ServoModule, `{angle:degree}`)});\n`
 }
 
 const servoBlockConfig = {
