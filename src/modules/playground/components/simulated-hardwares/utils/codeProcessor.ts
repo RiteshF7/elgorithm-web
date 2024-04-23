@@ -2,12 +2,6 @@ import _ from "lodash";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {delay} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 
-interface TestCase {
-    inputs: any[],
-    initialState: object,
-    expectedOutput: any[]
-
-}
 
 interface CallbackHandler {
     onFailure: (message: string) => void,
@@ -16,14 +10,12 @@ interface CallbackHandler {
 
 const defaultCallbacks: CallbackHandler = {
     onFailure: (message: string) => {
-        // console.log(message)
     },
     onSuccess: (message: string) => {
-        // console.log(message)
     }
-
-
 }
+
+export const defaultStateChangeMethodName = 'changeState'
 
 export async function runTestCases(additionalArgs: object = {}, code: string, testCases: any[], stateUpdater: (state: any) => void
     , callbackHandler: CallbackHandler = defaultCallbacks) {
@@ -31,17 +23,21 @@ export async function runTestCases(additionalArgs: object = {}, code: string, te
     let completedTestCases = 0;
     let isFailed = false;
 
-
     for (let testcase of testCases) {
         const functionArgs =
-            {...additionalArgs, ...testcase.inputs, 'changeState': changeState}
+            {...additionalArgs, ...testcase.inputs, [defaultStateChangeMethodName]: changeState}
         await executeCode(functionArgs, code, handleCodeCompletion)
 
     }
 
     function handleCodeCompletion() {
         processResult(actualState, testCases[completedTestCases].expectedOutput, onFailure, onSuccess)
+    }
 
+    function getStateChangeMethodArg(state: Function) {
+        //TODO implement this hardcode check !
+        if (state.name != defaultStateChangeMethodName) return console.log('please supply stateChangeMethod name as **changeState** as params are hardcoded')
+        return {[defaultStateChangeMethodName]: state}
     }
 
     function changeState(state: any) {

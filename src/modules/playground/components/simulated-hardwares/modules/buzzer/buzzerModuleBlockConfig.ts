@@ -38,8 +38,8 @@ const blockDefinitions = {
 
 
 const toolbox = [
-    getSimpleToolboxBlock(blockKeys.turnOnBuzzer),
-    getSimpleToolboxBlock(blockKeys.turnOffBuzzer),
+    blockKeys.turnOnBuzzer,
+    blockKeys.turnOffBuzzer,
 ]
 
 

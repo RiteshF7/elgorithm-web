@@ -32,8 +32,8 @@ const blockDefinitions = {
 
 //toolbox blocks
 const toolbox = [
-    getSimpleToolboxBlock(blockKeys.turnServoLeft),
-    getSimpleToolboxBlock(blockKeys.turnServoRight),
+    blockKeys.turnServoLeft,
+    blockKeys.turnServoRight,
 ]
 
 

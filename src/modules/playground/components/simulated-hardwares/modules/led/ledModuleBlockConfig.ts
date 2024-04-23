@@ -37,27 +37,24 @@ const blockDefinitions = {
     },
 
 
-
 }
 
 //toolbox blocks
 
 
-
 const toolbox = [
-    getSimpleToolboxBlock(blockKeys.turnOnLed),
-    getSimpleToolboxBlock(blockKeys.turnOffLed),
-    getSimpleToolboxBlock(blockKeys.blinkLed),
+    blockKeys.turnOnLed,
+    blockKeys.turnOffLed,
+    blockKeys.blinkLed,
 ]
 
 
 //code generator
 const codeGenerator = {
-    turnOnLed: () => getLedBlockCode({active:true,color:'red'}),
-    turnOffLed: () => getLedBlockCode({active:false,color:'red'}),
+    turnOnLed: () => getLedBlockCode({active: true, color: 'red'}),
+    turnOffLed: () => getLedBlockCode({active: false, color: 'red'}),
     blinkLed: () => getLedBlockCode({active: true, color: 'red'}) + getLedBlockCode({active: false, color: 'red'})
 };
-
 
 
 function getLedBlockCode(payload: LedState) {

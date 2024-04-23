@@ -24,7 +24,7 @@ const blockDefinitions = {
 
 //toolbox blocks
 const toolbox = [
-    getSimpleToolboxBlock(blockKeys.lightValue),
+    blockKeys.lightValue,
 ]
 
 
