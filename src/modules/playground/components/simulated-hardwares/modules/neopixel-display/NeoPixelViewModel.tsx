@@ -7,8 +7,8 @@ import {RGB} from "@wokwi/elements/dist/cjs/types/rgb";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import _ from 'lodash'
 import neopixelBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
-import {useModuleBaseViewModel} from "@/modules/playground/components/simulated-hardwares/utils/ModuleBaseViewModel";
+    from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
+import {useModuleBaseViewModel} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/ModuleBaseViewModel";
 
 
 interface NeoPixelViewModelProps {

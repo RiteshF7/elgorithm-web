@@ -2,7 +2,7 @@ import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
-import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 
 //block definitions

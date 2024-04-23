@@ -3,9 +3,9 @@ import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
-import {BuzzerState} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
+import {BuzzerState} from "@/modules/playground/components/simulated-hardwares/modules/buzzer/Buzzer";
 import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
-import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 
 
 //block definitions

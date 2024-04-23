@@ -3,30 +3,27 @@ import * as Blockly from 'blockly/core';
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 
-import lightBuzzerBlockDefinitation
-    from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerBlockDefinitation";
 import neopixelBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
 import ledModuleBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/components/led/ledModuleBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
 import buzzerBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/components/buzzer/buzzerModuleBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
 import servoBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoModuleBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
+import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/inputsBlockConfig";
 
 
 const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
 const blockDefinitionsArray = [testBlock]
-const toolBoxBlocks = []
 
 
-export const blockConfigs = [neopixelBlockConfig,ledModuleBlockConfig,buzzerBlockConfig,servoBlockConfig]
+export const blockConfigs = [neopixelBlockConfig, ledModuleBlockConfig, buzzerBlockConfig, servoBlockConfig, inputsBlockConfig]
 
 export const forJsBlock = Object.create(null);
 
 for (let key in blockKeys) {
     if (blockKeys.hasOwnProperty(key)) {
-        console.log(key + ': ' + blockKeys[key]);
         blockConfigs.forEach((blockConfig) => {
 
             if (blockConfig['blockDefinitions'].hasOwnProperty(key)) {
@@ -34,7 +31,7 @@ for (let key in blockKeys) {
             }
 
             if (blockConfig['codeGenerator'].hasOwnProperty(key)) {
-                forJsBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key]();
+                forJsBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key](blocks, generator);
             }
 
         })
@@ -49,6 +46,12 @@ export function getSimpleToolboxBlock(blockKey) {
         'type': blockKey
     }
 
+}
+
+export function getPlainToolBox(blockKeys) {
+    return blockKeys.map((blockKey) => {
+        return getSimpleToolboxBlock(blockKey);
+    });
 }
 
 

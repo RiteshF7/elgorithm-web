@@ -1,16 +1,15 @@
-import React, {FC, useEffect} from 'react';
-import {Led} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
-import {SHProvider} from "@/modules/playground/providers/SH.provider";
+import React, {FC} from 'react';
+import {Module} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 
 interface PlaygroundRunnerProps {
-    simulatedHardware: React.ReactNode;
+    runnerConfig:any
 }
 
-export const PlaygroundRunner: FC<PlaygroundRunnerProps> = ({simulatedHardware}) => {
+export const PlaygroundRunner: FC<PlaygroundRunnerProps> = ({runnerConfig}) => {
 
     return (
         <div className={'basis-4/12 bg-white  rounded-lg flex justify-center items-center h-96'}>
-            {simulatedHardware}
+            <Module runnerConfig={runnerConfig}/>
         </div>
 
     )

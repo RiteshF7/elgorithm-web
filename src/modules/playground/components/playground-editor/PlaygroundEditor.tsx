@@ -3,7 +3,8 @@ import React, {FC, useEffect, useRef} from "react";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {PlaygroundActions} from "@/modules/playground/components/playground-actions/PlaygroundActions";
 import NeopixelBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/neopixelBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
+import {getPlainToolBox, getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
 
 interface PlaygroundEditorProps {
 editorConfig:any;
@@ -14,9 +15,11 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
     const initializedEditor = useRef(false);
     const toolboxContainer = {
         'kind': editorConfig.toolboxType,
-        'contents':[...editorConfig.toolboxContent]
+        'contents':getPlainToolBox(editorConfig.toolboxContent)
     }
     const {initPlayground} = usePlayground();
+
+
 
     useEffect(() => {
         if (editorRef.current && !initializedEditor.current) {

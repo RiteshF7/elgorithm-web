@@ -7,7 +7,7 @@ import {blocks, forJsBlock} from "./workspace/blocks/blocks";
 import theme from './workspace/elgotheme';
 import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
 import {getCodeCompletionCallback, initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
-import {Direction} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
+import {Direction} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
 
 initBlockly();
 
@@ -43,6 +43,7 @@ export class Playground {
         await delay(500);
         \n`
         const codePostfix = `\n
+        console.log(lightValue);\n
         await delay(500);\n
         handleCodeCompletion();\n }; \n
         return executeTimeouts();`

@@ -1,3 +1,5 @@
+import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/inputsBlockConfig";
+
 export const ifElseToolbox = [
     {
         "kind": "block",
@@ -6,6 +8,10 @@ export const ifElseToolbox = [
     {
         "kind": "block",
         "type": "math_number"
+    },
+    {
+        "kind": "block",
+        "type": "text"
     },
     {
         "kind": "block",
@@ -23,6 +29,7 @@ export const ifElseToolbox = [
             }
         ],
     },
+
 
 
 ]

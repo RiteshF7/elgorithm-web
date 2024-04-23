@@ -1,15 +1,17 @@
 import {
     NeoPixelDirect
-} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelDirect";
-import {Buzzer} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
+} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/NeoPixelDirect";
+import {Buzzer} from "@/modules/playground/components/simulated-hardwares/modules/buzzer/Buzzer";
 import React, {FC, useState} from "react";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {
     runTestCases
-} from "@/modules/playground/components/simulated-hardwares/components/base-custom-hooks/codeProcessor";
+} from "@/modules/playground/components/simulated-hardwares/utils/codeProcessor";
 import {Button} from "@/modules/common/components/button/Button";
-import {Led} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
-import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/components/servo-motor/ServoMotor";
+import {Led} from "@/modules/playground/components/simulated-hardwares/modules/led/Led";
+import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/ServoMotor";
+import {Block} from "blockly";
+import Blockly from "blockly/core";
 
 export enum Modules {
     NeoPixelModule = 'neo-pixel-module',
@@ -20,10 +22,10 @@ export enum Modules {
 
 }
 
-export function getModule(module: Modules = Modules.NoModule, runnerConfig: any) {
+function getModule(module: Modules = Modules.NoModule, runnerConfig: any) {
     switch (module) {
         case Modules.NeoPixelModule:
-            return <NeoPixelDirect {...runnerConfig}/>
+            return <NeoPixelDirect  {...runnerConfig}/>
         case Modules.LedModule:
             return <Led {...runnerConfig}/>
         case Modules.BuzzerModule:
@@ -59,11 +61,12 @@ export const Module: FC<ModuleProps> = ({runnerConfig}) => {
     }
 
 
+
     return (
         <div className={'flex flex-col items-center p-2 m-2'}>
             {
-                runnerConfig.moduleNames.map((module:Modules) => {
-                    return getModule(module, moduleState[module])
+                runnerConfig.moduleNames.map((module: Modules) => {
+                    return <div key={module}> {getModule(module, moduleState[module])}</div>
                 })
             }
             <Button onClick={() => {

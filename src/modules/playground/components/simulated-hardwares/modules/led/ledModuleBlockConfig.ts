@@ -1,9 +1,9 @@
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import {LedState} from "@/modules/playground/components/simulated-hardwares/components/led/Led";
+import {LedState} from "@/modules/playground/components/simulated-hardwares/modules/led/Led";
 // @ts-ignore
 import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
-import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 //block definitions
 const blockDefinitions = {

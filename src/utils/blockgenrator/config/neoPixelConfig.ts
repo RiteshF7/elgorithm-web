@@ -1,5 +1,5 @@
 import {TemplateConfig,generateControllerFile} from "../generators/SimHwControllerCodeGenerator";
-import {Direction} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/types";
+import {Direction} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
 
 export const neoPixelConfig: TemplateConfig = {
     componentName: 'neoPixel',

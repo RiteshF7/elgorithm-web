@@ -1,4 +1,4 @@
-import {Modules} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 
 export const delay = (ms:number) => new Promise(resolve => setTimeout(resolve, ms));
 

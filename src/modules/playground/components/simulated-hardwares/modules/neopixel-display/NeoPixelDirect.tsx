@@ -4,7 +4,7 @@ import {ControllerType, MatrixType, TestCase} from "./types";
 import {Button} from "@/modules/common/components/button/Button";
 import {
     useNeoPixelViewModel
-} from "@/modules/playground/components/simulated-hardwares/components/neopixel-display/NeoPixelViewModel";
+} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/NeoPixelViewModel";
 
 /*
  Test case 1 : move pixel right;

@@ -3,13 +3,13 @@ import React, {FC} from 'react';
 import {PlaygroundEditor} from "@/modules/playground/components/playground-editor/PlaygroundEditor";
 import {PlaygroundProvider} from "@/modules/playground/providers/playground.provider";
 import {ProblemStatement} from "@/modules/playground/components/playground-problem-statement/ProblemStatement";
-import {PlaygroundContainerContent, PlaygroundRunnerContent} from "@/content/banner-main/playground-container.content";
-import {getModule, Module} from "@/modules/playground/components/simulated-hardwares/modulesMap";
+import {PlaygroundContainerContent} from "@/content/banner-main/playground-container.content";
+import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 
 
 export const PlayGroundContainer: FC = () => {
 
-    const playgroundContainerConfig = PlaygroundContainerContent[6]
+    const playgroundContainerConfig = PlaygroundContainerContent[8]
 
 
     return (
@@ -20,9 +20,7 @@ export const PlayGroundContainer: FC = () => {
                                       description={playgroundContainerConfig.content.description}/>
                     <PlaygroundEditor editorConfig={playgroundContainerConfig.editorConfig}/>
                 </div>
-
-                <Module runnerConfig={playgroundContainerConfig.runnerConfig}/>
-
+                <PlaygroundRunner runnerConfig={playgroundContainerConfig.runnerConfig}/>
             </div>
         </PlaygroundProvider>
     )
