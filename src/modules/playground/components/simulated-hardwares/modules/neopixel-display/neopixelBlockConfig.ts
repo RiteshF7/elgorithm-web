@@ -101,30 +101,30 @@ function getToolboxBlock(blockKey: string): any {
 }
 
 const straightToolbox = [
-    getToolboxBlock(blockKeys.moveDown),
-    getToolboxBlock(blockKeys.moveRight),
-    getToolboxBlock(blockKeys.moveUp),
-    getToolboxBlock(blockKeys.moveLeft),
+    blockKeys.moveDown,
+    blockKeys.moveRight,
+    blockKeys.moveUp,
+    blockKeys.moveLeft,
 ]
 const verticalToolbox = [
-    getToolboxBlock(blockKeys.moveBottomLeft),
-    getToolboxBlock(blockKeys.moveBottomRight),
-    getToolboxBlock(blockKeys.moveTopLeft),
-    getToolboxBlock(blockKeys.moveTopRight),
+    (blockKeys.moveBottomLeft),
+    (blockKeys.moveBottomRight),
+    (blockKeys.moveTopLeft),
+    (blockKeys.moveTopRight),
 ]
 
 
 //code generator
 const codeGenerator = {
-    moveUp: () => getBlockCode(Direction.Up),
-    moveDown: () => getBlockCode(Direction.Down),
-    moveLeft: () => getBlockCode(Direction.Left),
-    moveRight: () => getBlockCode(Direction.Right),
-    moveTopLeft: () => getBlockCode(Direction.TopLeft),
-    moveTopRight: () => getBlockCode(Direction.TopRight),
-    moveBottomLeft: () => getBlockCode(Direction.BottomLeft),
-    moveBottomRight: () => getBlockCode(Direction.BottomRight),
-    stop: () => getBlockCode(Direction.Stop),
+    moveUp: (blocks:any,generators:any) => getBlockCode(Direction.Up),
+    moveDown: (blocks:any,generators:any) => getBlockCode(Direction.Down),
+    moveLeft: (blocks:any,generators:any) => getBlockCode(Direction.Left),
+    moveRight: (blocks:any,generators:any) => getBlockCode(Direction.Right),
+    moveTopLeft: (blocks:any,generators:any) => getBlockCode(Direction.TopLeft),
+    moveTopRight: (blocks:any,generators:any) => getBlockCode(Direction.TopRight),
+    moveBottomLeft: (blocks:any,generators:any) => getBlockCode(Direction.BottomLeft),
+    moveBottomRight: (blocks:any,generators:any) => getBlockCode(Direction.BottomRight),
+    stop: (blocks:any,generators:any) => getBlockCode(Direction.Stop),
 };
 
 function getBlockCode(payload: Direction) {

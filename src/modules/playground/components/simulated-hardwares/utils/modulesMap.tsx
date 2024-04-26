@@ -22,7 +22,7 @@ export enum Modules {
 
 }
 
-function getModule(module: Modules = Modules.NoModule, runnerConfig: any) {
+export function getModule(module: Modules = Modules.NoModule, runnerConfig: any) {
     switch (module) {
         case Modules.NeoPixelModule:
             return <NeoPixelDirect  {...runnerConfig}/>

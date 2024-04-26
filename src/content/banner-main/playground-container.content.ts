@@ -10,7 +10,6 @@ import {
 import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 import NeopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
-import {loopsToolbox} from "@/utils/playground/workspace/toolbox/core/loopsToolbox";
 import LedModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
 import BuzzerModuleBlockConfig
@@ -42,7 +41,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig:{
             toolboxType:'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox,...loopsToolbox],
+            toolboxContent: [...NeopixelBlockConfig.toolBox,BlockKeys.controlsRepeat],
         },
         runnerConfig: {
             moduleName:Modules.NeoPixelModule,
@@ -58,7 +57,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:0,
+        chapterId:1,
         type:'content',
         content: {
             contentId: 0,
@@ -74,7 +73,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig:{
             toolboxType:'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox,...loopsToolbox],
+            toolboxContent: [...NeopixelBlockConfig.toolBox,BlockKeys.controlsFor],
         },
         runnerConfig: {
             moduleName:Modules.NeoPixelModule,
@@ -90,7 +89,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:0,
+        chapterId:2,
         type:'content',
         content: {
             contentId: 0,
@@ -106,7 +105,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig:{
             toolboxType:'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox,...loopsToolbox],
+            toolboxContent: [...NeopixelBlockConfig.toolBox,BlockKeys.controlsFor],
         },        runnerConfig: {
             moduleName:Modules.NeoPixelModule,
             moduleConfig:{
@@ -124,7 +123,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:1,
+        chapterId:3,
         type:'content',
         content: {
             contentId: 0,
@@ -157,7 +156,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:1,
+        chapterId:4,
         type:'content',
         content: {
             contentId: 0,
@@ -190,7 +189,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:1,
+        chapterId:5,
         type:'content',
         content: {
             contentId: 0,
@@ -223,7 +222,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:1,
+        chapterId:6,
         type:'content',
         content: {
             contentId: 0,
@@ -256,7 +255,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:1,
+        chapterId:7,
         type:'content',
         content: {
             contentId: 0,
@@ -289,7 +288,7 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:1,
+        chapterId:8,
         type:'content',
         content: {
             contentId: 0,

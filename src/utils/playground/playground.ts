@@ -43,7 +43,6 @@ export class Playground {
         await delay(500);
         \n`
         const codePostfix = `\n
-        console.log(lightValue);\n
         await delay(500);\n
         handleCodeCompletion();\n }; \n
         return executeTimeouts();`
