@@ -14,3 +14,10 @@ export function moveForward() {
         time: 50
     });
 }
+
+export function initializeLightBuzzer(){
+    console.log('some')
+}
+
+
+

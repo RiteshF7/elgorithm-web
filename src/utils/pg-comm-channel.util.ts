@@ -1,7 +1,6 @@
 export const GlobalPGCommChannel = '_elg_pg_comm_channel';
 
 export type RegisterPlaygroundComponent = (componentKey: string, callback: (data: any) => void) => void;
-export type SendPlaygroundMessage = (componentKey: string, data?: any) => void;
 
 // [led off, delay 3000, led on]
 
@@ -32,6 +31,7 @@ export class PlaygroundCommunicationChannel {
                 this.queuePaused = true;
                 break;
             }
+            if(lastMessage.componentKey !='')
             this.registeredComponents[lastMessage.componentKey](lastMessage.data);
         }
 
@@ -45,6 +45,10 @@ export class PlaygroundCommunicationChannel {
         this.enqueueMessage(componentKey, data);
         this.dequeueMessages();
     }
+
+    resetQueue() {
+        this.messageQueue = [];
+    }
 }
 
 export function globalSendPlaygroundMessage(componentKey: string, data?: any) {
@@ -57,3 +61,31 @@ export function initPlaygroundCommunication() {
     // @ts-ignore
     window[GlobalPGCommChannel] = new PlaygroundCommunicationChannel();
 }
+
+var currentComponentKey = ''
+
+export function getChannelMessage(componentKey: string, payload: any) {
+    currentComponentKey = componentKey;
+    return `\nwindow['${GlobalPGCommChannel}'].sendMessage('${componentKey}', ${JSON.stringify(payload)});\n`
+}
+
+export function getChannelMessageWithDelay(componentKey: string, payload: any,delayTime: number = 200) {
+    const delayMessage = `\n window['${GlobalPGCommChannel}'].sendMessage('delay', {time: ${delayTime.toString()}})\n`;
+    return delayMessage +getChannelMessage(componentKey, payload) + delayMessage;
+}
+
+export function getCodeCompletionCallback() {
+    return getChannelMessage(currentComponentKey,{'completed':true});
+}
+
+export function resetMessageQueue() {
+    // @ts-ignore
+    window[GlobalPGCommChannel]?.resetQueue();
+}
+
+
+
+
+
+
+

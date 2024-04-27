@@ -1,36 +1,47 @@
 import {createContext, FC, PropsWithChildren, useContext, useState} from "react";
 import {Playground} from "@/utils/playground/playground";
-import {Toolboxes} from "@/utils/playground/workspace/toolbox/toolboxes";
+import {ToolboxContainer} from "@/utils/playground/workspace/toolbox/toolboxContainer";
 import {
     GlobalPGCommChannel,
     PlaygroundCommunicationChannel, RegisterPlaygroundComponent
 } from "@/utils/pg-comm-channel.util";
+import {any} from "prop-types";
 
 interface PlaygroundContextProps {
     playground: Playground | null;
-    initPlayground: (element: HTMLDivElement) => void;
+    initPlayground: (element: HTMLDivElement,toolbox: any) => void;
     runCode: () => void;
+    getJsCode: () => string;
     connect: () => void;
-    jsCodeString: string;
     registerComponent: RegisterPlaygroundComponent;
+    moveToNextLevel:(levelId:string)=>void;
 }
+
 
 const PlaygroundContext = createContext<PlaygroundContextProps>({
     playground: null,
     initPlayground: () => null,
     runCode: () => null,
+    getJsCode: () => '',
     connect: () => null,
-    jsCodeString: '',
-    registerComponent: () => null
+    registerComponent: () => null,
+    moveToNextLevel:()=>null
 });
 
 export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
 
-    const [playgroundInstance, setPlaygroundInstance] = useState<Playground | null>(null);
-    const [jsCodeString, setJsCodeString] = useState<string>('');
 
-    const initPlayground = (element: HTMLDivElement) => {
-        setPlaygroundInstance(new Playground(element, Toolboxes.turnOnLed));
+
+    const [playgroundInstance, setPlaygroundInstance] = useState<Playground | null>(null);
+    const initPlayground = (element: HTMLDivElement,toolbox:any) => {
+        setPlaygroundInstance(new Playground(element, toolbox));
+    }
+
+    function getJsCode():string{
+        if (playgroundInstance) {
+            return playgroundInstance.getJsCode();
+        }
+        return ''
     }
 
     const runCode = () => {
@@ -42,6 +53,10 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
     const connect = () => {
         console.log('Connect');
     }
+    const moveToNextLevel = () => {
+        console.log('Next level enabled!');
+    }
+
 
     const registerComponent: RegisterPlaygroundComponent = (key, callback: (data: any) => void) => {
         // @ts-ignore
@@ -53,9 +68,10 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
             playground: playgroundInstance,
             initPlayground,
             runCode,
+            getJsCode,
             connect,
-            jsCodeString,
-            registerComponent
+            registerComponent,
+            moveToNextLevel
         }}>
             {children}
         </PlaygroundContext.Provider>
