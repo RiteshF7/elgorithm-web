@@ -1,5 +1,5 @@
-import {FC, useMemo} from 'react';
-import {Button} from "@/modules/common/components/button/Button";
+import { FC, useMemo } from 'react';
+import { Button } from "@/modules/common/components/button/Button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,14 +13,13 @@ export interface BannerMainProps {
 }
 
 export const BannerMain: FC<BannerMainProps> = ({
-                                                    title,
-                                                    titleHighlight,
-                                                    description,
-                                                    imageUrl,
-                                                    actionText,
-                                                    actionUrl
-                                                }) => {
-
+    title,
+    titleHighlight,
+    description,
+    imageUrl,
+    actionText,
+    actionUrl
+}) => {
     const renderHeaderText = useMemo(() => {
         const titleParts = title.split(titleHighlight);
         return (
@@ -47,7 +46,7 @@ export const BannerMain: FC<BannerMainProps> = ({
                 </Link>
             </div>
             <Image src={imageUrl} alt={'Main banner'} width={533} height={328}
-                   className={'flex-shrink-0 h-auto'}/>
+                className={'flex-shrink-0 h-auto'} />
         </div>
     )
 }
