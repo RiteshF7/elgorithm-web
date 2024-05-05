@@ -4,7 +4,7 @@ import { CategoryCardGridcontent } from './category-card-grid.content';
 
 export const CategoryCardGrid: FC = () => {
   return (
-    <div className="flex items-center justify-evenly gap-4 my-8">
+    <div className="flex flex-wrap items-center justify-evenly gap-4 my-8">
       {
         CategoryCardGridcontent.map((item, index) => {
           return (
