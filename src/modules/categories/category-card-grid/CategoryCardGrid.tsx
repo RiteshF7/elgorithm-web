@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { CategoryCard } from "../category-card/CategoryCard";
 import { CategoryCardGridcontent } from './category-card-grid.content';
+import { CategoryCardV2 } from "../category-card/CategoryCardV2";
 
 export const CategoryCardGrid: FC = () => {
   return (
@@ -8,13 +9,13 @@ export const CategoryCardGrid: FC = () => {
       {
         CategoryCardGridcontent.map((item, index) => {
           return (
-            <CategoryCard
+            <CategoryCardV2
               key={index}
               bgImageUrl={item.bgImageUrl}
               title={item.title}
               description={item.description}
-              infoPoints={item.infoPoints}
               link={item.link}
+              level={item.level}
               totalCourses={item.totalCourses}
               totalDuration={item.totalDuration}
             />

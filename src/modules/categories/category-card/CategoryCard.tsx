@@ -11,6 +11,7 @@ export interface CategoryCardProps {
   description: string;
   infoPoints: string[];
   link: string;
+  level: string;
   totalCourses: number;
   totalDuration: number;
 }
