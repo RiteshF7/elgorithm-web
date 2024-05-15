@@ -1,6 +1,5 @@
 import { CheckIcon, Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { ClockIcon } from "@heroicons/react/24/outline";
-import { Square2StackIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import Image from "next/image";
 import { FC } from "react";

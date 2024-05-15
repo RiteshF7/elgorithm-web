@@ -10,7 +10,7 @@ import {Button} from "@/modules/common/components/button/Button";
 
 export const PlayGroundContainer: FC = () => {
 
-    const [containerState, setContainerState] = React.useState(PlaygroundContainerContent[2])
+    const [containerState, setContainerState] = React.useState(PlaygroundContainerContent[9])
 
     return (
         <PlaygroundProvider>

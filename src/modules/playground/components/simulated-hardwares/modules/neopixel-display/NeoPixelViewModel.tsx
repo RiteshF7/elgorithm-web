@@ -86,17 +86,20 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     }
 
     function handleSuccess() {
+        alert('success')
         initDisplay();
         moveToNextLevel('next level id')
     }
 
     function handleFailure() {
+        alert('failed')
         initDisplay();
     }
 
     function move(direction: Direction): void {
-
         const newPosition = calculateMove(direction, position);
+        console.log(`[${String(newPosition)}],`)
+
         if (!isValidPosition(newPosition[row], newPosition[column], matrixSize)) {
             console.log("invalid move!");
             handleFailure()

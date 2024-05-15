@@ -14,23 +14,19 @@ import LedModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
 import BuzzerModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
-import servoModuleBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
 import ServoModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
-import {ifElseToolbox} from "@/utils/playground/workspace/toolbox/core/ifElse";
-import {variableToolbox} from "@/utils/playground/workspace/toolbox/core/variablesToolbox";
-import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/inputsBlockConfig";
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
+import {block} from "blockly/core/tooltip";
 
 export const PlaygroundContainerContent = [
     {
-        chapterId:0,
-        type:'content',
+        chapterId: 0,
+        type: 'content',
         content: {
             contentId: 0,
-            title: "turn pixel right",
-            description: "turn pixel right",
+            title: "Move pixel 1 step right",
+            description: "Move pixel 1 step right",
             media: [
                 {
                     type: "video",
@@ -39,13 +35,13 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox,BlockKeys.controlsRepeat],
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.moveRight],
         },
         runnerConfig: {
-            moduleName:Modules.NeoPixelModule,
-            moduleConfig:{
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
                 matrixSize: 11,
                 matrixType: MatrixType.UNI_DIRECTIONAL,
                 testCase: {
@@ -57,12 +53,12 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:1,
-        type:'content',
+        chapterId: 1,
+        type: 'content',
         content: {
             contentId: 0,
-            title: "move pixel right 3 times",
-            description: "turn pixel right 3 times",
+            title: "Move pixel 1 step left",
+            description: "Move pixel 1 step left",
             media: [
                 {
                     type: "video",
@@ -71,13 +67,109 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox,BlockKeys.controlsFor],
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [BlockKeys.moveLeft],
         },
         runnerConfig: {
-            moduleName:Modules.NeoPixelModule,
-            moduleConfig:{
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.UNI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5, 5]],
+                    expectedOutput: [[5, 4]],
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+    {
+        chapterId: 2,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "Move 1 step up",
+            description: "move one step up",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.moveUp],
+        },
+        runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.UNI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5, 5]],
+                    expectedOutput: [[4, 5]],
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+    {
+        chapterId: 3,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "Move 1 step down",
+            description: "move one step down",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.moveDown],
+        },
+        runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.UNI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5, 5]],
+                    expectedOutput: [[6, 5]],
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+    {
+        chapterId: 4,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "move pixel 3 steps right",
+            description: "move pixel 3 steps right",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.moveRight],
+        },
+        runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
                 matrixSize: 11,
                 matrixType: MatrixType.UNI_DIRECTIONAL,
                 testCase: {
@@ -89,8 +181,8 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:2,
-        type:'content',
+        chapterId: 5,
+        type: 'content',
         content: {
             contentId: 0,
             title: "join two pixels",
@@ -103,15 +195,15 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox,BlockKeys.controlsFor],
-        },        runnerConfig: {
-            moduleName:Modules.NeoPixelModule,
-            moduleConfig:{
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [...NeopixelBlockConfig.toolBox, BlockKeys.controlsFor],
+        }, runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
                 matrixSize: 11,
                 matrixType: MatrixType.BI_DIRECTIONAL,
-                testCase:{
+                testCase: {
                     initialState: [[5, 5], [10, 10]],
                     expectedOutput: [
                         [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
@@ -123,8 +215,139 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:3,
-        type:'content',
+        chapterId: 6,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "make L pattern as shown in animation below",
+            description: "make L pattern as shown in animation below [5 down 5 right pattern] can be used in loops",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.moveRight, blockKeys.moveDown],
+        },
+        runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.UNI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5, 5]],
+                    expectedOutput: [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10],]
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+    {
+        chapterId: 7,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "make L pattern as shown in animation below using loop",
+            description: "make L pattern as shown in animation below [5 down 5 right pattern] ",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.moveRight, blockKeys.moveDown,blockKeys.controlsRepeat],
+        },
+        runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.UNI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5, 5]],
+                    expectedOutput: [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10],]
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+    {
+        chapterId: 8,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "join pixels by making square",
+            description: "join two pixels by making square",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [...NeopixelBlockConfig.toolBox, BlockKeys.controlsRepeat],
+        }, runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.BI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[0,0], [10,10],[0.,10],[10,0]],
+                    expectedOutput: [
+                        [[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[4,10],[3,10],[2,10],[1,10],[0,10],[0,9],[0,8],[0,7],[0,6],[0,5],[0,4],[0,3],[0,2],[0,1],[0,0]]
+                    ]
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+    {
+        chapterId: 9,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "join  pixels by making triangle",
+            description: "join two pixels by making triangle",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [BlockKeys.moveLeft,blockKeys.moveBottomLeft,blockKeys.moveTopRight, BlockKeys.controlsRepeat],
+        }, runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.BI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5,0],[10,5],[5,10]],
+                    expectedOutput: [
+                        [[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[4,10],[3,10],[2,10],[1,10],[0,10],[0,9],[0,8],[0,7],[0,6],[0,5],[0,4],[0,3],[0,2],[0,1],[0,0]]
+                    ]
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+
+    {
+        chapterId: 3,
+        type: 'content',
         content: {
             contentId: 0,
             title: "turn on led generic",
@@ -137,18 +360,18 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
             toolboxContent: [...LedModuleBlockConfig.toolBox],
         },
         runnerConfig: {
-            moduleNames:[Modules.LedModule],
-            moduleConfig:{
-                testCases:[
+            moduleNames: [Modules.LedModule],
+            moduleConfig: {
+                testCases: [
                     {
                         inputs: {},
-                        initialState: {[Modules.LedModule]:{active:false,color:'red'}},
-                        expectedOutput: [{[Modules.LedModule]:{active:true,color:'red'}}]
+                        initialState: {[Modules.LedModule]: {active: false, color: 'red'}},
+                        expectedOutput: [{[Modules.LedModule]: {active: true, color: 'red'}}]
                     },
                 ]
 
@@ -156,8 +379,8 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:4,
-        type:'content',
+        chapterId: 4,
+        type: 'content',
         content: {
             contentId: 0,
             title: "blink led 2 times",
@@ -170,18 +393,28 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
             toolboxContent: [...LedModuleBlockConfig.toolBox],
         },
         runnerConfig: {
-            moduleNames:[Modules.LedModule],
-            moduleConfig:{
-                testCases:[
+            moduleNames: [Modules.LedModule],
+            moduleConfig: {
+                testCases: [
                     {
                         inputs: {},
-                        initialState: {[Modules.LedModule]:{active:false,color:'green'}},
-                        expectedOutput: [{[Modules.LedModule]:{active:true,color:'red'}},{[Modules.LedModule]:{active:false,color:'red'}},{[Modules.LedModule]:{active:true,color:'red'}},{[Modules.LedModule]:{active:false,color:'red'}},]
+                        initialState: {[Modules.LedModule]: {active: false, color: 'green'}},
+                        expectedOutput: [{
+                            [Modules.LedModule]: {
+                                active: true,
+                                color: 'red'
+                            }
+                        }, {[Modules.LedModule]: {active: false, color: 'red'}}, {
+                            [Modules.LedModule]: {
+                                active: true,
+                                color: 'red'
+                            }
+                        }, {[Modules.LedModule]: {active: false, color: 'red'}},]
                     },
                 ]
 
@@ -189,8 +422,8 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:5,
-        type:'content',
+        chapterId: 5,
+        type: 'content',
         content: {
             contentId: 0,
             title: "Turn servo right two times",
@@ -203,18 +436,18 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
             toolboxContent: [...ServoModuleBlockConfig.toolBox],
         },
         runnerConfig: {
-            moduleNames:[Modules.ServoModule],
-            moduleConfig:{
-                testCases:[
+            moduleNames: [Modules.ServoModule],
+            moduleConfig: {
+                testCases: [
                     {
                         inputs: {degree: 0},
-                        initialState: {[Modules.ServoModule]:{angle:0}},
-                        expectedOutput: [{[Modules.ServoModule]:{angle:45}},{[Modules.ServoModule]:{angle:90}}]
+                        initialState: {[Modules.ServoModule]: {angle: 0}},
+                        expectedOutput: [{[Modules.ServoModule]: {angle: 45}}, {[Modules.ServoModule]: {angle: 90}}]
                     },
                 ]
 
@@ -222,8 +455,8 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:6,
-        type:'content',
+        chapterId: 6,
+        type: 'content',
         content: {
             contentId: 0,
             title: "Turn buzzer on",
@@ -236,18 +469,18 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
             toolboxContent: [...BuzzerModuleBlockConfig.toolBox],
         },
         runnerConfig: {
-            moduleNames:[Modules.BuzzerModule],
-            moduleConfig:{
-                testCases:[
+            moduleNames: [Modules.BuzzerModule],
+            moduleConfig: {
+                testCases: [
                     {
                         inputs: {},
-                        initialState: {[Modules.BuzzerModule]:{buzz:false}},
-                        expectedOutput: [{[Modules.BuzzerModule]:{buzz:true}},]
+                        initialState: {[Modules.BuzzerModule]: {buzz: false}},
+                        expectedOutput: [{[Modules.BuzzerModule]: {buzz: true}},]
                     },
                 ]
 
@@ -255,8 +488,8 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:7,
-        type:'content',
+        chapterId: 7,
+        type: 'content',
         content: {
             contentId: 0,
             title: "turn lef on then turn servo right",
@@ -269,18 +502,26 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
-            toolboxContent: [...LedModuleBlockConfig.toolBox,...ServoModuleBlockConfig.toolBox],
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [...LedModuleBlockConfig.toolBox, ...ServoModuleBlockConfig.toolBox],
         },
         runnerConfig: {
-            moduleNames:[Modules.LedModule,Modules.ServoModule],
-            moduleConfig:{
-                testCases:[
+            moduleNames: [Modules.LedModule, Modules.ServoModule],
+            moduleConfig: {
+                testCases: [
                     {
                         inputs: {degree: 0},
-                        initialState: {[Modules.LedModule]:{active:false,color:'red'},[Modules.ServoModule]:{angle:0}},
-                        expectedOutput: [{[Modules.LedModule]:{active:true,color:'red'}},{[Modules.ServoModule]:{angle:45}}]
+                        initialState: {
+                            [Modules.LedModule]: {active: false, color: 'red'},
+                            [Modules.ServoModule]: {angle: 0}
+                        },
+                        expectedOutput: [{
+                            [Modules.LedModule]: {
+                                active: true,
+                                color: 'red'
+                            }
+                        }, {[Modules.ServoModule]: {angle: 45}}]
                     },
                 ]
 
@@ -288,8 +529,8 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId:8,
-        type:'content',
+        chapterId: 8,
+        type: 'content',
         content: {
             contentId: 0,
             title: "Turn on led if light value is greater than 60",
@@ -302,23 +543,23 @@ export const PlaygroundContainerContent = [
                 }
             ]
         },
-        editorConfig:{
-            toolboxType:'flyoutToolbox',
-            toolboxContent: [blockKeys.controlsIf,blockKeys.turnOffLed,blockKeys.turnOnLed,blockKeys.lightValue,blockKeys.mathNumber,blockKeys.logicCompare],
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.controlsIf, blockKeys.turnOffLed, blockKeys.turnOnLed, blockKeys.lightValue, blockKeys.mathNumber, blockKeys.logicCompare],
         },
         runnerConfig: {
-            moduleNames:[Modules.LedModule],
-            moduleConfig:{
-                testCases:[
+            moduleNames: [Modules.LedModule],
+            moduleConfig: {
+                testCases: [
                     {
                         inputs: {lightValue: 40},
-                        initialState: {[Modules.LedModule]:{active:false,color:'red'}},
-                        expectedOutput: [{[Modules.LedModule]:{active:false,color:'red'}}]
+                        initialState: {[Modules.LedModule]: {active: false, color: 'red'}},
+                        expectedOutput: [{[Modules.LedModule]: {active: false, color: 'red'}}]
                     },
                     {
                         inputs: {lightValue: 80},
-                        initialState: {[Modules.LedModule]:{active:false,color:'red'}},
-                        expectedOutput: [{[Modules.LedModule]:{active:true,color:'red'}}]
+                        initialState: {[Modules.LedModule]: {active: false, color: 'red'}},
+                        expectedOutput: [{[Modules.LedModule]: {active: true, color: 'red'}}]
                     },
                 ]
 
