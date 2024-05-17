@@ -16,6 +16,7 @@ export class Playground {
 
     constructor(div: HTMLElement, toolbox: Element | any) {
         initPlaygroundCommunication();
+
         this.workspace = Blockly.inject(div, {
             toolbox: toolbox, theme: theme,
             toolboxPosition: 'start',
@@ -33,7 +34,10 @@ export class Playground {
             },
             trashcan: false,
         });
-        load(this.workspace);
+
+        const state = Blockly.serialization.workspaces.save(this.workspace);
+        Blockly.serialization.workspaces.load(state, this.workspace);
+        // load(this.workspace);
     }
 
     getAsyncCodeWithPredefinedFunctions(blockCode: string): string {

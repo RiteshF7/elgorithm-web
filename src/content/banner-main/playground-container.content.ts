@@ -316,8 +316,8 @@ export const PlaygroundContainerContent = [
         type: 'content',
         content: {
             contentId: 0,
-            title: "join  pixels by making triangle",
-            description: "join two pixels by making triangle",
+            title: "join 2 pixels by making square",
+            description: "join 2 two pixels by making square",
             media: [
                 {
                     type: "video",
@@ -328,22 +328,57 @@ export const PlaygroundContainerContent = [
         },
         editorConfig: {
             toolboxType: 'flyoutToolbox',
-            toolboxContent: [BlockKeys.moveLeft,blockKeys.moveBottomLeft,blockKeys.moveTopRight, BlockKeys.controlsRepeat],
+            toolboxContent: [...NeopixelBlockConfig.toolBox, BlockKeys.controlsRepeat],
         }, runnerConfig: {
             moduleName: Modules.NeoPixelModule,
             moduleConfig: {
                 matrixSize: 11,
                 matrixType: MatrixType.BI_DIRECTIONAL,
                 testCase: {
-                    initialState: [[5,0],[10,5],[5,10]],
+                    initialState: [[5,5], [10,10]],
                     expectedOutput: [
-                        [[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[4,10],[3,10],[2,10],[1,10],[0,10],[0,9],[0,8],[0,7],[0,6],[0,5],[0,4],[0,3],[0,2],[0,1],[0,0]]
+                        [[6,5],[7,5],[8,5],[9,5],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[5,9],[5,8],[5,7],[5,6],[5,5]],
+                        [[5,6],[5,7],[5,8],[5,9],[5,10],[6,10],[7,10],[8,10],[9,10],[10,10],[10,9],[10,8],[10,7],[10,6],[10,5],[9,5],[8,5],[7,5],[6,5],[5,5]]
                     ]
                 },
                 controllerType: ControllerType.blocks
             }
         }
     },
+    {
+        chapterId: 10,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "join 2 adjacent squares by joining pixels as shown in animation below",
+            description: "join 2 adjacent squares by joining pixels",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [...NeopixelBlockConfig.toolBox, BlockKeys.controlsRepeat],
+        }, runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.BI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5,5], [10,10],[0,0]],
+                    expectedOutput: [
+                        [[6,5],[7,5],[8,5],[9,5],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[5,9],[5,8],[5,7],[5,6],[5,5],[5,4],[5,3],[5,2],[5,1],[5,0],[4,0],[3,0],[2,0],[1,0],[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[1,5],[2,5],[3,5],[4,5],[5,5]],
+                    ]
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+
 
     {
         chapterId: 3,
