@@ -12,6 +12,7 @@ import {Led} from "@/modules/playground/components/simulated-hardwares/modules/l
 import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/ServoMotor";
 import {Block} from "blockly";
 import Blockly from "blockly/core";
+import {LCD} from "@/modules/playground/components/simulated-hardwares/modules/LCD/LCD";
 
 export enum Modules {
     NeoPixelModule = 'neo-pixel-module',
@@ -19,6 +20,7 @@ export enum Modules {
     NoModule = 'no-module',
     BuzzerModule = 'buzzer-module',
     ServoModule = 'servo-module',
+    LCDModule = 'lcd-module'
 
 }
 
@@ -32,6 +34,8 @@ export function getModule(module: Modules = Modules.NoModule, runnerConfig: any)
             return <Buzzer {...runnerConfig}/>
         case Modules.ServoModule:
             return <ServoMotor {...runnerConfig}/>
+        case Modules.LCDModule:
+            return <LCD {...runnerConfig}/>
     }
 }
 

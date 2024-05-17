@@ -6,6 +6,7 @@ import {ProblemStatement} from "@/modules/playground/components/playground-probl
 import {PlaygroundContainerContent} from "@/content/banner-main/playground-container.content";
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Button} from "@/modules/common/components/button/Button";
+import {LCD} from "@/modules/playground/components/simulated-hardwares/modules/LCD/LCD";
 
 
 export const PlayGroundContainer: FC = () => {
