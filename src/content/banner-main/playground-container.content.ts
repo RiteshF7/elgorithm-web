@@ -1,23 +1,17 @@
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
+import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import {
     ControllerType,
-    MatrixType,
-    TestCase
+    MatrixType
 } from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
-import {
-    NeoPixelDirect
-} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/NeoPixelDirect";
 import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 import NeopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
-import LedModuleBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
+import LedModuleBlockConfig from "@/modules/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
 import BuzzerModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
 import ServoModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
-import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import {block} from "blockly/core/tooltip";
 
 export const PlaygroundContainerContent = [
     {
@@ -263,7 +257,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig: {
             toolboxType: 'flyoutToolbox',
-            toolboxContent: [blockKeys.moveRight, blockKeys.moveDown,blockKeys.controlsRepeat],
+            toolboxContent: [blockKeys.moveRight, blockKeys.moveDown, blockKeys.controlsRepeat],
         },
         runnerConfig: {
             moduleName: Modules.NeoPixelModule,
@@ -302,9 +296,9 @@ export const PlaygroundContainerContent = [
                 matrixSize: 11,
                 matrixType: MatrixType.BI_DIRECTIONAL,
                 testCase: {
-                    initialState: [[0,0], [10,10],[0.,10],[10,0]],
+                    initialState: [[0, 0], [10, 10], [0., 10], [10, 0]],
                     expectedOutput: [
-                        [[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[4,10],[3,10],[2,10],[1,10],[0,10],[0,9],[0,8],[0,7],[0,6],[0,5],[0,4],[0,3],[0,2],[0,1],[0,0]]
+                        [[1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0], [10, 1], [10, 2], [10, 3], [10, 4], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10], [9, 10], [8, 10], [7, 10], [6, 10], [5, 10], [4, 10], [3, 10], [2, 10], [1, 10], [0, 10], [0, 9], [0, 8], [0, 7], [0, 6], [0, 5], [0, 4], [0, 3], [0, 2], [0, 1], [0, 0]]
                     ]
                 },
                 controllerType: ControllerType.blocks
@@ -335,10 +329,10 @@ export const PlaygroundContainerContent = [
                 matrixSize: 11,
                 matrixType: MatrixType.BI_DIRECTIONAL,
                 testCase: {
-                    initialState: [[5,5], [10,10]],
+                    initialState: [[5, 5], [10, 10]],
                     expectedOutput: [
-                        [[6,5],[7,5],[8,5],[9,5],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[5,9],[5,8],[5,7],[5,6],[5,5]],
-                        [[5,6],[5,7],[5,8],[5,9],[5,10],[6,10],[7,10],[8,10],[9,10],[10,10],[10,9],[10,8],[10,7],[10,6],[10,5],[9,5],[8,5],[7,5],[6,5],[5,5]]
+                        [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10], [9, 10], [8, 10], [7, 10], [6, 10], [5, 10], [5, 9], [5, 8], [5, 7], [5, 6], [5, 5]],
+                        [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10], [10, 9], [10, 8], [10, 7], [10, 6], [10, 5], [9, 5], [8, 5], [7, 5], [6, 5], [5, 5]]
                     ]
                 },
                 controllerType: ControllerType.blocks
@@ -369,24 +363,22 @@ export const PlaygroundContainerContent = [
                 matrixSize: 11,
                 matrixType: MatrixType.BI_DIRECTIONAL,
                 testCase: {
-                    initialState: [[5,5], [10,10],[0,0]],
+                    initialState: [[5, 5], [10, 10], [0, 0]],
                     expectedOutput: [
-                        [[6,5],[7,5],[8,5],[9,5],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[7,10],[6,10],[5,10],[5,9],[5,8],[5,7],[5,6],[5,5],[5,4],[5,3],[5,2],[5,1],[5,0],[4,0],[3,0],[2,0],[1,0],[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[1,5],[2,5],[3,5],[4,5],[5,5]],
+                        [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10], [9, 10], [8, 10], [7, 10], [6, 10], [5, 10], [5, 9], [5, 8], [5, 7], [5, 6], [5, 5], [5, 4], [5, 3], [5, 2], [5, 1], [5, 0], [4, 0], [3, 0], [2, 0], [1, 0], [0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]],
                     ]
                 },
                 controllerType: ControllerType.blocks
             }
         }
     },
-
-
     {
-        chapterId: 3,
+        chapterId: 11,
         type: 'content',
         content: {
             contentId: 0,
-            title: "turn on led generic",
-            description: "turn on led",
+            title: "turn led on",
+            description: "turn led on",
             media: [
                 {
                     type: "video",
@@ -397,7 +389,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig: {
             toolboxType: 'flyoutToolbox',
-            toolboxContent: [...LedModuleBlockConfig.toolBox],
+            toolboxContent: [blockKeys.turnOnLed],
         },
         runnerConfig: {
             moduleNames: [Modules.LedModule],
@@ -414,12 +406,12 @@ export const PlaygroundContainerContent = [
         }
     },
     {
-        chapterId: 4,
+        chapterId: 12,
         type: 'content',
         content: {
             contentId: 0,
-            title: "blink led 2 times",
-            description: "blink led 2 times",
+            title: "make led blink 2 times",
+            description: "make led blink 2 times",
             media: [
                 {
                     type: "video",
@@ -430,7 +422,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig: {
             toolboxType: 'flyoutToolbox',
-            toolboxContent: [...LedModuleBlockConfig.toolBox],
+            toolboxContent: [blockKeys.blinkLed],
         },
         runnerConfig: {
             moduleNames: [Modules.LedModule],
@@ -438,7 +430,7 @@ export const PlaygroundContainerContent = [
                 testCases: [
                     {
                         inputs: {},
-                        initialState: {[Modules.LedModule]: {active: false, color: 'green'}},
+                        initialState: {[Modules.LedModule]: {active: false, color: 'red'}},
                         expectedOutput: [{
                             [Modules.LedModule]: {
                                 active: true,
@@ -450,6 +442,92 @@ export const PlaygroundContainerContent = [
                                 color: 'red'
                             }
                         }, {[Modules.LedModule]: {active: false, color: 'red'}},]
+                    },
+                ]
+
+            }
+        }
+    },
+    {
+        chapterId: 13,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "Turn on led if light value is greater than 60",
+            description: "Do it in one go",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.controlsIf, blockKeys.turnOffLed, blockKeys.turnOnLed, blockKeys.lightValue, blockKeys.mathNumber, blockKeys.logicCompare],
+        },
+        runnerConfig: {
+            moduleNames: [Modules.LedModule],
+            moduleConfig: {
+                testCases: [
+                    {
+                        inputs: {lightValue: 40},
+                        initialState: {[Modules.LedModule]: {active: false, color: 'red'}},
+                        expectedOutput: [{[Modules.LedModule]: {active: false, color: 'red'}}]
+                    },
+                    {
+                        inputs: {lightValue: 80},
+                        initialState: {[Modules.LedModule]: {active: false, color: 'red'}},
+                        expectedOutput: [{[Modules.LedModule]: {active: true, color: 'red'}}]
+                    },
+                ]
+
+            }
+        }
+    },
+    {
+        chapterId: 13,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "Blink led 2 times if value goes less than 10 and turn led off if value is greater than 10",
+            description: "Do it in one go",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [blockKeys.controlsIf, blockKeys.turnOffLed, blockKeys.turnOnLed, blockKeys.blinkLed, blockKeys.lightValue, blockKeys.mathNumber, blockKeys.logicCompare],
+        },
+        runnerConfig: {
+            moduleNames: [Modules.LedModule],
+            moduleConfig: {
+                testCases: [
+                    {
+                        inputs: {lightValue: 20},
+                        initialState: {[Modules.LedModule]: {active: true, color: 'red'}},
+                        expectedOutput: [{[Modules.LedModule]: {active: false, color: 'red'}}]
+                    },
+                    {
+                        inputs: {lightValue: 9},
+                        initialState: {[Modules.LedModule]: {active: true, color: 'red'}},
+                        expectedOutput: [{
+                            [Modules.LedModule]: {
+                                active: true,
+                                color: 'red'
+                            }
+                        }, {[Modules.LedModule]: {active: false, color: 'red'}}, {
+                            [Modules.LedModule]: {
+                                active: true,
+                                color: 'red'
+                            }
+                        }, {[Modules.LedModule]: {active: false, color: 'red'}}]
                     },
                 ]
 
