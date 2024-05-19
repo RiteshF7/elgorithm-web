@@ -1,10 +1,10 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import type {ReactNode} from "react";
-import {Header} from "@/modules/common/components/header/Header";
+import type { ReactNode } from "react";
+import { Header } from "@/modules/common/components/header/Header";
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Elgorithm",
@@ -12,18 +12,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: ReactNode;
 }>) {
     return (
         <html lang="en">
-        <body className={inter.className}>
-        <Header/>
-        <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-12'}>
-            {children}
-        </main>
-        </body>
+            <body className={inter.className}>
+                <Header />
+                {children}
+            </body>
         </html>
     );
 }

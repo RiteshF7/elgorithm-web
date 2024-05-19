@@ -1,13 +1,12 @@
 import { FC } from "react";
-import { CategoryCard } from "../category-card/CategoryCard";
-import { CategoryCardGridcontent } from './category-card-grid.content';
 import { CategoryCardV2 } from "../category-card/CategoryCardV2";
+import { CategoryModel } from "../models/category.model";
 
-export const CategoryCardGrid: FC = () => {
+export const CategoryCardGrid: FC<{ categoryList: CategoryModel[] }> = ({ categoryList }) => {
   return (
     <div className="flex flex-wrap items-center justify-evenly gap-4 my-8">
       {
-        CategoryCardGridcontent.map((item, index) => {
+        categoryList.map((item, index) => {
           return (
             <CategoryCardV2
               key={index}

@@ -1,6 +1,6 @@
-import { CategoryCardProps } from "../category-card/CategoryCard";
+import { CategoryModel } from "@/modules/categories/models/category.model";
 
-export const CategoryCardGridcontent: CategoryCardProps[] = [
+export const categoryListData: CategoryModel[] = [
   {
     title: "No Code",
     description:
