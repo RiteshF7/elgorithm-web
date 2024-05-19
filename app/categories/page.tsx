@@ -5,8 +5,11 @@ import { ContentCardList } from "@/modules/home/content-card/ContentCardList";
 import { ContentCardsContent } from "@/content/banner-main/content-cards.content";
 import { CategoryModel } from "@/modules/categories/models/category.model";
 
+const BASE_URL = process.env.API_ENDPOINT;
+
 const getCategoryList = async (): Promise<CategoryModel[]> => {
-  return (await fetch('http:localhost:3000/api/category/list?detailed=true')).json();
+  console.log('BASE_URL', BASE_URL);
+  return (await fetch(`${BASE_URL}/api/category/list?detailed=true`)).json();
 }
 
 const CategoryPage: FC = async () => {
