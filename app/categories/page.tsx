@@ -8,7 +8,7 @@ import { CategoryModel } from "@/modules/categories/models/category.model";
 const BASE_URL = process.env.API_ENDPOINT;
 
 const getCategoryList = async (): Promise<CategoryModel[]> => {
-  console.log('BASE_URL', BASE_URL);
+  console.log(process.env);
   return (await fetch(`${BASE_URL}/api/category/list?detailed=true`)).json();
 }
 
