@@ -506,17 +506,23 @@ export const PlaygroundContainerContent = [
             toolboxContent: [blockKeys.controlsIf, blockKeys.turnOffLed, blockKeys.turnOnLed, blockKeys.blinkLed, blockKeys.lightValue, blockKeys.mathNumber, blockKeys.logicCompare],
         },
         runnerConfig: {
-            moduleNames: [Modules.LedModule,Modules.LCDModule],
+            moduleNames: [Modules.LedModule, Modules.LCDModule],
             moduleConfig: {
                 testCases: [
                     {
                         inputs: {lightValue: 20},
-                        initialState: {[Modules.LedModule]: {active: true, color: 'red'},[Modules.LCDModule]:{text:'20'}},
+                        initialState: {
+                            [Modules.LedModule]: {active: true, color: 'red'},
+                            [Modules.LCDModule]: {text: '20'}
+                        },
                         expectedOutput: [{[Modules.LedModule]: {active: false, color: 'red'}}]
                     },
                     {
                         inputs: {lightValue: 9},
-                        initialState: {[Modules.LedModule]: {active: true, color: 'red'},[Modules.LCDModule]:{text:'9'}},
+                        initialState: {
+                            [Modules.LedModule]: {active: true, color: 'red'},
+                            [Modules.LCDModule]: {text: '9'}
+                        },
                         expectedOutput: [{
                             [Modules.LedModule]: {
                                 active: true,
