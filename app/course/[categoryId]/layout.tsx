@@ -13,10 +13,10 @@ const CourseCategoryLayout: FC<PropsWithChildren<{ params: { categoryId: string 
   const categoryCourses = await getCategoryLessonGroups(params.categoryId);
   return (
     <CourseSelectionProvider lessonGroupData={categoryCourses}>
-      <CourseSidebar lessonGroupData={categoryCourses} />
-      <main>
+      <div className="flex flex-1 gap-4">
+        <CourseSidebar lessonGroupData={categoryCourses} />
         {children}
-      </main>
+      </div>
     </CourseSelectionProvider>
   )
 }

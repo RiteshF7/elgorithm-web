@@ -12,7 +12,6 @@ export const CourseSelectionController: FC<{ routeLessonId: number }> = ({ route
   useEffect(() => {
     if (!!coursesData?.length && routeLessonId && completedLessonSequence !== undefined) {
       const isValid = isValidSelectedLesson({ completedLessonSequence, lessonId: routeLessonId, coursesData });
-      console.log(isValid, 'isValid');
       if (isValid) {
         setSelectedLessonId(routeLessonId);
       } else {

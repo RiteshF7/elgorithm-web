@@ -20,3 +20,17 @@ export const isValidSelectedLesson = ({
 export const getFirstLessonId = (coursesData: LessonGroupModel[]) => {
   return coursesData.map(({ lessonList }) => lessonList).flat(1)[0].id;
 };
+
+export const getPreviousNextLessonId = (
+  coursesData: LessonGroupModel[],
+  lessonId?: number
+) => {
+  const flatLessonList = coursesData
+    .map(({ lessonList }) => lessonList)
+    .flat(1);
+  const currentIndex = flatLessonList.findIndex(({ id }) => id === lessonId);
+  return {
+    previousLessonId: flatLessonList[currentIndex - 1]?.id,
+    nextLessonId: flatLessonList[currentIndex + 1]?.id,
+  };
+};
