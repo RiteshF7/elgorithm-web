@@ -7,7 +7,7 @@ import {PlaygroundContainerContent} from "@/content/banner-main/playground-conta
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Button} from "@/modules/common/components/button/Button";
 import {LCD} from "@/modules/playground/components/simulated-hardwares/modules/LCD/LCD";
-import {getSnippet} from "@/database/fauna-db";
+import {getSnippet, getSnippets} from "@/database/fauna-db";
 
 
 export const PlayGroundContainer: FC = () => {
@@ -26,7 +26,7 @@ export const PlayGroundContainer: FC = () => {
             </div>
             <Button onClick={() => {
                 // setContainerState(PlaygroundContainerContent[containerState.chapterId + 1])
-                getSnippet().then(r => console.log('done!')).catch(e => console.log(e));
+                getSnippets().then(r => console.log('done!')).catch(e => console.log(e));
             }} uiType={'primary'}>NEXT</Button>
         </PlaygroundProvider>
     )
