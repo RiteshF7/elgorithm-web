@@ -1,19 +1,12 @@
 import { Button } from "@/modules/common/components/button/Button";
-import clsx from "clsx"
-import Image from "next/image"
+import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { FC } from "react";
+import { CategoryModel } from "../models/category.model";
 
 
-export interface CategoryCardProps {
-  bgImageUrl: string;
-  title: string;
-  description: string;
-  level: string;
-  link: string;
-  totalCourses: number;
-  totalDuration: number;
+export interface CategoryCardProps extends CategoryModel {
 }
 
 

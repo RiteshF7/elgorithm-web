@@ -3,16 +3,9 @@ import { ClockIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Image from "next/image";
 import { FC } from "react";
+import { CategoryModel } from "../models/category.model";
 
-export interface CategoryCardProps {
-  bgImageUrl: string;
-  title: string;
-  description: string;
-  infoPoints: string[];
-  link: string;
-  level: string;
-  totalCourses: number;
-  totalDuration: number;
+export interface CategoryCardProps extends CategoryModel {
 }
 
 export const CategoryCard: FC<CategoryCardProps> = ({ bgImageUrl, title, description, infoPoints, totalDuration, totalCourses }) => {
@@ -40,22 +33,24 @@ export const CategoryCard: FC<CategoryCardProps> = ({ bgImageUrl, title, descrip
         )}>
           {description}
         </p>
-        <div className={clsx(
-          'top-1/2 left-0 absolute',
-          'transition-all duration-500 opacity-0 translate-y-full',
-          'group-hover:-translate-y-1/2 group-hover:opacity-100',
-        )}>
-          {
-            infoPoints.map((infoPoint, index) => {
-              return (
-                <div key={index} className="flex items-center gap-2">
-                  <CheckIcon className="text-white w-6 h-6" />
-                  <p className="text-white text-sm">{infoPoint}</p>
-                </div>
-              )
-            })
-          }
-        </div>
+        {
+          !!(infoPoints?.length) && <div className={clsx(
+            'top-1/2 left-0 absolute',
+            'transition-all duration-500 opacity-0 translate-y-full',
+            'group-hover:-translate-y-1/2 group-hover:opacity-100',
+          )}>
+            {
+              infoPoints.map((infoPoint, index) => {
+                return (
+                  <div key={index} className="flex items-center gap-2">
+                    <CheckIcon className="text-white w-6 h-6" />
+                    <p className="text-white text-sm">{infoPoint}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+        }
       </div>
       <div className="flex items-center justify-between">
         <div className="flex flex-col items-center gap-2">
