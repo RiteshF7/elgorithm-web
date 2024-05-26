@@ -2,7 +2,7 @@ import { CategoryModel } from "@/modules/categories/models/category.model";
 
 export const categoryListData: CategoryModel[] = [
   {
-    title: "No Code",
+    title: "No Code to ",
     description:
       "Requires no coding experience. Suitable for age 9-12. Learn logic building from simple games",
     bgImageUrl: "/categories/category-1.png",

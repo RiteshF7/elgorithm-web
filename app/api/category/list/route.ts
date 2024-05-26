@@ -1,15 +1,16 @@
-import { NextRequest } from "next/server";
-import { categoryListData } from "../category.db";
+import {NextRequest} from "next/server";
+import {getLevelList} from "@/database/fauna-db";
 
-export const GET = (req: NextRequest) => {
-  const detailed = req.nextUrl.searchParams.get("detailed");
-  if (detailed === "true" || detailed === "1") {
-    return Response.json(categoryListData);
-  }
-  return Response.json(
-    categoryListData.map(({ title, level }) => ({
-      title,
-      level,
-    }))
-  );
+export const GET = async (req: NextRequest) => {
+    const detailed = req.nextUrl.searchParams.get("detailed");
+    if (detailed === "true" || detailed === "1") {
+        const levelList  =await getLevelList()
+        return new Response(JSON.stringify(levelList));
+    }
+    // return Response.json(
+    //     getLevelList().map(({title, level}) => ({
+    //         title,
+    //         level,
+    //     }))
+    // );
 };

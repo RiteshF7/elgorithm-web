@@ -7,7 +7,7 @@ import {PlaygroundContainerContent} from "@/content/banner-main/playground-conta
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Button} from "@/modules/common/components/button/Button";
 import {LCD} from "@/modules/playground/components/simulated-hardwares/modules/LCD/LCD";
-import {getSnippet, getSnippets} from "@/database/fauna-db";
+import {getLevelList} from "@/database/fauna-db";
 
 
 export const PlayGroundContainer: FC = () => {
@@ -24,9 +24,14 @@ export const PlayGroundContainer: FC = () => {
                 </div>
                 <PlaygroundRunner runnerConfig={containerState.runnerConfig}/>
             </div>
-            <Button onClick={() => {
+            <Button onClick={async () => {
                 // setContainerState(PlaygroundContainerContent[containerState.chapterId + 1])
-                getSnippets().then(r => console.log('done!')).catch(e => console.log(e));
+                // getLevelList().then(r => console.log(r)).catch(e => console.log(e));
+                const BASE_URL = process.env.API_ENDPOINT;
+
+                const result = await fetch(`/api/category/list?detailed=true`)
+                console.log(result.json())
+
             }} uiType={'primary'}>NEXT</Button>
         </PlaygroundProvider>
     )
