@@ -38,7 +38,7 @@ export default ${componentName}Controller;
 
 const neoPixelConfig: TemplateConfig = {
     componentName: 'neoPixel',
-    filePath: 'src/modules/playground/components/simulated-hardwares/neopixel-display/neoPixelController.ts',
+    filePath: 'src/module/playground/components/simulated-hardwares/neopixel-display/neoPixelController.ts',
     componentKey: 'NEO_PIXEL_MATRIX',
     controllerData: [
         {funcName: "moveUp", payload: {direction: 'Direction.Up'},delay:200},

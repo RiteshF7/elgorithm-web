@@ -1,13 +1,13 @@
 import turnLed from "../../uicontroller/turnonled";
 import {delay} from "../../uicontroller/uiutils";
 import {initializeLightBuzzer, moveForward} from "@/utils/playground/workspace/uicontroller/channelMessages";
-import neoPixelController from '@/modules/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockController'
+import neoPixelController from '@/module/playground/components/simulated-hardwares/components/neopixel-display/neoPixelBlockController'
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import ledController from "@/modules/playground/components/simulated-hardwares/components/led/ledController";
-import servoMotorController from "@/modules/playground/components/simulated-hardwares/components/servo-motor/servoMotorController";
-import {buzzerController} from "@/modules/playground/components/simulated-hardwares/components/buzzer/Buzzer";
+import ledController from "@/module/playground/components/simulated-hardwares/components/led/ledController";
+import servoMotorController from "@/module/playground/components/simulated-hardwares/components/servo-motor/servoMotorController";
+import {buzzerController} from "@/module/playground/components/simulated-hardwares/components/buzzer/Buzzer";
 import lightBuzzerController
-    from "@/modules/playground/components/simulated-hardwares/modules/light-buzzer/lightBuzzerController";
+    from "@/module/playground/components/simulated-hardwares/module/light-buzzer/lightBuzzerController";
 import {blockConfigs} from "@/utils/playground/workspace/blocks/blocks";
 
 // export const forJsBlock = Object.create(null);
