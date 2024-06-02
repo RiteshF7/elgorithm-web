@@ -35,13 +35,12 @@ export const getDocumentById = async (collectionName: string, id: string) => {
 // Function to save a new document in a collection
 export const saveDocument = async (collectionName: string, data: object) => {
     try {
-        const result = await client.query(
+        return await client.query(
             FaunaQuery.Create(
                 FaunaQuery.Collection(collectionName),
-                { data }
+                {data}
             )
         );
-        return result;
     } catch (error) {
         console.error('Error saving document:', error);
         throw error;
@@ -51,13 +50,12 @@ export const saveDocument = async (collectionName: string, data: object) => {
 // Function to update an existing document by ID
 export const updateDocument = async (collectionName: string, id: string, data: object) => {
     try {
-        const result = await client.query(
+        return await client.query(
             FaunaQuery.Update(
                 FaunaQuery.Ref(FaunaQuery.Collection(collectionName), id),
-                { data }
+                {data}
             )
         );
-        return result;
     } catch (error) {
         console.error('Error updating document:', error);
         throw error;

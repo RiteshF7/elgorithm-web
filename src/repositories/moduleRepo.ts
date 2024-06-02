@@ -1,4 +1,4 @@
-import {getAllDocuments, getDocumentById, saveDocument} from "@/utils/database/faunaQuery";
+import {getAllDocuments, getDocumentById, saveDocument, updateDocument} from "@/utils/database/faunaQuery";
 
 // Define the collection name as a constant
 const MODULES_COLLECTION = 'modules';
@@ -6,8 +6,7 @@ const MODULES_COLLECTION = 'modules';
 // Function to fetch all module data
 export const fetchAllModules = async () => {
     try {
-        const modules = await getAllDocuments(MODULES_COLLECTION);
-        return modules;
+        return await getAllDocuments(MODULES_COLLECTION);
     } catch (error) {
         console.error('Error fetching all module:', error);
         throw error;
@@ -30,6 +29,16 @@ export const createModule = async (data: object) => {
         return await saveDocument(MODULES_COLLECTION, data);
     } catch (error) {
         console.error('Error creating new module:', error);
+        throw error;
+    }
+};
+
+// Function to update an existing module by ID
+export const updateModule = async (id: string, data: object) => {
+    try {
+        return await updateDocument(MODULES_COLLECTION, id, data);
+    } catch (error) {
+        console.error(`Error updating module with ID ${id}:`, error);
         throw error;
     }
 };

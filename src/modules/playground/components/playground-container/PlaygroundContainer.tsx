@@ -7,7 +7,6 @@ import {PlaygroundContainerContent} from "@/content/banner-main/playground-conta
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Button} from "@/modules/common/components/button/Button";
 import {LCD} from "@/modules/playground/components/simulated-hardwares/modules/LCD/LCD";
-import {createCategory, createLevel, getCategoriesByLevel} from "@/repositories/fauna-db";
 
 
 export const PlayGroundContainer: FC = () => {
@@ -49,7 +48,7 @@ export const PlayGroundContainer: FC = () => {
                //      level: "1"
                //  })
 
-                await createCategory()
+                // await createCategory()
 
             }} uiType={'primary'}>NEXT</Button>
         </PlaygroundProvider>

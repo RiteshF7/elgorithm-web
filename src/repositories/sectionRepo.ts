@@ -1,4 +1,4 @@
-import { getAllDocuments, getDocumentById, saveDocument } from "@/utils/database/faunaQuery";
+import {getAllDocuments, getDocumentById, saveDocument, updateDocument} from "@/utils/database/faunaQuery";
 
 // Define the collection name as a constant
 const SECTIONS_COLLECTION = 'sections';
@@ -28,10 +28,19 @@ export const fetchSectionById = async (id: string) => {
 // Function to create a new section
 export const createSection = async (data: object) => {
     try {
-        const section = await saveDocument(SECTIONS_COLLECTION, data);
-        return section;
+        return await saveDocument(SECTIONS_COLLECTION, data);
     } catch (error) {
         console.error('Error creating new section:', error);
+        throw error;
+    }
+};
+
+// Function to update an existing module by ID
+export const updateSection = async (id: string, data: object) => {
+    try {
+        return await updateDocument(SECTIONS_COLLECTION, id, data);
+    } catch (error) {
+        console.error(`Error updating section with ID ${id}:`, error);
         throw error;
     }
 };
