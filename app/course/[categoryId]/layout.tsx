@@ -5,7 +5,7 @@ import { FC, PropsWithChildren } from "react";
 import {CategoryModel} from "@/modules/categories/models/category.model";
 
 // const BASE_URL = process.env.API_ENDPOINT;
-const BASE_URL = "http://localhost:3006"
+const BASE_URL = "http://localhost:3000"
 
 const getCategoryLessonGroups = async (categoryId: string): Promise<LessonGroupModel[]> => {
     const response = await fetch(`${BASE_URL}/api/category-lessons/${categoryId}`);
