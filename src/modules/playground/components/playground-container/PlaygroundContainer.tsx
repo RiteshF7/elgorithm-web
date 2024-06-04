@@ -6,7 +6,7 @@ import {ProblemStatement} from "@/modules/playground/components/playground-probl
 import {PlaygroundContainerContent} from "@/content/banner-main/playground-container.content";
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {Button} from "@/modules/common/components/button/Button";
-import {LCD} from "@/modules/playground/components/simulated-hardwares/modules/LCD/LCD";
+import {fetchPlaygroundById} from "@/repositories/playgroundRepo";
 
 
 export const PlayGroundContainer: FC = () => {
@@ -49,6 +49,9 @@ export const PlayGroundContainer: FC = () => {
                //  })
 
                 // await createCategory()
+
+                // const playground = await fetchPlaygroundById('399750681950421056');
+
 
             }} uiType={'primary'}>NEXT</Button>
         </PlaygroundProvider>

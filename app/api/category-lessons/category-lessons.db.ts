@@ -23,7 +23,7 @@ export const newData = {
           title: "turn right ",
           description: "This is a sample game 1",
           duration: 10,
-          playground:''
+          playground:'Ref(Collection("Playgrounds"), "399693427701186624")'
         },
         {
           title: "turn left",

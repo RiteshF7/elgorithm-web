@@ -16,6 +16,7 @@ export const fetchAllPlaygrounds = async () => {
 // Function to fetch a particular playground data by ID
 export const fetchPlaygroundById = async (id: string) => {
     try {
+
         return await getDocumentById(PLAYGROUND_COLLECTION, id);
     } catch (error) {
         console.error(`Error fetching playground with ID ${id}:`, error);
