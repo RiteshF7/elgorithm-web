@@ -1,12 +1,12 @@
 // Define the collection name as a constant
 import {getAllDocuments, getDocumentById, saveDocument, updateDocument} from "@/utils/database/faunaQuery";
 
-const playgroundS_COLLECTION = 'playgrounds';
+const PLAYGROUND_COLLECTION = 'playgrounds';
 
 // Function to fetch all playgrounds data
 export const fetchAllPlaygrounds = async () => {
     try {
-        return await getAllDocuments(playgroundS_COLLECTION);
+        return await getAllDocuments(PLAYGROUND_COLLECTION);
     } catch (error) {
         console.error('Error fetching all playgrounds:', error);
         throw error;
@@ -16,7 +16,7 @@ export const fetchAllPlaygrounds = async () => {
 // Function to fetch a particular playground data by ID
 export const fetchPlaygroundById = async (id: string) => {
     try {
-        return await getDocumentById(playgroundS_COLLECTION, id);
+        return await getDocumentById(PLAYGROUND_COLLECTION, id);
     } catch (error) {
         console.error(`Error fetching playground with ID ${id}:`, error);
         throw error;
@@ -26,7 +26,7 @@ export const fetchPlaygroundById = async (id: string) => {
 // Function to create a new playground
 export const createPlayground = async (data: object) => {
     try {
-        return await saveDocument(playgroundS_COLLECTION, data);
+        return await saveDocument(PLAYGROUND_COLLECTION, data);
     } catch (error) {
         console.error('Error creating new playground:', error);
         throw error;
@@ -36,7 +36,7 @@ export const createPlayground = async (data: object) => {
 // Function to update an existing playgroundS by ID
 export const updatePlayground = async (id: string, data: object) => {
     try {
-        return await updateDocument(playgroundS_COLLECTION, id, data);
+        return await updateDocument(PLAYGROUND_COLLECTION, id, data);
     } catch (error) {
         console.error(`Error updating playgrounds with ID ${id}:`, error);
         throw error;

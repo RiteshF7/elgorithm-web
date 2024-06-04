@@ -1,5 +1,40 @@
 import { LessonGroupModel } from "@/modules/course/models/course.model";
 
+
+export const newData = {
+  title: "No Code to ",
+  description:
+      "Requires no coding experience. Suitable for age 9-12. Learn logic building from simple games",
+  bgImageUrl: "/categories/category-1.png",
+  infoPoints: [
+    "Simple Logic Building Games",
+    "Suitable for age 9-12",
+    "Expert Guided Development",
+  ],
+  link: "/categories/no-code",
+  totalCourses: 10,
+  totalDuration: 8,
+  level: "1",
+  section:[
+    {
+      title:"Logical building",
+      modules:[
+        {
+          title: "turn right ",
+          description: "This is a sample game 1",
+          duration: 10,
+          playground:''
+        },
+        {
+          title: "turn left",
+          description: "This is a sample game 2",
+          duration: 10,
+          playground:''
+        },
+      ]
+    }
+  ]
+}
 export const CategoryLessons: Record<string, LessonGroupModel[]> = {
   "1": [
     {

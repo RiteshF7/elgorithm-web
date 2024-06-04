@@ -22,11 +22,11 @@ export interface TestCase {
 }
 
 export enum MatrixType {
-    UNI_DIRECTIONAL,
-    BI_DIRECTIONAL
+    UNI_DIRECTIONAL='UNI_DIRECTIONAL',
+    BI_DIRECTIONAL='BI_DIRECTIONAL'
 }
 
 export enum ControllerType{
-    keyboard,
-    blocks
+    keyboard='keyboard',
+    blocks='blocks'
 }
