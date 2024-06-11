@@ -10,6 +10,7 @@ const ModuleBuilder: React.FC = () => {
 
     const onSave = (newJson: any) => {
         console.log('Saved JSON:', newJson);
+
     };
 
     const onChange = (moduleName: Modules) => {
