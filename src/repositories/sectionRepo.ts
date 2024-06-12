@@ -6,8 +6,7 @@ const SECTIONS_COLLECTION = 'sections';
 // Function to fetch all sections data
 export const fetchAllSections = async () => {
     try {
-        const sections = await getAllDocuments(SECTIONS_COLLECTION);
-        return sections;
+        return await getAllDocuments(SECTIONS_COLLECTION);
     } catch (error) {
         console.error('Error fetching all sections:', error);
         throw error;
@@ -17,8 +16,7 @@ export const fetchAllSections = async () => {
 // Function to fetch a particular section data by ID
 export const fetchSectionById = async (id: string) => {
     try {
-        const section = await getDocumentById(SECTIONS_COLLECTION, id);
-        return section;
+        return await getDocumentById(SECTIONS_COLLECTION, id);
     } catch (error) {
         console.error(`Error fetching section with ID ${id}:`, error);
         throw error;

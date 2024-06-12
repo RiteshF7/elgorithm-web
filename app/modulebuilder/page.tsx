@@ -1,12 +1,12 @@
 import { FC } from 'react';
+import ModuleBuilder from "@/modules/modulebuilder/modulebuilder";
 
-import ModuleBuilder from "@/modules/modulebuilder/ModuleBuilder";
 
 const ModuleBuilderPage: FC = () => {
     return (
         <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 '}>
             <div className={'p-4'}>
-                <ModuleBuilder />
+                <ModuleBuilder/>
             </div>
         </main >
     )
