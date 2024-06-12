@@ -6,12 +6,14 @@ const client = new faunadb.Client({ secret: 'fnAFiVRwkAAAQPj1uOMiKCxwQXM3HhxYudO
 // Function to get all documents from a collection
 export const getAllDocuments = async (collectionName: string) => {
     try {
-        return await client.query(
+        let result =  await client.query(
             FaunaQuery.Map(
-                FaunaQuery.Paginate(FaunaQuery.Documents(FaunaQuery.Collection(collectionName))),
-                FaunaQuery.Lambda(x => FaunaQuery.Get(x))
+                FaunaQuery.Paginate(FaunaQuery.Documents(FaunaQuery.Collection('stages'))),
+                FaunaQuery.Lambda('X', FaunaQuery.Select(['data'], FaunaQuery.Get(FaunaQuery.Var('X'))))
             )
         );
+        // @ts-ignore
+        return result.data
     } catch (error) {
         console.error('Error getting all documents:', error);
         throw error;

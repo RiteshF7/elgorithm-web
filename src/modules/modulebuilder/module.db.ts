@@ -4,10 +4,15 @@ import {
     ControllerType,
     MatrixType
 } from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
+import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
+
+export const stageRefID = "400473830678593602";
+export const sectionRefID = "400475005113073730";
+export const playgroundRefID = "400480359190364224";
 
 export const localStageData =
     {
-        title: "Test Code to ",
+        title: "Pro Code",
         description:
             "Requires no coding experience. Suitable for age 9-12. Learn logic building from simple games",
         bgImageUrl: "/categories/category-1.png",
@@ -22,18 +27,22 @@ export const localStageData =
         level: "1",
     }
 
-    export const localSectionData = {
-                title:'Logical building',
-                stage: ""
-    }
+    export const sectionTitle = "Loops"
 
-    export const localPlaygroundData =     {
-            chapterId: 0,
+
+
+
+
+
+
+
+    export const localPlaygroundData =         {
+            chapterId: 1,
             type: 'content',
             content: {
                 contentId: 0,
-                title: "Move pixel 1 step right",
-                description: "Move pixel 1 step right",
+                title: "Move pixel 1 step left",
+                description: "Move pixel 1 step left",
                 media: [
                     {
                         type: "video",
@@ -44,7 +53,7 @@ export const localStageData =
             },
             editorConfig: {
                 toolboxType: 'flyoutToolbox',
-                toolboxContent: [blockKeys.moveRight],
+                toolboxContent: [BlockKeys.moveLeft],
             },
             runnerConfig: {
                 moduleName: Modules.NeoPixelModule,
@@ -53,7 +62,7 @@ export const localStageData =
                     matrixType: MatrixType.UNI_DIRECTIONAL,
                     testCase: {
                         initialState: [[5, 5]],
-                        expectedOutput: [[5, 6]],
+                        expectedOutput: [[5, 4]],
                     },
                     controllerType: ControllerType.blocks
                 }
@@ -61,11 +70,11 @@ export const localStageData =
         }
 
 
+
         export const localModuleData = {
-        title: "turn right ",
-        description: "This is a sample game 1",
-        duration: 10,
-        playground:'Ref(Collection("Playgrounds"), "399693427701186624")'
+            title: "Turn Left",
+            description: "This is a sample game 2",
+            duration: 10,
     }
 
 
