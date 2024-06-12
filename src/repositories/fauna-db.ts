@@ -36,7 +36,7 @@ export async function getCategoriesByLevel(levelId: String) {
         console.log('Categories for level', levelId, ':', categories.data);
         return categories.data;
     } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching stages:', error);
     }
 }
 
@@ -104,7 +104,7 @@ async function createLesson(lessonData: Lesson): Promise<string | undefined> {
     // const lessonData: Lesson = {
     //     title: "Turn pixel right",
     //     description: "Turn pixel right",
-    //     categoryId: q.Ref(q.Collection("categories"), category.ref.id),
+    //     categoryId: q.Ref(q.Collection("stages"), category.ref.id),
     //
     // }
     try {

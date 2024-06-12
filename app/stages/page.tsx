@@ -13,7 +13,7 @@ const getCategoryList = async (): Promise<CategoryModel[]> => {
     return response.json() ;
 }
 
-const CategoryPage = () => {
+const SelectStagePage = () => {
     const [categoryList, setCategoryList] = useState<CategoryModel[]>([]);
 
     useEffect(() => {
@@ -29,4 +29,4 @@ const CategoryPage = () => {
     );
 }
 
-export default CategoryPage;
+export default SelectStagePage;

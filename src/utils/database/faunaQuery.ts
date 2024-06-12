@@ -62,4 +62,22 @@ export const updateDocument = async (collectionName: string, id: string, data: o
     }
 };
 
+export const queryDocumentsByIndex = async (indexName: string,refCollectionName:string ,refId: string) => {
+
+    try {
+        const response = await client.query(
+            FaunaQuery.Map(
+                FaunaQuery.Paginate(FaunaQuery.Match(FaunaQuery.Index(indexName), FaunaQuery.Ref(FaunaQuery.Collection(refCollectionName), refId))),
+                FaunaQuery.Lambda('X', FaunaQuery.Get(FaunaQuery.Var('X')))
+            )
+        );
+        console.log(response)
+        // @ts-ignore
+        return response.data.map((doc: any) => doc.data);
+    } catch (error) {
+        console.error(`Error querying documents by index ${indexName}:`, error);
+        throw error;
+    }
+};
+
 

@@ -1,7 +1,7 @@
 // Define the collection name as a constant
 import {getAllDocuments, getDocumentById, saveDocument, updateDocument} from "@/utils/database/faunaQuery";
 
-const STAGES_COLLECTION = 'stages';
+export const STAGES_COLLECTION = 'stages';
 
 // Function to fetch all stages data
 export const fetchAllStages = async () => {
