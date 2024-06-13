@@ -1,8 +1,9 @@
 import { getAllDocuments, getDocumentById, saveDocument, updateDocument, queryDocumentsByIndex } from "@/utils/database/faunaQuery";
 import {STAGES_COLLECTION} from "@/repositories/stageRepo";
+import {fetchModulesBySection} from "@/repositories/moduleRepo";
 
 // Define the collection name as a constant
-const SECTIONS_COLLECTION = 'sections';
+export const SECTIONS_COLLECTION = 'sections';
 
 // Function to fetch all sections data
 export const fetchAllSections = async () => {
@@ -50,6 +51,32 @@ export const fetchSectionsByStage = async (stageId: string) => {
         return await queryDocumentsByIndex("sections_by_stage",STAGES_COLLECTION,stageId);
     } catch (error) {
         console.error(`Error fetching sections for stage ID ${stageId}:`, error);
+        throw error;
+    }
+};
+
+// Function to fetch all sections by stage and their related modules
+export const fetchSectionsWithModulesByStage = async (stageId: string) => {
+    try {
+        // Fetch all sections for the given stage
+        const sections = await fetchSectionsByStage(stageId);
+
+        console.log(sections[0].ref.id,'some check')
+
+        // Fetch modules for each section
+        const sectionsWithModules = await Promise.all(
+            sections.map(async (section: any) => {
+                const modules = await fetchModulesBySection(section.ref.id);
+                return {
+                    ...section,
+                    modules: modules
+                };
+            })
+        );
+
+        return sectionsWithModules;
+    } catch (error) {
+        console.error(`Error fetching sections and modules for stage ID ${stageId}:`, error);
         throw error;
     }
 };

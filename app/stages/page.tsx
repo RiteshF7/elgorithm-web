@@ -7,10 +7,9 @@ import {ContentCardsContent} from "@/content/banner-main/content-cards.content";
 import {CategoryModel} from "@/modules/categories/models/category.model";
 
 
-
 const getCategoryList = async (): Promise<CategoryModel[]> => {
     const response = await fetch(`http://localhost:3000/api/stage`);
-    return response.json() ;
+    return response.json();
 }
 
 const SelectStagePage = () => {

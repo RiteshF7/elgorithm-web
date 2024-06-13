@@ -1,4 +1,11 @@
-import {getAllDocuments, getDocumentById, saveDocument, updateDocument} from "@/utils/database/faunaQuery";
+import {
+    getAllDocuments,
+    getDocumentById,
+    queryDocumentsByIndex,
+    saveDocument,
+    updateDocument
+} from "@/utils/database/faunaQuery";
+import {SECTIONS_COLLECTION} from "@/repositories/sectionRepo";
 
 // Define the collection name as a constant
 const MODULES_COLLECTION = 'modules';
@@ -39,6 +46,16 @@ export const updateModule = async (id: string, data: object) => {
         return await updateDocument(MODULES_COLLECTION, id, data);
     } catch (error) {
         console.error(`Error updating module with ID ${id}:`, error);
+        throw error;
+    }
+};
+
+// Function to fetch sections by stage ID
+export const fetchModulesBySection = async (sectionId: string) => {
+    try {
+        return await queryDocumentsByIndex("modules_by_section",SECTIONS_COLLECTION,sectionId);
+    } catch (error) {
+        console.error(`Error fetching modules for section ID ${sectionId}:`, error);
         throw error;
     }
 };

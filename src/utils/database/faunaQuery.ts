@@ -71,9 +71,9 @@ export const queryDocumentsByIndex = async (indexName: string,refCollectionName:
                 FaunaQuery.Lambda('X', FaunaQuery.Get(FaunaQuery.Var('X')))
             )
         );
-        console.log(response)
+
         // @ts-ignore
-        return response.data.map((doc: any) => doc.data);
+        return response.data.map((doc: any) => doc);
     } catch (error) {
         console.error(`Error querying documents by index ${indexName}:`, error);
         throw error;
