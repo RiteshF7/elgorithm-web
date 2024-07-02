@@ -1,4 +1,5 @@
 import { LessonGroupModel } from "@/modules/course/models/course.model";
+import {PlaygroundContainerContent} from "@/content/banner-main/playground-container.content";
 
 
 export const newData = {
@@ -48,6 +49,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 1",
           duration: 10,
           sequence: 1,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 2,
@@ -56,6 +58,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 2",
           duration: 10,
           sequence: 2,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 3,
@@ -64,6 +67,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 3",
           duration: 10,
           sequence: 3,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -78,6 +82,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 4",
           duration: 10,
           sequence: 4,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 5,
@@ -86,6 +91,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 5",
           duration: 10,
           sequence: 5,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 6,
@@ -94,6 +100,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 6",
           duration: 10,
           sequence: 6,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -108,6 +115,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 7",
           duration: 10,
           sequence: 7,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 8,
@@ -116,6 +124,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 8",
           duration: 10,
           sequence: 8,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 9,
@@ -124,6 +133,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 9",
           duration: 10,
           sequence: 9,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -140,6 +150,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 1",
           duration: 10,
           sequence: 10,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 2,
@@ -148,6 +159,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 2",
           duration: 10,
           sequence: 11,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 3,
@@ -156,6 +168,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 3",
           duration: 10,
           sequence: 12,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -170,6 +183,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 4",
           duration: 10,
           sequence: 1,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 5,
@@ -178,6 +192,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 5",
           duration: 10,
           sequence: 2,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 6,
@@ -186,6 +201,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 6",
           duration: 10,
           sequence: 3,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -200,6 +216,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 7",
           duration: 10,
           sequence: 4,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 8,
@@ -208,6 +225,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 8",
           duration: 10,
           sequence: 5,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 9,
@@ -216,6 +234,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 9",
           duration: 10,
           sequence: 6,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -232,6 +251,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 1",
           duration: 10,
           sequence: 1,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 2,
@@ -240,6 +260,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 2",
           duration: 10,
           sequence: 2,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 3,
@@ -248,6 +269,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 3",
           duration: 10,
           sequence: 3,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -262,6 +284,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 4",
           duration: 10,
           sequence: 4,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 5,
@@ -270,6 +293,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 5",
           duration: 10,
           sequence: 5,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 6,
@@ -278,6 +302,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 6",
           duration: 10,
           sequence: 6,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },
@@ -292,6 +317,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 7",
           duration: 10,
           sequence: 7,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 8,
@@ -300,6 +326,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 8",
           duration: 10,
           sequence: 8,
+          playgroundData:PlaygroundContainerContent[14]
         },
         {
           id: 9,
@@ -308,6 +335,7 @@ export const CategoryLessons: Record<string, LessonGroupModel[]> = {
           description: "This is a sample game 9",
           duration: 10,
           sequence: 9,
+          playgroundData:PlaygroundContainerContent[14]
         },
       ],
     },

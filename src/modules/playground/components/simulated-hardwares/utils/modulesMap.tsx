@@ -1,3 +1,4 @@
+'use client'
 import {
     NeoPixelDirect
 } from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/NeoPixelDirect";
