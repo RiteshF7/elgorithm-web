@@ -5,8 +5,8 @@ import {fetchModulesBySection} from "@/repositories/moduleRepo";
 
 
 
-const getStageData = async (stageId:String): Promise<CategoryModel[]> => {
-    const response = await fetch(`http://localhost:3000/api/stage/${stageId}`);
+const getStageData = async (stageId:String)  => {
+    const response = await fetch(`http://localhost:3000/api/section/bystage/${stageId}`);
     return response.json() ;
 }
 
