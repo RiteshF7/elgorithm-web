@@ -5,6 +5,7 @@ export interface LessonModel {
   description: string;
   duration: number;
   sequence: number;
+  playgroundData:any
 }
 
 export interface LessonGroupModel {
