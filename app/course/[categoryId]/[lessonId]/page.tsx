@@ -7,12 +7,16 @@ import {PlaygroundContainerContent} from "@/content/banner-main/playground-conta
 
 const LessonPage: FC<{ params: { lessonId: string } }> = ({ params }) => {
   return (
-    <>
-      <CourseSelectionController routeLessonId={+params.lessonId} />
-      <CourseViewContainer >
-          <PlayGroundContainer state={PlaygroundContainerContent[parseInt(params.lessonId)]}/>
-      </CourseViewContainer>
-    </>
+      <>
+          <CourseSelectionController routeLessonId={+params.lessonId}/>
+          <div className="w-full flex justify-center">
+
+              <CourseViewContainer>
+                  <PlayGroundContainer state={PlaygroundContainerContent[parseInt(params.lessonId)]}/>
+              </CourseViewContainer>
+          </div>
+
+      </>
   )
 }
 
