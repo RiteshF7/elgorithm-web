@@ -40,7 +40,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
         controllerType,});
     return (
 
-        <div className={'flex-col items-center'}>
+        <div className={'flex-col items-center justify-center'}>
 
             <div className={' bg-black flex flex-col gap-4 p-2'}>
                 <wokwi-neopixel-matrix ref={neoPixelDisplayRef} rows={matrixSize} cols={matrixSize}
@@ -48,7 +48,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
                                        animation={animation ? true : undefined}></wokwi-neopixel-matrix>
             </div>
 
-            <Button className={`button ${buttonVisibilityClass}`} uiType={'primary'} onClick={executeBlockCode}></Button>
+            <Button className={`button p-4 m-4 justify-center ${buttonVisibilityClass}` } uiType={'primary'} onClick={executeBlockCode}>RUN</Button>
 
 
         </div>

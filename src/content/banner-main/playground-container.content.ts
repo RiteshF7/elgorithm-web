@@ -14,38 +14,7 @@ import ServoModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
 
 export const PlaygroundContainerContent = [
-    {
-        chapterId: 0,
-        type: 'content',
-        content: {
-            contentId: 0,
-            title: "Move pixel 1 step right",
-            description: "Move pixel 1 step right",
-            media: [
-                {
-                    type: "video",
-                    url: "",
-                    caption: ""
-                }
-            ]
-        },
-        editorConfig: {
-            toolboxType: 'flyoutToolbox',
-            toolboxContent: [blockKeys.moveRight],
-        },
-        runnerConfig: {
-            moduleName: Modules.NeoPixelModule,
-            moduleConfig: {
-                matrixSize: 11,
-                matrixType: MatrixType.UNI_DIRECTIONAL,
-                testCase: {
-                    initialState: [[5, 5]],
-                    expectedOutput: [[5, 6]],
-                },
-                controllerType: ControllerType.blocks
-            }
-        }
-    },
+
     {
         chapterId: 1,
         type: 'content',
@@ -78,6 +47,41 @@ export const PlaygroundContainerContent = [
             }
         }
     },
+    {
+        chapterId: 5,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "join two pixels",
+            description: "join two right",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
+            toolboxContent: [...NeopixelBlockConfig.toolBox, BlockKeys.controlsRepeat],
+        }, runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.BI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5, 5], [10, 10]],
+                    expectedOutput: [
+                        [[6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [10, 10]],
+                        [[5, 6], [5, 7], [5, 8], [5, 9], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10]]
+                    ]
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+
     {
         chapterId: 2,
         type: 'content',
@@ -191,7 +195,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig: {
             toolboxType: 'flyoutToolbox',
-            toolboxContent: [...NeopixelBlockConfig.toolBox, BlockKeys.controlsFor],
+            toolboxContent: [...NeopixelBlockConfig.toolBox, BlockKeys.controlsRepeat],
         }, runnerConfig: {
             moduleName: Modules.NeoPixelModule,
             moduleConfig: {

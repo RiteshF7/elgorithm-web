@@ -10,11 +10,11 @@ export const CourseViewContainer: FC<PropsWithChildren> = ({ children }) => {
   const { selectedLesson, coursesData, markAsComplete } = useCourseSelection();
   const { previousLessonId, nextLessonId } = getPreviousNextLessonId(coursesData, selectedLesson?.id);
   return (
-    <main className="flex flex-col gap-4 flex-1 p-6">
-      <h1 className="text-xl">{selectedLesson?.title}</h1>
-      <p className="text-md text-content-light">
-        {selectedLesson?.description}
-      </p>
+    <main className="flex flex-col gap-4 flex-1 p-2">
+      {/*<h1 className="text-xl">{selectedLesson?.title}</h1>*/}
+      {/*<p className="text-md text-content-light">*/}
+      {/*  {selectedLesson?.description}*/}
+      {/*</p>*/}
       <div className="flex-1">
         {children}
       </div>

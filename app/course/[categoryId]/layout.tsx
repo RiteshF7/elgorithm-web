@@ -6,7 +6,7 @@ import {CategoryModel} from "@/modules/categories/models/category.model";
 import {PlayGroundContainer} from "@/modules/playground/components/playground-container/PlaygroundContainer";
 
 // const BASE_URL = process.env.API_ENDPOINT;
-const BASE_URL = "http://localhost:3001"
+const BASE_URL = "http://localhost:3000"
 
 const getCategoryLessonGroups = async (categoryId: string): Promise<LessonGroupModel[]> => {
     const response = await fetch(`${BASE_URL}/api/category-lessons/${categoryId}`);
