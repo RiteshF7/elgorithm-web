@@ -1,3 +1,4 @@
+'use client'
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import {
