@@ -33,6 +33,10 @@ export const BannerMain: FC<BannerMainProps> = ({
     }, [title, titleHighlight])
     return (
         <div className={'flex gap-4 flex-col-reverse lg:flex-row items-center'}>
+
+            <Image src={imageUrl} alt={'Main banner'} width={300} height={228}
+                   className={'flex-shrink-0 h-auto'}/>
+
             <div className={'flex flex-col gap-4'}>
                 <h1 className={'h1'}>
                     {renderHeaderText}
@@ -40,14 +44,12 @@ export const BannerMain: FC<BannerMainProps> = ({
                 <p className={'text-md'}>
                     {description}
                 </p>
-                <Link href={actionUrl}>
-                    <Button uiType={'primary'} className={'lg:w-48 py-2.5'}>
-                        <p className={'text-lg'}>{actionText}</p>
-                    </Button>
-                </Link>
+                {/*<Link href={actionUrl}>*/}
+                {/*    <Button uiType={'primary'} className={'lg:w-48 py-2.5'}>*/}
+                {/*        <p className={'text-lg'}>{actionText}</p>*/}
+                {/*    </Button>*/}
+                {/*</Link>*/}
             </div>
-            <Image src={imageUrl} alt={'Main banner'} width={533} height={328}
-                   className={'flex-shrink-0 h-auto'}/>
         </div>
     )
 }

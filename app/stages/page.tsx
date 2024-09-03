@@ -5,6 +5,8 @@ import {CategoryTitleDescription} from "@/modules/categories/category-title-desc
 import {ContentCardList} from "@/modules/home/content-card/ContentCardList";
 import {ContentCardsContent} from "@/content/banner-main/content-cards.content";
 import {CategoryModel} from "@/modules/categories/models/category.model";
+import {ProjectPage} from "@/components/component/project-page";
+import {projectList} from "@/content/projects-conrent";
 
 
 const getCategoryList = async (): Promise<CategoryModel[]> => {
@@ -22,8 +24,9 @@ const SelectStagePage = () => {
     return (
         <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-4'}>
             <CategoryTitleDescription/>
-            <CategoryCardGrid categoryList={categoryList}/>
-            <ContentCardList className={'mx-auto max-w-6xl'} contentCards={ContentCardsContent}/>
+            {/*<CategoryCardGrid categoryList={categoryList}/>*/}
+            <ProjectPage projects={projectList} />
+            {/*<ContentCardList className={'mx-auto max-w-6xl'} contentCards={ContentCardsContent}/>*/}
         </main>
     );
 }
