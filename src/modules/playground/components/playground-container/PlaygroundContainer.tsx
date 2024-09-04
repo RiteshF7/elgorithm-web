@@ -25,7 +25,7 @@ export const PlayGroundContainer: FC<PlaygroundState> = ({state}) => {
                     <PlaygroundEditor editorConfig={containerState.editorConfig}/>
                 </div>
 
-                <PlaygroundRunner runnerConfig={containerState.runnerConfig}/>
+                {/*<PlaygroundRunner runnerConfig={containerState.runnerConfig}/>*/}
 
 
             </div>

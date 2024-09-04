@@ -10,7 +10,7 @@ export interface ContentCardProps {
     direction?: 'ltr' | 'rtl';
 }
 
-export const ContentCard: FC<ContentCardProps> = ({
+export const    ContentCard: FC<ContentCardProps> = ({
                                                       title,
                                                       description,
                                                       imageUrl,
@@ -19,7 +19,7 @@ export const ContentCard: FC<ContentCardProps> = ({
                                                   }) => {
     return (
         <div className={clsx(
-            'grid gap-4 order-2 items-center',
+            'grid gap-4  items-center',
             imageUrl ? 'grid-cols-2' : 'grid-cols-1',
         )}>
             <div className={clsx('flex flex-col gap-4 flex-grow', !imageUrl && 'text-center items-center')}>

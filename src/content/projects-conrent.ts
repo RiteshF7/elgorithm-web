@@ -2,13 +2,13 @@ import {list} from "postcss";
 export const projectList  = [
     {
         id: 1,
-        image: "/placeholder.svg",
-        name: "Clothing",
-        description: "Find the latest fashion trends and styles.",
+        image: "https://projects.arduinocontent.cc/cover-images/9a964c98-d928-48a3-b62e-24424476d653.blob",
+        name: "Line-Following Robot",
+        description: "Create a robot that can navigate a path by following a line on the ground using sensors. This project introduces you to basic robotics concepts like sensor integration, motor control, and algorithm design.",
     },
     {
         id: 2,
-        image: "/placeholder.svg",
+        image: "https://picsum.photos/200",
         name: "Electronics",
         description: "Discover the latest tech gadgets and devices.",
     },

@@ -4,7 +4,7 @@ import {javascriptGenerator} from 'blockly/javascript';
 import {forPyBlock} from './workspace/blocks/generators/python';
 import {save, load} from './workspace/serialization';
 import {blocks, forJsBlock} from "./workspace/blocks/blocks";
-import theme from './workspace/elgotheme';
+import {blocklyOptions, BlocklyTheme} from './workspace/elgotheme';
 import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
 import {getCodeCompletionCallback, initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
 import {Direction} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
@@ -18,21 +18,9 @@ export class Playground {
         initPlaygroundCommunication();
 
         this.workspace = Blockly.inject(div, {
-            toolbox: toolbox, theme: theme,
-            toolboxPosition: 'start',
-            horizontalLayout: false,
-            scrollbars: true,
-            css: true,
-            rtl: false,
-            zoom: {
-                controls: false,
-                wheel: true,
-                startScale: .8,
-                maxScale: 3,
-                minScale: 0.3,
-                scaleSpeed: 1.2
-            },
-            trashcan: false,
+            toolbox: toolbox,
+            theme: BlocklyTheme,
+            ...blocklyOptions
         });
 
         const state = Blockly.serialization.workspaces.save(this.workspace);

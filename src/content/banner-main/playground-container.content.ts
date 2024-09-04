@@ -33,7 +33,7 @@ export const PlaygroundContainerContent = [
         },
         editorConfig: {
             toolboxType: 'flyoutToolbox',
-            toolboxContent: [BlockKeys.moveLeft],
+            toolboxContent: [BlockKeys.moveLeft,BlockKeys.controlsRepeat],
         },
         runnerConfig: {
             moduleName: Modules.NeoPixelModule,
