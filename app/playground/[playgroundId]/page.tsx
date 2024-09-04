@@ -8,14 +8,12 @@ import {useParams} from "next/navigation";
 const PlayGroundLessonPage:FC<{ params: { playgroundId: string } }> = ({ params })=> {
 
 
-    console.log(params,"some val:::")
     return (
-        <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-12'}>
-        <div className={'p-4'}>
-        <PlayGroundContainer state={PlaygroundContainerContent[parseInt(params.playgroundId)]} />
-    </div>
-    </main >
-)
+
+            <main className="flex flex-col  ">
+                <PlayGroundContainer state={PlaygroundContainerContent[parseInt(params.playgroundId)]}/>
+            </main>
+    )
 }
 
 export default PlayGroundLessonPage;

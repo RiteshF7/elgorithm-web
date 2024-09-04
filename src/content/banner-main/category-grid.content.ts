@@ -3,6 +3,11 @@ import {CategoryGridProps} from "@/modules/home/category-grid/CategoryGrid";
 export const CategoryGridContent: CategoryGridProps = {
     categories: [
         {
+            imageUrl: '/home/topic-science-and-engineering.webp',
+            text: 'Robotics',
+            url: '/'
+        },
+        {
             imageUrl: '/home/topic-math.webp',
             text: 'Math',
             url: '/'
@@ -14,7 +19,7 @@ export const CategoryGridContent: CategoryGridProps = {
         },
         {
             imageUrl: '/home/topic-data-analysis.webp',
-            text: 'Data Analysis',
+            text: 'Engineering',
             url: '/'
         },
         {
@@ -22,10 +27,6 @@ export const CategoryGridContent: CategoryGridProps = {
             text: 'Programming',
             url: '/'
         },
-        {
-            imageUrl: '/home/topic-science-and-engineering.webp',
-            text: 'Science and Engineering',
-            url: '/'
-        }
+
     ]
 }

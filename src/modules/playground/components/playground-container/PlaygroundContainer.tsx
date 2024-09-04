@@ -18,10 +18,11 @@ export const PlayGroundContainer: FC<PlaygroundState> = ({state}) => {
     return (
 
         <PlaygroundProvider>
-            <div className={'flex flex-row gap-4 m-5 p-5 w-1/2 items-center'}>
-                <div className={'flex flex-col gap-4 flex-grow'}>
-                    <ProblemStatement problem={containerState.content.title}
-                                      description={containerState.content.description}/>
+            <div className={'flex flex-row items-center'}>
+
+                <div className={'flex flex-col flex-grow'}>
+                    {/*<ProblemStatement problem={containerState.content.title}*/}
+                    {/*                  description={containerState.content.description}/>*/}
                     <PlaygroundEditor editorConfig={containerState.editorConfig}/>
                 </div>
 

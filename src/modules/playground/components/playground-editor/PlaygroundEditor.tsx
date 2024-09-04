@@ -28,6 +28,9 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
         }
     }, []);
     return (
-            <div ref={editorRef} className={'w-[500px] h-96  bg-gray-300 rounded-lg'}/>
-    )
+        <main className="h-screen flex flex-col"> {/* Main container takes the full screen height */}
+            <div className="h-screen w-screen bg-gray-300 rounded-lg overflow-hidden">
+                <div ref={editorRef} className="h-screen w-screen bg-gray-300 rounded-lg"/>
+            </div>
+        </main>)
 }

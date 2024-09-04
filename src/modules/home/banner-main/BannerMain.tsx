@@ -34,9 +34,13 @@ export const BannerMain: FC<BannerMainProps> = ({
     return (
         <div className={'flex gap-4 flex-col-reverse lg:flex-row items-center'}>
 
-            <Image src={imageUrl} alt={'Main banner'} width={300} height={228}
-                   className={'flex-shrink-0 h-auto'}/>
-
+            <Image
+                src={imageUrl}
+                alt="Main banner"
+                width={300}
+                height={228}
+                className="flex-shrink-0 h-auto rounded-lg shadow-lg"
+            />
             <div className={'flex flex-col gap-4'}>
                 <h1 className={'h1'}>
                     {renderHeaderText}
