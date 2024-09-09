@@ -40,8 +40,6 @@ const blockDefinitions = {
 }
 
 //toolbox blocks
-
-
 const toolbox = [
     blockKeys.turnOnLed,
     blockKeys.turnOffLed,
@@ -51,10 +49,14 @@ const toolbox = [
 
 //code generator
 const codeGenerator = {
-    turnOnLed: () => getLedBlockCode({active: true, color: 'red'}),
+    turnOnLed: () => `print("hello")`,
     turnOffLed: () => getLedBlockCode({active: false, color: 'red'}),
     blinkLed: () => getLedBlockCode({active: true, color: 'red'}) + getLedBlockCode({active: false, color: 'red'})
 };
+
+function turnOnLedPy(){
+    return `print("hello")`
+}
 
 
 function getLedBlockCode(payload: LedState) {

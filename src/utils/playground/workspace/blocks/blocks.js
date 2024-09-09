@@ -21,6 +21,7 @@ const blockDefinitionsArray = [testBlock]
 export const blockConfigs = [neopixelBlockConfig, ledModuleBlockConfig, buzzerBlockConfig, servoBlockConfig, inputsBlockConfig]
 
 export const forJsBlock = Object.create(null);
+export const forPyBlock = Object.create(null);
 
 for (let key in blockKeys) {
     if (blockKeys.hasOwnProperty(key)) {
@@ -31,7 +32,8 @@ for (let key in blockKeys) {
             }
 
             if (blockConfig['codeGenerator'].hasOwnProperty(key)) {
-                forJsBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key](blocks, generator);
+                 forJsBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key](blocks, generator);
+                forPyBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key](blocks, generator);
             }
 
         })

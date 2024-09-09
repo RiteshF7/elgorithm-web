@@ -51,7 +51,6 @@ make a component block definition file in src/utils/playground/workspace/blocks/
 define all block ui json config in an array
 
 //make a function that will generate code for blocks 
-make a generator function inside file src/utils/playground/workspace/blocks/generators/javascript.js
 define block key and call controller methods of element for fetching code
 
 //define blocks ref contecxt in src/utils/playground/workspace/blocks/blocks.js for blockly to process block json

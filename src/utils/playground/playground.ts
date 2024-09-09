@@ -1,9 +1,8 @@
 import * as Blockly from 'blockly';
 import {pythonGenerator} from 'blockly/python';
 import {javascriptGenerator} from 'blockly/javascript';
-import {forPyBlock} from './workspace/blocks/generators/python';
 import {save, load} from './workspace/serialization';
-import {blocks, forJsBlock} from "./workspace/blocks/blocks";
+import {blocks, forJsBlock,forPyBlock} from "./workspace/blocks/blocks";
 import {blocklyOptions, BlocklyTheme} from './workspace/elgotheme';
 import {connectSerial, listSerialDevices, sendCodeToDevice} from "./webserial/webserial";
 import {getCodeCompletionCallback, initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
@@ -49,10 +48,6 @@ export class Playground {
     }
 
 
-    listDevices(){
-
-    }
-
 
     getJsCode(): string {
         let code = javascriptGenerator.workspaceToCode(this.workspace);
@@ -73,6 +68,7 @@ export class Playground {
 
     generateExecPyCode(): void {
         const code = pythonGenerator.workspaceToCode(this.workspace);
+        console.log(code,"pycode")
         sendCodeToDevice(code);
     }
 }

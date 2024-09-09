@@ -33,6 +33,39 @@ export const PlaygroundContainerContent = [
         },
         editorConfig: {
             toolboxType: 'flyoutToolbox',
+            toolboxContent: [BlockKeys.turnOnLed,BlockKeys.controlsRepeat],
+        },
+        runnerConfig: {
+            moduleName: Modules.NeoPixelModule,
+            moduleConfig: {
+                matrixSize: 11,
+                matrixType: MatrixType.UNI_DIRECTIONAL,
+                testCase: {
+                    initialState: [[5, 5]],
+                    expectedOutput: [[5, 4]],
+                },
+                controllerType: ControllerType.blocks
+            }
+        }
+    },
+
+    {
+        chapterId: 1,
+        type: 'content',
+        content: {
+            contentId: 0,
+            title: "Move pixel 1 step left",
+            description: "Move pixel 1 step left",
+            media: [
+                {
+                    type: "video",
+                    url: "",
+                    caption: ""
+                }
+            ]
+        },
+        editorConfig: {
+            toolboxType: 'flyoutToolbox',
             toolboxContent: [BlockKeys.moveLeft,BlockKeys.controlsRepeat],
         },
         runnerConfig: {
