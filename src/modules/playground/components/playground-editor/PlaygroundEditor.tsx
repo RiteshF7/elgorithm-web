@@ -8,6 +8,7 @@ import {getPlainToolBox, getSimpleToolboxBlock} from "@/utils/playground/workspa
 import {Button} from "@/modules/common/components/button/Button";
 import Dropdown from "@/modules/common/DropDown";
 import {connectSerial, listSerialDevices} from "@/utils/playground/webserial/webserial";
+import {run} from "plop";
 
 interface PlaygroundEditorProps {
     editorConfig: any;
@@ -20,15 +21,8 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
         'kind': editorConfig.toolboxType,
         'contents': getPlainToolBox(editorConfig.toolboxContent)
     }
-    const {initPlayground,connect,refreshDeviceStatus,isDeviceConnected} = usePlayground();
+    const {initPlayground,connect,isDeviceConnected,runCode} = usePlayground();
 
-
-
-
-
-    function handleClick(button: String) {
-
-    }
 
     useEffect(() => {
         if (editorRef.current && !initializedEditor.current) {
@@ -45,7 +39,7 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
 
                 <div
                     className={`\` text-center border-2 border-black rounded-lg ${isDeviceConnected ? "bg-green-500" : "bg-red-500"}`}
-                    onClick={() => refreshDeviceStatus()}>
+                    onClick={() => runCode()}>
                     <img src="/icons/play.png" alt="icon" className="w-8 h-8 "/>
                 </div>
                 <div onClick={() => connect()}>

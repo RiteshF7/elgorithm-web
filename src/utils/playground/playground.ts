@@ -44,7 +44,9 @@ export class Playground {
 
     }
 
-    connectToDevice = ()=>connectSerial()
+    async connectToDevice(onDisconnect:()=>void){
+        return connectSerial(onDisconnect)
+    }
 
 
     listDevices(){

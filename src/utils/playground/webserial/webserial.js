@@ -1,15 +1,22 @@
 let port, textEncoder, writableStreamClosed, writer;
 
-export async function connectSerial() {
+export async function connectSerial(onDisconnect) {
     try {
         port = await navigator.serial.requestPort();
         await port.open({baudRate: 115200});
         textEncoder = new TextEncoderStream();
         writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
         writer = textEncoder.writable.getWriter();
-        await listenToPort();
+        port.addEventListener('disconnect', () => {
+            onDisconnect();
+        });
+        listenToPort().then(result => {
+            return true
+        });
+        return true
     } catch (e) {
         alert("Serial Connection Failed" + e);
+        return false;
     }
 }
 
@@ -26,8 +33,9 @@ export async function listSerialDevices() {
 
 export async function areDevicesConnected() {
     try {
+        console.log('devices!!')
         const ports = await navigator.serial.getPorts();
-        console.log(ports,ports.length === 0)
+        console.log(ports,ports.length !== 0)
         return ports.length !== 0;
     } catch (error) {
         console.error("Error checking connected devices:", error);

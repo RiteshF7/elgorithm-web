@@ -49,34 +49,39 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
 
     const runCode = () => {
         if (playgroundInstance) {
-            playgroundInstance.generateExecPyCode();
-            // playgroundInstance.generateExecJsCode();
+            if (isDeviceConnected){
+                playgroundInstance.generateExecPyCode();
+                // playgroundInstance.generateExecJsCode();
+            }else {
+                alert("Please Connect device! If already connected please try reconnecting.")
+            }
+
         }
     }
 
     const connect = async () => {
         if (playgroundInstance) {
-            playgroundInstance.connectToDevice()
-                .then(r => {
-                    if (r!== undefined){
-                      setIsDeviceConnected(true)
-                    }else {
-                        setIsDeviceConnected(false)
-                    }
+            try {
+                const result = await playgroundInstance.connectToDevice(onDisconnect)
+                console.log(result,';')
+                setIsDeviceConnected(result)
 
-            })
-                .catch(e => {
-                    setIsDeviceConnected(false)
-                    console.log(e)
-                });
+            } catch (e) {
+                setIsDeviceConnected(false);
+                console.log('e', e);
+            }
         }
+    };
+
+    function onDisconnect(){
+        setIsDeviceConnected(false)
     }
 
     const refreshDeviceStatus = () => {
-        areDevicesConnected().then(r => {
-            setIsDeviceConnected(r)
-            if (r) runCode();
-        })
+        // areDevicesConnected().then(r => {
+        //     setIsDeviceConnected(r)
+        //     if (r) runCode();
+        // })
 
     }
 
