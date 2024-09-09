@@ -35,7 +35,10 @@ const SelectStagePage = () => {
 
         <main className="flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-4">
 
-            <BannerMain {...bannerContent} ></BannerMain>
+            <div className={'bg-gray-100 p-10'}>
+                <BannerMain {...bannerContent} ></BannerMain>
+            </div>
+
 
             <div className={'mb-5'}/>
             <h3 className="h3 ml-5">Hardware Projects</h3>

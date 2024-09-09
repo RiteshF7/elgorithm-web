@@ -5,16 +5,18 @@ import {
     GlobalPGCommChannel,
     PlaygroundCommunicationChannel, RegisterPlaygroundComponent
 } from "@/utils/pg-comm-channel.util";
-import {any} from "prop-types";
+import {areDevicesConnected, connectSerial, listSerialDevices} from "@/utils/playground/webserial/webserial";
+import boolean from "leva/src/components/Boolean";
 
 interface PlaygroundContextProps {
     playground: Playground | null;
-    initPlayground: (element: HTMLDivElement,toolbox: any) => void;
+    initPlayground: (element: HTMLDivElement, toolbox: any) => void;
     runCode: () => void;
     getJsCode: () => string;
     connect: () => void;
     registerComponent: RegisterPlaygroundComponent;
-    moveToNextLevel:(levelId:string)=>void;
+    refreshDeviceStatus: () => void;
+    isDeviceConnected: boolean;
 }
 
 
@@ -25,19 +27,20 @@ const PlaygroundContext = createContext<PlaygroundContextProps>({
     getJsCode: () => '',
     connect: () => null,
     registerComponent: () => null,
-    moveToNextLevel:()=>null
+    refreshDeviceStatus: () => null,
+    isDeviceConnected: false,
 });
 
 export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
 
 
-
     const [playgroundInstance, setPlaygroundInstance] = useState<Playground | null>(null);
-    const initPlayground = (element: HTMLDivElement,toolbox:any) => {
+    const initPlayground = (element: HTMLDivElement, toolbox: any) => {
         setPlaygroundInstance(new Playground(element, toolbox));
     }
+    const [isDeviceConnected, setIsDeviceConnected] = useState(false)
 
-    function getJsCode():string{
+    function getJsCode(): string {
         if (playgroundInstance) {
             return playgroundInstance.getJsCode();
         }
@@ -46,15 +49,35 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
 
     const runCode = () => {
         if (playgroundInstance) {
-            playgroundInstance.generateExecJsCode();
+            playgroundInstance.generateExecPyCode();
+            // playgroundInstance.generateExecJsCode();
         }
     }
 
-    const connect = () => {
-        console.log('Connect');
+    const connect = async () => {
+        if (playgroundInstance) {
+            playgroundInstance.connectToDevice()
+                .then(r => {
+                    if (r!== undefined){
+                      setIsDeviceConnected(true)
+                    }else {
+                        setIsDeviceConnected(false)
+                    }
+
+            })
+                .catch(e => {
+                    setIsDeviceConnected(false)
+                    console.log(e)
+                });
+        }
     }
-    const moveToNextLevel = () => {
-        console.log('Next level enabled!');
+
+    const refreshDeviceStatus = () => {
+        areDevicesConnected().then(r => {
+            setIsDeviceConnected(r)
+            if (r) runCode();
+        })
+
     }
 
 
@@ -71,7 +94,8 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
             getJsCode,
             connect,
             registerComponent,
-            moveToNextLevel
+            refreshDeviceStatus,
+            isDeviceConnected
         }}>
             {children}
         </PlaygroundContext.Provider>

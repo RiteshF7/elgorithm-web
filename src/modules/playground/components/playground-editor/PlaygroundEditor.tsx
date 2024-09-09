@@ -1,13 +1,16 @@
 'use client';
-import React, {FC, useEffect, useRef} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import {PlaygroundActions} from "@/modules/playground/components/playground-actions/PlaygroundActions";
 import NeopixelBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
 import {getPlainToolBox, getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
+import {Button} from "@/modules/common/components/button/Button";
+import Dropdown from "@/modules/common/DropDown";
+import {connectSerial, listSerialDevices} from "@/utils/playground/webserial/webserial";
 
 interface PlaygroundEditorProps {
-editorConfig:any;
+    editorConfig: any;
 }
 
 export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
@@ -15,22 +18,47 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
     const initializedEditor = useRef(false);
     const toolboxContainer = {
         'kind': editorConfig.toolboxType,
-        'contents':getPlainToolBox(editorConfig.toolboxContent)
+        'contents': getPlainToolBox(editorConfig.toolboxContent)
     }
-    const {initPlayground} = usePlayground();
+    const {initPlayground,connect,refreshDeviceStatus,isDeviceConnected} = usePlayground();
 
 
+
+
+
+    function handleClick(button: String) {
+
+    }
 
     useEffect(() => {
         if (editorRef.current && !initializedEditor.current) {
-            initPlayground(editorRef.current,toolboxContainer);
+            initPlayground(editorRef.current, toolboxContainer);
             initializedEditor.current = true;
         }
     }, []);
     return (
-        <main className="h-screen flex flex-col"> {/* Main container takes the full screen height */}
-            <div className="h-screen w-screen bg-gray-300 rounded-lg overflow-hidden">
-                <div ref={editorRef} className="h-screen w-screen bg-gray-300 rounded-lg"/>
+        <main className="relative h-screen w-screen flex flex-col"> {/* Main container */}
+
+            {/* Button container positioned on top */}
+            <div className="absolute top-0 left-0 right-0 flex items-center justify-center gap-5 p-5 z-10">
+
+
+                <div
+                    className={`\` text-center border-2 border-black rounded-lg ${isDeviceConnected ? "bg-green-500" : "bg-red-500"}`}
+                    onClick={() => refreshDeviceStatus()}>
+                    <img src="/icons/play.png" alt="icon" className="w-8 h-8 "/>
+                </div>
+                <div onClick={() => connect()}>
+                    <img src="/icons/connect.png" alt="icon" className="w-8 h-8 "/>
+                </div>
+
             </div>
-        </main>)
+
+            <div ref={editorRef} className="h-full w-full bg-gray-300 rounded-lg flex-1">
+
+            </div>
+
+        </main>
+
+    )
 }

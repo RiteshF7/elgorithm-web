@@ -13,6 +13,28 @@ export async function connectSerial() {
     }
 }
 
+export async function listSerialDevices() {
+    try {
+        const ports = await navigator.serial.getPorts();
+        console.log(ports);
+        return ports;
+    } catch (e) {
+        console.error("Failed to list serial devices: ", e);
+        return [];
+    }
+}
+
+export async function areDevicesConnected() {
+    try {
+        const ports = await navigator.serial.getPorts();
+        console.log(ports,ports.length === 0)
+        return ports.length !== 0;
+    } catch (error) {
+        console.error("Error checking connected devices:", error);
+        return false;
+    }
+}
+
 function convertCodeToByteString(pythonCode) {
     let byteArray = new TextEncoder('utf-16').encode(pythonCode);
     return byteArray.join(', ');
@@ -60,12 +82,10 @@ async function listenToPort() {
     while (true) {
         const {value, done} = await reader.read();
         if (done) {
-            // Allow the serial port to be closed later.
             console.log('[readLoop] DONE', done);
             reader.releaseLock();
             break;
         }
-        // value is a string.
         console.log(value + '\n');
     }
 }

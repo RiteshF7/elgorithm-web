@@ -5,7 +5,7 @@ import {forPyBlock} from './workspace/blocks/generators/python';
 import {save, load} from './workspace/serialization';
 import {blocks, forJsBlock} from "./workspace/blocks/blocks";
 import {blocklyOptions, BlocklyTheme} from './workspace/elgotheme';
-import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
+import {connectSerial, listSerialDevices, sendCodeToDevice} from "./webserial/webserial";
 import {getCodeCompletionCallback, initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
 import {Direction} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
 
@@ -44,8 +44,11 @@ export class Playground {
 
     }
 
-    connectToDevice(): void {
-        connectSerial().then(r => console.log(`device connected :: ${r}`)).catch(e => console.log(`device not connected :: ${e}`));
+    connectToDevice = ()=>connectSerial()
+
+
+    listDevices(){
+
     }
 
 
