@@ -12,6 +12,8 @@ import buzzerBlockConfig
 import servoBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
 import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/inputsBlockConfig";
+import {PythonImports} from "@/modules/playground/components/simulated-hardwares/modules/common/commonModules";
+import {pythonGenerator} from "blockly/python";
 
 
 const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
@@ -22,6 +24,10 @@ export const blockConfigs = [neopixelBlockConfig, ledModuleBlockConfig, buzzerBl
 
 export const forJsBlock = Object.create(null);
 export const forPyBlock = Object.create(null);
+const JS_GENERATOR = 'jsCodeGenerator'
+const PY_GENERATOR = 'pyCodeGenerator'
+
+
 
 for (let key in blockKeys) {
     if (blockKeys.hasOwnProperty(key)) {
@@ -31,10 +37,17 @@ for (let key in blockKeys) {
                 blockDefinitionsArray.push(blockConfig['blockDefinitions'][key])
             }
 
-            if (blockConfig['codeGenerator'].hasOwnProperty(key)) {
-                 forJsBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key](blocks, generator);
-                forPyBlock[key] = (blocks, generator) => blockConfig['codeGenerator'][key](blocks, generator);
+            if (blockConfig.hasOwnProperty(JS_GENERATOR)){
+                if (blockConfig[JS_GENERATOR].hasOwnProperty(key)) {
+                    forJsBlock[key] = (blocks, generator) => blockConfig[JS_GENERATOR][key](blocks, generator);
+                }
             }
+            if (blockConfig.hasOwnProperty(PY_GENERATOR)){
+                if (blockConfig[PY_GENERATOR].hasOwnProperty(key)) {
+                    forPyBlock[key] = (blocks, generator) => blockConfig[PY_GENERATOR][key](blocks, generator);
+                }
+            }
+
 
         })
     }

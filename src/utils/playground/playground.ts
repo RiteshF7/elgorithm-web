@@ -69,7 +69,7 @@ export class Playground {
     generateExecPyCode(): void {
         const code = pythonGenerator.workspaceToCode(this.workspace);
         console.log(code,"pycode")
-        sendCodeToDevice(code);
+        sendCodeToDevice(`from machine import Pin;`+code);
     }
 }
 

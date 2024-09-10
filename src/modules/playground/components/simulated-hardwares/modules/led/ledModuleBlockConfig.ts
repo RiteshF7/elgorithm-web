@@ -2,9 +2,15 @@ import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import {LedState} from "@/modules/playground/components/simulated-hardwares/modules/led/Led";
 // @ts-ignore
-import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
 import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
+import {
+    pythonFunction,
+    PythonFunctionKey,
+    pythonImport,
+    PythonImportKey
+} from "@/modules/playground/components/simulated-hardwares/modules/common/commonModules";
+
 //block definitions
 const blockDefinitions = {
 
@@ -48,14 +54,22 @@ const toolbox = [
 
 
 //code generator
-const codeGenerator = {
-    turnOnLed: () => `print("hello")`,
+const jsCodeGenerator = {
+    turnOnLed: () => getLedBlockCode({active: false, color: 'red'}),
     turnOffLed: () => getLedBlockCode({active: false, color: 'red'}),
     blinkLed: () => getLedBlockCode({active: true, color: 'red'}) + getLedBlockCode({active: false, color: 'red'})
 };
 
-function turnOnLedPy(){
-    return `print("hello")`
+const pyCodeGenerator = {
+    turnOnLed: () => getPyLedCode(1),
+    turnOffLed: () => getPyLedCode(0),
+    blinkLed: () => getPyLedCode(1) + getPyLedCode(0),
+};
+
+function getPyLedCode(value: number) {
+    pythonImport(PythonImportKey.PIN)
+    pythonFunction(PythonFunctionKey.GPIO_SET)
+    return 'gpio_set(' + 2 + ', ' + value + ')\n';
 }
 
 
@@ -66,7 +80,8 @@ function getLedBlockCode(payload: LedState) {
 const ledBlockConfig = {
     blockDefinitions: blockDefinitions,
     toolBox: toolbox,
-    codeGenerator: codeGenerator
+    jsCodeGenerator: jsCodeGenerator,
+    pyCodeGenerator: pyCodeGenerator
 }
 
 export default ledBlockConfig
