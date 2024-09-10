@@ -1,11 +1,12 @@
 import {forPyBlock} from "@/utils/playground/workspace/blocks/blocks";
 import {pythonGenerator} from "blockly/python";
-
-export const CommonModules = {}
+import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
+import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 export enum PythonImportKey {
     MACHINE,
-    PIN
+    PIN,
+    TIME
 }
 
 export function pythonImport(key: PythonImportKey) {
@@ -15,7 +16,10 @@ export function pythonImport(key: PythonImportKey) {
             break;
         case PythonImportKey.MACHINE:
             pythonGenerator.definitions_['import_machine'] = 'import machine';
-            break
+            break;
+        case PythonImportKey.TIME:
+            pythonGenerator.definitions_['import_time'] = 'import time';
+            break;
     }
 }
 
@@ -30,4 +34,5 @@ export function pythonFunction(key: PythonFunctionKey) {
 
     }
 }
+
 

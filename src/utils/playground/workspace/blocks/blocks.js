@@ -14,13 +14,14 @@ import servoBlockConfig
 import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/inputsBlockConfig";
 import {PythonImports} from "@/modules/playground/components/simulated-hardwares/modules/common/commonModules";
 import {pythonGenerator} from "blockly/python";
+import delayBlockConfig from "@/modules/playground/components/simulated-hardwares/modules/common/delayBlockConfig";
 
 
 const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
 const blockDefinitionsArray = [testBlock]
 
 
-export const blockConfigs = [neopixelBlockConfig, ledModuleBlockConfig, buzzerBlockConfig, servoBlockConfig, inputsBlockConfig]
+export const blockConfigs = [neopixelBlockConfig, ledModuleBlockConfig, buzzerBlockConfig, servoBlockConfig, inputsBlockConfig,delayBlockConfig]
 
 export const forJsBlock = Object.create(null);
 export const forPyBlock = Object.create(null);

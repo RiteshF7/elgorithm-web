@@ -101,6 +101,9 @@ const blockKeys = {
     //inputs
     lightValue: 'lightValue',
 
+    //delay
+    delay :'delay'
+
 
 }
 
