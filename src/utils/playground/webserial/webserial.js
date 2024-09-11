@@ -20,16 +20,7 @@ export async function connectSerial(onDisconnect) {
     }
 }
 
-export async function listSerialDevices() {
-    try {
-        const ports = await navigator.serial.getPorts();
-        console.log(ports);
-        return ports;
-    } catch (e) {
-        console.error("Failed to list serial devices: ", e);
-        return [];
-    }
-}
+
 
 export async function areDevicesConnected() {
     try {

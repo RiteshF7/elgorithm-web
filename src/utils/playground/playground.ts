@@ -4,7 +4,7 @@ import {javascriptGenerator} from 'blockly/javascript';
 import {save, load} from './workspace/serialization';
 import {blocks, forJsBlock,forPyBlock} from "./workspace/blocks/blocks";
 import {blocklyOptions, BlocklyTheme} from './workspace/elgotheme';
-import {connectSerial, listSerialDevices, sendCodeToDevice} from "./webserial/webserial";
+import {connectSerial, sendCodeToDevice} from "./webserial/webserial";
 import {getCodeCompletionCallback, initPlaygroundCommunication} from "@/utils/pg-comm-channel.util";
 import {Direction} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
 
@@ -68,9 +68,9 @@ export class Playground {
 
     generateExecPyCode(): void {
         const code = pythonGenerator.workspaceToCode(this.workspace);
-        console.log(code,"pycode")
-        sendCodeToDevice(`from machine import Pin;`+code);
+        sendCodeToDevice(code);
     }
+
 }
 
 function initBlockly(): void {

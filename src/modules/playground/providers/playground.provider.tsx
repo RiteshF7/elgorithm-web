@@ -5,8 +5,6 @@ import {
     GlobalPGCommChannel,
     PlaygroundCommunicationChannel, RegisterPlaygroundComponent
 } from "@/utils/pg-comm-channel.util";
-import {areDevicesConnected, connectSerial, listSerialDevices} from "@/utils/playground/webserial/webserial";
-import boolean from "leva/src/components/Boolean";
 
 interface PlaygroundContextProps {
     playground: Playground | null;
@@ -15,7 +13,6 @@ interface PlaygroundContextProps {
     getJsCode: () => string;
     connect: () => void;
     registerComponent: RegisterPlaygroundComponent;
-    refreshDeviceStatus: () => void;
     isDeviceConnected: boolean;
 }
 
@@ -27,7 +24,6 @@ const PlaygroundContext = createContext<PlaygroundContextProps>({
     getJsCode: () => '',
     connect: () => null,
     registerComponent: () => null,
-    refreshDeviceStatus: () => null,
     isDeviceConnected: false,
 });
 
@@ -77,13 +73,6 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
         setIsDeviceConnected(false)
     }
 
-    const refreshDeviceStatus = () => {
-        // areDevicesConnected().then(r => {
-        //     setIsDeviceConnected(r)
-        //     if (r) runCode();
-        // })
-
-    }
 
 
     const registerComponent: RegisterPlaygroundComponent = (key, callback: (data: any) => void) => {
@@ -99,7 +88,6 @@ export const PlaygroundProvider: FC<PropsWithChildren> = ({children}) => {
             getJsCode,
             connect,
             registerComponent,
-            refreshDeviceStatus,
             isDeviceConnected
         }}>
             {children}

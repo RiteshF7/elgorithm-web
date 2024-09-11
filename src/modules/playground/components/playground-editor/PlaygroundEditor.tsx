@@ -7,7 +7,6 @@ import NeopixelBlockConfig
 import {getPlainToolBox, getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
 import {Button} from "@/modules/common/components/button/Button";
 import Dropdown from "@/modules/common/DropDown";
-import {connectSerial, listSerialDevices} from "@/utils/playground/webserial/webserial";
 import {run} from "plop";
 
 interface PlaygroundEditorProps {
