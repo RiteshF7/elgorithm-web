@@ -13,7 +13,7 @@ const blockDefinitions = {
         "message0": "Turn servo right",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },
@@ -22,7 +22,7 @@ const blockDefinitions = {
         "message0": "Turn servo left",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     }

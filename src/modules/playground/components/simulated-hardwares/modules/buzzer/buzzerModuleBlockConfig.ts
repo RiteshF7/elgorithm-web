@@ -16,7 +16,7 @@ const blockDefinitions = {
         "message0": "Turn on Buzzer",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },
@@ -25,7 +25,7 @@ const blockDefinitions = {
         "message0": "Turn off Buzzer",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     }

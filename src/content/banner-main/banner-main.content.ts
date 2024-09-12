@@ -5,6 +5,6 @@ export const BannerMainContent: BannerMainProps = {
     titleHighlight: 'Robotics and computer science',
     description: ' Whether you\'re a beginner or an experienced engineer, our platform offers a variety of robotics projects that teach you the essentials of coding, electronics, and mechanical design. Learn by doing, and build real-world robots that solve real-world problems.',
     actionText: 'Get started',
-    actionUrl: '/',
+    actionUrl: '/stages',
     imageUrl: '/home/landing_3.jpeg'
 }

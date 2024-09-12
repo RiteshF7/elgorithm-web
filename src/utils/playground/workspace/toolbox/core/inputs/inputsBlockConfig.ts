@@ -15,7 +15,7 @@ const blockDefinitions = {
         "type": blockKeys.lightValue,
         "message0": "light value",
         "output": "Number",
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },

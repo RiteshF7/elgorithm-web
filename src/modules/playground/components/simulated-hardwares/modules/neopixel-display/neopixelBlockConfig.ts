@@ -9,7 +9,7 @@ const blockDefinitions = {
             "message0": "Move up",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         }
@@ -20,7 +20,7 @@ const blockDefinitions = {
             "message0": "Move down",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         }
@@ -31,7 +31,7 @@ const blockDefinitions = {
             "message0": "Move right",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         }
@@ -42,7 +42,7 @@ const blockDefinitions = {
             "message0": "Move left",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         },
@@ -52,7 +52,7 @@ const blockDefinitions = {
             "message0": "Move top left",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         },
@@ -62,7 +62,7 @@ const blockDefinitions = {
             "message0": "Move top right",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         },
@@ -72,7 +72,7 @@ const blockDefinitions = {
             "message0": "Move bottom left",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         },
@@ -82,7 +82,7 @@ const blockDefinitions = {
             "message0": "Move bottom right",
             "previousStatement": null,
             "nextStatement": null,
-            "colour": 230,
+    "colour": '#eaa8a8',
             "tooltip": "",
             "helpUrl": ""
         },

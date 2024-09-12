@@ -19,7 +19,7 @@ const blockDefinitions = {
         "message0": "Turn on led",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },
@@ -28,7 +28,7 @@ const blockDefinitions = {
         "message0": "Turn off led",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },
@@ -37,7 +37,7 @@ const blockDefinitions = {
         "message0": "Blink led",
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+"colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },

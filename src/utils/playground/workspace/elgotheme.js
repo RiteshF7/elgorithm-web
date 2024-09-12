@@ -88,8 +88,16 @@ export const blocklyOptions = {
         colour: '#ccc',
         snap: true
     },
+    zoom: {
+        controls: true,
+        wheel: false,
+        startScale: 0.8,
+        maxScale: 2,
+        minScale: 0.5,
+        scaleSpeed: 1.2
+    },
     trashcan: true,
-    sounds: true,
+    sounds: false,
     move: {
         scrollbars: false,
         drag: false,

@@ -1,23 +1,26 @@
 import {FC} from 'react';
 import {Logo} from "@/modules/common/components/logo/Logo";
 import {Button} from "@/modules/common/components/button/Button";
+import Link from "next/link";
 
 
 export const Header: FC = () => {
     return (
-        <header className={'bg-foreground gap-2 shadow-bottom'}>
-            <div className={'flex justify-between items-center mx-auto max-w-desktop px-2 h-14'}>
-                <Logo/>
-                <div className={'flex items-center gap-2'}>
-                    <Button uiType={'secondary'}>
-                        <span className={'text-base font-bold'}>Login</span>
-                    </Button>
-                    <Button uiType={'primary'}>
-                        <span className={'text-base font-bold'}>Get started</span>
-                    </Button>
-                </div>
+        <header className="fixed top-0 left-0 right-0 bg-white shadow-sm z-10">
+            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+                <Link href="/" className="text-2xl font-serif font-bold text-gray-800">
+                    Logo
+                </Link>
+                <nav className="hidden md:flex space-x-6">
+                    <Link href="/" className="text-gray-600 hover:text-gray-800">Home</Link>
+                    <Link href="/stages" className="text-gray-600 hover:text-gray-800">Categories</Link>
+                    {/*<Link href="/about" className="text-gray-600 hover:text-gray-800">About</Link>*/}
+                    {/*<Link href="/contact" className="text-gray-600 hover:text-gray-800">Contact</Link>*/}
+                </nav>
+                <div className="flex items-center space-x-4">
 
+                </div>
             </div>
         </header>
-    )
+    );
 }

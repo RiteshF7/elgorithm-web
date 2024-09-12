@@ -1,5 +1,4 @@
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
-import BlockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 import {
     pythonImport,
@@ -9,12 +8,19 @@ import {
 //block definitions
 const blockDefinitions = {
 
-    [BlockKeys.turnOnLed]: {
+    [blockKeys.delay]: {
         "type": blockKeys.delay,
-        "message0": "delay",
+        "message0": "delay %1 ms",
+        "args0": [
+            {
+                "type": "input_value",  
+                "name": "DELAY_TIME",   
+                "check": "Number"     
+            }
+        ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+        "colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     }

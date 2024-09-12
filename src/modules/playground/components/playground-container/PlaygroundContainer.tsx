@@ -25,44 +25,9 @@ export const PlayGroundContainer: FC<PlaygroundState> = ({state}) => {
                     {/*                  description={containerState.content.description}/>*/}
                     <PlaygroundEditor editorConfig={containerState.editorConfig}/>
                 </div>
-
                 {/*<PlaygroundRunner runnerConfig={containerState.runnerConfig}/>*/}
 
-
             </div>
-            {/*<Button onClick={async () => {*/}
-            {/*    // setContainerState(PlaygroundContainerContent[containerState.chapterId + 1])*/}
-            {/*    // getLevelList().then(r => console.log(r)).catch(e => console.log(e));*/}
-            {/*    const BASE_URL = process.env.API_ENDPOINT;*/}
-
-            {/*    // const result = await fetch(`/api/category/list?detailed=true`)*/}
-            {/*    // console.log(result.json())*/}
-            {/*    // Example usage*/}
-            {/*   // const data =  await getCategoriesByLevel('398942350854848578');*/}
-            {/*   //  console.log(data,"all data!")*/}
-            {/*   //  await createLevel({*/}
-            {/*   //      title: "super Code",*/}
-            {/*   //      description: "Requires no coding experience. Suitable for age 9-12. Learn logic building from simple games",*/}
-            {/*   //      bgImageUrl: "/categories/category-1.png",*/}
-            {/*   //      infoPoints: [*/}
-            {/*   //          "Simple Logic Building Games",*/}
-            {/*   //          "Suitable for age 9-12",*/}
-            {/*   //          "Expert Guided Development"*/}
-            {/*   //      ],*/}
-            {/*   //      link: "/categories/no-code",*/}
-            {/*   //      totalCourses: 10,*/}
-            {/*   //      totalDuration: 8,*/}
-            {/*   //      level: "1"*/}
-            {/*   //  })*/}
-
-
-
-            {/*    // await createCategory()*/}
-
-            {/*    // const playground = await fetchPlaygroundById('399750681950421056');*/}
-
-
-            {/*}} uiType={'primary'}>NEXT</Button>*/}
         </PlaygroundProvider>
 
     )
