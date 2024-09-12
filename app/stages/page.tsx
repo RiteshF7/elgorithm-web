@@ -10,6 +10,7 @@ import {projectList} from "@/content/projects-conrent";
 import {BannerMain} from "@/modules/home/banner-main/BannerMain";
 import {BannerMainContent} from "@/content/banner-main/banner-main.content";
 import {ContentCard} from "@/modules/home/content-card/ContentCard";
+import {Header} from "@/modules/common/components/header/Header";
 
 
 const getCategoryList = async (): Promise<CategoryModel[]> => {
@@ -35,17 +36,21 @@ const SelectStagePage = () => {
 
         <main className="flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-4">
 
-            <div className={'bg-gray-100 p-10'}>
+            <Header/>
+            <div className={'bg-gray-100 p-10 mt-20'}>
                 <BannerMain {...bannerContent} ></BannerMain>
             </div>
 
 
             <div className={'mb-5'}/>
-            <h3 className="h3 ml-5">Hardware Projects</h3>
 
+            <h3 className="h3 ml-5">Hardware Projects</h3>
+            <hr style={{border: '1px solid #ddd'}}/>
 
             <ProjectPage projects={projectList}/>
             <h1 className="h1 ml-5">Virtual Projects</h1>
+            <hr style={{border: '1px solid #ddd'}}/>
+
             <ProjectPage projects={projectList}/>
         </main>
     );

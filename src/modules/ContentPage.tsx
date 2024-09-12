@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { Search, Menu } from 'lucide-react';
 import {FC, Key} from "react";
 import {Header} from "@/modules/common/components/header/Header";
+import {Button} from "@/modules/common/components/button/Button";
 
 interface Content {
     state: any
@@ -18,7 +17,7 @@ export const ContentPage: FC<Content> = ({state}) => {
             <main className="flex-grow mt-16 md:mt-20">
                 <div className="container mx-auto px-4 py-8 md:flex">
                     {/* Article Content */}
-                    <article className="md:w-screen md:pr-8">
+                    <article className="ml-40 mr-20 md:w-screen md:pr-8">
                         <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
                             {state.content.title}
                         </h1>
@@ -31,32 +30,40 @@ export const ContentPage: FC<Content> = ({state}) => {
                                 alt=""
                                 className="w-[600px] h-[200px] object-cover rounded-lg shadow-md mb-6"
                             />
-                            <p>
-                                As we move further into the digital age, web development continues to evolve at a rapid
-                                pace.
-                                New technologies, frameworks, and methodologies are constantly emerging, reshaping the
-                                way we
-                                build and interact with websites and web applications.
-                            </p>
 
                             {/* Render the Section components dynamically */}
                             {state.content.articleSections.map((section: {
                                 title: string;
                                 content: string;
+                                imageUrl:string
                             }, index: Key | null | undefined) => (
-                                <Section key={index} title={section.title} content={section.content}/>
+                                <Section key={index} title={section.title} content={section.content} imageUrl={section.imageUrl}/>
                             ))}
 
-                            {/* Video Embed */}
-                            <div className="aspect-w-16 aspect-h-9 my-8">
-                                <iframe
-                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    className="rounded-lg shadow-md"
-                                ></iframe>
-                            </div>
+                            {
+                                ((state.hwPlaygroundConfigId !== '-1')) ?
+
+                                    <div className="my-5">
+                                        <Link href={`/playground/${state.hwPlaygroundConfigId}`}>
+                                            <Button uiType="primary">
+                                                Run in playground
+                                            </Button>
+                                            <span className="sr-only">Go to Playground</span>
+                                        </Link>
+                                    </div>:<div/>
+                            }
+
+
+                            {/*/!* Video Embed *!/*/}
+                            {/*<div className="aspect-w-16 aspect-h-9 my-8">*/}
+                            {/*    <iframe*/}
+                            {/*        src="https://www.youtube.com/embed/dQw4w9WgXcQ"*/}
+                            {/*        frameBorder="0"*/}
+                            {/*        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"*/}
+                            {/*        allowFullScreen*/}
+                            {/*        className="rounded-lg shadow-md"*/}
+                            {/*    ></iframe>*/}
+                            {/*</div>*/}
                         </div>
                     </article>
                 </div>
@@ -98,12 +105,19 @@ export default ContentPage;
 interface SectionProps {
     title: string;
     content: string;
+    imageUrl:string
 }
 
-const Section = ({ title, content }: SectionProps) => (
+const Section = ({ title, content,imageUrl }: SectionProps) => (
     <div className="mt-8">
         <h3 className="text-2xl font-serif font-semibold mb-4">{title}</h3>
-        <p>{content}</p>
+        <p className={'mb-5'}>{content}</p>
+        {(imageUrl)? <img
+            src={imageUrl}
+            alt=""
+            className="w-[600px] h-[200px] object-cover rounded-lg shadow-md mb-6"
+            />:<div/>
+        }
     </div>
 );
 

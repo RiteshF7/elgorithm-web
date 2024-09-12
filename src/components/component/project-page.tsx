@@ -2,11 +2,10 @@
 import Link from "next/link"
 
 export interface Project {
-  id: number;
   image: string;
   name: string;
   description: string;
-  projectId: number;
+  contentId: string;
 }
 
 interface ProjectProp {
@@ -18,10 +17,10 @@ export function ProjectPage(categories: ProjectProp): JSX.Element {
       <section className="grid gap-6 p-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:p-6">
 
         {categories.projects.map((category) => (
-            <div key={category.id}
-                 className="relative overflow-hidden group shadow-md transition-transform transform hover:scale-105">
+            <div  key={category.name}
+                 className="relative mb-5 overflow-hidden group shadow-md transition-transform transform hover:scale-105">
               {/* Redirect to /playground with the project ID as a query parameter */}
-              <Link href={`/playground/${category.projectId}`} className="absolute inset-0 z-10" prefetch={false}>
+              <Link href={`/projectcontent/${category.contentId}`} className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View {category.name} category</span>
               </Link>
               <img

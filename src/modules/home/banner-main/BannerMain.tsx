@@ -48,11 +48,14 @@ export const BannerMain: FC<BannerMainProps> = ({
                 <p className={'text-md'}>
                     {description}
                 </p>
-                <Link href={actionUrl}>
+                {(actionText !=='')?
+                    <Link href={actionUrl}>
                     <Button uiType={'primary'} className={'lg:w-48 py-2.5'}>
-                        <p className={'text-lg'}>{actionText}</p>
+                    <p className={'text-lg'}>{actionText}</p>
                     </Button>
-                </Link>
+                    </Link>
+                    :<div/>
+                }
             </div>
         </div>
     )
