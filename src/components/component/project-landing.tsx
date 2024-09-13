@@ -71,7 +71,7 @@ export function ProjectLanding() {
             <CardHeader>
               <CardTitle>Get in Touch</CardTitle>
               <CardDescription>
-                We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
+                We would love to hear from you. Fill out the form below and we will get back to you as soon as possible.
               </CardDescription>
             </CardHeader>
             <CardContent>

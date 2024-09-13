@@ -21,7 +21,7 @@ interface NeoPixelViewModelProps {
 
 export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controllerType}: NeoPixelViewModelProps) => {
 
-    const {getJsCode, moveToNextLevel} = usePlayground();
+    const {getJsCode} = usePlayground();
     const row = 0, column = 1;
     const initialState = testCase.initialState[0];
     const neoPixelDisplayRef = useRef<NeopixelMatrixElement>(null);
@@ -88,7 +88,8 @@ export const useNeoPixelViewModel = ({matrixSize, matrixType, testCase, controll
     function handleSuccess() {
         alert('success')
         initDisplay();
-        moveToNextLevel('next level id')
+        console.log('move to next level!')
+        // moveToNextLevel('next level id')
     }
 
     function handleFailure() {

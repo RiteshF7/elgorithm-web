@@ -76,7 +76,7 @@ export const ContentPage: FC<Content> = ({state}) => {
                         <div className="w-full md:w-1/3 mb-6 md:mb-0">
                             <h5 className="text-lg font-semibold mb-4">About Us</h5>
                             <p className="text-gray-400">
-                                We're passionate about sharing knowledge and insights on web development trends and best practices.
+                                We are passionate about sharing knowledge and insights on web development trends and best practices.
                             </p>
                         </div>
                         <div className="w-full md:w-1/3 mb-6 md:mb-0">
