@@ -5,10 +5,11 @@ import {LedState} from "@/modules/playground/components/simulated-hardwares/modu
 import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 import {
+    pyDelay,
     pythonFunction,
     PythonFunctionKey,
     pythonImport,
-    PythonImportKey
+    PythonImportKey, setPinValue
 } from "@/modules/playground/components/simulated-hardwares/modules/common/commonModules";
 
 //block definitions
@@ -37,7 +38,7 @@ const blockDefinitions = {
         "message0": "Blink led",
         "previousStatement": null,
         "nextStatement": null,
-"colour": '#eaa8a8',
+        "colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },
@@ -61,16 +62,12 @@ const jsCodeGenerator = {
 };
 
 const pyCodeGenerator = {
-    turnOnLed: () => getPyLedCode(1),
-    turnOffLed: () => getPyLedCode(0),
-    blinkLed: () => getPyLedCode(1) + getPyLedCode(0),
+    turnOnLed: () => setPinValue(2,1),
+    turnOffLed: () => setPinValue(2,0),
+    blinkLed: () => setPinValue(2,1) + pyDelay(1) + setPinValue(2,0),
 };
 
-function getPyLedCode(value: number) {
-    pythonImport(PythonImportKey.PIN)
-    pythonFunction(PythonFunctionKey.GPIO_SET)
-    return 'gpio_set(' + 2 + ', ' + value + ')\n';
-}
+
 
 
 function getLedBlockCode(payload: LedState) {

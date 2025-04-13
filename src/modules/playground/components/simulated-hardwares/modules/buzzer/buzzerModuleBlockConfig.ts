@@ -6,6 +6,15 @@ import {getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks"
 import {BuzzerState} from "@/modules/playground/components/simulated-hardwares/modules/buzzer/Buzzer";
 import {getModuleState} from "@/modules/playground/components/simulated-hardwares/utils/commonUtils";
 import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
+import ModuleConfigConstants
+    from "@/modules/playground/components/simulated-hardwares/modules/common/moduleConfigConstants";
+import moduleConfigConstants
+    from "@/modules/playground/components/simulated-hardwares/modules/common/moduleConfigConstants";
+import {
+    pythonFunction, PythonFunctionKey,
+    pythonImport,
+    PythonImportKey, setPinValue
+} from "@/modules/playground/components/simulated-hardwares/modules/common/commonModules";
 
 
 //block definitions
@@ -44,9 +53,15 @@ const toolbox = [
 
 
 //code generator
-const codeGenerator = {
+const pyCodeGenerator = {
     [blockKeys.turnOnBuzzer]: () => getBuzzerBlockCode({buzz: true}),
     [blockKeys.turnOffBuzzer]: () => getBuzzerBlockCode({buzz: false}),
+};
+
+//code generator
+const jsCodeGenerator = {
+    [blockKeys.turnOnBuzzer]: () => setPinValue(8,1),
+    [blockKeys.turnOffBuzzer]: () => setPinValue(8,0),
 };
 
 
@@ -55,9 +70,10 @@ function getBuzzerBlockCode(payload: BuzzerState) {
 }
 
 const buzzerBlockConfig = {
-    blockDefinitions: blockDefinitions,
-    toolBox: toolbox,
-    codeGenerator: codeGenerator
+    [moduleConfigConstants.BLOCK_DEFINITIONS]: blockDefinitions,
+    [ModuleConfigConstants.TOOLBOX]: toolbox,
+    [ModuleConfigConstants.PY_CODE_GENERATOR]: pyCodeGenerator,
+    [ModuleConfigConstants.JS_CODE_GENERATOR]:jsCodeGenerator
 }
 
 export default buzzerBlockConfig

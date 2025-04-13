@@ -1,6 +1,7 @@
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 import {
+    pyDelay,
     pythonImport,
     PythonImportKey
 } from "@/modules/playground/components/simulated-hardwares/modules/common/commonModules";
@@ -39,13 +40,8 @@ const toolbox = [
 // };
 
 const pyCodeGenerator = {
-    delay: () => getPyLedCode(1),
+    delay: () => pyDelay(1),
 };
-
-function getPyLedCode(value: number) {
-    pythonImport(PythonImportKey.TIME)
-    return 'time.sleep(' + value + ')\n';
-}
 
 
 const delayBlockConfig = {

@@ -23,6 +23,18 @@ export function pythonImport(key: PythonImportKey) {
     }
 }
 
+export function setPinValue(pin:number,value: number) {
+    pythonImport(PythonImportKey.PIN)
+    pythonFunction(PythonFunctionKey.GPIO_SET)
+    return 'gpio_set(' + pin + ', ' + value + ')\n';
+}
+
+export function pyDelay(value: number) {
+    pythonImport(PythonImportKey.TIME)
+    return 'time.sleep(' + value + ')\n';
+}
+
+
 export enum PythonFunctionKey{
     GPIO_SET
 }
