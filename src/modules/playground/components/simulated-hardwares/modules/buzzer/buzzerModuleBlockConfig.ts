@@ -25,7 +25,7 @@ const blockDefinitions = {
         "message0": "Turn on Buzzer",
         "previousStatement": null,
         "nextStatement": null,
-"colour": '#eaa8a8',
+        "colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     },
@@ -34,7 +34,7 @@ const blockDefinitions = {
         "message0": "Turn off Buzzer",
         "previousStatement": null,
         "nextStatement": null,
-"colour": '#eaa8a8',
+        "colour": '#eaa8a8',
         "tooltip": "",
         "helpUrl": ""
     }
@@ -60,8 +60,8 @@ const pyCodeGenerator = {
 
 //code generator
 const jsCodeGenerator = {
-    [blockKeys.turnOnBuzzer]: () => setPinValue(8,1),
-    [blockKeys.turnOffBuzzer]: () => setPinValue(8,0),
+    [blockKeys.turnOnBuzzer]: () => setPinValue(8, 1),
+    [blockKeys.turnOffBuzzer]: () => setPinValue(8, 0),
 };
 
 
@@ -73,7 +73,7 @@ const buzzerBlockConfig = {
     [moduleConfigConstants.BLOCK_DEFINITIONS]: blockDefinitions,
     [ModuleConfigConstants.TOOLBOX]: toolbox,
     [ModuleConfigConstants.PY_CODE_GENERATOR]: pyCodeGenerator,
-    [ModuleConfigConstants.JS_CODE_GENERATOR]:jsCodeGenerator
+    [ModuleConfigConstants.JS_CODE_GENERATOR]: jsCodeGenerator
 }
 
 export default buzzerBlockConfig

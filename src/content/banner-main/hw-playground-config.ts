@@ -28,7 +28,7 @@ const HwPlaygroundConfig = {
     '5': {
         editorConfig: {
             toolboxType: 'flyoutToolbox',
-            toolboxContent: [BlockKeys.turnOnBuzzer],
+            toolboxContent: [BlockKeys.turnOnLed],
         },
     },
 }

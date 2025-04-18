@@ -13,6 +13,8 @@ import BuzzerModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
 import ServoModuleBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
+import ModuleConfigConstants
+    from "@/modules/playground/components/simulated-hardwares/modules/common/moduleConfigConstants";
 
 export const PlaygroundContainerContent = [
 
@@ -611,39 +613,39 @@ export const PlaygroundContainerContent = [
             }
         }
     },
-    {
-        chapterId: 6,
-        type: 'content',
-        content: {
-            contentId: 0,
-            title: "Turn buzzer on",
-            description: "Turn buzzer on",
-            media: [
-                {
-                    type: "video",
-                    url: "",
-                    caption: ""
-                }
-            ]
-        },
-        editorConfig: {
-            toolboxType: 'flyoutToolbox',
-            toolboxContent: [...BuzzerModuleBlockConfig.toolBox],
-        },
-        runnerConfig: {
-            moduleNames: [Modules.BuzzerModule],
-            moduleConfig: {
-                testCases: [
-                    {
-                        inputs: {},
-                        initialState: {[Modules.BuzzerModule]: {buzz: false}},
-                        expectedOutput: [{[Modules.BuzzerModule]: {buzz: true}},]
-                    },
-                ]
-
-            }
-        }
-    },
+    // {
+    //     chapterId: 6,
+    //     type: 'content',
+    //     content: {
+    //         contentId: 0,
+    //         title: "Turn buzzer on",
+    //         description: "Turn buzzer on",
+    //         media: [
+    //             {
+    //                 type: "video",
+    //                 url: "",
+    //                 caption: ""
+    //             }
+    //         ]
+    //     },
+    //     editorConfig: {
+    //         toolboxType: 'flyoutToolbox',
+    //         toolboxContent: [...BuzzerModuleBlockConfig[ModuleConfigConstants.TOOLBOX]],
+    //     },
+    //     runnerConfig: {
+    //         moduleNames: [Modules.BuzzerModule],
+    //         moduleConfig: {
+    //             testCases: [
+    //                 {
+    //                     inputs: {},
+    //                     initialState: {[Modules.BuzzerModule]: {buzz: false}},
+    //                     expectedOutput: [{[Modules.BuzzerModule]: {buzz: true}},]
+    //                 },
+    //             ]
+    //
+    //         }
+    //     }
+    // },
     {
         chapterId: 7,
         type: 'content',

@@ -34,7 +34,7 @@ for (let key in blockKeys) {
     if (blockKeys.hasOwnProperty(key)) {
         blockConfigs.forEach((blockConfig) => {
 
-            if (blockConfig['blockDefinitions'].hasOwnProperty(key)) {
+            if (blockConfig['blockDefinitions'] && blockConfig['blockDefinitions'].hasOwnProperty(key)) {
                 blockDefinitionsArray.push(blockConfig['blockDefinitions'][key])
             }
 
