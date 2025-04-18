@@ -12,8 +12,7 @@ import buzzerBlockConfig
 import servoBlockConfig
     from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
 import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/inputsBlockConfig";
-import {PythonImports} from "@/modules/playground/components/simulated-hardwares/modules/common/commonModules";
-import {pythonGenerator} from "blockly/python";
+
 import delayBlockConfig from "@/modules/playground/components/simulated-hardwares/modules/common/delayBlockConfig";
 
 

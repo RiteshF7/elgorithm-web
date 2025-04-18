@@ -134,7 +134,7 @@ function getBlockCode(payload: Direction) {
 const neopixelBlockConfig = {
     blockDefinitions: blockDefinitions,
     toolBox: straightToolbox,
-    codeGenerator: codeGenerator
+    jsCodeGenerator: codeGenerator
 }
 
 export default neopixelBlockConfig

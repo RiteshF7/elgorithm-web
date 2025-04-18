@@ -40,7 +40,7 @@ const codeGenerator = {
 const inputsBlockConfig = {
     blockDefinitions: blockDefinitions,
     toolBox: toolbox,
-    codeGenerator: codeGenerator
+    jsCodeGenerator: codeGenerator
 }
 
 export default inputsBlockConfig

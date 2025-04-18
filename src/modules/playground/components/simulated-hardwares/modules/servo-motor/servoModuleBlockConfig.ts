@@ -69,7 +69,7 @@ function getServoBlockCode(operator:string){
 const servoBlockConfig = {
     blockDefinitions: blockDefinitions,
     toolBox: toolbox,
-    codeGenerator: codeGenerator
+    jsCodeGenerator: codeGenerator
 }
 
 export default servoBlockConfig
