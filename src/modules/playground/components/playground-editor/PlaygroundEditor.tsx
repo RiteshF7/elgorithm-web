@@ -36,7 +36,7 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
             <div
                 ref={editorRef}
                 className="bg-gray-300 rounded-lg h-full w-full"
-                style={{width: "780px", height: "570px"}}
+                style={{width: "880px", height: "640px"}}
             />
         </main>
 
