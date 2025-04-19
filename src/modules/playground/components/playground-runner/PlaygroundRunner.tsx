@@ -9,8 +9,17 @@ export const PlaygroundRunner: FC<PlaygroundRunnerProps> = ({runnerConfig}) => {
 
     const isMultiState = runnerConfig.moduleName === Modules.NeoPixelModule
     return (
-        <div className={'basis-4/12 bg-white  rounded-lg flex justify-center items-center h-96'}>
-            {isMultiState ? getModule(Modules.NeoPixelModule, runnerConfig.moduleConfig) : <Module runnerConfig={runnerConfig}/>}
+        <div
+            className={` rounded-xl shadow-lg border border-gray-400 relative p-6`}
+            style={{
+                backgroundImage: "url('/path/to/tech-background.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}
+        >
+            {isMultiState
+                ? getModule(Modules.NeoPixelModule, runnerConfig.moduleConfig)
+                : <Module runnerConfig={runnerConfig}/>}
         </div>
 
     )

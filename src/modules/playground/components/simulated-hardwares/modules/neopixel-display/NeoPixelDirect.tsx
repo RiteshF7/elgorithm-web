@@ -5,6 +5,7 @@ import {Button} from "@/modules/common/components/button/Button";
 import {
     useNeoPixelViewModel
 } from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/NeoPixelViewModel";
+import {Zap} from "lucide-react";
 
 /*
  Test case 1 : move pixel right;
@@ -27,8 +28,6 @@ interface NeoPixelMatrixProps {
 export const COMPONENT_KEY = 'NEO_PIXEL_DIRECT';
 
 
-
-
 export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, matrixSize, controllerType}) => {
 
     const buttonVisibilityClass = controllerType === ControllerType.blocks ? "block" : "hidden";
@@ -37,7 +36,8 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
         matrixType,
         testCase,
         matrixSize,
-        controllerType,});
+        controllerType,
+    });
     return (
 
         <div className={'flex-col items-center justify-center'}>
@@ -47,8 +47,16 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
                                        blurLight={true}
                                        animation={animation ? true : undefined}></wokwi-neopixel-matrix>
             </div>
-
-            <Button className={`button p-4 m-4 justify-center ${buttonVisibilityClass}` } uiType={'primary'} onClick={executeBlockCode}>RUN</Button>
+            <button
+                className="mt-4 p-4 ml-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded flex items-center"
+                onClick={() => {
+                    console.log("Button clicked!");
+                    // You can replace this with any functionality you'd like
+                    executeBlockCode(); // Example function to execute your logic
+                }}
+            >
+                <Zap size={16} className="mr-1"/> Run
+            </button>
 
 
         </div>

@@ -20,7 +20,7 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
         'kind': editorConfig.toolboxType,
         'contents': getPlainToolBox(editorConfig.toolboxContent)
     }
-    const {initPlayground,connect,isDeviceConnected,runCode} = usePlayground();
+    const {initPlayground, connect, isDeviceConnected, runCode} = usePlayground();
 
 
     useEffect(() => {
@@ -30,27 +30,14 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
         }
     }, []);
     return (
-        <main className="relative h-screen w-screen flex flex-col"> {/* Main container */}
-
-            {/* Button container positioned on top */}
-            <div className="absolute top-0 left-0 right-0 flex items-center justify-center gap-5 p-5 z-10">
+        <main className={``}> {/*  Main container */}
 
 
-                <div
-                    className={`\` text-center border-2 border-black rounded-lg ${isDeviceConnected ? "bg-green-500" : "bg-red-500"}`}
-                    onClick={() => runCode()}>
-                    <img src="/icons/play.png" alt="icon" className="w-8 h-8 "/>
-                </div>
-                <div onClick={() => connect()}>
-                    <img src="/icons/connect.png" alt="icon" className="w-8 h-8 "/>
-                </div>
-
-            </div>
-
-            <div ref={editorRef} className="h-full w-full bg-gray-300 rounded-lg flex-1">
-
-            </div>
-
+            <div
+                ref={editorRef}
+                className="bg-gray-300 rounded-lg h-full w-full"
+                style={{width: "780px", height: "570px"}}
+            />
         </main>
 
     )
