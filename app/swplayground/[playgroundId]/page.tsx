@@ -11,8 +11,9 @@ const PlayGroundLessonPage: FC<{ params: { playgroundId: string } }> = ({params}
     const project = (PlaygroundContainerContent as { [key: string]: any })[projectId];
 
     return (
-        <main className="flex flex-col">
+        <main className=" bg-black h-full flex flex-col">
             <SWPlayGroundContainer state={project}/>
+
         </main>
     );
 }

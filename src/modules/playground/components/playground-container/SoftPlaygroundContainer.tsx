@@ -22,7 +22,7 @@ const Header: FC<HeaderProps> = ({
                                      isDeviceConnected
                                  }) => {
     return (
-        <header className="bg-gray-800 border-b border-blue-500/30 shadow-lg p-4">
+        <header className="bg-black-900 border-b border-blue-500/30 shadow-lg p-4">
             <div className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
@@ -72,12 +72,7 @@ const EditorPanel: FC<EditorPanelProps> = ({editorConfig, className}) => {
                         <h2 className="font-bold">Blockly Editor</h2>
                     </div>
                     <div className="flex space-x-2">
-                        <button className="text-xs bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded">
-                            Export
-                        </button>
-                        <button className="text-xs bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded">
-                            Import
-                        </button>
+
                     </div>
                 </div>
                 <div className="bg-gray-700/50 relative">
@@ -139,7 +134,7 @@ const HardwarePanel: FC<HardwarePanelProps> = ({runnerConfig, className}) => {
 
                 {/* Console takes remaining vertical space with flex-grow */}
                 <div className="flex-grow flex flex-col">
-                <Console/>
+                    <Console/>
                 </div>
             </div>
         </div>
@@ -167,7 +162,7 @@ export const NeoPixelPlayground: FC<PlaygroundState> = ({state}) => {
     const {connect, isDeviceConnected, runCode} = usePlayground();
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-100 text-gray-100">
+        <div className="flex flex-col min-h-screen bg-black-500 text-gray-100">
             <Header
                 title={state.content.title}
                 description={state.content.description}
@@ -189,7 +184,7 @@ export const NeoPixelPlayground: FC<PlaygroundState> = ({state}) => {
                 </div>
             </main>
 
-            <Footer version="1.0"/>
+            {/*<Footer version="1.0"/>*/}
         </div>
     );
 };

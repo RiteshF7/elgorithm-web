@@ -15,19 +15,7 @@ export const SWPlayGroundContainer: FC<PlaygroundState> = ({state}) => {
 
     return (
         <PlaygroundProvider>
-            <div className="h-screen bg-gray-800 flex items-center justify-center ">
-                {/*<div className="flex-1 p-4">*/}
-                {/*    <ProblemStatement*/}
-                {/*        problem={containerState.content.title}*/}
-                {/*        description={containerState.content.description}*/}
-                {/*    />*/}
-                {/*    <div className="mt-4">*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                {/*<PlaygroundEditor editorConfig={containerState.editorConfig}/>*/}
-
-                {/*<PlaygroundRunner runnerConfig={containerState.runnerConfig}/>*/}
-                {/* eslint-disable-next-line react/jsx-no-undef */}
+            <div className=" flex items-center justify-center ">
                 <NeoPixelPlayground state={containerState}/>
 
             </div>
