@@ -74,9 +74,7 @@ export const Module: FC<ModuleProps> = ({runnerConfig}) => {
                     return <div key={module}> {getModule(module, moduleState[module])}</div>
                 })
             }
-            <Button onClick={() => {
-                runCode()
-            }} uiType={'primary'}/>
+            <RunButton onClick={runCode}/>
 
         </div>
     )

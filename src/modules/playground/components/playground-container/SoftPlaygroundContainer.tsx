@@ -50,7 +50,7 @@ const Header: FC<HeaderProps> = ({
                                     <Zap size={16} className="mr-2"/> Connect Device
                                 </button>
                                 <button
-                                    className={`text-white px-4 py-2 rounded-md flex items-center shadow-md transition duration-200 ${
+                                    className={`text-white px-2 py-2 rounded-md flex items-center shadow-md transition duration-200 ${
                                         isDeviceConnected
                                             ? "bg-emerald-500 hover:bg-emerald-600"
                                             : "bg-rose-500 hover:bg-rose-600"
