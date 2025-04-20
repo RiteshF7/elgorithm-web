@@ -15,9 +15,8 @@ export const SWPlayGroundContainer: FC<PlaygroundState> = ({state}) => {
 
     return (
         <PlaygroundProvider>
-            <div className=" flex items-center justify-center ">
+            <div className=" flex-col items-center justify-center ">
                 <NeoPixelPlayground state={containerState}/>
-
             </div>
         </PlaygroundProvider>
     );

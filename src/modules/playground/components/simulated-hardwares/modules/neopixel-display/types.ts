@@ -28,5 +28,5 @@ export enum MatrixType {
 
 export enum ControllerType{
     keyboard='keyboard',
-    blocks='blocks'
+    blocks='blocks',
 }

@@ -24,7 +24,7 @@ export const PlaygroundContainerContent = [
         content: {
             contentId: 0,
             title: "Move pixel 1 step left",
-            description: "Move pixel 1 step left",
+            description: "Shift the pixel one step to the left within the virtual NeoPixel display. Ensure the movement is precise and aligns with the intended programming logic for smooth functionality.",
             media: [
                 {
                     type: "video",
@@ -57,7 +57,7 @@ export const PlaygroundContainerContent = [
         content: {
             contentId: 0,
             title: "Move pixel 1 step left",
-            description: "Move pixel 1 step left",
+            description: "Shift the pixel one step to the left within the virtual NeoPixel display. Ensure the movement is precise and aligns with the intended programming logic for smooth functionality.",
             media: [
                 {
                     type: "video",

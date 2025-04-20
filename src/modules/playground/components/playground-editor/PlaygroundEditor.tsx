@@ -7,7 +7,6 @@ import NeopixelBlockConfig
 import {getPlainToolBox, getSimpleToolboxBlock} from "@/utils/playground/workspace/blocks/blocks";
 import {Button} from "@/modules/common/components/button/Button";
 import Dropdown from "@/modules/common/DropDown";
-import {run} from "plop";
 
 interface PlaygroundEditorProps {
     editorConfig: any;
@@ -36,7 +35,7 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
             <div
                 ref={editorRef}
                 className="bg-gray-300 rounded-lg h-full w-full"
-                style={{width: "880px", height: "640px"}}
+                style={{width: "990px", height: "640px"}}
             />
         </main>
 
