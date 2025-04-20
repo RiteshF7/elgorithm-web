@@ -5,6 +5,9 @@ import {PlaygroundEditor} from "@/modules/playground/components/playground-edito
 import {PlaygroundRunner} from "@/modules/playground/components/playground-runner/PlaygroundRunner";
 import {usePlayground} from "@/modules/playground/providers/playground.provider";
 import ProblemStatement from "@/modules/playground/components/playground-container/ProblemCard";
+import {useRouter} from 'next/router';
+import {Navigation, createSuccessHandler} from './swplaygroundnav'; // Adjust path as needed
+
 
 // Header Component
 interface HeaderProps {
@@ -22,47 +25,58 @@ const Header: FC<HeaderProps> = ({
                                      onRunCode,
                                      isDeviceConnected
                                  }) => {
+    const onSuccess = createSuccessHandler();
     return (
-        <header className="bg-black-900 border-b border-blue-500/30 shadow-lg p-4">
+        <header className="bg-gray-900 border-b border-blue-500/30 shadow-lg p-2">
             <div className="container mx-auto">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                        <Cpu className="text-blue-400" size={28}/>
-                        <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                            Elgorithm Playground
-                        </h1>
-                    </div>
-                    <div className="flex flex-col space-y-2 items-end">
-                        <div className="flex space-x-3">
-                            <button
-                                className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded flex items-center"
-                                onClick={onConnect}
-                            >
-                                <Zap size={16} className="mr-1"/> Connect
-                            </button>
-                            <button
-                                className={`text-white px-3 py-1 rounded flex items-center transition-transform transform hover:scale-110 shadow-md ${
-                                    isDeviceConnected ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"
-                                }`}
-                                onClick={onRunCode}
-                            >
-                                <Zap size={16} className="mr-1"/> Run
-                            </button>
+
+
+                {/* Bottom Section */}
+                <div className="flex flex-col md:flex-row gap-4 items-start justify-between">
+                    {/* Enhanced Description Box */}
+                    <div className="bg-gray-800/80 border-l-4 border-blue-500 rounded-r-md p-3 shadow-lg  w-full">
+
+                        <div className="flex flex-row justify-between items-center ">
+                            <div className="flex items-center ">
+                                <Layers className="text-blue-400 mr-2" size={18}/>
+                                <h2 className="text-lg font-semibold text-blue-300">Current Challenge</h2>
+                            </div>
+                            {/* Action Buttons */}
+                            <div className="flex items-center  space-x-3 self-center md:self-end">
+                                <button
+                                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md flex items-center shadow-md transition duration-200"
+                                    onClick={onConnect}
+                                >
+                                    <Zap size={16} className="mr-2"/> Connect Device
+                                </button>
+                                <button
+                                    className={`text-white px-4 py-2 rounded-md flex items-center shadow-md transition duration-200 ${
+                                        isDeviceConnected
+                                            ? "bg-emerald-500 hover:bg-emerald-600"
+                                            : "bg-rose-500 hover:bg-rose-600"
+                                    }`}
+                                    onClick={onRunCode}
+                                >
+                                    <Terminal size={16} className="mr-2"/>
+                                    {isDeviceConnected ? "Run Code" : "Run (Disconnected)"}
+                                </button>
+                            </div>
+
                         </div>
-                        <p className="text-sm text-gray-400 italic">
-                            *Note: These buttons require custom hardware to be connected.*
+
+                        <p className="text-base mt-2 text-gray-300">
+                            {`☸ ${description}` || "Explore detailed insights in a clean format."}
                         </p>
+                        <Navigation onSuccess={onSuccess}/>
+
                     </div>
+
+
                 </div>
-                <p className="text-lg mt-2 ml-5 font-normal text-white leading-relaxed">
-                    {`☸ ${description || "Explore detailed insights and captivating content presented in a clean, user-friendly format."}`}
-                </p>
             </div>
         </header>
-    )
-
+    );
 };
-
 const ContentSection: React.FC<{ title: string; description: string }> = ({title, description}) => {
     return (
         <div className="bg-gray-900 rounded-lg shadow-lg p-4 mt-5 ml-3 mr-3 mx-auto">
@@ -181,6 +195,8 @@ const Footer: FC<FooterProps> = ({version}) => {
 // Main Component
 export const NeoPixelPlayground: FC<PlaygroundState> = ({state}) => {
     const {connect, isDeviceConnected, runCode} = usePlayground();
+    const onSuccess = createSuccessHandler();
+
 
     return (
         <div className="flex flex-col min-h-screen bg-black-500 text-gray-100">
