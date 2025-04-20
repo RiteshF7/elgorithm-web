@@ -6,6 +6,7 @@ import {
     useNeoPixelViewModel
 } from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/NeoPixelViewModel";
 import {Zap} from "lucide-react";
+import RunButton from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
 
 /*
  Test case 1 : move pixel right;
@@ -47,17 +48,7 @@ export const NeoPixelDirect: FC<NeoPixelMatrixProps> = ({matrixType, testCase, m
                                        blurLight={true}
                                        animation={animation ? true : undefined}></wokwi-neopixel-matrix>
             </div>
-            <button
-                className="mt-4 p-4 ml-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded flex items-center"
-                onClick={() => {
-                    console.log("Button clicked!");
-                    // You can replace this with any functionality you'd like
-                    executeBlockCode(); // Example function to execute your logic
-                }}
-            >
-                <Zap size={16} className="mr-1"/> Run
-            </button>
-
+            <RunButton onClick={executeBlockCode}/>
 
         </div>
     );

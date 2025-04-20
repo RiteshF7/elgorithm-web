@@ -10,7 +10,7 @@ export const PlaygroundRunner: FC<PlaygroundRunnerProps> = ({runnerConfig}) => {
     const isMultiState = runnerConfig.moduleName === Modules.NeoPixelModule
     return (
         <div
-            className={` rounded-xl shadow-lg border border-gray-400 relative p-6`}
+            className={` rounded-xl shadow-lg border border-gray-400 relative p-4`}
             style={{
                 backgroundImage: "url('/path/to/tech-background.png')",
                 backgroundSize: "cover",

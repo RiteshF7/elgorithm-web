@@ -14,6 +14,7 @@ import {ServoMotor} from "@/modules/playground/components/simulated-hardwares/mo
 import {Block} from "blockly";
 import Blockly from "blockly/core";
 import {LCD} from "@/modules/playground/components/simulated-hardwares/modules/LCD/LCD";
+import {Zap} from "lucide-react";
 
 export enum Modules {
     NeoPixelModule = 'neo-pixel-module',
@@ -66,7 +67,6 @@ export const Module: FC<ModuleProps> = ({runnerConfig}) => {
     }
 
 
-
     return (
         <div className={'flex flex-col items-center p-2 m-2'}>
             {
@@ -83,4 +83,22 @@ export const Module: FC<ModuleProps> = ({runnerConfig}) => {
 }
 
 
+type ButtonProps = {
+    onClick: () => void; // Callback function for button click
+};
+
+const RunButton: FC<ButtonProps> = ({onClick}) => {
+    return (
+        <button
+            className="bg-green-400 ml-2 mt-2 hover:bg-green-500 text-white px-4 py-2 rounded-md flex items-center shadow-md transition duration-200"
+
+            onClick={onClick}
+        >
+            <Zap size={16} className="mr-2"/>
+            RUN
+        </button>
+    );
+};
+
+export default RunButton;
 
