@@ -216,6 +216,7 @@ export const NeoPixelPlayground: FC<PlaygroundState> = ({state}) => {
                         editorConfig={state.editorConfig}
                         className="lg:col-span-2"
                     />
+                    {state.runnerConfig}
                     <HardwarePanel
                         runnerConfig={state.runnerConfig}
                         className="lg:col-span-1"
