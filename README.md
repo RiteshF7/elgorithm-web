@@ -39,7 +39,7 @@
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/mrmilind11/elgorithm-web.git
+   git clone https://github.com/RiteshF7/elgorithm-web.git
    cd elgorithm-web
 
 ## 🛠️ How to Add a New Component

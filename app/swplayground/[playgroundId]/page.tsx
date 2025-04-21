@@ -13,7 +13,6 @@ const PlayGroundLessonPage: FC<{ params: { playgroundId: string } }> = ({params}
     return (
         <main className=" bg-black h-full flex flex-col">
             <SWPlayGroundContainer state={project}/>
-
         </main>
     );
 }

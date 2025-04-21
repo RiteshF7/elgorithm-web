@@ -1,3 +1,4 @@
+'use client'
 import {BannerMain} from "@/modules/home/banner-main/BannerMain";
 import {BannerMainContent} from "@/content/banner-main/banner-main.content";
 import {CategoryGrid} from "@/modules/home/category-grid/CategoryGrid";
@@ -8,16 +9,17 @@ import {CategoryTitleDescription} from "@/modules/categories/category-title-desc
 import {Header} from "@/modules/common/components/header/Header";
 import {PlaygroundContainerContent} from "@/content/banner-main/playground-container.content";
 import {SWPlayGroundContainer} from "@/modules/playground/components/playground-container/swPlaygroundContainer";
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Home() {
-    const project = PlaygroundContainerContent[0]
+    const router = useRouter();
 
-    return (
-        <main className=" bg-black h-full flex flex-col">
-            <SWPlayGroundContainer state={project}/>
+    useEffect(() => {
+        router.push('/swplayground/1');
+    }, [router]);
 
-        </main>
-    );
+    return null; // or a loading indicator while redirecting
 }
 // export default function Home() {
 //     return (
