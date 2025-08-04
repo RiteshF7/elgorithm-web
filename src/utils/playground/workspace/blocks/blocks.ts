@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import { Block, Generator } from 'blockly/core';
 
 import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
@@ -15,15 +16,22 @@ import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/
 
 import delayBlockConfig from "@/modules/playground/components/simulated-hardwares/modules/common/delayBlockConfig";
 
+interface BlockConfig {
+    blockDefinitions?: { [key: string]: any };
+    jsCodeGenerator?: { [key: string]: (block: Block, generator: Generator) => any };
+    pyCodeGenerator?: { [key: string]: (block: Block, generator: Generator) => any };
+    toolBox?: any[];
+}
+
 
 const testBlock = {'type': 'test_block', 'message0': 'example block', 'colour': 160, 'tooltip': '', 'helpUrl': '',};
-const blockDefinitionsArray = [testBlock]
+const blockDefinitionsArray: any[] = [testBlock]
 
 
-export const blockConfigs = [neopixelBlockConfig, ledModuleBlockConfig, buzzerBlockConfig, servoBlockConfig, inputsBlockConfig,delayBlockConfig]
+export const blockConfigs: BlockConfig[] = [neopixelBlockConfig, ledModuleBlockConfig, buzzerBlockConfig, servoBlockConfig, inputsBlockConfig,delayBlockConfig]
 
-export const forJsBlock = Object.create(null);
-export const forPyBlock = Object.create(null);
+export const forJsBlock: { [key: string]: (block: Block, generator: Generator) => any } = Object.create(null);
+export const forPyBlock: { [key: string]: (block: Block, generator: Generator) => any } = Object.create(null);
 const JS_GENERATOR = 'jsCodeGenerator'
 const PY_GENERATOR = 'pyCodeGenerator'
 
@@ -33,18 +41,18 @@ for (let key in blockKeys) {
     if (blockKeys.hasOwnProperty(key)) {
         blockConfigs.forEach((blockConfig) => {
 
-            if (blockConfig['blockDefinitions'] && blockConfig['blockDefinitions'].hasOwnProperty(key)) {
-                blockDefinitionsArray.push(blockConfig['blockDefinitions'][key])
+            if (blockConfig.blockDefinitions && blockConfig.blockDefinitions.hasOwnProperty(key)) {
+                blockDefinitionsArray.push(blockConfig.blockDefinitions[key])
             }
 
             if (blockConfig.hasOwnProperty(JS_GENERATOR)){
-                if (blockConfig[JS_GENERATOR].hasOwnProperty(key)) {
-                    forJsBlock[key] = (blocks, generator) => blockConfig[JS_GENERATOR][key](blocks, generator);
+                if (blockConfig.jsCodeGenerator && blockConfig.jsCodeGenerator.hasOwnProperty(key)) {
+                    forJsBlock[key] = (blocks, generator) => blockConfig.jsCodeGenerator![key](blocks, generator);
                 }
             }
             if (blockConfig.hasOwnProperty(PY_GENERATOR)){
-                if (blockConfig[PY_GENERATOR].hasOwnProperty(key)) {
-                    forPyBlock[key] = (blocks, generator) => blockConfig[PY_GENERATOR][key](blocks, generator);
+                if (blockConfig.pyCodeGenerator && blockConfig.pyCodeGenerator.hasOwnProperty(key)) {
+                    forPyBlock[key] = (blocks, generator) => blockConfig.pyCodeGenerator![key](blocks, generator);
                 }
             }
 
@@ -54,7 +62,7 @@ for (let key in blockKeys) {
 }
 
 
-export function getSimpleToolboxBlock(blockKey) {
+export function getSimpleToolboxBlock(blockKey: string) {
 
     return {
         'kind': 'block',
@@ -63,7 +71,7 @@ export function getSimpleToolboxBlock(blockKey) {
 
 }
 
-export function getPlainToolBox(blockKeys) {
+export function getPlainToolBox(blockKeys: string[]) {
     return blockKeys.map((blockKey) => {
         return getSimpleToolboxBlock(blockKey);
     });

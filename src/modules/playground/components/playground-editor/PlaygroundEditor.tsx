@@ -28,8 +28,7 @@ export const PlaygroundEditor: FC<PlaygroundEditorProps> = ({editorConfig}) => {
     }, []);
     return (
         <main className={``}> {/*  Main container */}
-
-
+            <PlaygroundActions/>
             <div
                 ref={editorRef}
                 className="bg-gray-300 rounded-lg h-full w-full"

@@ -1,31 +1,53 @@
 'use client'
-import {FC} from "react";
-import {fetchSectionsByStage, fetchSectionsWithModulesByStage} from "@/repositories/sectionRepo";
-import {fetchModulesBySection} from "@/repositories/moduleRepo";
+import { FC, useEffect, useState } from 'react';
+import { fetchSectionsByStage } from '@/repositories/sectionRepo';
+import Link from 'next/link';
+import { Header } from '@/modules/common/components/header/Header';
 
-
-
-const getStageData = async (stageId:String)  => {
-    const response = await fetch(`http://localhost:3000/api/section/bystage/${stageId}`);
-    return response.json() ;
+interface Section {
+    ref: {
+        id: string;
+    };
+    data: {
+        name: string;
+        description: string;
+    };
 }
 
-// const getStageData = async (stageId: string) => {
-//     const sectionsList =  await fetchSectionsWithModulesByStage(stageId)
-//     return sectionsList;
-// }
+const StagePage: FC<{ params: { stageId:string } }> = ({ params }) => {
+    const [sections, setSections] = useState<Section[]>([]);
+    const { stageId } = params;
 
-const StagePage: FC<{ params: { stageId: string } }> = ({params}) => {
-
-    getStageData(params.stageId).then((res: any) => {
-        console.log('start',res[0].modules, 'some stage id')
-    })
+    useEffect(() => {
+        if (stageId) {
+            const getSections = async () => {
+                const allSections = await fetchSectionsByStage(stageId);
+                setSections(allSections as Section[]);
+            };
+            getSections();
+        }
+    }, [stageId]);
 
     return (
-        <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-4'}>
-
+        <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-12'}>
+            <Header/>
+            <div className={'mt-20'}>
+                <div className="bg-white shadow-md rounded-lg p-6">
+                    <h2 className="text-2xl font-bold mb-4">Lessons</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {sections.map((section) => (
+                            <Link href={`/course/${stageId}/${section.ref.id}`} key={section.ref.id}>
+                                <div className="block p-4 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer">
+                                    <h3 className="text-lg font-semibold">{section.data.name}</h3>
+                                    <p className="text-gray-600">{section.data.description}</p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </main>
     );
-}
+};
 
 export default StagePage;
