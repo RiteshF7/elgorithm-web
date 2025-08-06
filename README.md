@@ -6,7 +6,7 @@
 
 ---
 
-![LIVE_DEMO](./public/images/ss1.png)
+
 
 ![LIVE_DEMO](./public/images/ss2.png)
 
