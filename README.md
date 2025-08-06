@@ -14,7 +14,7 @@
 
 ![LIVE_DEMO](./public/images/ss4.png)
 
-##Features
+**Features**
 
 - **Blockly Integration**  
   Drag-and-drop blocks to build your programs—no typing required.
@@ -107,7 +107,7 @@ We welcome contributions to improve components, add new challenges, or enhance t
 
 ---
 
-##License
+**License**
 
 **MIT License**  
 Feel free to use, modify, and share!
