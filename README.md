@@ -1,8 +1,8 @@
-#CodePlayground: Learn Coding with Virtual Electronics
+### CodePlayground: Learn Coding with Virtual Electronics
 
-**CodePlayground** is an interactive learning platform designed to teach kids and beginners how to code using *
-*block-based programming**. It brings hardware to life—virtually! With components like **NeoPixels, Servo Motors, LEDs
-**, and more, users can build and control circuits through a fun and intuitive Blockly interface.
+**CodePlayground** is an interactive learning platform designed to teach kids and beginners how to code using 
+**block-based programming**. It brings hardware to life virtually! With components like **NeoPixels, Servo Motors, LEDs**,
+and more, users can build and control circuits through a fun and intuitive Blockly interface.
 
 ---
 
@@ -14,7 +14,7 @@
 
 ![LIVE_DEMO](./public/images/ss4.png)
 
-**Features**
+### Features
 
 - **Blockly Integration**  
   Drag-and-drop blocks to build your programs—no typing required.
@@ -35,7 +35,7 @@
 
 ---
 
-**Getting Started**
+### Getting Started
 
 1. **Clone this repository:**
    ```bash
@@ -91,7 +91,7 @@ To integrate a new virtual hardware component:
 
 ---
 
-**Demo**
+### Demo
 
 _Demo coming soon!_
 
@@ -107,7 +107,7 @@ We welcome contributions to improve components, add new challenges, or enhance t
 
 ---
 
-**License**
+### License
 
 **MIT License**  
 Feel free to use, modify, and share!
