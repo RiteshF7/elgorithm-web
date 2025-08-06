@@ -1,4 +1,4 @@
-# 🔧 CodePlayground: Learn Coding with Virtual Electronics
+#CodePlayground: Learn Coding with Virtual Electronics
 
 **CodePlayground** is an interactive learning platform designed to teach kids and beginners how to code using *
 *block-based programming**. It brings hardware to life—virtually! With components like **NeoPixels, Servo Motors, LEDs
@@ -14,35 +14,35 @@
 
 ![LIVE_DEMO](./public/images/ss4.png)
 
-## 🌟 Features
+##Features
 
-- 🧱 **Blockly Integration**  
+- **Blockly Integration**  
   Drag-and-drop blocks to build your programs—no typing required.
 
-- 💡 **Virtual Hardware Components**  
+- **Virtual Hardware Components**  
   Simulate real-world components like:
     - NeoPixel LED strips
     - Servo motors
     - Basic LEDs
     - More to come!
 
-- 🎯 **Challenge Mode**  
+- **Challenge Mode**  
   Learn by doing! Step-by-step challenges teach users how to control components and solve problems using logic and
   creativity.
 
-- 🧪 **Live Playground**  
+- **Live Playground**  
   Instant feedback while coding. See your virtual components respond in real time.
 
 ---
 
-## 🚀 Getting Started
+##Getting Started
 
 1. **Clone this repository:**
    ```bash
    git clone https://github.com/RiteshF7/elgorithm-web.git
    cd elgorithm-web
 
-## 🛠️ How to Add a New Component
+##How to Add a New Component
 
 To integrate a new virtual hardware component:
 
@@ -91,13 +91,13 @@ To integrate a new virtual hardware component:
 
 ---
 
-## 🎮 Demo
+##Demo
 
 _Demo coming soon!_
 
 ---
 
-## 🤝 Contributing
+##Contributing
 
 We welcome contributions to improve components, add new challenges, or enhance the interface!
 
@@ -107,7 +107,7 @@ We welcome contributions to improve components, add new challenges, or enhance t
 
 ---
 
-## 📄 License
+##License
 
 **MIT License**  
 Feel free to use, modify, and share!
