@@ -35,14 +35,14 @@
 
 ---
 
-##Getting Started
+**Getting Started**
 
 1. **Clone this repository:**
    ```bash
    git clone https://github.com/RiteshF7/elgorithm-web.git
    cd elgorithm-web
 
-##How to Add a New Component
+**How to Add a New Component**
 
 To integrate a new virtual hardware component:
 
@@ -91,7 +91,7 @@ To integrate a new virtual hardware component:
 
 ---
 
-##Demo
+**Demo**
 
 _Demo coming soon!_
 
