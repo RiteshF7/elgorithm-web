@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import HardwarePlaygroundPage from './page';
-import { hardwareMap } from '@/modules/playground/hardware-map';
+import { hardwareMap } from '@/features/playground/hardware-map';
 
-jest.mock('@/modules/playground/hardware-map', () => ({
+jest.mock('@/features/playground/hardware-map', () => ({
     hardwareMap: {
         neopixel: {
             module: 'neo-pixel-module',
@@ -13,7 +13,7 @@ jest.mock('@/modules/playground/hardware-map', () => ({
     },
 }));
 
-jest.mock('@/modules/playground/components/playground-container/PlaygroundContainer', () => ({
+jest.mock('@/features/playground/components/playground-container/PlaygroundContainer', () => ({
     PlayGroundContainer: ({ state }: { state: any }) => (
         <div>
             <h1>{state.content.title}</h1>

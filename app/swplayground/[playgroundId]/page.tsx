@@ -1,9 +1,9 @@
 'use client'
 import {FC} from 'react';
-import {PlayGroundContainer} from "@/modules/playground/components/playground-container/PlaygroundContainer";
+import {PlayGroundContainer} from "@/features/playground/components/playground-container/PlaygroundContainer";
 import HwPlaygroundConfig from "@/content/banner-main/hw-playground-config";
 import {PlaygroundContainerContent} from "@/content/banner-main/playground-container.content";
-import {SWPlayGroundContainer} from "@/modules/playground/components/playground-container/swPlaygroundContainer";
+import {SWPlayGroundContainer} from "@/features/playground/components/playground-container/swPlaygroundContainer";
 
 const PlayGroundLessonPage: FC<{ params: { playgroundId: string } }> = ({params}) => {
 

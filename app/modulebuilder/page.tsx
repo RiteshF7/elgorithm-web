@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import ModuleBuilder from "@/modules/modulebuilder/modulebuilder";
+import ModuleBuilder from "@/features/modulebuilder/modulebuilder";
 
 
 const ModuleBuilderPage: FC = () => {
