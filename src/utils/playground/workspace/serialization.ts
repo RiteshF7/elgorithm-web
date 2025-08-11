@@ -10,18 +10,18 @@ const storageKey = 'mainWorkspace';
 
 /**
  * Saves the state of the workspace to browser's local storage.
- * @param {Blockly.Workspace} workspace Blockly workspace to save.
+ * @param workspace Blockly workspace to save.
  */
-export const save = function(workspace) {
+export const save = function(workspace: Blockly.Workspace): void {
   const data = Blockly.serialization.workspaces.save(workspace);
   window.localStorage?.setItem(storageKey, JSON.stringify(data));
 };
 
 /**
  * Loads saved state from local storage into the given workspace.
- * @param {Blockly.Workspace} workspace Blockly workspace to load into.
+ * @param workspace Blockly workspace to load into.
  */
-export const load = function(workspace) {
+export const load = function(workspace: Blockly.Workspace): void {
   const data = window.localStorage?.getItem(storageKey);
   if (!data) return;
 

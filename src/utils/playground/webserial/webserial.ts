@@ -1,6 +1,9 @@
-let port, textEncoder, writableStreamClosed, writer;
+let port: SerialPort | undefined,
+    textEncoder: TextEncoderStream | undefined,
+    writableStreamClosed: Promise<void> | undefined,
+    writer: WritableStreamDefaultWriter<string> | undefined;
 
-export async function connectSerial(onDisconnect) {
+export async function connectSerial(onDisconnect: () => void): Promise<boolean> {
     try {
         port = await navigator.serial.requestPort();
         await port.open({baudRate: 115200});
@@ -22,7 +25,7 @@ export async function connectSerial(onDisconnect) {
 
 
 
-export async function areDevicesConnected() {
+export async function areDevicesConnected(): Promise<boolean> {
     try {
         console.log('devices!!')
         const ports = await navigator.serial.getPorts();
@@ -34,22 +37,24 @@ export async function areDevicesConnected() {
     }
 }
 
-function convertCodeToByteString(pythonCode) {
+function convertCodeToByteString(pythonCode: string): string {
     let byteArray = new TextEncoder('utf-16').encode(pythonCode);
     return byteArray.join(', ');
 }
 
-function sendSerialData(executableCommands) {
-    writer.write(executableCommands);
+function sendSerialData(executableCommands: string): void {
+    if (writer) {
+        writer.write(executableCommands);
+    }
 }
 
-export function sendCodeToDevice(pythonCode) {
+export function sendCodeToDevice(pythonCode: string): void {
     const byteString = convertCodeToByteString(pythonCode);
     const executableCommands = buildExecutableCommand(byteString);
     sendSerialData(executableCommands);
 }
 
-function buildExecutableCommand(byteCodeString) {
+function buildExecutableCommand(byteCodeString: string): string {
     let createFile = "f=open('code.py','w');\r"
     let createBinaryArray = `byteArray = [${byteCodeString}];\r`
     let createByteString = "codeString = ''.join(chr(i) for i in byteArray);\r"
@@ -72,22 +77,27 @@ function buildExecutableCommand(byteCodeString) {
 }
 
 
-async function listenToPort() {
+async function listenToPort(): Promise<void> {
+    if (!port || !port.readable) {
+        return;
+    }
     const textDecoder = new TextDecoderStream();
     const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
     const reader = textDecoder.readable.getReader();
 
     // Listen to data coming from the serial device.
     while (true) {
-        const {value, done} = await reader.read();
-        if (done) {
-            console.log('[readLoop] DONE', done);
-            reader.releaseLock();
+        try {
+            const {value, done} = await reader.read();
+            if (done) {
+                console.log('[readLoop] DONE', done);
+                reader.releaseLock();
+                break;
+            }
+            console.log(value + '\n');
+        } catch (error) {
+            console.error('[readLoop] ERROR', error);
             break;
         }
-        console.log(value + '\n');
     }
 }
-
-
-
