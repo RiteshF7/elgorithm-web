@@ -9,8 +9,6 @@ import {ProjectPage} from "@/components/component/project-page";
 import {projectList} from "@/content/projects-conrent";
 import {BannerMain} from "@/modules/home/banner-main/BannerMain";
 import {BannerMainContent} from "@/content/banner-main/banner-main.content";
-import {ContentCard} from "@/modules/home/content-card/ContentCard";
-import {Header} from "@/modules/common/components/header/Header";
 
 
 const getCategoryList = async (): Promise<CategoryModel[]> => {
@@ -34,9 +32,7 @@ const SelectStagePage = () => {
 
     return (
 
-        <main className="flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-4">
-
-            <Header/>
+        <main className="flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-4 mt-20">
             <div className={'bg-gray-100 p-10 mt-20'}>
                 <BannerMain {...bannerContent} ></BannerMain>
             </div>

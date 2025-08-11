@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import {FC, Key} from "react";
-import {Header} from "@/modules/common/components/header/Header";
 import {Button} from "@/modules/common/components/button/Button";
 
 interface Content {
@@ -10,8 +9,6 @@ interface Content {
 export const ContentPage: FC<Content> = ({state}) => {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
-            {/* Header */}
-            <Header/>
 
             {/* Main Content */}
             <main className="flex-grow mt-16 md:mt-20">

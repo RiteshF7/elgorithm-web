@@ -7,6 +7,14 @@ const q = faunadb.query;
 
 
 export const getLevelList = async () => {
+    console.log("Fetching levels from FaunaDB...");
+    const result = await client.query(
+        q.Map(
+            q.Paginate(q.Documents(q.Collection('levels'))),
+            q.Lambda('X', q.Get(q.Var('X')))
+        )
+    );
+    console.log("FaunaDB result:", JSON.stringify(result, null, 2));
     return await fetchAllDocuments('levels');
 }
 

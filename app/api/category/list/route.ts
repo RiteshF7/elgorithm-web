@@ -7,10 +7,12 @@ export const GET = async (req: NextRequest) => {
         const levelList  =await getLevelList()
         return new Response(JSON.stringify(levelList));
     }
-    // return Response.json(
-    //     getLevelList().map(({title, level}) => ({
-    //         title,
-    //         level,
-    //     }))
-    // );
+    const levelList = await getLevelList();
+    return Response.json(
+        levelList.map(({title, id, description}) => ({
+            name: title,
+            id: id,
+            description: description
+        }))
+    );
 };

@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {Logo} from "@/modules/common/components/logo/Logo";
 import {Button} from "@/modules/common/components/button/Button";
 import Link from "next/link";
+import {AuthStatus} from "@/modules/common/components/header/AuthStatus";
 
 
 export const Header: FC = () => {
@@ -13,12 +14,13 @@ export const Header: FC = () => {
                 </Link>
                 <nav className="hidden md:flex space-x-6">
                     <Link href="/" className="text-gray-600 hover:text-gray-800">Home</Link>
+                    <Link href="/courses" className="text-gray-600 hover:text-gray-800">Courses</Link>
                     <Link href="/stages" className="text-gray-600 hover:text-gray-800">Categories</Link>
                     {/*<Link href="/about" className="text-gray-600 hover:text-gray-800">About</Link>*/}
                     {/*<Link href="/contact" className="text-gray-600 hover:text-gray-800">Contact</Link>*/}
                 </nav>
                 <div className="flex items-center space-x-4">
-
+                    <AuthStatus />
                 </div>
             </div>
         </header>
