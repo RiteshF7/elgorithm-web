@@ -7,6 +7,11 @@ export async function connectSerial(onDisconnect: () => void): Promise<boolean> 
     try {
         port = await navigator.serial.requestPort();
         await port.open({baudRate: 115200});
+        
+        if (!port.writable) {
+            throw new Error("Port writable stream is not available");
+        }
+        
         textEncoder = new TextEncoderStream();
         writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
         writer = textEncoder.writable.getWriter();
@@ -38,7 +43,7 @@ export async function areDevicesConnected(): Promise<boolean> {
 }
 
 function convertCodeToByteString(pythonCode: string): string {
-    let byteArray = new TextEncoder('utf-16').encode(pythonCode);
+    let byteArray = new TextEncoder().encode(pythonCode);
     return byteArray.join(', ');
 }
 

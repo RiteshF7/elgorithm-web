@@ -21,6 +21,7 @@ interface BlockConfig {
     jsCodeGenerator?: { [key: string]: (block: Block, generator: Generator) => any };
     pyCodeGenerator?: { [key: string]: (block: Block, generator: Generator) => any };
     toolBox?: any[];
+    [key: string]: any; // Allow additional properties
 }
 
 

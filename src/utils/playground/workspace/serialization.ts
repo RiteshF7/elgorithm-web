@@ -27,6 +27,6 @@ export const load = function(workspace: Blockly.Workspace): void {
 
   // Don't emit events during loading.
   Blockly.Events.disable();
-  Blockly.serialization.workspaces.load(JSON.parse(data), workspace, false);
+  Blockly.serialization.workspaces.load(JSON.parse(data), workspace, { recordUndo: false });
   Blockly.Events.enable();
 };

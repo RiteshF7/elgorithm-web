@@ -3,6 +3,7 @@ import Blockly from 'blockly/core';
 Blockly.registry.unregister('theme', 'elgo_theme');
 
 export const BlocklyTheme  = Blockly.Theme.defineTheme('customTheme', {
+    'name': 'customTheme',
     'blockStyles': {
         'logic_blocks': {
             'colourPrimary': '#a2bdf2', // Light Purple

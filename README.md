@@ -128,4 +128,37 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+# Elgorithm Web - Production Setup
+
+## Environment variables
+Create a `.env` file with the following:
+
+```
+# Fauna
+FAUNA_SECRET=...
+FAUNA_DOMAIN=db.fauna.com
+
+# NextAuth
+NEXTAUTH_URL=https://your-domain
+NEXTAUTH_SECRET=your-strong-secret
+```
+
+## Install and build
+
+```
+yarn
+yarn build
+yarn start
+```
+
+## Recommended
+- Use Node 18 LTS
+- Set `NEXT_TELEMETRY_DISABLED=1` in production
+- Configure logging/monitoring
+
+## Dev quality checklist
+- ESLint: `yarn lint`
+- Typecheck: `yarn ts-node --transpile-only` or rely on `next build`
+- Run tests: `yarn test`
+
 
