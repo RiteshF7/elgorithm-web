@@ -12,26 +12,26 @@ import {SWPlayGroundContainer} from "@/modules/playground/components/playground-
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-export default function Home() {
-    const router = useRouter();
-
-    useEffect(() => {
-        router.push('/swplayground/1');
-    }, [router]);
-
-    return null; // or a loading indicator while redirecting
-}
 // export default function Home() {
-//     return (
-//         <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-12'}>
-//             <Header/>
-//             <div className={'mt-20'}>
-//                 <BannerMain {...BannerMainContent} />
-//                 <div className={'mt-20 mb-20'}>
-//                     <CategoryGrid {...CategoryGridContent} />
-//                 </div>
-//                 <ContentCardList className={'mx-auto max-w-6xl'} contentCards={ContentCardsContent} />
-//             </div>
-//         </main>
-//     );
+//     const router = useRouter();
+//
+//     useEffect(() => {
+//         router.push('/swplayground/1');
+//     }, [router]);
+//
+//     return null; // or a loading indicator while redirecting
 // }
+export default function Home() {
+    return (
+        <main className={'flex flex-col overflow-y-auto max-w-desktop px-2 py-4 mx-auto gap-12'}>
+            <Header/>
+            <div className={'mt-20'}>
+                <BannerMain {...BannerMainContent} />
+                <div className={'mt-20 mb-20'}>
+                    <CategoryGrid {...CategoryGridContent} />
+                </div>
+                <ContentCardList className={'mx-auto max-w-6xl'} contentCards={ContentCardsContent} />
+            </div>
+        </main>
+    );
+}
