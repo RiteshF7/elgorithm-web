@@ -1,9 +1,9 @@
 'use client'
 import { FC, useEffect, useState } from 'react';
 import { fetchModuleById } from '@/repositories/moduleRepo';
-import { Header } from '@/modules/common/components/header/Header';
-import { PlayGroundContainer } from '@/modules/playground/components/playground-container/PlaygroundContainer';
-import { hardwareMap } from '@/modules/playground/hardware-map';
+import { Header } from '@/features/common/components/header/Header';
+import { PlayGroundContainer } from '@/features/playground/components/playground-container/PlaygroundContainer';
+import { hardwareMap } from '@/features/playground/hardware-map';
 
 interface Module {
     ref: {

@@ -4,17 +4,17 @@ import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 import {
     ControllerType,
     MatrixType
-} from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/types";
-import {Modules} from "@/modules/playground/components/simulated-hardwares/utils/modulesMap";
+} from "@/features/playground/components/simulated-hardwares/modules/neopixel-display/types";
+import {Modules} from "@/features/playground/components/simulated-hardwares/utils/modulesMap";
 import NeopixelBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
-import LedModuleBlockConfig from "@/modules/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
+    from "@/features/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
+import LedModuleBlockConfig from "@/features/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
 import BuzzerModuleBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
+    from "@/features/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
 import ServoModuleBlockConfig
-    from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
+    from "@/features/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
 import ModuleConfigConstants
-    from "@/modules/playground/components/simulated-hardwares/modules/common/moduleConfigConstants";
+    from "@/features/playground/components/simulated-hardwares/modules/common/moduleConfigConstants";
 
 export const PlaygroundContainerContent = [
 

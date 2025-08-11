@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import { fetchModuleById } from '@/repositories/moduleRepo';
 import Link from 'next/link';
-import { Header } from '@/modules/common/components/header/Header';
+import { Header } from '@/features/common/components/header/Header';
 
 interface Module {
     ref: {
