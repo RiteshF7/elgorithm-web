@@ -1,6 +1,6 @@
 'use client'
 import { FC } from 'react';
-import { PlayGroundContainer } from "@/features/playground/components/playground-container/PlaygroundContainer";
+import { PlayGroundContainer } from "@/modules/playground/components/playground-container/PlaygroundContainer";
 import HwPlaygroundConfig from "@/content/banner-main/hw-playground-config";
 
 const PlayGroundLessonPage: FC<{ params: { playgroundId: string } }> = ({ params }) => {

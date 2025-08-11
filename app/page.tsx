@@ -1,6 +1,6 @@
 'use client'
-import {Header} from "@/features/common/components/header/Header";
-import {NewLandingPage} from "@/features/home/components/new-landing-page/NewLandingPage";
+import {Header} from "@/modules/common/components/header/Header";
+import {NewLandingPage} from "@/modules/home/components/new-landing-page/NewLandingPage";
 
 
 export default function Home() {
