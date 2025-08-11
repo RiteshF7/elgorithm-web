@@ -1,4 +1,4 @@
-interface Level {
+export interface Level {
     title: string;
     description: string;
     bgImageUrl: string;
@@ -9,13 +9,13 @@ interface Level {
     level: string;
 }
 
-interface Category {
+export interface Category {
     title: string;
     description: string;
     levelId: string;
 }
 
-interface Lesson {
+export interface Lesson {
     title: string;
     description: string;
     categoryId: string;

@@ -1,4 +1,6 @@
 const faunadb = require('faunadb');
+import { Level, Category, Lesson } from './models';
+
 const client = new faunadb.Client({
     secret: 'fnAFiVRwkAAAQPj1uOMiKCxwQXM3HhxYudOoew-T', domain: 'db.fauna.com',
     scheme: 'https',
@@ -6,7 +8,7 @@ const client = new faunadb.Client({
 const q = faunadb.query;
 
 
-export const getLevelList = async () => {
+export const getLevelList = async <T = any>() => {
     console.log("Fetching levels from FaunaDB...");
     const result = await client.query(
         q.Map(
@@ -15,7 +17,7 @@ export const getLevelList = async () => {
         )
     );
     console.log("FaunaDB result:", JSON.stringify(result, null, 2));
-    return await fetchAllDocuments('levels');
+    return await fetchAllDocuments<T>('levels');
 }
 
 export const fetchAllDocuments = async <T>(collectionName: string): Promise<(T & { id: string })[]> => {
