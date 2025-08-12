@@ -1,13 +1,13 @@
 'use client'
 import {useEffect, useState} from 'react';
-import {CategoryCardGrid} from "@/features/courses/components/category-card-grid/CategoryCardGrid";
-import {CategoryTitleDescription} from "@/features/courses/components/category-title-description/CategoryTitleDescription";
-import {ContentCardList} from "@/features/home/content-card/ContentCardList";
+import {CategoryCardGrid} from "@/modules/categories/category-card-grid/CategoryCardGrid";
+import {CategoryTitleDescription} from "@/modules/categories/category-title-description/CategoryTitleDescription";
+import {ContentCardList} from "@/modules/home/content-card/ContentCardList";
 import {ContentCardsContent} from "@/content/banner-main/content-cards.content";
-import {CategoryModel} from "@/features/courses/models/category.model";
+import {CategoryModel} from "@/modules/categories/models/category.model";
 import {ProjectPage} from "@/components/component/project-page";
 import {projectList} from "@/content/projects-conrent";
-import {BannerMain} from "@/features/home/banner-main/BannerMain";
+import {BannerMain} from "@/modules/home/banner-main/BannerMain";
 import {BannerMainContent} from "@/content/banner-main/banner-main.content";
 
 

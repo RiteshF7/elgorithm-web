@@ -1,5 +1,5 @@
 import NeopixelBlockConfig
-    from "@/features/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
 
 interface Toolbox {
     kind: string;

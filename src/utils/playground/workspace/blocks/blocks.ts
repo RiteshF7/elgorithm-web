@@ -5,16 +5,16 @@ import blockKeys from "@/utils/playground/workspace/blocks/blockKeys";
 
 
 import neopixelBlockConfig
-    from "@/features/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/neopixel-display/neopixelBlockConfig";
 import ledModuleBlockConfig
-    from "@/features/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/led/ledModuleBlockConfig";
 import buzzerBlockConfig
-    from "@/features/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/buzzer/buzzerModuleBlockConfig";
 import servoBlockConfig
-    from "@/features/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
+    from "@/modules/playground/components/simulated-hardwares/modules/servo-motor/servoModuleBlockConfig";
 import inputsBlockConfig from "@/utils/playground/workspace/toolbox/core/inputs/inputsBlockConfig";
 
-import delayBlockConfig from "@/features/playground/components/simulated-hardwares/modules/common/delayBlockConfig";
+import delayBlockConfig from "@/modules/playground/components/simulated-hardwares/modules/common/delayBlockConfig";
 
 interface BlockConfig {
     blockDefinitions?: { [key: string]: any };

@@ -1,8 +1,8 @@
 'use client'
 import { FC } from 'react';
-import { PlayGroundContainer } from "@/features/playground/components/playground-container/PlaygroundContainer";
+import { PlayGroundContainer } from "@/modules/playground/components/playground-container/PlaygroundContainer";
 import { ProjectsContent, ProjectTypes } from "@/content/banner-main/playground-content";
-import ContentPage from "@/features/ContentPage";
+import ContentPage from "@/modules/ContentPage";
 
 const PlayGroundContentPage: FC<{ params: { contentId: string } }> = ({ params }) => {
 

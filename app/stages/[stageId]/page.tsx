@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import { fetchSectionsByStage } from '@/repositories/sectionRepo';
 import Link from 'next/link';
-import { Header } from '@/features/common/components/header/Header';
+import { Header } from '@/modules/common/components/header/Header';
 
 interface Section {
     ref: {
